@@ -1,28 +1,35 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\App;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Database\Eloquent\Model;
 
 class Admin extends Authenticatable
 {
-    Use HasFactory;
+    use HasFactory;
+
     public $timestamps = false;
     protected $keyType = 'string';
     protected $primaryKey = 'id';
     protected $table = 'admin';
 
+    // PERBAIKI: sesuaikan dengan nama kolom di database
     protected $fillable = [
-        'name',
+        'nama',      // dari 'name' jadi 'nama'
         'email',
+        'password',  // TAMBAHKAN password ke fillable
         'role',
     ];
 
-    protected $guarded =[
-        'password'
+    // PERBAIKI: hapus password dari guarded
+    protected $guarded = [
+        'id'
     ];
 
-    private string $guard = 'admin';
+    protected $hidden = [
+        'password',
+    ];
+
+    protected $guard = 'admin';
 }

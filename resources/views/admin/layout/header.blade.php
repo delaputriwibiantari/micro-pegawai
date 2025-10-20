@@ -43,7 +43,7 @@
                     <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-primary fw-bold py-4 fs-sm-8 fs-lg-6 w-275px"
                          data-kt-menu="true">
                         <div class="menu-item px-5">
-                            <a href="{{ route('logout') }}" class="menu-link px-5">Keluar</a>
+                            <a href="#" class="menu-link px-5">Keluar</a>
                         </div>
                     </div>
                 </div>

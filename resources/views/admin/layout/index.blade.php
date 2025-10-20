@@ -42,11 +42,11 @@
                 <p class="text-white fw-bold fs-4 p-2">Universitas Nurul Jadid</p>
             </div>
             <div class="aside-menu flex-column-fluid">
-                @include('admin.layouts.menu')
+                @include('admin.layout.menu')
             </div>
         </div>
         <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
-            @include('admin.layouts.header')
+            @include('admin.layout.header')
             <div class="container-fluid d-flex align-items-stretch justify-content-between">
                 <ul class="breadcrumb breadcrumb-separatorless fw-bold mt-5 ">
                     @yield('list')
@@ -57,7 +57,7 @@
                     @yield('content')
                 </div>
             </div>
-            @include('admin.layouts.footer')
+            @include('admin.layout.footer')
         </div>
     </div>
 </div>

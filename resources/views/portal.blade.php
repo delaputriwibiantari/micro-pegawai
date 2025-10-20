@@ -24,7 +24,7 @@
                               id="kt_sign_in_form" method="POST" action="{{ route('logindb') }}">
                             @csrf
                             <input type="hidden" name="recaptcha_token" id="recaptcha_token">
-                            @include('errors.flash')
+                            
                             <div class="text-center mb-11">
                                 <h1 class="text-dark fw-bolder mb-4">Masuk</h1>
                             </div>

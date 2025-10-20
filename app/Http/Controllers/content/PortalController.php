@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\content;
 
+use App\Http\Controllers\Controller;
 use App\Services\Tools\FileUploadService;
 use App\Services\Tools\ResponseService;
-use Faker\Core\File;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
@@ -27,7 +27,6 @@ class PortalController extends Controller
         if (Auth::guard('admin')->check()) {
             return view('admin.dashboard');
         }
-
         return view('portal');
     }
 
@@ -41,12 +40,12 @@ class PortalController extends Controller
            'password' => 'required'
        ];
 
-       $custemMessages =[
+       $customMessages =[
            'username.required' => 'Username wajib diisi',
            'password.required' => 'Password wajib diisi'
        ];
 
-       $validator = Validator::make($request->all(), $validationRules, $custemMessages);
+       $validator = Validator::make($request->all(), $validationRules, $customMessages);
 
        if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
