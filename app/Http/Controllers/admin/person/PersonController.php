@@ -12,19 +12,10 @@ use Illuminate\Http\Request;
 class PersonController extends Controller
 {
     public function __construct(
-        private readonly PersonService      $personService,
-        private readonly TransactionService $transactionService,
-        private readonly ResponseService    $responseService,
-    ){}
 
-    public function index(): View
+    )
     {
         return view('admin.person.index');
     }
 
-    public function list(): JsonResponse
-    {
-        return $this->transactionService->handleWithShow(
-            fn() => $this->personService->getlistdata());
-    }
 }
