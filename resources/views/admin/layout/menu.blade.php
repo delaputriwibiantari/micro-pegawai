@@ -14,7 +14,7 @@
                 <span class="menu-title">Dashboard</span>
             </a>
             <a class="menu-link {{ request()->routeIs('admin.person.index') ? 'active' : '' }}"
-               href="{{ route('admin.person.index') }}">
+               href="#">
                 <span class="menu-title">Person</span>
             </a>
         </div>
