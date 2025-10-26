@@ -3,7 +3,7 @@
         $(this).attr('aria-hidden', 'false');
         const button = $(e.relatedTarget);
         const id = button.data("id");
-        const detail = '{{ route('admin.person.show', [':id']) }}';
+        const detail = '{{ route('admin.admin.person.show', [':id']) }}';
         DataManager.fetchData(detail.replace(':id', id))
             .then(function (response) {
                 if (response.success) {

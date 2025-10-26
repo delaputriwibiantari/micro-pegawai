@@ -3,7 +3,7 @@
         // Don't reset here - let global cleaner handle it
         const button = $(e.relatedTarget);
         const id = button.data("id");
-        const detail = '{{ route('admin.person.show', [':id']) }}';
+        const detail = '{{ route('admin.admin.person.show', [':id']) }}';
 
         let edit_tanggal_lahir = $('#edit_tanggal_lahir').flatpickr({
             dateFormat: 'Y-m-d',
@@ -162,7 +162,7 @@
                         formData.append('foto', fileInput.files[0]);
                     }
 
-                    const update = '{{ route('admin.person.update', [':id']) }}';
+                    const update = '{{ route('admin.admin.person.update', [':id']) }}';
                     DataManager.formData(update.replace(':id', id), formData).then(response => {
                         if (response.success) {
                             Swal.fire('Success', response.message, 'success');

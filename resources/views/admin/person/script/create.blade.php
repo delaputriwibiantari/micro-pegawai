@@ -81,7 +81,7 @@
                         formData.append('foto', fileInput.files[0]);
                     }
 
-                    const action = "{{ route('admin.person.store') }}";
+                    const action = "{{ route('admin.admin.person.store') }}";
                     DataManager.formData(action, formData).then(response => {
                         if (response.success) {
                             Swal.fire('Success', response.message, 'success');
