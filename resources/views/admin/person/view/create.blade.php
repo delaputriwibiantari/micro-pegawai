@@ -52,24 +52,19 @@
 
                             <div class="d-flex flex-column mb-2">
                                 <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
-                                    <span>Nama</span>
+                                    <span>Nama Lengkap</span>
                                 </label>
-                                <input type="text" id="nama" class="form-control form-control-sm fs-sm-8 fs-lg-6"
+                                <input type="text" id="nama_lengkap" class="form-control form-control-sm fs-sm-8 fs-lg-6"
                                        maxlength="50" required/>
                                 <div class="invalid-feedback"></div>
                             </div>
 
                             <div class="d-flex flex-column mb-2">
                                 <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
-                                    <span>Jenis Kelamin</span>
+                                    <span>Nama Panggilan</span>
                                 </label>
-                                <select data-control="select2" id="jk"
-                                        class="form-control form-control-sm fs-sm-8 fs-lg-6" data-allow-clear="true"
-                                        data-placeholder="Pilih Jenis Kelamin" required>
-                                    <option value="">Pilih Jenis Kelamin</option>
-                                    <option value="L">Laki-laki</option>
-                                    <option value="P">Perempuan</option>
-                                </select>
+                                <input type="text" id="nama_panggilan" class="form-control form-control-sm fs-sm-8 fs-lg-6"
+                                       maxlength="50" required/>
                                 <div class="invalid-feedback"></div>
                             </div>
 
@@ -93,11 +88,79 @@
                             </div>
 
                             <div class="d-flex flex-column mb-2">
+                                <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
+                                    <span>Agama/span>
+                                </label>
+                                <input type="text" id="agama"
+                                       class="form-control form-control-sm fs-sm-8 fs-lg-6" required/>
+                                <div class="invalid-feedback"></div>
+                            </div>
+
+                            <div class="d-flex flex-column mb-2">
                                 <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
                                     <span>Kewarganegaraan</span>
                                 </label>
                                 <input type="text" id="kewarganegaraan"
                                        class="form-control form-control-sm fs-sm-8 fs-lg-6"/>
+                                <div class="invalid-feedback"></div>
+                            </div>
+
+                             <div class="d-flex flex-column mb-2">
+                                <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
+                                    <span>Email</span>
+                                </label>
+                                <input type="text" id="email" class="form-control form-control-sm fs-sm-8 fs-lg-6"
+                                       maxlength="100"/>
+                                <div class="invalid-feedback"></div>
+                            </div>
+
+                            <div class="d-flex flex-column mb-2">
+                                <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
+                                    <span>Nomor HP</span>
+                                </label>
+                                <input type="text" id="no_hp" class="form-control form-control-sm fs-sm-8 fs-lg-6"
+                                       maxlength="16"/>
+                                <div class="invalid-feedback"></div>
+                            </div>
+
+                             <div class="d-flex flex-column mb-2">
+                                <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
+                                    <span>NIK</span>
+                                </label>
+                                <input type="text" id="nik" class="form-control form-control-sm fs-sm-8 fs-lg-6"
+                                       maxlength="16"/>
+                                <div class="invalid-feedback"></div>
+                            </div>
+
+                            <div class="d-flex flex-column mb-2">
+                                <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
+                                    <span>Nomor KK</span>
+                                </label>
+                                <input type="text" id="kk" class="form-control form-control-sm fs-sm-8 fs-lg-6"
+                                       maxlength="16"/>
+                                <div class="invalid-feedback"></div>
+                            </div>
+
+                            <div class="d-flex flex-column mb-2">
+                                <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
+                                    <span>NPWP</span>
+                                </label>
+                                <input type="text" id="npwp" class="form-control form-control-sm fs-sm-8 fs-lg-6"
+                                       maxlength="30"/>
+                                <div class="invalid-feedback"></div>
+                            </div>
+
+                             <div class="d-flex flex-column mb-2">
+                                <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
+                                    <span>Jenis Kelamin</span>
+                                </label>
+                                <select data-control="select2" id="jk"
+                                        class="form-control form-control-sm fs-sm-8 fs-lg-6" data-allow-clear="true"
+                                        data-placeholder="Pilih Jenis Kelamin" required>
+                                    <option value="">Pilih Jenis Kelamin</option>
+                                    <option value="L">Laki-laki</option>
+                                    <option value="P">Perempuan</option>
+                                </select>
                                 <div class="invalid-feedback"></div>
                             </div>
 
@@ -116,52 +179,8 @@
                                 </select>
                                 <div class="invalid-feedback"></div>
                             </div>
-
-                            <div class="d-flex flex-column mb-2">
-                                <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
-                                    <span>NIK</span>
-                                </label>
-                                <input type="text" id="nik" class="form-control form-control-sm fs-sm-8 fs-lg-6"
-                                       maxlength="16"/>
-                                <div class="invalid-feedback"></div>
-                            </div>
-
-                            <div class="d-flex flex-column mb-2">
-                                <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
-                                    <span>Nomor KK</span>
-                                </label>
-                                <input type="text" id="nomor_kk" class="form-control form-control-sm fs-sm-8 fs-lg-6"
-                                       maxlength="16"/>
-                                <div class="invalid-feedback"></div>
-                            </div>
-
-                            <div class="d-flex flex-column mb-2">
-                                <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
-                                    <span>NPWP</span>
-                                </label>
-                                <input type="text" id="npwp" class="form-control form-control-sm fs-sm-8 fs-lg-6"
-                                       maxlength="30"/>
-                                <div class="invalid-feedback"></div>
-                            </div>
-
-                            <div class="d-flex flex-column mb-2">
-                                <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
-                                    <span>Nomor HP</span>
-                                </label>
-                                <input type="text" id="nomor_hp" class="form-control form-control-sm fs-sm-8 fs-lg-6"
-                                       maxlength="16"/>
-                                <div class="invalid-feedback"></div>
-                            </div>
-
-                            <div class="d-flex flex-column mb-2">
-                                <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
-                                    <span>Email</span>
-                                </label>
-                                <input type="text" id="email" class="form-control form-control-sm fs-sm-8 fs-lg-6"
-                                       maxlength="100"/>
-                                <div class="invalid-feedback"></div>
-                            </div>
                         </div>
+
 
                         <!-- Kolom 3: Alamat -->
                         <div class="col-md-5">

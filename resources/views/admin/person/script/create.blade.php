@@ -59,21 +59,22 @@
                     DataManager.openLoading();
                     const formData = new FormData();
                     formData.append('nama_lengkap', $('#nama_lengkap').val());
-                    formData.append('nama_panggilan', $('#nama_panggilan').val());
-                    formData.append('jk', $('#jk').val());
+                    formData.append('nama_panggilan', c.val());
                     formData.append('tempat_lahir', $('#tempat_lahir').val());
                     formData.append('tanggal_lahir', $('#tanggal_lahir').val());
                     formData.append('agama', $('#agama').val());
                     formData.append('kewarganegaraan', $('#kewarganegaraan').val());
+                    formData.append('email', $('#email').val());
+                    formData.append('no_hp', $('#no_hp').val());
                     formData.append('nik', $('#nik').val());
                     formData.append('kk', $('#kk').val());
+                    formData.append('npwp', $('#npwp').val());
                     formData.append('alamat', $('#alamat').val());
+                    formData.append('id_desa', $('#id_desa').val());
+                    formData.append('jk', $('#jk').val());
+                    formData.append('golongan_darah', $('#golongan_darah').val());
                     formData.append('rt', $('#rt').val());
                     formData.append('rw', $('#rw').val());
-                    formData.append('id_desa', $('#id_desa').val());
-                    formData.append('npwp', $('#npwp').val());
-                    formData.append('no_hp', $('#no_hp').val());
-                    formData.append('email', $('#email').val());
 
                     const fileInput = $('#foto')[0];
                     if (fileInput.files[0]) {

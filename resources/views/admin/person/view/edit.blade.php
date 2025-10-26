@@ -53,24 +53,19 @@
 
                             <div class="d-flex flex-column mb-2">
                                 <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
-                                    <span>Nama</span>
+                                    <span>Nama Lengkap</span>
                                 </label>
-                                <input type="text" id="edit_nama" class="form-control form-control-sm fs-sm-8 fs-lg-6"
+                                <input type="text" id="edit_nama_lengkap" class="form-control form-control-sm fs-sm-8 fs-lg-6"
                                        maxlength="50" required/>
                                 <div class="invalid-feedback"></div>
                             </div>
 
                             <div class="d-flex flex-column mb-2">
                                 <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
-                                    <span>Jenis Kelamin</span>
+                                    <span>Nama Panggilan</span>
                                 </label>
-                                <select data-control="select2" id="edit_jk"
-                                        class="form-control form-control-sm fs-sm-8 fs-lg-6" data-allow-clear="true"
-                                        data-placeholder="Pilih Jenis Kelamin" required>
-                                    <option value="">Pilih Jenis Kelamin</option>
-                                    <option value="L">Laki-laki</option>
-                                    <option value="P">Perempuan</option>
-                                </select>
+                                <input type="text" id="edit_nama_panggilan" class="form-control form-control-sm fs-sm-8 fs-lg-6"
+                                       maxlength="50" required/>
                                 <div class="invalid-feedback"></div>
                             </div>
 
@@ -94,6 +89,15 @@
                             </div>
 
                             <div class="d-flex flex-column mb-2">
+                                <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
+                                    <span>Agama</span>
+                                </label>
+                                <input type="text" id="edit_agama"
+                                       class="form-control form-control-sm fs-sm-8 fs-lg-6" required/>
+                                <div class="invalid-feedback"></div>
+                            </div>
+
+                            <div class="d-flex flex-column mb-2">
                                 <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
                                     <span>Kewarganegaraan</span>
                                 </label>
@@ -104,17 +108,20 @@
 
                             <div class="d-flex flex-column mb-2">
                                 <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
-                                    <span>Golongan Darah</span>
+                                    <span>Email</span>
                                 </label>
-                                <select data-control="select2" id="edit_golongan_darah"
-                                        class="form-control form-control-sm fs-sm-8 fs-lg-6" data-allow-clear="true"
-                                        data-placeholder="Pilih Golongan Darah">
-                                    <option value="">Pilih Golongan Darah</option>
-                                    <option value="A">A</option>
-                                    <option value="B">B</option>
-                                    <option value="AB">AB</option>
-                                    <option value="O">O</option>
-                                </select>
+                                <input type="text" id="edit_email" class="form-control form-control-sm fs-sm-8 fs-lg-6"
+                                       maxlength="100"/>
+                                <div class="invalid-feedback"></div>
+                            </div>
+
+                            <div class="d-flex flex-column mb-2">
+                                <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
+                                    <span>Nomor HP</span>
+                                </label>
+                                <input type="text" id="edit_no_hp"
+                                       class="form-control form-control-sm fs-sm-8 fs-lg-6"
+                                       maxlength="16"/>
                                 <div class="invalid-feedback"></div>
                             </div>
 
@@ -131,7 +138,7 @@
                                 <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
                                     <span>Nomor KK</span>
                                 </label>
-                                <input type="text" id="edit_nomor_kk"
+                                <input type="text" id="edit_kk"
                                        class="form-control form-control-sm fs-sm-8 fs-lg-6"
                                        maxlength="16"/>
                                 <div class="invalid-feedback"></div>
@@ -147,21 +154,32 @@
                             </div>
 
                             <div class="d-flex flex-column mb-2">
-                                <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
-                                    <span>Nomor HP</span>
+                                <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
+                                    <span>Jenis Kelamin</span>
                                 </label>
-                                <input type="text" id="edit_nomor_hp"
-                                       class="form-control form-control-sm fs-sm-8 fs-lg-6"
-                                       maxlength="16"/>
+                                <select data-control="select2" id="edit_jk"
+                                        class="form-control form-control-sm fs-sm-8 fs-lg-6" data-allow-clear="true"
+                                        data-placeholder="Pilih Jenis Kelamin" required>
+                                    <option value="">Pilih Jenis Kelamin</option>
+                                    <option value="L">Laki-laki</option>
+                                    <option value="P">Perempuan</option>
+                                </select>
                                 <div class="invalid-feedback"></div>
                             </div>
 
                             <div class="d-flex flex-column mb-2">
                                 <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
-                                    <span>Email</span>
+                                    <span>Golongan Darah</span>
                                 </label>
-                                <input type="text" id="edit_email" class="form-control form-control-sm fs-sm-8 fs-lg-6"
-                                       maxlength="100"/>
+                                <select data-control="select2" id="edit_golongan_darah"
+                                        class="form-control form-control-sm fs-sm-8 fs-lg-6" data-allow-clear="true"
+                                        data-placeholder="Pilih Golongan Darah">
+                                    <option value="">Pilih Golongan Darah</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="AB">AB</option>
+                                    <option value="O">O</option>
+                                </select>
                                 <div class="invalid-feedback"></div>
                             </div>
                         </div>

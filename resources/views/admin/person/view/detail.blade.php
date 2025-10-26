@@ -27,16 +27,16 @@
 
                         <div class="d-flex flex-column mb-3">
                             <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
-                                <span>Nama</span>
+                                <span>Nama Lengkap</span>
                             </label>
-                            <p id="detail_nama" class="fw-light fs-sm-8 fs-lg-6"></p>
+                            <p id="detail_nama_lengkap" class="fw-light fs-sm-8 fs-lg-6"></p>
                         </div>
 
                         <div class="d-flex flex-column mb-3">
                             <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
-                                <span>Jenis Kelamin</span>
+                                <span>Nama Panggilan</span>
                             </label>
-                            <p id="detail_jk" class="fw-light fs-sm-8 fs-lg-6"></p>
+                            <p id="detail_nama_panggilan" class="fw-light fs-sm-8 fs-lg-6"></p>
                         </div>
 
                         <div class="d-flex flex-column mb-3">
@@ -55,6 +55,13 @@
 
                         <div class="d-flex flex-column mb-3">
                             <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
+                                <span>Agama</span>
+                            </label>
+                            <p id="detail_agama" class="fw-light fs-sm-8 fs-lg-6"></p>
+                        </div>
+
+                        <div class="d-flex flex-column mb-3">
+                            <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
                                 <span>Kewarganegaraan</span>
                             </label>
                             <p id="detail_kewarganegaraan" class="fw-light fs-sm-8 fs-lg-6"></p>
@@ -62,9 +69,16 @@
 
                         <div class="d-flex flex-column mb-3">
                             <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
-                                <span>Golongan Darah</span>
+                                <span>Email</span>
                             </label>
-                            <p id="detail_golongan_darah" class="fw-light fs-sm-8 fs-lg-6"></p>
+                            <p id="detail_email" class="fw-light fs-sm-8 fs-lg-6"></p>
+                        </div>
+
+                        <div class="d-flex flex-column mb-3">
+                            <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
+                                <span>Nomor HP</span>
+                            </label>
+                            <p id="detail_no_hp" class="fw-light fs-sm-8 fs-lg-6"></p>
                         </div>
 
                         <div class="d-flex flex-column mb-3">
@@ -78,10 +92,10 @@
                             <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
                                 <span>Nomor KK</span>
                             </label>
-                            <p id="detail_nomor_kk" class="fw-light fs-sm-8 fs-lg-6"></p>
+                            <p id="detail_kk" class="fw-light fs-sm-8 fs-lg-6"></p>
                         </div>
 
-                        <div class="d-flex flex-column mb-3">
+                         <div class="d-flex flex-column mb-3">
                             <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
                                 <span>NPWP</span>
                             </label>
@@ -90,16 +104,16 @@
 
                         <div class="d-flex flex-column mb-3">
                             <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
-                                <span>Nomor HP</span>
+                                <span>Jenis Kelamin</span>
                             </label>
-                            <p id="detail_nomor_hp" class="fw-light fs-sm-8 fs-lg-6"></p>
+                            <p id="detail_jk" class="fw-light fs-sm-8 fs-lg-6"></p>
                         </div>
-
+                        
                         <div class="d-flex flex-column mb-3">
                             <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
-                                <span>Email</span>
+                                <span>Golongan Darah</span>
                             </label>
-                            <p id="detail_email" class="fw-light fs-sm-8 fs-lg-6"></p>
+                            <p id="detail_golongan_darah" class="fw-light fs-sm-8 fs-lg-6"></p>
                         </div>
                     </div>
 

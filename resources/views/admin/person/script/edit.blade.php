@@ -15,20 +15,22 @@
         DataManager.fetchData(detail.replace(':id', id))
             .then(function (response) {
                 if (response.success) {
-                    $('#edit_nama').val(response.data.nama);
-                    $('#edit_jk').val(response.data.jk).trigger('change');
+                    $('#edit_nama_lengkap').val(response.data.nama_lengkap);
+                    $('#edit_nama_panggilan').val(response.data.nama_panggilan);
                     $('#edit_tempat_lahir').val(response.data.tempat_lahir);
-                    edit_tanggal_lahir.setDate(response.data.tanggal_lahir);
+                    $('#edit_tanggal_lahir').setDate(response.data.tanggal_lahir);
+                    $('#edit_agama').val(response.data.agama);
+                    $('#edit_kewarganegaraan').val(response.data.kewarganegaraan);
+                    $('#edit_email').val(response.data.email);
+                    $('#edit_no_hp').val(response.data.no_hp);
                     $('#edit_nik').val(response.data.nik);
-                    $('#edit_nomor_kk').val(response.data.nomor_kk);
+                    $('#edit_kk').val(response.data.kk);
+                    $('#edit_npwp').val(response.data.npwp);
                     $('#edit_alamat').val(response.data.alamat);
+                    $('#edit_jk').val(response.data.jk).trigger('change');
+                    $('#edit_golongan_darah').val(response.data.golongan_darah).trigger('change');
                     $('#edit_rt').val(response.data.rt);
                     $('#edit_rw').val(response.data.rw);
-                    $('#edit_npwp').val(response.data.npwp);
-                    $('#edit_nomor_hp').val(response.data.nomor_hp);
-                    $('#edit_email').val(response.data.email);
-                    $('#edit_kewarganegaraan').val(response.data.kewarganegaraan);
-                    $('#edit_golongan_darah').val(response.data.golongan_darah).trigger('change');
 
                     // Handle foto preview
                     if (response.data.foto) {
