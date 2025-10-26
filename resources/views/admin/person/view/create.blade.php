@@ -2,6 +2,7 @@
      aria-hidden="true">
     <div class="modal-dialog modal-xl" role="document">
         <form method="post" id="bt_submit_create" enctype="multipart/form-data">
+            @csrf
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Tambah Person</h5>
@@ -54,7 +55,7 @@
                                 <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
                                     <span>Nama Lengkap</span>
                                 </label>
-                                <input type="text" id="nama_lengkap" class="form-control form-control-sm fs-sm-8 fs-lg-6"
+                                <input type="text" id="nama_lengkap" name="nama_lengkap" class="form-control form-control-sm fs-sm-8 fs-lg-6"
                                        maxlength="50" required/>
                                 <div class="invalid-feedback"></div>
                             </div>
@@ -63,7 +64,7 @@
                                 <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
                                     <span>Nama Panggilan</span>
                                 </label>
-                                <input type="text" id="nama_panggilan" class="form-control form-control-sm fs-sm-8 fs-lg-6"
+                                <input type="text" id="nama_panggilan" name="nama_panggilan" class="form-control form-control-sm fs-sm-8 fs-lg-6"
                                        maxlength="50" required/>
                                 <div class="invalid-feedback"></div>
                             </div>
@@ -72,7 +73,7 @@
                                 <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
                                     <span>Tempat Lahir</span>
                                 </label>
-                                <input type="text" id="tempat_lahir"
+                                <input type="text" id="tempat_lahir" name="tempat_lahir"
                                        class="form-control form-control-sm fs-sm-8 fs-lg-6"
                                        maxlength="30" required/>
                                 <div class="invalid-feedback"></div>
@@ -82,16 +83,16 @@
                                 <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
                                     <span>Tanggal Lahir</span>
                                 </label>
-                                <input type="text" id="tanggal_lahir"
+                                <input type="text" id="tanggal_lahir" name="tanggal_lahir"
                                        class="form-control form-control-sm fs-sm-8 fs-lg-6" required/>
                                 <div class="invalid-feedback"></div>
                             </div>
 
                             <div class="d-flex flex-column mb-2">
                                 <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
-                                    <span>Agama/span>
+                                    <span>Agama</span>
                                 </label>
-                                <input type="text" id="agama"
+                                <input type="text" id="agama" name="agama"
                                        class="form-control form-control-sm fs-sm-8 fs-lg-6" required/>
                                 <div class="invalid-feedback"></div>
                             </div>
@@ -100,7 +101,7 @@
                                 <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
                                     <span>Kewarganegaraan</span>
                                 </label>
-                                <input type="text" id="kewarganegaraan"
+                                <input type="text" id="kewarganegaraan" name="kewarganegaraan"
                                        class="form-control form-control-sm fs-sm-8 fs-lg-6"/>
                                 <div class="invalid-feedback"></div>
                             </div>
@@ -109,7 +110,7 @@
                                 <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
                                     <span>Email</span>
                                 </label>
-                                <input type="text" id="email" class="form-control form-control-sm fs-sm-8 fs-lg-6"
+                                <input type="text" id="email" name="email" class="form-control form-control-sm fs-sm-8 fs-lg-6"
                                        maxlength="100"/>
                                 <div class="invalid-feedback"></div>
                             </div>
@@ -118,7 +119,7 @@
                                 <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
                                     <span>Nomor HP</span>
                                 </label>
-                                <input type="text" id="no_hp" class="form-control form-control-sm fs-sm-8 fs-lg-6"
+                                <input type="text" id="no_hp" name="no_hp" class="form-control form-control-sm fs-sm-8 fs-lg-6"
                                        maxlength="16"/>
                                 <div class="invalid-feedback"></div>
                             </div>
@@ -127,7 +128,7 @@
                                 <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
                                     <span>NIK</span>
                                 </label>
-                                <input type="text" id="nik" class="form-control form-control-sm fs-sm-8 fs-lg-6"
+                                <input type="text" id="nik" name="nik" class="form-control form-control-sm fs-sm-8 fs-lg-6"
                                        maxlength="16"/>
                                 <div class="invalid-feedback"></div>
                             </div>
@@ -136,7 +137,7 @@
                                 <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
                                     <span>Nomor KK</span>
                                 </label>
-                                <input type="text" id="kk" class="form-control form-control-sm fs-sm-8 fs-lg-6"
+                                <input type="text" id="kk" name="kk" class="form-control form-control-sm fs-sm-8 fs-lg-6"
                                        maxlength="16"/>
                                 <div class="invalid-feedback"></div>
                             </div>
@@ -145,7 +146,7 @@
                                 <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
                                     <span>NPWP</span>
                                 </label>
-                                <input type="text" id="npwp" class="form-control form-control-sm fs-sm-8 fs-lg-6"
+                                <input type="text" id="npwp" name="npwp" class="form-control form-control-sm fs-sm-8 fs-lg-6"
                                        maxlength="30"/>
                                 <div class="invalid-feedback"></div>
                             </div>
@@ -154,7 +155,7 @@
                                 <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
                                     <span>Jenis Kelamin</span>
                                 </label>
-                                <select data-control="select2" id="jk"
+                                <select data-control="select2" id="jk" name="jk"
                                         class="form-control form-control-sm fs-sm-8 fs-lg-6" data-allow-clear="true"
                                         data-placeholder="Pilih Jenis Kelamin" required>
                                     <option value="">Pilih Jenis Kelamin</option>
@@ -168,7 +169,7 @@
                                 <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
                                     <span>Golongan Darah</span>
                                 </label>
-                                <select data-control="select2" id="golongan_darah"
+                                <select data-control="select2" id="golongan_darah" name="golongan_darah"
                                         class="form-control form-control-sm fs-sm-8 fs-lg-6" data-allow-clear="true"
                                         data-placeholder="Pilih Golongan Darah">
                                     <option value="">Pilih Golongan Darah</option>
@@ -190,7 +191,7 @@
                                 <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
                                     <span>Alamat</span>
                                 </label>
-                                <textarea id="alamat" class="form-control form-control-sm fs-sm-8 fs-lg-6"
+                                <textarea id="alamat" name="alamat" class="form-control form-control-sm fs-sm-8 fs-lg-6"
                                           maxlength="100" rows="3"></textarea>
                                 <div class="invalid-feedback"></div>
                             </div>
@@ -201,7 +202,7 @@
                                         <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
                                             <span>RT</span>
                                         </label>
-                                        <input type="text" id="rt" class="form-control form-control-sm fs-sm-8 fs-lg-6"
+                                        <input type="text" id="rt" name="rt" class="form-control form-control-sm fs-sm-8 fs-lg-6"
                                                maxlength="3"/>
                                         <div class="invalid-feedback"></div>
                                     </div>
@@ -211,7 +212,7 @@
                                         <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
                                             <span>RW</span>
                                         </label>
-                                        <input type="text" id="rw" class="form-control form-control-sm fs-sm-8 fs-lg-6"
+                                        <input type="text" id="rw" name="rw" class="form-control form-control-sm fs-sm-8 fs-lg-6"
                                                maxlength="3"/>
                                         <div class="invalid-feedback"></div>
                                     </div>
@@ -222,7 +223,7 @@
                                 <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
                                     <span>Provinsi</span>
                                 </label>
-                                <select data-control="select2" id="id_provinsi"
+                                <select data-control="select2" id="id_provinsi" name="id_provinsi"
                                         class="form-control form-control-sm fs-sm-8 fs-lg-6"
                                         data-allow-clear="true" data-placeholder="Pilih Provinsi">
                                 </select>
@@ -233,7 +234,7 @@
                                 <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
                                     <span>Kabupaten/Kota</span>
                                 </label>
-                                <select data-control="select2" id="id_kabupaten"
+                                <select data-control="select2" id="id_kabupaten" name="id_kabupaten"
                                         class="form-control form-control-sm fs-sm-8 fs-lg-6"
                                         data-allow-clear="true" data-placeholder="Pilih Kabupaten/Kota">
                                 </select>
@@ -244,7 +245,7 @@
                                 <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
                                     <span>Kecamatan</span>
                                 </label>
-                                <select data-control="select2" id="id_kecamatan"
+                                <select data-control="select2" id="id_kecamatan" name="id_kecamatan"
                                         class="form-control form-control-sm fs-sm-8 fs-lg-6"
                                         data-allow-clear="true" data-placeholder="Pilih Kecamatan">
                                 </select>
@@ -255,7 +256,7 @@
                                 <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
                                     <span>Desa/Kelurahan</span>
                                 </label>
-                                <select data-control="select2" id="id_desa"
+                                <select data-control="select2" id="id_desa" name="id_desa"
                                         class="form-control form-control-sm fs-sm-8 fs-lg-6"
                                         data-allow-clear="true" data-placeholder="Pilih Desa/Kelurahan">
                                 </select>
