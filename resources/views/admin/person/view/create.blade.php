@@ -159,8 +159,8 @@
                                         class="form-control form-control-sm fs-sm-8 fs-lg-6" data-allow-clear="true"
                                         data-placeholder="Pilih Jenis Kelamin" required>
                                     <option value="">Pilih Jenis Kelamin</option>
-                                    <option value="L">Laki-laki</option>
-                                    <option value="P">Perempuan</option>
+                                    <option value="l">Laki-laki</option>
+                                    <option value="p">Perempuan</option>
                                 </select>
                                 <div class="invalid-feedback"></div>
                             </div>
