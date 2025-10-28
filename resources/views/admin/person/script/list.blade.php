@@ -54,7 +54,7 @@
                     data: 'jk',
                     name: 'jk',
                     render: function (data) {
-                        return data === 'L' ? 'Laki-laki' : (data === 'P' ? 'Perempuan' : data);
+                        return data === 'l' ? 'Laki-laki' : (data === 'p' ? 'Perempuan' : data);
                     }
                 },
                 {

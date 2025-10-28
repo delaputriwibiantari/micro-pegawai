@@ -19,7 +19,7 @@
                     $('#detail_kk').text(response.data.kk);
                     $('#detail_npwp').text(response.data.npwp);
                     $('#detail_alamat').text(response.data.alamat);
-                    $('#detail_id_desa').text(response.data.id_desa);
+                    $('#detail_id_desa').text(response.data.desa);
                     $('#detail_jk').text(response.data.jk === 'L' ? 'Laki-laki' : (response.data.jk === 'P' ? 'Perempuan' : response.data.jk));
                     $('#detail_golongan_darah').text(response.data.golongan_darah === 'A'? 'A': (response.data.golongan_darah === 'B' ? 'B' : response.data.golongan_darah === 'AB' ? 'AB' : response.data.golongan_darah ===  'O' ? 'O' :response.data.golongan_darah));
                     $('#detail_rt').text(response.data.rt);

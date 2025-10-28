@@ -108,7 +108,7 @@
                             </label>
                             <p id="detail_jk" class="fw-light fs-sm-8 fs-lg-6"></p>
                         </div>
-                        
+
                         <div class="d-flex flex-column mb-3">
                             <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
                                 <span>Golongan Darah</span>
@@ -172,7 +172,7 @@
                             <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
                                 <span>Desa/Kelurahan</span>
                             </label>
-                            <p id="detail_desa" class="fw-light fs-sm-8 fs-lg-6"></p>
+                            <p id="detail_id_desa" class="fw-light fs-sm-8 fs-lg-6"></p>
                         </div>
                     </div>
                 </div>

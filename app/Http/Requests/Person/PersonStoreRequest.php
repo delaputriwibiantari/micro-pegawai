@@ -26,7 +26,7 @@ class PersonStoreRequest extends FormRequest
         return [
             'nama_lengkap' => 'required|string|max:50',
             'nama_panggilan' => 'nullable|string|max:30',
-            'jk' => 'required|in:L,P',
+            'jk' => 'required|in:l,p',
             'tempat_lahir' => 'required|string|max:30',
             'tanggal_lahir' => 'required|date',
             'agama' => 'nullable|string|max:20',
@@ -90,7 +90,7 @@ class PersonStoreRequest extends FormRequest
             'nama_panggilan.string' => 'Field :attribute harus berupa teks.',
             'nama_panggilan.max' => 'Field :attribute maksimal :max karakter.',
             'jk.required' => 'Field :attribute wajib diisi.',
-            'jk.in' => 'Field :attribute harus L atau P.',
+            'jk.in' => 'Field :attribute harus l atau p.',
             'tempat_lahir.required' => 'Field :attribute wajib diisi.',
             'tempat_lahir.string' => 'Field :attribute harus berupa teks.',
             'tempat_lahir.max' => 'Field :attribute maksimal :max karakter.',

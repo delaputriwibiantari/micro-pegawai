@@ -5,16 +5,17 @@ namespace App\Models\Person;
 use App\Traits\SkipsEmptyAudit;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use OwenIt\Auditing\Auditable;
+use OwenIt\Auditing\Auditable as AuditableTrait;
+use OwenIt\Auditing\Contracts\Auditable;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 
-class Person extends Model
+final class Person extends Model implements Auditable
 {
-    use Auditable;
+    use AuditableTrait;
     use HasFactory;
     use SkipsEmptyAudit {
-        SkipsEmptyAudit::transformAudit insteadof Auditable;
+        SkipsEmptyAudit::transformAudit insteadof AuditableTrait;
     }
 
     public $incrementing = true;
@@ -56,16 +57,7 @@ class Person extends Model
 
     ];
 
-    protected static function boot(): void
-    {
-        parent::boot();
-
-        Person::creating(function ($model) {
-            if (empty($model->id)) {
-                $model->uuid_person = (string)Str::uuid();
-            }
-        });
-    }
+    
 
     public function setNamaLengkapAttribute($value): void
     {

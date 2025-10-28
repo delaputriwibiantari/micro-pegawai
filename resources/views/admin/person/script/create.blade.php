@@ -59,7 +59,7 @@
                     DataManager.openLoading();
                     const formData = new FormData();
                     formData.append('nama_lengkap', $('#nama_lengkap').val());
-                    formData.append('nama_panggilan', c.val());
+                    formData.append('nama_panggilan', $('#nama_panggilan').val());
                     formData.append('tempat_lahir', $('#tempat_lahir').val());
                     formData.append('tanggal_lahir', $('#tanggal_lahir').val());
                     formData.append('agama', $('#agama').val());

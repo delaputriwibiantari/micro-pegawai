@@ -29,15 +29,22 @@ class PersonController extends Controller
 
     public function list(): JsonResponse
     {
-        return $this->transactionService->handleWithShow(
-            fn() => $this->personService->getListData(),
-            [
-                'action' => fn($row) => implode(' ', [
-                    $this->transactionService->actionButton($row->id_person, 'detail'),
-                    $this->transactionService->actionButton($row->id_person, 'edit'),
-                ]),
-            ]
-        );
+        $data = $this->personService->getListData();
+
+        // Tambahkan action untuk setiap row
+        $data->transform(function ($row) {
+            $row->action = implode(' ', [
+                $this->transactionService->actionButton($row->id, 'detail'),
+                $this->transactionService->actionButton($row->id, 'edit'),
+            ]);
+            return $row;
+        });
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Data berhasil diambil',
+            'data' => $data
+        ]);
     }
 
     public function listApi(): JsonResponse
