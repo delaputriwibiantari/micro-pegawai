@@ -22,3 +22,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
             ->name('update'); // Menjadi: admin.person.update
     });
 });
+
+
+Route::get('/sdm', function () {
+    return view('admin.sdm.index');
+});
+
+
+
+
+

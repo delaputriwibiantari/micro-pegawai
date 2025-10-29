@@ -24,6 +24,41 @@ $('#id_person').off('change').on('change', function () {
     }
 });
 
+         $('#btnCari').click(function () {
+    let nik = $('#nik').val();
+
+    if (nik === '') {
+        alert('Masukkan NIK terlebih dahulu!');
+        return;
+    }
+
+    $.ajax({
+        url: '/sdm/cari',
+        method: 'GET',
+        data: { nik: nik },
+        success: function (res) {
+            if (res.status === 'success') {
+                $('#info_person').html(`
+                    <div class="alert alert-success">
+                        <strong>Nama:</strong> ${res.data.nama_lengkap}<br>
+                        <strong>NIK:</strong> ${res.data.nik}<br>
+                        <strong>Tanggal Lahir:</strong> ${res.data.tanggal_lahir}<br>
+                        <strong>Alamat:</strong> ${res.data.alamat}
+                    </div>
+                `);
+                $('#form_lanjutan').removeClass('d-none');
+            } else {
+                $('#info_person').html(`
+                    <div class="alert alert-danger">${res.message}</div>
+                `);
+                $('#form_lanjutan').addClass('d-none');
+            }
+        },
+        error: function () {
+            alert('Terjadi kesalahan saat mencari data.');
+        }
+    });
+});
 
         $('#bt_submit_create').off('submit').on('submit', function (e) {
             e.preventDefault();
