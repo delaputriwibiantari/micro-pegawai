@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        $connection = config('audit.drivers.database.connection', config('database.default'));
+        // Force menggunakan koneksi 'log'
+        $connection = 'log'; // Langsung specify koneksi
         $table = config('audit.drivers.database.table', 'audits');
 
         Schema::connection($connection)->create($table, function (Blueprint $table) {
-
             $morphPrefix = config('audit.user.morph_prefix', 'user');
 
             $table->bigIncrements('id');
@@ -40,7 +40,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        $connection = config('audit.drivers.database.connection', config('database.default'));
+        $connection = 'log'; // Langsung specify koneksi
         $table = config('audit.drivers.database.table', 'audits');
 
         Schema::connection($connection)->drop($table);

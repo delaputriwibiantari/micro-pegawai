@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Content\PortalController;
 use App\Http\Controllers\admin\person\PersonController;
+use App\Http\Controllers\admin\sdm\SdmController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('view-file/{folder}/{filename}', [PortalController::class, 'viewFile'])
@@ -24,8 +25,17 @@ Route::prefix('admin')->name('admin.')->group(function () {
 });
 
 
-Route::get('/sdm', function () {
-    return view('admin.sdm.index');
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::prefix('sdm')->name('sdm.')->group(function () {
+        Route::get('/', [SdmController::class, 'index'])
+            ->name('index'); // Menjadi: admin.person.index
+        Route::get('data', [SdmController::class, 'list'])
+            ->name('list'); // Menjadi: admin.person.list
+        Route::get('cari', [SdmController::class, 'cari'])
+            ->name('cari');
+        Route::post('store', [SdmController::class, 'store'])
+            ->name('store');
+    });
 });
 
 

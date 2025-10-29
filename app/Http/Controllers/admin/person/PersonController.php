@@ -86,6 +86,7 @@ class PersonController extends Controller
                 $created->update(['foto' => $uploadResult['file_name']]);
             }
 
+
             return $this->responseService->successResponse('Data berhasil dibuat', $created, 201);
         });
     }

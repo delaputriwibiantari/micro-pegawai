@@ -13,7 +13,7 @@ class  PersonService{
 
     public function getListData(): Collection
     {
-        return Person::select([
+        $query = Person::select([
             'id',
             'nama_lengkap',
             'nama_panggilan',
@@ -30,7 +30,19 @@ class  PersonService{
             'npwp',
             'alamat',
             'id_desa'
-        ])->orderBy('nama_lengkap')->get();
+        ]);
+
+        $search = request('search.value');
+        if ($search) {
+            $query->where(function($q) use ($search) {
+                $q->where('nama_lengkap', 'like', "%{$search}%")
+                ->orWhere('nama_panggilan', 'like', "%{$search}%")
+                ->orWhere('tempat_lahir', 'like', "%{$search}%")
+                ->orWhere('email', 'like', "%{$search}%")
+                ->orWhere('no_hp', 'like', "%{$search}%");
+            });
+        }
+        return $query->get();
     }
 
     public function create(array $data): Person
@@ -89,7 +101,7 @@ class  PersonService{
             ->leftJoin('ref_almt_kabupaten', 'ref_almt_kecamatan.id_kabupaten', '=', 'ref_almt_kabupaten.id_kabupaten')
             ->leftJoin('ref_almt_provinsi', 'ref_almt_kabupaten.id_provinsi', '=', 'ref_almt_provinsi.id_provinsi')
             ->select([
-                'person.id_person',
+                'person.id',
                 'person.nik',
                 'person.nama_lengkap',
                 'person.tempat_lahir',
