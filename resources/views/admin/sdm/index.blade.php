@@ -98,5 +98,6 @@
             });
         }
     </script>
-    @include('admin.sdm.view.create')
+    @include('admin.sdm.script.list')
+    @include('admin.sdm.script.create')
 @endsection

@@ -2,11 +2,10 @@
 <script defer>
     $(document).ready(function () {
         // Isi dropdown person saat halaman siap (jika diperlukan)
-        fetchDataDropdown("{{ route('api.person.list') }}", "#id_person", "id", "nama_lengkap");
+        fetchDataDropdown("{{ route('admin.admin.person.list') }}", "#id_person", "id", "nama_lengkap");
 
         // Event pencarian NIK
         $('#btn-Cari').off('click').on('click', function () {
-            alert('Tombol berhasil diklik!');
             let nik = $('#nik').val();
             let url = $('#btn-Cari').data('url');
 

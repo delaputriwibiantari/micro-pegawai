@@ -43,14 +43,36 @@
                     <!-- Form lanjutan SDM -->
                     <div id="form_lanjutan" class="d-none mt-3">
                         <div class="mb-3">
-                            <label class="form-label fw-bold">Status Pegawai</label>
-                            <input type="text" id="status_pegawai" name="status_pegawai" class="form-control form-control-sm" required>
+                            <label class="form-label fw-bold">Nip</label>
+                            <input type="text" id="nip" name="nip" class="form-control form-control-sm" required>
                         </div>
+                        <div class="d-flex flex-column mb-2">
+                                <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
+                                    <span>Status Pegawai</span>
+                                </label>
+                                <select data-control="select2" id="status_pegawai" name="status_pegawai"
+                                        class="form-control form-control-sm fs-sm-8 fs-lg-6" data-allow-clear="true"
+                                        data-placeholder="Pilih Jenis Kelamin" required>
+                                    <option value="">Pilih Jenis Pegawai</option>
+                                    <option value="TETAP">Tetap</option>
+                                    <option value="KONTRAK">Kontrak</option>
+                                </select>
+                                <div class="invalid-feedback"></div>
+                            </div>
 
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">Tipe Pegawai</label>
-                            <input type="text" id="tipe_pegawai" name="tipe_pegawai" class="form-control form-control-sm" required>
-                        </div>
+                        <div class="d-flex flex-column mb-2">
+                                <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
+                                    <span>Tipe Pegawai</span>
+                                </label>
+                                <select data-control="select2" id="tipe_pegawai" name="tipe_pegawai"
+                                        class="form-control form-control-sm fs-sm-8 fs-lg-6" data-allow-clear="true"
+                                        data-placeholder="Pilih Jenis Kelamin" required>
+                                    <option value="">Pilih Jenis Tipe Pegawai</option>
+                                    <option value="FULL TIME">Full Time</option>
+                                    <option value="PART TIME">Part Time</option>
+                                </select>
+                                <div class="invalid-feedback"></div>
+                            </div>
 
                         <div class="mb-3">
                             <label class="form-label fw-bold">Tanggal Masuk</label>
@@ -58,7 +80,7 @@
                         </div>
 
                         <input type="hidden" id="id_person" name="id_person">
-                        <input type="hidden" id="nama_lengkap" name="nama_lengkap">
+
 
                         <div class="mt-3">
                             <button type="submit" class="btn btn-success btn-sm">Simpan SDM</button>
