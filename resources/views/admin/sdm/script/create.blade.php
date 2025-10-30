@@ -2,7 +2,7 @@
 <script defer>
     $(document).ready(function () {
         // Isi dropdown person saat halaman siap (jika diperlukan)
-        fetchDataDropdown("{{ route('admin.admin.person.list') }}", "#id_person", "id", "nama_lengkap");
+        fetchDataDropdown("{{ route('admin.sdm.list') }}", "#id_person", "id", "nama_lengkap");
 
         // Event pencarian NIK
         $('#btn-Cari').off('click').on('click', function () {

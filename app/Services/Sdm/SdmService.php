@@ -37,9 +37,8 @@ class  SdmService{
                 $q->where('nik', 'like', "%{$search}%")
                 ->orwhere('nama_lengkap', 'like', "%{$search}%")
                 ->orWhere('nama_panggilan', 'like', "%{$search}%")
-                ->orWhere('tempat_lahir', 'like', "%{$search}%")
-                ->orWhere('email', 'like', "%{$search}%")
-                ->orWhere('no_hp', 'like', "%{$search}%");
+                ->orWhere('tempat_lahir', 'like', "%{$search}%");
+
             });
         }
         return $query->get();

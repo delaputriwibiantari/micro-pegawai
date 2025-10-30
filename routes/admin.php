@@ -24,10 +24,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
     });
 });
 
-
 Route::prefix('sdm')->name('sdm.')->group(function () {
     Route::get('/', [SdmController::class, 'index'])
-        ->name('index'); 
+        ->name('index');
     Route::get('data', [SdmController::class, 'list'])
         ->name('list');
     Route::get('cari', [SdmController::class, 'cari'])

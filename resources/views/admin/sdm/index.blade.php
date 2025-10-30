@@ -4,7 +4,6 @@
     <link rel="stylesheet" href="{{ asset('assets/plugins/datatables/dataTables.bootstrap5.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('assets/plugins/datatables/responsive.bootstrap.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('assets/plugins/datatables/buttons.dataTables.min.css') }}"/>
-@endsection
 @section('list')
     <li class="breadcrumb-item text-muted">SDM</li>
     <li class="breadcrumb-item">
@@ -86,7 +85,12 @@
                     response.data.forEach(item => {
                         $(id).append(`<option value="${item['id_' + placeholder]}">${item[name]}</option>`);
                     });
-                    $(id).select2();
+
+                    // ✅ Jalankan select2 hanya jika plugin-nya ada
+                    if ($.fn.select2) {
+                        $(id).select2();
+                    }
+
                     if (callback) {
                         callback();
                     }
@@ -97,6 +101,7 @@
                 ErrorHandler.handleError(error);
             });
         }
+
     </script>
     @include('admin.sdm.script.list')
     @include('admin.sdm.script.create')
