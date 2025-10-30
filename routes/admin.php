@@ -25,17 +25,20 @@ Route::prefix('admin')->name('admin.')->group(function () {
 });
 
 
-
 Route::prefix('sdm')->name('sdm.')->group(function () {
     Route::get('/', [SdmController::class, 'index'])
-        ->name('index'); // Menjadi: admin.person.index
+        ->name('index'); 
     Route::get('data', [SdmController::class, 'list'])
-        ->name('list'); // Menjadi: admin.person.list
+        ->name('list');
     Route::get('cari', [SdmController::class, 'cari'])
         ->name('cari');
     Route::post('store', [SdmController::class, 'store'])
         ->name('store');
-}); 
+    Route::post('update/{id}', [SdmController::class, 'update'])
+        ->name('update');
+    Route::get('show/{id}', [SdmController::class, 'show'])
+        ->name('show');
+});
 
 
 
