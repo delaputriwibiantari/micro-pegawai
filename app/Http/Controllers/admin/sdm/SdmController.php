@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin\sdm;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Sdm\SdmStoreRequest;
+use App\Models\Person\Person;
 use App\Services\Sdm\SdmService;
 use App\Services\Tools\ResponseService;
 use App\Services\Tools\TransactionService;
@@ -17,7 +18,7 @@ class SdmController extends Controller
     public function __construct(
         private readonly SdmService $sdmService,
         private readonly TransactionService $transactionService,
-        private readonly ResponseService $responseService,
+        private readonly ResponseService $responseService
 
     )
     {}
@@ -81,48 +82,30 @@ class SdmController extends Controller
         });
     }
 
-    public function cariByNik(Request $request): JsonResponse
+    public function cari(Request $request): JsonResponse
     {
-        // Validasi input
         $request->validate([
             'nik' => 'required|string|size:16|regex:/^[0-9]+$/'
-        ], [
-            'nik.required' => 'NIK wajib diisi',
-            'nik.size' => 'NIK harus 16 digit',
-            'nik.regex' => 'NIK hanya boleh mengandung angka'
         ]);
 
-        try {
-            $nik = $request->nik;
+        $person = $this->sdmService->findPersonByNik($request->nik);
 
-            // Panggil service untuk mencari data
-            $sdm = $this->sdmService->findByNik($nik);
-
-            if (!$sdm) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Data person dengan NIK ' . $nik . ' tidak ditemukan',
-                    'data' => null
-                ], 404);
-            }
-
-            // Format data menggunakan service
-            $formattedData = $this->sdmService->formatPersonData($sdm);
-
-            return response()->json([
-                'success' => true,
-                'message' => 'Data person berhasil ditemukan',
-                'data' => $formattedData
-            ]);
-
-        } catch (\Exception $e) {
-            Log::error('Error in SdmController::cariByNik: ' . $e->getMessage());
-
+        if (!$person) {
             return response()->json([
                 'success' => false,
-                'message' => 'Terjadi kesalahan sistem',
-                'error' => config('app.debug') ? $e->getMessage() : null
-            ], 500);
+                'message' => 'Data tidak ditemukan atau sudah terdaftar di SDM',
+                'data' => null
+            ]);
         }
+
+        $formatted = $this->sdmService->formatPersonData($person);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Data ditemukan',
+            'data' => $formatted
+        ]);
     }
+
+
 }

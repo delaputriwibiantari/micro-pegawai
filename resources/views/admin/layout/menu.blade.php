@@ -18,7 +18,7 @@
                 <span class="menu-title">Person</span>
             </a>
             <a class="menu-link {{ request()->routeIs('admin.sdm.index') ? 'active' : '' }}"
-               href="{{ route('admin.admin.sdm.index') }}">
+               href="{{ route('admin.sdm.index') }}">
                 <span class="menu-title">SDM</span>
             </a>
         </div>

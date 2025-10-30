@@ -1,65 +1,53 @@
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script defer>
-    $('#form_create').on('show.bs.modal', function (e) {
+    $(document).ready(function () {
+        // Isi dropdown person saat halaman siap (jika diperlukan)
+        fetchDataDropdown("{{ route('api.person.list') }}", "#id_person", "id", "nama_lengkap");
+
+        // Event pencarian NIK
+        $('#btn-Cari').off('click').on('click', function () {
+            alert('Tombol berhasil diklik!');
+            let nik = $('#nik').val();
+            let url = $('#btn-Cari').data('url');
 
 
-        // Pertama, isi dropdown person dari API (sama kayak fetchDataDropdown-mu)
-fetchDataDropdown("{{ route('api.person.list') }}", "#id_person", "id", "nama_lengkap");
-
-// Ketika dropdown person berubah, ambil nama lengkap-nya
-$('#id_person').off('change').on('change', function () {
-    const personId = $(this).val();
-    // Kosongkan input nama_lengkap dulu
-    $('#nama_lengkap').val('');
-
-    if (personId) {
-        // Panggil endpoint API untuk ambil detail person berdasarkan ID
-        const personUrl = `{{ route('api.person.show', ':id') }}`.replace(':id', personId);
-        $.get(personUrl, function (data) {
-
-            if (data && data.nama_lengkap) {
-                // Isi otomatis nama lengkap di form sdm
-                $('#nama_lengkap').val(data.nama_lengkap);
+            if (nik === '') {
+                alert('Masukkan NIK terlebih dahulu!');
+                return;
             }
+
+            $.ajax({
+                url: "{{ route('admin.sdm.cari') }}",
+                method: 'GET',
+                data: { nik: nik },
+                success: function (res) {
+                    if (res.success) {
+                        $('#info_person').html(`
+                            <div class="alert alert-success">
+                                <strong>Nama:</strong> ${res.data.nama_lengkap}<br>
+                                <strong>NIK:</strong> ${res.data.nik}<br>
+                                <strong>Tanggal Lahir:</strong> ${res.data.tanggal_lahir}<br>
+                                <strong>Alamat:</strong> ${res.data.alamat}
+                            </div>
+                        `);
+                        $('#form_lanjutan').removeClass('d-none');
+                        $('#id_person').val(res.data.id_person);
+                        $('#nama_lengkap').val(res.data.nama_lengkap);
+                        $('#nama_person_heading').text(res.data.nama_lengkap);
+                    } else {
+                        $('#info_person').html(`
+                            <div class="alert alert-danger">${res.message}</div>
+                        `);
+                        $('#form_lanjutan').addClass('d-none');
+                    }
+                },
+                error: function () {
+                    alert('Terjadi kesalahan saat mencari data.');
+                }
+            });
         });
-    }
-});
 
-         $('#btnCari').click(function () {
-    let nik = $('#nik').val();
-
-    if (nik === '') {
-        alert('Masukkan NIK terlebih dahulu!');
-        return;
-    }
-
-    $.ajax({
-        url: '/sdm/cari',
-        method: 'GET',
-        data: { nik: nik },
-        success: function (res) {
-            if (res.status === 'success') {
-                $('#info_person').html(`
-                    <div class="alert alert-success">
-                        <strong>Nama:</strong> ${res.data.nama_lengkap}<br>
-                        <strong>NIK:</strong> ${res.data.nik}<br>
-                        <strong>Tanggal Lahir:</strong> ${res.data.tanggal_lahir}<br>
-                        <strong>Alamat:</strong> ${res.data.alamat}
-                    </div>
-                `);
-                $('#form_lanjutan').removeClass('d-none');
-            } else {
-                $('#info_person').html(`
-                    <div class="alert alert-danger">${res.message}</div>
-                `);
-                $('#form_lanjutan').addClass('d-none');
-            }
-        },
-        error: function () {
-            alert('Terjadi kesalahan saat mencari data.');
-        }
-    });
-});
-
+        // Submit form SDM
         $('#bt_submit_create').off('submit').on('submit', function (e) {
             e.preventDefault();
             Swal.fire({
@@ -67,52 +55,56 @@ $('#id_person').off('change').on('change', function () {
                 text: 'Apakah datanya benar dan apa yang anda inginkan?',
                 icon: 'warning',
                 confirmButtonColor: '#3085d6',
-                allowOutsideClick: false, allowEscapeKey: false,
+                allowOutsideClick: false,
+                allowEscapeKey: false,
                 showCancelButton: true,
                 cancelButtonColor: '#dd3333',
-                confirmButtonText: 'Ya, Simpan', cancelButtonText: 'Batal', focusCancel: true,
+                confirmButtonText: 'Ya, Simpan',
+                cancelButtonText: 'Batal',
+                focusCancel: true,
             }).then((result) => {
                 if (result.value) {
                     DataManager.openLoading();
                     const formData = new FormData();
                     formData.append('nip', $('#nip').val());
                     formData.append('status_pegawai', $('#status_pegawai').val());
-                    formData.append('tipe_pegawai', $('#tempat_lahir').val());
+                    formData.append('tipe_pegawai', $('#tipe_pegawai').val());
                     formData.append('tanggal_masuk', $('#tanggal_masuk').val());
                     formData.append('id_person', $('#id_person').val());
-                    formData.append('nama_lengkap', $('#nama_lengkap').val());
 
-                    }
-
-                    const action = "{{ route('admin.admin.sdm.store') }}";
+                    const action = "{{ route('admin.sdm.store') }}";
                     DataManager.formData(action, formData).then(response => {
                         if (response.success) {
                             Swal.fire('Success', response.message, 'success');
                             setTimeout(function () {
                                 location.reload();
                             }, 1000);
-                        }
-                        if (!response.success && response.errors) {
+                        } else if (response.errors) {
                             const validationErrorFilter = new ValidationErrorFilter();
                             validationErrorFilter.filterValidationErrors(response);
                             Swal.fire('Warning', 'validasi bermasalah', 'warning');
-                        }
-
-                        if (!response.success && !response.errors) {
+                        } else {
                             Swal.fire('Peringatan', response.message, 'warning');
                         }
-
                     }).catch(error => {
                         ErrorHandler.handleError(error);
                     });
                 }
-            })
+            });
         });
-    }).on('hidden.bs.modal', function () {
-        const $m = $(this);
-        $m.find('form').trigger('reset');
-        $m.find('select, textarea').val('').trigger('change');
-        $m.find('.is-invalid, .is-valid').removeClass('is-invalid is-valid');
-        $m.find('.invalid-feedback, .valid-feedback, .text-danger').remove();
+
+        // Reset form saat modal ditutup
+        $('#form_create').on('hidden.bs.modal', function () {
+            const $m = $(this);
+            $m.find('form').trigger('reset');
+            $m.find('select, textarea').val('').trigger('change');
+            $m.find('.is-invalid, .is-valid').removeClass('is-invalid is-valid');
+            $m.find('.invalid-feedback, .valid-feedback, .text-danger').remove();
+            $('#info_person').html('');
+            $('#form_lanjutan').addClass('d-none');
+            $('#nama_person_heading').text('');
+        });
     });
 </script>
+
+

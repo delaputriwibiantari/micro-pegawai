@@ -43,6 +43,11 @@ final class Sdm extends Model implements Auditable
 
     ];
 
+    public function person()
+    {
+        return $this->belongsTo(\App\Models\Person\Person::class, 'id_person');
+    }
+
     public function setNipAttribute($value): void
     {
         $this->attributes['nip'] = trim(strip_tags($value));

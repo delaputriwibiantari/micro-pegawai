@@ -2,7 +2,7 @@
 
 namespace App\Services\Sdm;
 
-
+use App\Models\Person\Person;
 use App\Models\sdm\Sdm;
 use App\Services\Tools\FileUploadService;
 use Illuminate\Support\Collection;
@@ -14,14 +14,22 @@ class  SdmService{
 
     public function getListData(): Collection
     {
-        $query = Sdm::select([
-            'id',
-            'nip',
-            'status_pegawai',
-            'tipe_pegawai',
-            'tanggal_masuk',
-            'id_person'
+        $query = Sdm::query()
+        ->leftJoin('person', 'sdm.id_person', '=', 'person.id')
+        ->select([
+            'sdm.id',
+            'sdm.nip',
+            'sdm.status_pegawai',
+            'sdm.tipe_pegawai',
+            'sdm.tanggal_masuk',
+            'sdm.id_person',
+            'person.nik',
+            'person.nama_lengkap',
+            'person.nama_panggilan',
+            'person.tempat_lahir',
+            'person.alamat',
         ]);
+
 
         $search = request('search.value');
         if ($search) {
@@ -71,34 +79,36 @@ class  SdmService{
     }
 
 
-    public function findByNik(string $nik): ?Sdm
+    public function findPersonByNik(string $nik): ?object
     {
-        return Sdm::query()
-            ->leftJoin('person', 'sdm.id_person', '=', 'person.id')
+        return Person::query()
+            ->leftJoin('sdm', 'person.id', '=', 'sdm.id_person')
             ->select([
-                'sdm.id',
-                'person.nik', // Ambil dari person, bukan sdm
+                'person.id as id_person',
+                'person.nik',
                 'person.nama_lengkap',
                 'person.tempat_lahir',
                 'person.tanggal_lahir',
+                'person.alamat',
             ])
-            ->where('person.nik', $nik) // Cari di person.nik
-            ->orderBy('person.nama_lengkap')
+            ->whereRaw('TRIM(person.nik) = ?', [trim($nik)])
+            ->whereNull('sdm.id') // belum terdaftar di SDM
             ->first();
     }
 
-    public function formatPersonData(Sdm $sdm): array
+    public function formatPersonData(object $person): array
     {
         return [
-            'id' => $sdm->id,
-            'id_person' => $sdm->id_person,
-            'nik' => $sdm->nik,
-            'nama_lengkap' => $sdm->nama_lengkap,
-            'tempat_lahir' => $sdm->tempat_lahir,
-            'tanggal_lahir' => $sdm->tanggal_lahir ? $sdm->tanggal_lahir->format('d-m-Y') : null,
-            'alamat' => $sdm->alamat ?? 'Tidak tersedia',
-            'jenis_kelamin' => $sdm->jenis_kelamin ?? 'Tidak tersedia'
+            'id_person' => $person->id_person,
+            'nik' => $person->nik ?? 'Tidak tersedia',
+            'nama_lengkap' => $person->nama_lengkap ?? 'Tidak tersedia',
+            'tempat_lahir' => $person->tempat_lahir ?? 'Tidak tersedia',
+            'tanggal_lahir' => isset($person->tanggal_lahir)
+                ? date('d-m-Y', strtotime($person->tanggal_lahir))
+                : null,
+            'alamat' => $person->alamat ?? 'Tidak tersedia',
         ];
     }
+
 
 }

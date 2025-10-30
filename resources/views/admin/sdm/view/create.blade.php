@@ -15,7 +15,7 @@
                         <div class="col-md-13">
                             <div class="mb-8">
                                 <label class="form-label fw-bold">NIK</label>
-                                <input type="text" id="nip" name="nip" class="form-control form-control-sm" maxlength="50" required/>
+                                <input type="text" id="nik" name="nik" class="form-control form-control-sm" maxlength="50" required/>
                                 <div class="invalid-feedback"></div>
                             </div>
 
@@ -27,7 +27,7 @@
 
                             <!-- Tombol di bawah input -->
                             <div class="d-flex justify-content-start mt-3">
-                                <button type="submit" id="bt_submit_create" class="btn btn-primary btn-sm me-2">
+                                <button type="button" id="btn-Cari" data-url="{{ route('admin.sdm.cari') }}" class="btn btn-primary btn-sm me-2">
                                     Cari Person
                                 </button>
                                 <button type="button" class="btn btn-dark btn-sm" data-bs-dismiss="modal">
@@ -36,6 +36,35 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Hasil pencarian person -->
+                    <div id="info_person" class="mt-3"></div>
+                    <h6 class="fw-bold text-primary mt-4" id="nama_person_heading"></h6>
+
+                    <!-- Form lanjutan SDM -->
+                    <div id="form_lanjutan" class="d-none mt-3">
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Status Pegawai</label>
+                            <input type="text" id="status_pegawai" name="status_pegawai" class="form-control form-control-sm" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Tipe Pegawai</label>
+                            <input type="text" id="tipe_pegawai" name="tipe_pegawai" class="form-control form-control-sm" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Tanggal Masuk</label>
+                            <input type="date" id="tanggal_masuk" name="tanggal_masuk" class="form-control form-control-sm" required>
+                        </div>
+
+                        <input type="hidden" id="id_person" name="id_person">
+                        <input type="hidden" id="nama_lengkap" name="nama_lengkap">
+
+                        <div class="mt-3">
+                            <button type="submit" class="btn btn-success btn-sm">Simpan SDM</button>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </form>
