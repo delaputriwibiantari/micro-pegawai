@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="{{ asset('assets/plugins/datatables/dataTables.bootstrap5.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('assets/plugins/datatables/responsive.bootstrap.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('assets/plugins/datatables/buttons.dataTables.min.css') }}"/>
+@endsection
 @section('list')
     <li class="breadcrumb-item text-muted">SDM</li>
     <li class="breadcrumb-item">
@@ -60,7 +61,9 @@
             </div>
         </div>
     </div>
+    @include('admin.sdm.view.detail')
     @include('admin.sdm.view.create')
+    @include('admin.sdm.view.edit')
 @endsection
 
 @section('javascript')
@@ -105,4 +108,6 @@
     </script>
     @include('admin.sdm.script.list')
     @include('admin.sdm.script.create')
+    @include('admin.sdm.script.edit')
+    @include('admin.sdm.script.detail')
 @endsection
