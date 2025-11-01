@@ -21,15 +21,6 @@ $('#form_detail_sdm').on('show.bs.modal', function(e) {
             $('#detail_tipe_pegawai').text(data.tipe_pegawai ?? '-');
             $('#detail_tanggal_masuk').text(data.tanggal_masuk ?? '-');
 
-            // Foto
-            if (data.foto) {
-                const photoUrl = '{{ route('admin.view-file', ['person', ':filename']) }}'
-                    .replace(':filename', data.foto);
-                $('#detail_foto').attr('src', photoUrl);
-            } else {
-                $('#detail_foto').attr('src', '{{ asset('assets/default-profile.png') }}');
-            }
-
         } else {
             Swal.fire('Warning', response.message, 'warning');
         }
