@@ -59,10 +59,22 @@
                                        class="form-control form-control-sm fs-sm-8 fs-lg-6" required/>
                                 <div class="invalid-feedback"></div>
                             </div>
-
-
-                        <input type="hidden" id="id_person" name="id_person">
-
+                            <div class="d-flex flex-column mb-2">
+                                <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
+                                    <span>ID Person</span>
+                                </label>
+                                <input type="text" id="edit_id_person" class="form-control form-control-sm fs-sm-8 fs-lg-6"
+                                       maxlength="30"/>
+                                <div class="invalid-feedback"></div>
+                            </div>
+                            <div class="d-flex flex-column mb-2">
+                                <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
+                                    <span>Nama Lengkap</span>
+                                </label>
+                                <input type="text" id="edit_nama_lengkap" class="form-control form-control-sm fs-sm-8 fs-lg-6"
+                                       maxlength="30"/>
+                                <div class="invalid-feedback"></div>
+                            </div>
 
                           <div class="modal-footer">
                             <button type="button" class="btn btn-sm btn-dark fs-sm-8 fs-lg-6" data-bs-dismiss="modal"

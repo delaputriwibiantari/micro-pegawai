@@ -1,8 +1,8 @@
 <script defer>
-$('#form_edit_sdm').on('show.bs.modal', function (e) {
+$('#form_edit').on('show.bs.modal', function (e) {
     const button = $(e.relatedTarget);
     const id = button.data("id");
-    const detail = '{{ route('admin.sdm.show', [':id']) }}'; // route detail SDM
+    const detail = '{{ route('admin.sdm.show', [':id']) }}';
 
     // Flatpickr untuk tanggal masuk
     let edit_tanggal_masuk = $('#edit_tanggal_masuk').flatpickr({
@@ -17,13 +17,11 @@ $('#form_edit_sdm').on('show.bs.modal', function (e) {
         .then(function (response) {
             if (response.success) {
                 $('#edit_nip').val(response.data.nip);
-                $('#edit_status_pegawai').val(response.data.status_pegawai);
-                $('#edit_tipe_pegawai').val(response.data.tipe_pegawai);
+                $('#edit_status_pegawai').val(response.data.status_pegawai).trigger('change');
+                $('#edit_tipe_pegawai').val(response.data.tipe_pegawai).trigger('change');
                 $('#edit_id_person').val(response.data.id_person);
                 $('#edit_nama_lengkap').val(response.data.nama_lengkap);
-
                 edit_tanggal_masuk.setDate(response.data.tanggal_masuk);
-
             } else {
                 Swal.fire('Warning', response.message, 'warning');
             }
@@ -33,7 +31,7 @@ $('#form_edit_sdm').on('show.bs.modal', function (e) {
         });
 
     // 📝 Saat form disubmit
-    $('#bt_submit_edit_sdm').off('submit').on('submit', function (e) {
+    $('#bt_submit_edit').off('submit').on('submit', function (e) {
         e.preventDefault();
 
         Swal.fire({
