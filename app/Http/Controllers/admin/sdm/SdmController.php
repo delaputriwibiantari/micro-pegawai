@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin\sdm;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Sdm\SdmStoreRequest;
+use App\Http\Requests\Sdm\SdmUpdateRequest;
 use App\Models\Person\Person;
 use App\Services\Sdm\SdmService;
 use App\Services\Tools\ResponseService;
@@ -77,6 +78,7 @@ class SdmController extends Controller
     {
         return $this->transactionService->handleWithShow(function () use ($id) {
             $data = $this->sdmService->getDetailData($id);
+            
 
             return $this->responseService->successResponse('Data berhasil diambil', $data);
         });
@@ -105,6 +107,29 @@ class SdmController extends Controller
             'message' => 'Data ditemukan',
             'data' => $formatted
         ]);
+    }
+
+    public function update(SdmUpdateRequest $request, string $id): JsonResponse
+    {
+        $data = $this->sdmService->findById($id);
+        if (!$data) {
+            return $this->responseService->errorResponse('Data tidak ditemukan');
+        }
+
+
+        return $this->transactionService->handleWithTransaction(function () use ($request, $data) {
+             $payload = $request->only([
+               'nip',
+                'status_pegawai',
+                'tipe_pegawai',
+                'tanggal_masuk',
+                'id_person',
+            ]);
+
+            $updatedData = $this->sdmService->update($data, $payload);
+
+            return $this->responseService->successResponse('Data berhasil diperbarui', $updatedData);
+        });
     }
 
 
