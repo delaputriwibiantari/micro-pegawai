@@ -24,7 +24,7 @@
                               id="kt_sign_in_form" method="POST" action="{{ route('logindb') }}">
                             @csrf
                             <input type="hidden" name="recaptcha_token" id="recaptcha_token">
-                            
+
                             <div class="text-center mb-11">
                                 <h1 class="text-dark fw-bolder mb-4">Masuk</h1>
                             </div>
@@ -48,6 +48,9 @@
                                         <i class="bi bi-eye fs-2 d-none"></i>
                                     </span>
                                 </div>
+                            </div>
+                             <div class="d-flex justify-content-end mb-3">
+                                <a href="{{ route('forgot') }}" class="form-label fs-6 fw-bold mb-2 text-black">Forgot Password?</a>
                             </div>
                             <div class="d-grid my-4">
                                 <button type="submit" id="kt_sign_in_submit" class="btn btn-primary">

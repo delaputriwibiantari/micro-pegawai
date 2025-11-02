@@ -20,6 +20,7 @@ class Admin extends Authenticatable
         'email',
         'password',  // TAMBAHKAN password ke fillable
         'role',
+        'otp',
     ];
 
     // PERBAIKI: hapus password dari guarded

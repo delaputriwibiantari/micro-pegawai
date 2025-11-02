@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\content;
 
 use App\Http\Controllers\Controller;
+use App\Models\App\Admin;
 use App\Services\Tools\FileUploadService;
 use App\Services\Tools\ResponseService;
 use Illuminate\Support\Facades\Auth;
@@ -12,6 +13,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rules\Password;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
@@ -81,5 +83,47 @@ class PortalController extends Controller
     public function viewFile(Request $request, string $dir, string $filename): BinaryFileResponse|StreamedResponse
     {
         return $this->fileUploadService->viewFile($request, $dir, $filename);
+    }
+
+    public function resetpassword(Request $request){
+        $request->validate([
+        'email' => 'required|string|email',
+        'otp' => 'required|string',
+        'new_password' => [
+            'required',
+            'confirmed',
+            Password::min(10)
+                ->max(64)
+                ->letters()
+                ->mixedCase()
+                ->numbers()
+                ->symbols()
+                ->uncompromised(),
+        ],
+    ], [
+        'new_password.required' => 'Kata sandi baru wajib diisi.',
+        'new_password.confirmed' => 'Konfirmasi kata sandi tidak cocok.',
+    ]);
+
+        $user = Admin::where('email', $request->email)->where('otp',
+        $request->otp)->first();
+        if (!$user){
+            return response()->json([
+                'message'=> 'user tidak ditemukan'
+            ], 404);
+        }
+
+        $user->password = bcrypt($request->new_password);
+        $user->otp = NULL;
+
+        if($user->save()) {
+            return response()->json([
+                'message' => 'Password update success'
+            ], 200);
+        }else{
+            return response()->json([
+                'message'=>'ada eror'
+            ],500);
+        }
     }
 }

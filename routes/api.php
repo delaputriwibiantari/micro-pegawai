@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Api\AlmtController;
+use App\Http\Controllers\content\AuthController;
+use App\Http\Controllers\content\PortalController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('almt')->group(function () {
@@ -16,3 +18,8 @@ Route::prefix('almt')->group(function () {
         ->name('api.almt.desa')
         ->whereNumber('id');
 });
+
+Route::post('/send', [AuthController::class, 'send']);
+Route::post('/verifikasii', [AuthController::class, 'verifikasi']);
+Route::post('/reset-password', [PortalController::class, 'resetpassword'])->name('reset-password');
+
