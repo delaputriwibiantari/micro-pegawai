@@ -64,7 +64,7 @@
                                     <span>ID Person</span>
                                 </label>
                                 <input type="text" id="edit_id_person" class="form-control form-control-sm fs-sm-8 fs-lg-6"
-                                       maxlength="30"/>
+                                       maxlength="30" readonly/>
                                 <div class="invalid-feedback"></div>
                             </div>
                             <div class="d-flex flex-column mb-2">
@@ -72,7 +72,7 @@
                                     <span>Nama Lengkap</span>
                                 </label>
                                 <input type="text" id="edit_nama_lengkap" class="form-control form-control-sm fs-sm-8 fs-lg-6"
-                                       maxlength="30"/>
+                                       maxlength="30" readonly/>
                                 <div class="invalid-feedback"></div>
                             </div>
 
