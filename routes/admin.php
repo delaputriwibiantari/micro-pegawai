@@ -41,5 +41,8 @@ Route::prefix('sdm')->name('sdm.')->group(function () {
 
 
 
+    Route::get('/coba', function () {
+        return view('admin.coba.index');
+    })->name('coba.index');
 
 

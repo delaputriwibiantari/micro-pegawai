@@ -21,6 +21,11 @@
                href="{{ route('admin.sdm.index') }}">
                 <span class="menu-title">SDM</span>
             </a>
+           <a class="menu-link {{ request()->routeIs('admin.coba.index') ? 'active' : '' }}"
+   href="{{ route('admin.coba.index') }}">
+    <span class="menu-title">Coba</span>
+</a>
+
         </div>
     </div>
 </div>
