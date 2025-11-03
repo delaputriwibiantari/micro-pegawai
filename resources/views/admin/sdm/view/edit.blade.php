@@ -26,7 +26,7 @@
                                     </label>
                                     <select data-control="select2" id="edit_status_pegawai"
                                             class="form-control form-control-sm fs-sm-8 fs-lg-6" data-allow-clear="true"
-                                            data-placeholder="Pilih Jenis Kelamin" required>
+                                            data-placeholder="Pilih Jenis Pegawai" required>
                                         <option value="">Pilih Jenis Pegawai</option>
                                         <option value="TETAP">Tetap</option>
                                         <option value="KONTRAK">Kontrak</option>
@@ -42,7 +42,7 @@
                                         </label>
                                         <select data-control="select2" id="edit_tipe_pegawai"
                                                 class="form-control form-control-sm fs-sm-8 fs-lg-6" data-allow-clear="true"
-                                                data-placeholder="Pilih Jenis Kelamin" required>
+                                                data-placeholder="Pilih Jenis Tipe Pegawai" required>
                                             <option value="">Pilih Jenis Tipe Pegawai</option>
                                             <option value="FULL TIME">Full Time</option>
                                             <option value="PART TIME">Part Time</option>

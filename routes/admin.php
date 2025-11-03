@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\pendidikan\RefPendidikanController;
 use App\Http\Controllers\Content\PortalController;
 use App\Http\Controllers\admin\person\PersonController;
 use App\Http\Controllers\admin\sdm\SdmController;
@@ -41,6 +42,24 @@ Route::prefix('sdm')->name('sdm.')->group(function () {
 
 });
 
+
+Route::prefix('pendidikan')->name('pendidikan.')->group(function () {
+    Route::get('/', [RefPendidikanController::class, 'index'])
+        ->name('index');
+    Route::get('data', [RefPendidikanController::class, 'list'])
+        ->name('list');
+    Route::get('cari', [RefPendidikanController::class, 'cari'])
+        ->name('cari');
+    Route::post('store', [RefPendidikanController::class, 'store'])
+        ->name('store');
+    Route::post('update/{id}', [RefPendidikanController::class, 'update'])
+        ->name('update');
+        Route::get('show/{id}', [RefPendidikanController::class, 'show'])
+            ->name('show'); // Menjadi: admin.person.show
+    Route::post('/admin/pendidikan/store', [RefPendidikanController::class, 'store'])
+    ->name('store');
+
+});
 
 
     Route::get('/coba', function () {

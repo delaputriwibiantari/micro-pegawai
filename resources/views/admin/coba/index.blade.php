@@ -169,19 +169,77 @@
 @section('javascript')
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- DataTables Core -->
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+
+<!-- DataTables Responsive -->
 <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.5.0/js/responsive.bootstrap5.min.js"></script>
 
+<!-- DataTables Buttons (export Excel, CSV, dll) -->
+<script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.colVis.min.js"></script>
+
+<!-- JSZip buat export Excel -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <script>
 $(document).ready(function () {
-    // Inisialisasi semua DataTables
-    $('#keluargaTable, #pendidikanTable, #asuransiTable, #kepegawaianTable, #dokumenTable').DataTable({
-        responsive: true,
-        paging: false,
-        searching: false,
-        info: false
+    // Semua tabel di halaman profil
+    const tables = [
+        '#keluargaTable',
+        '#pendidikanTable',
+        '#asuransiTable',
+        '#kepegawaianTable',
+        '#dokumenTable'
+    ];
+
+    tables.forEach(selector => {
+        $(selector).DataTable({
+            responsive: true,
+            paging: true,
+            searching: true,
+            info: true,
+            stateSave: true,
+
+            // ✅ Tambahkan tombol seperti di contohmu
+            dom: '<"d-flex justify-content-between align-items-center mb-3"Bf>rtip',
+            buttons: [
+                {
+                    extend: 'colvis',
+                    text: 'Column visibility',
+                    className: 'btn btn-dark btn-sm'
+                },
+                {
+                    extend: 'csvHtml5',
+                    text: 'CSV',
+                    className: 'btn btn-secondary btn-sm'
+                },
+                {
+                    extend: 'excelHtml5',
+                    text: 'Excel',
+                    className: 'btn btn-success btn-sm'
+                }
+            ],
+
+            // ✅ Bahasa & tampilan pagination
+            language: {
+                search: "Cari:",
+                lengthMenu: "Tampilkan _MENU_ entri",
+                info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
+                infoEmpty: "Menampilkan 0 sampai 0 dari 0 entri",
+                infoFiltered: "(disaring dari total _MAX_ entri)",
+                zeroRecords: "Tidak ada data yang cocok",
+                paginate: {
+                    first: "Pertama",
+                    last: "Terakhir",
+                    next: "Berikutnya",
+                    previous: "Sebelumnya"
+                }
+            }
+        });
     });
 });
 </script>

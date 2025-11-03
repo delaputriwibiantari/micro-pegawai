@@ -89,7 +89,7 @@ class SdmController extends Controller
             }
 
             $fotoUrl = $data->foto
-            ? asset('storage/person/' . $data->foto)
+            ? asset('storage/public/person/' . $data->foto)
             : asset('assets/img/default-user.png');
 
 

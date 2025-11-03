@@ -62,64 +62,124 @@
                         </div>
                     </div>
 
-                    <!-- === TAB KELUARGA === -->
+                                        <!-- === TAB KELUARGA === -->
                     <div class="tab-pane fade" id="tab-keluarga" role="tabpanel">
-                        <div class="table-responsive mb-8 shadow p-4 border-hover-dark border-primary border-1 border-dashed rounded-2">
-                            <table id="keluargaTable" class="table table-sm align-middle table-row-bordered table-row-solid gs-0 gy-2">
-                                <thead>
-                                    <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase">
-                                        <th class="min-w-75px ps-5">Aksi</th>
-                                        <th class="min-w-150px">ID Sdm</th>
-                                        <th class="min-w-60px">ID Person</th>
-                                        <th class="min-w-120px">Status</th>
-                                        <th class="min-w-100px">Status Tanggungan</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="text-gray-800 fw-bolder"></tbody>
-                            </table>
+                        <div class="container-fluid">
+                            <div class="content flex-column-fluid">
+                                <div class="card mb-xl-8 mb-5 border-2 shadow">
+                                    <div class="card-header">
+                                        <h3 class="card-title align-items-start flex-column">
+                                            <span class="card-label fw-bolder mb-1 ">Data Person</span>
+                                        </h3>
+                                        <div class="card-toolbar">
+                                            <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
+                                                <a type="button" class="btn btn-sm btn-primary fs-sm-8 fs-lg-6" data-bs-toggle="modal"
+                                                data-bs-target="#form_create" title="Tambah Person">Tambah Person</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body p-5">
+                                        <div class="notice d-flex border-primary mb-4 rounded border border-dashed p-4 shadow bg-hover-light-dark">
+                                            <div class="d-flex flex-stack fs-sm-8 fs-lg-6">
+                                                <div class="row">
+                                                    <span class="text-gray-700">Berikut ini adalah data Person.</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="table-responsive mb-8 shadow p-4 mx-0 border-hover-dark border-primary border-1 border-dashed fs-sm-8 fs-lg-6 rounded-2">
+                                            <div class="table-responsive">
+                                                <table id="example"
+                                                    class="table table-sm align-middle table-row-bordered table-row-solid gs-0 gy-2">
+                                                    <thead>
+                                                    <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0 fs-sm-8 fs-lg-6">
+                                                        <th class="min-w-75px ps-5">Aksi</th>
+                                                        <th class="min-w-150px">ID SDM</th>
+                                                        <th class="min-w-60px">ID Person</th>
+                                                        <th class="min-w-120px">Status</th>
+                                                        <th class="min-w-100px">Status Tanggungan</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody class="text-gray-800 fw-bolder fs-sm-8 fs-lg-6">
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-
-                    <!-- === TAB PENDIDIKAN === -->
+                            <!-- === TAB PENDIDIKAN === -->
                     <div class="tab-pane fade" id="tab-pendidikan" role="tabpanel">
-                        <div class="table-responsive mb-8 shadow p-4 border-hover-dark border-primary border-1 border-dashed rounded-2">
-                            <table id="pendidikanTable" class="table table-sm align-middle table-row-bordered table-row-solid gs-0 gy-2">
-                                <thead>
-                                    <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase">
-                                        <th class="min-w-75px ps-5">Aksi</th>
-                                        <th class="min-w-150px">ID Sdm</th>
-                                        <th class="min-w-60px">Institusi</th>
-                                        <th class="min-w-120px">Jurusan</th>
-                                        <th class="min-w-100px">Tahun Masuk</th>
-                                        <th class="min-w-120px">Tahun Lulus</th>
-                                        <th class="min-w-120px">Jenis Nilai</th>
-                                        <th class="min-w-120px">SKS</th>
-                                        <th class="min-w-120px">Sumber Biaya</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="text-gray-800 fw-bolder"></tbody>
-                            </table>
+                        <div class="container-fluid">
+                            <div class="content flex-column-fluid">
+                                <div class="card mb-xl-8 mb-5 border-2 shadow">
+                                    <div class="card-header">
+                                        <h3 class="card-title align-items-start flex-column">
+                                            <span class="card-label fw-bolder mb-1 ">Data Person</span>
+                                        </h3>
+                                        <div class="card-toolbar">
+                                            <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
+                                                <a type="button" class="btn btn-sm btn-primary fs-sm-8 fs-lg-6" data-bs-toggle="modal"
+                                                data-bs-target="#form_create_pendidikan" title="Tambah Person">Tambah Pendidikan</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body p-5">
+                                        <div class="notice d-flex border-primary mb-4 rounded border border-dashed p-4 shadow bg-hover-light-dark">
+                                            <div class="d-flex flex-stack fs-sm-8 fs-lg-6">
+                                                <div class="row">
+                                                    <span class="text-gray-700">Berikut ini adalah data Person.</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="table-responsive mb-8 shadow p-4 mx-0 border-hover-dark border-primary border-1 border-dashed fs-sm-8 fs-lg-6 rounded-2">
+                                            <div class="table-responsive">
+                                                <table id="example"
+                                                    class="table table-sm align-middle table-row-bordered table-row-solid gs-0 gy-2">
+                                                    <thead>
+                                                    <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0 fs-sm-8 fs-lg-6">
+                                                        <th class="min-w-75px ps-5">Aksi</th>
+                                                        <th class="min-w-150px">ID Sdm</th>
+                                                        <th class="min-w-60px">Institusi</th>
+                                                        <th class="min-w-120px">Jurusan</th>
+                                                        <th class="min-w-100px">Tahun Masuk</th>
+                                                        <th class="min-w-120px">Tahun Lulus</th>
+                                                        <th class="min-w-120px">Jenis Nilai</th>
+                                                        <th class="min-w-120px">SKS</th>
+                                                        <th class="min-w-120px">Sumber Biaya</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody class="text-gray-800 fw-bolder fs-sm-8 fs-lg-6">
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- === TAB ASURANSI === -->
-                    <div class="tab-pane fade" id="tab-asuransi_karyawan" role="tabpanel">
-                        <div class="table-responsive mb-8 shadow p-4 border-hover-dark border-primary border-1 border-dashed rounded-2">
-                            <table id="asuransiTable" class="table table-sm align-middle table-row-bordered table-row-solid gs-0 gy-2">
-                                <thead>
-                                    <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase">
-                                        <th class="min-w-75px ps-5">Aksi</th>
-                                        <th class="min-w-150px">ID Sdm</th>
-                                        <th class="min-w-60px">Jenis Asuransi</th>
-                                        <th class="min-w-120px">Nomor Peserta</th>
-                                        <th class="min-w-100px">Tanggal Aktif</th>
-                                        <th class="min-w-100px">Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="text-gray-800 fw-bolder"></tbody>
-                            </table>
-                        </div>
-                    </div>
+
+                            <!-- === TAB ASURANSI === -->
+                            <div class="tab-pane fade" id="tab-asuransi_karyawan" role="tabpanel">
+                                <div class="table-responsive mb-8 shadow p-4 border-hover-dark border-primary border-1 border-dashed rounded-2">
+                                    <table id="asuransiTable" class="table table-sm align-middle table-row-bordered table-row-solid gs-0 gy-2">
+                                        <thead>
+                                            <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase">
+                                                <th class="min-w-75px ps-5">Aksi</th>
+                                                <th class="min-w-150px">ID Sdm</th>
+                                                <th class="min-w-60px">Jenis Asuransi</th>
+                                                <th class="min-w-120px">Nomor Peserta</th>
+                                                <th class="min-w-100px">Tanggal Aktif</th>
+                                                <th class="min-w-100px">Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="text-gray-800 fw-bolder"></tbody>
+                                    </table>
+                                </div>
+                            </div>
 
                     <!-- === TAB KEPEGAWAIAN === -->
                     <div class="tab-pane fade" id="tab-kepegawaian" role="tabpanel">
@@ -164,15 +224,37 @@
         </div> <!-- end card -->
     </div>
 </div>
+@include('admin.pendidikan.view.create')
 @endsection
 
 @section('javascript')
+@include('admin.pendidikan.script.list')
+@include('admin.pendidikan.script.create')
+<!-- jQuery (WAJIB duluan) -->
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+
+<!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- DataTables Core -->
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+
+<!-- DataTables Responsive (biar tabel menyesuaikan di HP/laptop) -->
 <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.5.0/js/responsive.bootstrap5.min.js"></script>
+
+<!-- DataTables Buttons (export Excel, CSV, dll) -->
+<script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.colVis.min.js"></script>
+
+<!-- JSZip buat export Excel -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+<!-- Lodash (buat debounce search biar gak lag) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
+
 
 <script>
 $(document).ready(function () {
