@@ -58,7 +58,7 @@
     </div>
     @include('admin.sdm.view.create')
     @include('admin.sdm.view.edit')
-    @include('admin.sdm.view.detail')
+
 @endsection
 
 @section('javascript')

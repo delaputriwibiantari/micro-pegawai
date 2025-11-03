@@ -14,10 +14,10 @@
             <div id="detail_person" class="card-body border-bottom py-5">
                 <div class="d-flex align-items-center">
                     <div class="symbol symbol-100px me-4">
-                        <img id="foto_person" src="{{ asset('assets/img/default-user.png') }}" alt="Foto Pegawai" class="rounded">
+                        <img id="foto_person"  alt="Foto Pegawai" class="rounded">
                     </div>
                     <div>
-                        <h4 id="nama_person" class="fw-bold mb-1 text-dark">-</h4>
+                        <h4 id="nama_lengkap" class="fw-bold mb-1 text-dark">-</h4>
                         <div class="text-muted fs-7" id="nik_person">NIK: -</div>
                         <div class="text-muted fs-7" id="nip_person">NIP: -</div>
                         <div class="text-muted fs-7" id="alamat_person">Alamat: -</div>
@@ -184,5 +184,24 @@ $(document).ready(function () {
         info: false
     });
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    const id = window.location.pathname.split('/').pop();
+    fetch(`/admin/sdm/showdetail/${id}`)
+        .then(res => res.json())
+        .then(result => {
+            if (result.success) {
+                const data = result.data;
+                document.getElementById('nama_lengkap').textContent = data.nama_lengkap ?? '-';
+                document.getElementById('nik_person').textContent = `NIK: ${data.nik ?? '-'}`;
+                document.getElementById('nip_person').textContent = `NIP: ${data.nip ?? '-'}`;
+                document.getElementById('alamat_person').textContent = `Alamat: ${data.alamat ?? '-'}`;
+                const fotoPath = data.foto || '/assets/img/default-user.png';
+                document.getElementById('foto_person').src = fotoPath;
+            }
+        });
+});
+
+
 </script>
 @endsection

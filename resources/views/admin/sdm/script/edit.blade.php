@@ -12,7 +12,7 @@ $(document).ready(function() {
         const id = button.data("id");
         $(this).data('current-id', id);
 
-        const detailUrl = '{{ route('admin.sdm.show', [':id']) }}'.replace(':id', id);
+        const detailUrl = '{{ route('admin.sdm.showdetail', [':id']) }}'.replace(':id', id);
         console.log('🆔 ID:', id);
         console.log('🔗 URL:', detailUrl);
 

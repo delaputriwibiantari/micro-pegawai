@@ -36,7 +36,9 @@ class SdmController extends Controller
         // Tambahkan action untuk setiap row
         $data->transform(function ($row) {
             $row->action = implode(' ', [
-                $this->transactionService->actionButton($row->id, 'detail'),
+                '<button type="button" data-id="'.$row->id.'" title="Detail" data-bs-toggle="modal" data-bs-target="#detail-button" aria-label="Detail" class="btn btn-icon btn-bg-light btn-active-text-primary btn-sm m-1 detail-button">
+                    <span class="bi bi-file-text" aria-hidden="true"></span>
+                </button>',
                 $this->transactionService->actionButton($row->id, 'edit'),
             ]);
             return $row;
@@ -74,14 +76,50 @@ class SdmController extends Controller
         });
     }
 
-    public function show(string $id): JsonResponse
-    {
+        public function showDetail(string $id): JsonResponse
+        {
         return $this->transactionService->handleWithShow(function () use ($id) {
             $data = $this->sdmService->getDetailData($id);
-            
 
-            return $this->responseService->successResponse('Data berhasil diambil', $data);
+            if (!$data) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Data tidak ditemukan'
+                ], 404);
+            }
+
+            $fotoUrl = $data->foto
+            ? asset('storage/person/' . $data->foto)
+            : asset('assets/img/default-user.png');
+
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Data berhasil diambil',
+                'data' => [
+                    'nama_lengkap' => $data->nama_lengkap,
+                    'nik' => $data->nik,
+                    'nip' => $data->nip ?? '-',
+                    'alamat' => $data->alamat,
+                    'foto' => $fotoUrl,
+                    'status_pegawai' => $data->status_pegawai,
+                    'tipe_pegawai' => $data->tipe_pegawai,
+                    'tanggal_masuk' => $data->tanggal_masuk,
+                    'id_person' => $data->id_person
+                ]
+            ]);
         });
+        }
+
+    public function show(string $id)
+    {
+        $data = $this->sdmService->getDetailData($id);
+
+        if (!$data) {
+            return redirect()->back()->with('error', 'Data tidak ditemukan');
+        }
+
+        return view('admin.sdm.view.detail', compact('data'));
     }
 
     public function cari(Request $request): JsonResponse
@@ -131,6 +169,8 @@ class SdmController extends Controller
             return $this->responseService->successResponse('Data berhasil diperbarui', $updatedData);
         });
     }
+
+
 
 
 }

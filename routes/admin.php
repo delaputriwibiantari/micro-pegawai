@@ -35,8 +35,10 @@ Route::prefix('sdm')->name('sdm.')->group(function () {
         ->name('store');
     Route::post('update/{id}', [SdmController::class, 'update'])
         ->name('update');
-    Route::get('show/{id}', [SdmController::class, 'show'])
-        ->name('show');
+
+    Route::get('showdetail/{id}', [SdmController::class, 'showdetail'])
+        ->name('showdetail');
+
 });
 
 

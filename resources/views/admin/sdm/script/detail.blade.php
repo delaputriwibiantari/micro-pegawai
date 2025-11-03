@@ -1,29 +1,15 @@
 <script defer>
-$('#form_detail_sdm').on('show.bs.modal', function(e) {
-    const button = $(e.relatedTarget);
-    const id = button.data('id'); // ambil ID dari tombol
-    const detailUrl = '{{ route('admin.sdm.show', [':id']) }}'.replace(':id', id);
+// Handle modal detail
+document.addEventListener('DOMContentLoaded', function() {
+    // Event listener untuk tombol detail
+    document.addEventListener('click', function(e) {
+        if (e.target.closest('.detail-button')) {
+            const button = e.target.closest('.detail-button');
+            const id = button.getAttribute('data-id');
 
-    DataManager.fetchData(detailUrl).then(response => {
-        if (response.success) {
-            const data = response.data;
-
-            // Data Person
-            $('#detail_nik').text(data.nik ?? '-');
-            $('#detail_nama_lengkap').text(data.nama_lengkap ?? '-');
-            $('#detail_tempat_lahir').text(data.tempat_lahir ?? '-');
-            $('#detail_tanggal_lahir').text(data.tanggal_lahir ?? '-');
-            $('#detail_alamat').text(data.alamat ?? '-');
-
-            // Data SDM
-            $('#detail_nip').text(data.nip ?? '-');
-            $('#detail_status_pegawai').text(data.status_pegawai ?? '-');
-            $('#detail_tipe_pegawai').text(data.tipe_pegawai ?? '-');
-            $('#detail_tanggal_masuk').text(data.tanggal_masuk ?? '-');
-
-        } else {
-            Swal.fire('Warning', response.message, 'warning');
+            // Redirect ke halaman show dengan ID
+            window.location.href = `/admin/sdm/show/${id}`;
         }
-    }).catch(err => ErrorHandler.handleError(err));
+    });
 });
 </script>
