@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\admin\pendidikan;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Pendidikan\PendidikanStroreRequest;
+use App\Http\Requests\Pendidikan\PendidikanStoreRequest;
 use App\Services\Pendidikan\PendidikanService;
 use App\Services\Tools\ResponseService;
 use App\Services\Tools\TransactionService;
@@ -11,7 +11,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 
 
-class RefPendidikanController extends Controller
+class PendidikanController extends Controller
 {
     public function __construct(
         private readonly PendidikanService $pendidikanService,
@@ -53,7 +53,7 @@ class RefPendidikanController extends Controller
         );
     }
 
-    public function store(PendidikanStroreRequest $request): JsonResponse
+    public function store(PendidikanStoreRequest $request): JsonResponse
     {
 
         return $this->transactionService->handleWithTransaction(function () use ($request) {

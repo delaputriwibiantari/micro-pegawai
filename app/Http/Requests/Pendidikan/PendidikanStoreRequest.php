@@ -6,7 +6,7 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class PendidikanStroreRequest extends FormRequest
+class PendidikanStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class PendidikanStroreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id_sdm' => 'required|integer|exists:sdm,id',
+            'id_sdm' => 'required|integer|exists:sdm.id',
             'institusi' => 'required|string|max:255',
             'jurusan' => 'required|string|max:255',
             'tahun_masuk' => 'required|string|max:255',

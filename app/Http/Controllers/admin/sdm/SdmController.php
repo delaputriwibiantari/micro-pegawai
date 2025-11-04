@@ -89,8 +89,8 @@ class SdmController extends Controller
             }
 
             $fotoUrl = $data->foto
-            ? asset('storage/public/person/' . $data->foto)
-            : asset('assets/img/default-user.png');
+                ? asset('storage/person/' . $data->foto)
+                : asset('assets/img/default-user.png');
 
 
             return response()->json([
@@ -105,7 +105,8 @@ class SdmController extends Controller
                     'status_pegawai' => $data->status_pegawai,
                     'tipe_pegawai' => $data->tipe_pegawai,
                     'tanggal_masuk' => $data->tanggal_masuk,
-                    'id_person' => $data->id_person
+                    'id_person' => $data->id_person,
+                    'id_sdm' => $data->id
                 ]
             ]);
         });

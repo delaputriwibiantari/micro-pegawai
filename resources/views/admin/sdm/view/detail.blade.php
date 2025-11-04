@@ -1,8 +1,9 @@
 @extends('admin.layout.index')
 
 @section('css')
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.bootstrap5.min.css">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/datatables/dataTables.bootstrap5.min.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('assets/plugins/datatables/responsive.bootstrap.min.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('assets/plugins/datatables/buttons.dataTables.min.css') }}"/>
 @endsection
 
 @section('content')
@@ -120,6 +121,7 @@
                                         </h3>
                                         <div class="card-toolbar">
                                             <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
+                                                <input type="hidden" id="id_sdm" name="id_sdm">
                                                 <a type="button" class="btn btn-sm btn-primary fs-sm-8 fs-lg-6" data-bs-toggle="modal"
                                                 data-bs-target="#form_create_pendidikan" title="Tambah Person">Tambah Pendidikan</a>
                                             </div>
@@ -228,62 +230,43 @@
 @endsection
 
 @section('javascript')
-@include('admin.pendidikan.script.list')
-@include('admin.pendidikan.script.create')
-<!-- jQuery (WAJIB duluan) -->
-<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/lodash.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/dataTables.bootstrap5.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/dataTables.colReorder.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/dataTables.buttons.min.js') }}"></script>
 
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('assets/plugins/datatables/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/jszip.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/buttons.colVis.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/print.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/responsive.bootstrap.min.js') }}"></script>
+    <script>
+        function fetchDataDropdown(url, id, placeholder, name, callback) {
+            DataManager.executeOperations(url, 'admin_' + url, 120).then(response => {
+                $(id).empty().append('<option></option>');
+                if (response.success) {
+                    response.data.forEach(item => {
+                        $(id).append(`<option value="${item['id_' + placeholder]}">${item[name]}</option>`);
+                    });
+                    $(id).select2();
+                    if (callback) {
+                        callback();
+                    }
+                } else if (!response.errors) {
+                    Swal.fire('Warning', response.message, 'warning');
+                }
+            }).catch(error => {
+                ErrorHandler.handleError(error);
+            });
+        }   
+    </script>
 
-<!-- DataTables Core -->
-<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    @include('admin.pendidikan.script.list')
+    @include('admin.pendidikan.script.create')
+    @include('admin.pendidikan.script.edit')
+    @include('admin.pendidikan.script.detail')
 
-<!-- DataTables Responsive (biar tabel menyesuaikan di HP/laptop) -->
-<script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
-<script src="https://cdn.datatables.net/responsive/2.5.0/js/responsive.bootstrap5.min.js"></script>
-
-<!-- DataTables Buttons (export Excel, CSV, dll) -->
-<script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.colVis.min.js"></script>
-
-<!-- JSZip buat export Excel -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-
-<!-- Lodash (buat debounce search biar gak lag) -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
-
-
-<script>
-$(document).ready(function () {
-    // Inisialisasi semua DataTables
-    $('#keluargaTable, #pendidikanTable, #asuransiTable, #kepegawaianTable, #dokumenTable').DataTable({
-        responsive: true,
-        paging: false,
-        searching: false,
-        info: false
-    });
-});
-
-document.addEventListener('DOMContentLoaded', function () {
-    const id = window.location.pathname.split('/').pop();
-    fetch(`/admin/sdm/showdetail/${id}`)
-        .then(res => res.json())
-        .then(result => {
-            if (result.success) {
-                const data = result.data;
-                document.getElementById('nama_lengkap').textContent = data.nama_lengkap ?? '-';
-                document.getElementById('nik_person').textContent = `NIK: ${data.nik ?? '-'}`;
-                document.getElementById('nip_person').textContent = `NIP: ${data.nip ?? '-'}`;
-                document.getElementById('alamat_person').textContent = `Alamat: ${data.alamat ?? '-'}`;
-                const fotoPath = data.foto || '/assets/img/default-user.png';
-                document.getElementById('foto_person').src = fotoPath;
-            }
-        });
-});
-
-
-</script>
 @endsection

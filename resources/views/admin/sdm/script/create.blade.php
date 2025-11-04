@@ -1,10 +1,6 @@
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script defer>
-    $(document).ready(function () {
-        // Isi dropdown person saat halaman siap (jika diperlukan)
-        fetchDataDropdown("{{ route('admin.sdm.list') }}", "#id_person", "id", "nama_lengkap");
+    $('#form_create').on('show.bs.modal', function (e) {
 
-        // Event pencarian NIK
         $('#btn-Cari').off('click').on('click', function () {
             let nik = $('#nik').val();
             let url = $('#btn-Cari').data('url');
@@ -46,7 +42,13 @@
             });
         });
 
-        // Submit form SDM
+        $('#tanggal_masuk').flatpickr({
+            dateFormat: 'Y-m-d',
+            altFormat: 'd/m/Y',
+            allowInput: false,
+            altInput: true,
+        });
+
         $('#bt_submit_create').off('submit').on('submit', function (e) {
             e.preventDefault();
             Swal.fire({
@@ -54,13 +56,10 @@
                 text: 'Apakah datanya benar dan apa yang anda inginkan?',
                 icon: 'warning',
                 confirmButtonColor: '#3085d6',
-                allowOutsideClick: false,
-                allowEscapeKey: false,
+                allowOutsideClick: false, allowEscapeKey: false,
                 showCancelButton: true,
                 cancelButtonColor: '#dd3333',
-                confirmButtonText: 'Ya, Simpan',
-                cancelButtonText: 'Batal',
-                focusCancel: true,
+                confirmButtonText: 'Ya, Simpan', cancelButtonText: 'Batal', focusCancel: true,
             }).then((result) => {
                 if (result.value) {
                     DataManager.openLoading();
@@ -71,6 +70,7 @@
                     formData.append('tanggal_masuk', $('#tanggal_masuk').val());
                     formData.append('id_person', $('#id_person').val());
 
+
                     const action = "{{ route('admin.sdm.store') }}";
                     DataManager.formData(action, formData).then(response => {
                         if (response.success) {
@@ -78,32 +78,28 @@
                             setTimeout(function () {
                                 location.reload();
                             }, 1000);
-                        } else if (response.errors) {
+                        }
+                        if (!response.success && response.errors) {
                             const validationErrorFilter = new ValidationErrorFilter();
                             validationErrorFilter.filterValidationErrors(response);
                             Swal.fire('Warning', 'validasi bermasalah', 'warning');
-                        } else {
+                        }
+
+                        if (!response.success && !response.errors) {
                             Swal.fire('Peringatan', response.message, 'warning');
                         }
+
                     }).catch(error => {
                         ErrorHandler.handleError(error);
                     });
                 }
-            });
+            })
         });
-
-        // Reset form saat modal ditutup
-        $('#form_create').on('hidden.bs.modal', function () {
-            const $m = $(this);
-            $m.find('form').trigger('reset');
-            $m.find('select, textarea').val('').trigger('change');
-            $m.find('.is-invalid, .is-valid').removeClass('is-invalid is-valid');
-            $m.find('.invalid-feedback, .valid-feedback, .text-danger').remove();
-            $('#info_person').html('');
-            $('#form_lanjutan').addClass('d-none');
-            $('#nama_person_heading').text('');
-        });
+    }).on('hidden.bs.modal', function () {
+        const $m = $(this);
+        $m.find('form').trigger('reset');
+        $m.find('select, textarea').val('').trigger('change');
+        $m.find('.is-invalid, .is-valid').removeClass('is-invalid is-valid');
+        $m.find('.invalid-feedback, .valid-feedback, .text-danger').remove();
     });
 </script>
-
-

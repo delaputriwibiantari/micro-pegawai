@@ -15,7 +15,7 @@
                         <div class="col-md-13">
                         <div class="mb-3">
                             <label class="form-label fw-bold">Institusi</label>
-                            <input type="text" id="nip" name="nip" class="form-control form-control-sm" required>
+                            <input type="text" id="institusi" name="institusi" class="form-control form-control-sm" required>
                         </div>
                         <div class="mb-3">
                             <label class="form-label fw-bold">Jurusan</label>
@@ -23,7 +23,7 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label fw-bold">Tahun Masuk</label>
-                            <input type="text" id="tahun_masuk" name="nip" class="form-control form-control-sm" required>
+                            <input type="text" id="tahun_masuk" name="tahun_masuk" class="form-control form-control-sm" required>
                         </div>
                         <div class="mb-3">
                             <label class="form-label fw-bold">Tahun Lulus</label>
@@ -60,11 +60,11 @@
                                 <div class="invalid-feedback"></div>
                             </div>
 
-                        <input type="hidden" id="id_person" name="id_person">
+                        <input type="hidden" id="id_sdm" name="id_sdm">
 
 
                         <div class="mt-3">
-                            <button type="submit" class="btn btn-success btn-sm">Simpan Pendidikan</button>
+                            <button type="submit" id="bt_pendidikan_create" class="btn btn-success btn-sm">Simpan Pendidikan</button>
                         </div>
                     </div>
 

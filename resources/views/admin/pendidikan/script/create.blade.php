@@ -1,5 +1,6 @@
 <script defer>
     $('#form_create_pendidikan').on('show.bs.modal', function (e) {
+
         $('#bt_submit_create').off('submit').on('submit', function (e) {
             e.preventDefault();
             Swal.fire({
@@ -23,9 +24,6 @@
                     formData.append('sks', $('#sks').val());
                     formData.append('sumber_biaya', $('#sumber_biaya').val());
                     formData.append('id_sdm', $('#id_sdm').val());
-
-                   
-                    }
 
                     const action = "{{ route('admin.pendidikan.store') }}";
                     DataManager.formData(action, formData).then(response => {
