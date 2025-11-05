@@ -1,7 +1,21 @@
 <script defer>
-    $('#form_create_pendidikan').on('show.bs.modal', function (e) {
+    $('#form_create_dokumen').on('show.bs.modal', function (e) {
+        $('#tgl_terbit').flatpickr({
+            dateFormat: 'Y-m-d',
+            altFormat: 'd/m/Y',
+            altInput: true,
+            allowInput: false,
+        });
 
-        $('#bt_submit_create').off('submit').on('submit', function (e) {
+        $('#tgl_berlaku').flatpickr({
+            dateFormat: 'Y-m-d',
+            altFormat: 'd/m/Y',
+            altInput: true,
+            allowInput: false,
+        });
+
+      $('#bt_submit_create').off('submit').on('submit', function (e) {
+
             e.preventDefault();
             Swal.fire({
                 title: 'Kamu yakin?',
@@ -16,16 +30,12 @@
                 if (result.value) {
                     DataManager.openLoading();
                     const formData = new FormData();
-                    formData.append('institusi', $('#institusi').val());
-                    formData.append('jurusan', $('#jurusan').val());
-                    formData.append('tahun_masuk', $('#tahun_masuk').val());
-                    formData.append('tahun_lulus', $('#tahun_lulus').val());
-                    formData.append('jenis_nilai', $('#jenis_nilai').val());
-                    formData.append('sks', $('#sks').val());
-                    formData.append('sumber_biaya', $('#sumber_biaya').val());
-                    formData.append('id_sdm', $('#id_sdm').val());
+                    formData.append('jenis_dokumen', $('#jenis_dokumen').val());
+                    formData.append('nomor_dokumen', $('#nomor_dokumen').val());
+                    formData.append('tgl_terbit', $('#tgl_terbit').val());
+                    formData.append('tgl_berlaku', $('#tgl_berlaku').val());
 
-                    const action = "{{ route('admin.pendidikan.store') }}";
+                    const action = "{{ route('admin.asuransi.store') }}";
                     DataManager.formData(action, formData).then(response => {
                         if (response.success) {
                             Swal.fire('Success', response.message, 'success');
@@ -57,3 +67,7 @@
         $m.find('.invalid-feedback, .valid-feedback, .text-danger').remove();
     });
 </script>
+
+
+
+
