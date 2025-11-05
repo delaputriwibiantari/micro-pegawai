@@ -33,7 +33,7 @@ class  SdmService{
                 'person.uuid_person',
             ])
             ->where('person.uuid_person', $uuid)
-            ->orderByDesc('sdm.tmt')
+            ->orderByDesc('sdm.tanggal_masuk')
             ->get();
     }
 

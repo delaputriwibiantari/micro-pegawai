@@ -30,7 +30,7 @@ Route::prefix('sdm')->name('sdm.')->group(function () {
     Route::get('/', [SdmController::class, 'index'])
         ->name('index');
     Route::get('data', [SdmController::class, 'list'])
-        ->name('sdm.list');     
+        ->name('sdm.list');
     Route::get('show/{id}', [SdmController::class, 'show'])
         ->name('sdm.show');
     Route::post('/store', [SdmController::class, 'store'])

@@ -124,9 +124,9 @@ class  PersonService{
             ->leftJoin('ref_almt_kabupaten', 'ref_almt_kecamatan.id_kabupaten', '=', 'ref_almt_kabupaten.id_kabupaten')
             ->leftJoin('ref_almt_provinsi', 'ref_almt_kabupaten.id_provinsi', '=', 'ref_almt_provinsi.id_provinsi')
             ->select([
-                'person.id_person', 'person.uuid_person', 'person.nama_lengkap', 'person.jk',
-                'person.tempat_lahir', 'person.tanggal_lahir', 'person.nik', 'person.nomor_kk',
-                'person.npwp', 'person.nomor_hp', 'person.foto', 'person.alamat',
+                'person.id', 'person.uuid_person', 'person.nama_lengkap', 'person.jk',
+                'person.tempat_lahir', 'person.tanggal_lahir', 'person.nik', 'person.kk',
+                'person.npwp', 'person.no_hp', 'person.foto', 'person.alamat',
                 'ref_almt_desa.desa', 'ref_almt_kecamatan.kecamatan',
                 'ref_almt_kabupaten.kabupaten', 'ref_almt_provinsi.provinsi',
             ])
