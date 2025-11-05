@@ -1,7 +1,38 @@
 <script defer>
     $('#form_create_pendidikan').on('show.bs.modal', function (e) {
+         fetchDataDropdown("{{ route('api.ref.jenjang-pendidikan') }}", '#id_jenjang_pendidikan', 'jenjang_pendidikan', 'jenjang_pendidikan');
+         
       $('#bt_submit_create').off('submit').on('submit', function (e) {
             e.preventDefault();
+            const fileIjazahInput = document.getElementById('file_ijazah');
+            const fileTranskipInput = document.getElementById('file_transkip');
+            const fileIjazah = fileIjazahInput.files[0];
+            const fileTranskip = fileTranskipInput.files[0];
+            const allowedTypes = ['application/pdf', 'image/jpeg', 'image/jpg', 'image/png'];
+
+            if (fileIjazah) {
+                if (fileIjazah.size > 5 * 1024 * 1024) {
+                    Swal.fire("Warning", "Ukuran file Ijazah tidak boleh lebih dari 10MB", "warning");
+                    return;
+                }
+                if (!allowedTypes.includes(fileIjazah.type)) {
+                    Swal.fire("Warning", "Format file Ijazah harus PDF, JPG, JPEG, atau PNG", "warning");
+                    return;
+                }
+
+            }
+
+            if (fileTranskip) {
+                if (fileTranskip.size > 5 * 1024 * 1024) {
+                    Swal.fire("Warning", "Ukuran file Transkip tidak boleh lebih dari 10MB", "warning");
+                    return;
+                }
+
+                if (!allowedTypes.includes(fileTranskip.type)) {
+                    Swal.fire("Warning", "Format file Transkip harus PDF, JPG, JPEG, atau PNG", "warning");
+                    return;
+                }
+            }
             Swal.fire({
                 title: 'Kamu yakin?',
                 text: 'Apakah datanya benar dan apa yang anda inginkan?',

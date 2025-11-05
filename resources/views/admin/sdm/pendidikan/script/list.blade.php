@@ -84,6 +84,32 @@
                     data: 'nama_lengkap',
                     name: 'nama_lengkap'
                 },
+                 {
+                    data: 'file_ijazah',
+                    name: 'file_ijazah',
+                    render: function (data, type, row) {
+                        if (data) {
+                            const fileUrl = '{{ route('admin.view-file', [':folder', ':filename']) }}'
+                                .replace(':folder', 'pendidikan')
+                                .replace(':filename', data);
+                            return `<a href="${fileUrl}" target="_blank" class="btn btn-sm btn-light-primary">Lihat</a>`;
+                        }
+                        return '-';
+                    }
+                },
+                {
+                    data: 'file_transkip',
+                    name: 'file_transkip',
+                    render: function (data, type, row) {
+                        if (data) {
+                            const fileUrl = '{{ route('admin.view-file', [':folder', ':filename']) }}'
+                                .replace(':folder', 'pendidikan')
+                                .replace(':filename', data);
+                            return `<a href="${fileUrl}" target="_blank" class="btn btn-sm btn-light-primary">Lihat</a>`;
+                        }
+                        return '-';
+                    }
+                },
             ],
         });
         const performOptimizedSearch = _.debounce(function (query) {

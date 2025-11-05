@@ -88,6 +88,31 @@
                                     </div>
                                 </div>
 
+                                                        <div class="col-md-6">
+                            <div class="d-flex flex-column mb-2">
+                                <label class="fs-sm-8 fs-lg-6 fw-bolder mb-1">File Ijazah</label>
+                                <input type="file" id="edit_file_ijazah" name="file_ijazah"
+                                       class="form-control form-control-sm fs-sm-8 fs-lg-6"
+                                       accept=".pdf,.jpg,.jpeg,.png">
+                                <div class="form-text fs-sm-9 fs-lg-7 text-muted">
+                                    Format file: PDF, JPG, JPEG, PNG. Maksimal 5MB
+                                </div>
+                                <div class="invalid-feedback"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex flex-column mb-2">
+                                <label class="fs-sm-8 fs-lg-6 fw-bolder mb-1">File Transkip</label>
+                                <input type="file" id="edit_file_transkip" name="file_transkip"
+                                       class="form-control form-control-sm fs-sm-8 fs-lg-6"
+                                       accept=".pdf,.jpg,.jpeg,.png">
+                                <div class="form-text fs-sm-9 fs-lg-7 text-muted">
+                                    Format file: PDF, JPG, JPEG, PNG. Maksimal 5MB
+                                </div>
+                                <div class="invalid-feedback"></div>
+                            </div>
+                        </div>
+
                           <div class="modal-footer">
                             <button type="button" class="btn btn-sm btn-dark fs-sm-8 fs-lg-6" data-bs-dismiss="modal"
                                     aria-label="Close">Close

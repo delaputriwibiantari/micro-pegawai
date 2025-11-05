@@ -16,6 +16,31 @@
                     $('#edit_jenis_nilai').val(response.data.jenis_nilai).trigger('change');
                     $('#edit_sks').val(response.data.sks);
                     $('#edit_sumber_biaya').val(response.data.sumber_biaya)trigger('change');
+                     if (data.file_ijazah) {
+                    $('#current_file_ijazah_name').text(data.file_ijazah);
+                    const fileUrl = '{{ route('admin.view-file', [':folder', ':filename']) }}'
+                        .replace(':folder', 'pendidikan')
+                        .replace(':filename', data.file_ijazah);
+                    $('#current_file_ijazah_link').attr('href', fileUrl);
+                    $('#current_file_ijazah_info').show();
+                } else {
+                    $('#current_file_ijazah_info').hide();
+                }
+
+                if (data.file_transkip) {
+                    $('#current_file_transkip_name').text(data.file_transkip);
+                    const fileUrl = '{{ route('admin.view-file', [':folder', ':filename']) }}'
+                        .replace(':folder', 'pendidikan')
+                        .replace(':filename', data.file_transkip);
+                    $('#current_file_transkip_link').attr('href', fileUrl);
+                    $('#current_file_transkip_info').show();
+                } else {
+                    $('#current_file_transkip_info').hide();
+                }
+
+                fetchDataDropdown("{{ route('api.ref.jenjang-pendidikan') }}", "#edit_id_jenjang_pendidikan", "jenjang_pendidikan", "jenjang_pendidikan", function () {
+                    $("#edit_id_jenjang_pendidikan").val(data.id_jenjang_pendidikan).trigger("change");
+                });
                 } else {
                     Swal.fire('Warning', response.message, 'warning');
                 }
@@ -26,6 +51,35 @@
 
         $('#bt_submit_edit').off('submit').on('submit', function (e) {
             e.preventDefault();
+                        const fileIjazahInput = document.getElementById('edit_file_ijazah');
+            const fileTranskipInput = document.getElementById('edit_file_transkip');
+            const fileIjazah = fileIjazahInput.files[0];
+            const fileTranskip = fileTranskipInput.files[0];
+            const allowedTypes = ['application/pdf', 'image/jpeg', 'image/jpg', 'image/png'];
+
+            if (fileIjazah) {
+                if (fileIjazah.size > 5 * 1024 * 1024) {
+                    Swal.fire("Warning", "Ukuran file Ijazah tidak boleh lebih dari 10MB", "warning");
+                    return;
+                }
+                if (!allowedTypes.includes(fileIjazah.type)) {
+                    Swal.fire("Warning", "Format file Ijazah harus PDF, JPG, JPEG, atau PNG", "warning");
+                    return;
+                }
+
+            }
+
+            if (fileTranskip) {
+                if (fileTranskip.size > 5 * 1024 * 1024) {
+                    Swal.fire("Warning", "Ukuran file Transkip tidak boleh lebih dari 10MB", "warning");
+                    return;
+                }
+
+                if (!allowedTypes.includes(fileTranskip.type)) {
+                    Swal.fire("Warning", "Format file Transkip harus PDF, JPG, JPEG, atau PNG", "warning");
+                    return;
+                }
+            }
             Swal.fire({
                 title: 'Kamu yakin?',
                 text: 'Apakah datanya benar dan apa yang anda inginkan?',

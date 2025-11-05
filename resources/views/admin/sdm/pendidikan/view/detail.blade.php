@@ -52,7 +52,49 @@
                             <label class="fw-bolder mb-1">Sumber Biaya</label>
                             <p id="detail_sumber_biaya" class="fw-light"></p>
                         </div>
+
+                        <div class="row">
+                    <div class="col-md-6">
+                        <div class="d-flex flex-column mb-2">
+                            <label class="fs-sm-8 fs-lg-6 fw-bolder mb-1">File Ijazah</label>
+                            <div id="detail_file_ijazah_section">
+                                <div class="d-flex align-items-center mb-3">
+                                    <a href="#" id="detail_file_ijazah_link" target="_blank" class="btn btn-sm btn-light-primary">
+                                        Lihat File
+                                    </a>
+                                    <span id="detail_file_ijazah_name" class="ms-3 text-muted"></span>
+                                </div>
+                            </div>
+                            <div id="no_file_ijazah_section" style="display: none;">
+                                <div class="alert alert-warning">
+                                    Tidak ada file Ijazah yang diupload.
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                    <div class="col-md-6">
+                        <div class="d-flex flex-column mb-2">
+                            <label class="fs-sm-8 fs-lg-6 fw-bolder mb-1">File Transkip</label>
+                            <div id="detail_file_transkip_section">
+                                <div class="d-flex align-items-center mb-3">
+                                    <a href="#" id="detail_file_transkip_link" target="_blank" class="btn btn-sm btn-light-primary">
+                                        Lihat File
+                                    </a>
+                                    <span id="detail_file_transkip_name" class="ms-3 text-muted"></span>
+                                </div>
+                            </div>
+                            <div id="no_file_transkip_section" style="display: none;">
+                                <div class="alert alert-warning">
+                                    Tidak ada file Transkip yang diupload.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                    </div>
+
                 </div>
             </div>
 
