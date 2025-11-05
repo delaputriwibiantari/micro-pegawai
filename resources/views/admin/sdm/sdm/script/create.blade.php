@@ -25,7 +25,9 @@
             DataManager.fetchData("{{ route('admin.sdm.sdm.find_by_nik', ':nik') }}".replace(':nik', nik))
                 .then(response => {
                     $('#btn_search_person').prop('disabled', false).html('Cari Person');
-
+                    console.log('Response structure:', response);
+                    console.log('Available fields:', Object.keys(response.data));
+                    console.log('ID value:', response.data.id);
                     if (response.success) {
                         const data = response.data;
                         $('#person_nama_lengkap').text(data.nama_lengkap);
@@ -33,7 +35,7 @@
                         $('#person_tempat_lahir').text(data.tempat_lahir);
                         $('#person_tanggal_lahir').text(formatter.formatDate(response.data.tanggal_lahir));
                         $('#person_alamat').text(`${data.desa}, ${data.kecamatan}, ${data.kabupaten}, ${data.provinsi}`.replace(/^,\s*|,\s*$/g, '').replace(/,\s*,/g, ','));
-                        $('#id_person').val(data.id_person);
+                        $('#id_person').val(data.id);
                         $('#person_info').show();
                         $('#sdm_form').show();
                         $('#btn_save').show();
@@ -63,6 +65,16 @@
 
         $("#bt_submit_create").on("submit", function (e) {
             e.preventDefault();
+             console.log('🔍 DEBUG SEBELUM SUBMIT:');
+                console.log('ID Person value:', $('#id_person').val());
+                console.log('ID Person element:', document.getElementById('id_person'));
+                console.log('Form data:', {
+                    id_person: $('#id_person').val(),
+                    nip: $('#nip').val(),
+                    status_pegawai: $('#status_pegawai').val(),
+                    tipe_pegawai: $('#tipe_pegawai').val(),
+                    tanggal_masuk: $('#tanggal_masuk').val()
+                });
 
             if (!$('#id_person').val()) {
                 Swal.fire('Warning', 'Pilih person terlebih dahulu dengan mencari NIK', 'warning');
