@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\pendidikan;
+namespace App\Models\sdm;
 
 
 use App\Traits\SkipsEmptyAudit;
@@ -11,7 +11,7 @@ use OwenIt\Auditing\Contracts\Auditable;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 
-final class Pendidikan extends Model implements Auditable
+final class SdmPendidikan extends Model implements Auditable
 {
     use AuditableTrait;
     use HasFactory;

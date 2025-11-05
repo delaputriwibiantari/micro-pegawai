@@ -5,6 +5,8 @@ use App\Http\Controllers\admin\pendidikan\PendidikanController;
 use App\Http\Controllers\Content\PortalController;
 use App\Http\Controllers\admin\person\PersonController;
 use App\Http\Controllers\admin\sdm\SdmController;
+use App\Http\Controllers\admin\ref\RefJenjangPendidikanController;
+use App\Http\Controllers\admin\sdm\SdmPendidikanController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('view-file/{folder}/{filename}', [PortalController::class, 'viewFile'])
@@ -42,25 +44,39 @@ Route::prefix('sdm')->name('sdm.')->group(function () {
     Route::get('find/by/nik/{id}', [SdmController::class, 'find_by_nik'])
         ->name('sdm.find_by_nik');
 
+    Route::prefix('pendidikan')->name('pendidikan.')->group(function () {
+        Route::get('/', [SdmPendidikanController::class, 'index'])
+            ->name('index');
+        Route::get('data', [SdmPendidikanController::class, 'list'])
+            ->name('list');
+        Route::get('cari', [SdmPendidikanController::class, 'cari'])
+            ->name('cari');
+        Route::post('store', [SdmPendidikanController::class, 'store'])
+            ->name('store');
+        Route::post('update/{id}', [SdmPendidikanController::class, 'update'])
+            ->name('update');
+            Route::get('show/{id}', [SdmPendidikanController::class, 'show'])
+                ->name('show'); // Menjadi: admin.person.show
+    });
+});
+
+Route::prefix('ref')->group(function () {
+    Route::prefix('jenjang-pendidikan')->group(function () {
+        Route::get('/', [RefJenjangPendidikanController::class, 'index'])
+            ->name('ref.jenjang-pendidikan.index');
+        Route::get('data', [RefJenjangPendidikanController::class, 'list'])
+            ->name('ref.jenjang-pendidikan.list');
+        Route::get('show/{id}', [RefJenjangPendidikanController::class, 'show'])
+            ->name('ref.jenjang-pendidikan.show');
+        Route::post('/store', [RefJenjangPendidikanController::class, 'store'])
+            ->name('ref.jenjang-pendidikan.store');
+        Route::post('update/{id}', [RefJenjangPendidikanController::class, 'update'])
+            ->name('ref.jenjang-pendidikan.update');
+    });
 });
 
 
-Route::prefix('pendidikan')->name('pendidikan.')->group(function () {
-    Route::get('/', [PendidikanController::class, 'index'])
-        ->name('index');
-    Route::get('data', [PendidikanController::class, 'list'])
-        ->name('list');
-    Route::get('cari', [PendidikanController::class, 'cari'])
-        ->name('cari');
-    Route::post('store', [PendidikanController::class, 'store'])
-        ->name('store');
-    Route::post('update/{id}', [PendidikanController::class, 'update'])
-        ->name('update');
-        Route::get('show/{id}', [PendidikanController::class, 'show'])
-            ->name('show'); // Menjadi: admin.person.show
 
-
-});
 
 
     Route::get('/coba', function () {
