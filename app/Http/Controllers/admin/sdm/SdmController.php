@@ -43,14 +43,15 @@ class SdmController extends Controller
 
     public function list(Request $request): JsonResponse
     {
+        // dd($request->all());
         return $this->transactionService->handleWithDataTable(
             function () use ($request) {
                 return $this->sdmService->getListData($request);
             },
             [
                 'action' => fn($row) => implode(' ', [
-                    $this->transactionService->actionButton($row->id_sdm, 'detail'),
-                    $this->transactionService->actionButton($row->id_sdm, 'edit'),
+                    $this->transactionService->actionButton($row->id, 'detail'),
+                    $this->transactionService->actionButton($row->id, 'edit'),
                     $this->transactionService->actionLink(route('admin.sdm.sdm.histori', $row->uuid_person), 'histori', 'Riwayat'),
                 ]),
             ]

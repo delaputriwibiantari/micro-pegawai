@@ -48,7 +48,6 @@
                                     <th class="min-w-60px">Status Pegawai</th>
                                     <th class="min-w-120px">Tipe Pegawai</th>
                                     <th class="min-w-100px">Tanggal Masuk</th>
-                                    <th class="min-w-120px">ID Person</th>
                                     <th class="min-w-100px">Nama Lengkap</th>
                                 </tr>
                                 </thead>

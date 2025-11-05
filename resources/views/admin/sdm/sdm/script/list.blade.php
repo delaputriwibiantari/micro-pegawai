@@ -72,10 +72,6 @@
                     }
                 },
                 {
-                    data: 'id_person',
-                    name: 'id_person'
-                },
-                {
                     data: 'nama_lengkap',
                     name: 'nama_lengkap'
                 }
