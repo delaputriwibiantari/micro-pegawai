@@ -3,7 +3,7 @@
         // Don't reset here - let global cleaner handle it
         const button = $(e.relatedTarget);
         const id = button.data("id");
-        const detail = '{{ route('admin.pendidikan.show', [':id']) }}';
+        const detail = '{{ route('admin.sdm.pendidikan.show', [':id']) }}';
 
 
         DataManager.fetchData(detail.replace(':id', id))
@@ -102,7 +102,7 @@
                     formData.append('sumber_biaya', $('#edit_sumber_biaya').val());
                     }
 
-                    const update = '{{ route('admin.pendidikan.update', [':id']) }}';
+                    const update = '{{ route('admin.sdm.pendidikan.update', [':id']) }}';
                     DataManager.formData(update.replace(':id', id), formData).then(response => {
                         if (response.success) {
                             Swal.fire('Success', response.message, 'success');

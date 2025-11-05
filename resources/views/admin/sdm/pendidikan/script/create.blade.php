@@ -1,7 +1,7 @@
 <script defer>
     $('#form_create_pendidikan').on('show.bs.modal', function (e) {
          fetchDataDropdown("{{ route('api.ref.jenjang-pendidikan') }}", '#id_jenjang_pendidikan', 'jenjang_pendidikan', 'jenjang_pendidikan');
-         
+
       $('#bt_submit_create').off('submit').on('submit', function (e) {
             e.preventDefault();
             const fileIjazahInput = document.getElementById('file_ijazah');
@@ -55,7 +55,7 @@
                     formData.append('sumber_biaya', $('#sumber_biaya').val());
                     formData.append('id_sdm', $('#id_sdm').val());
 
-                    const action = "{{ route('admin.pendidikan.store') }}";
+                    const action = "{{ route('admin.sdm.pendidikan.store') }}";
                     DataManager.formData(action, formData).then(response => {
                         if (response.success) {
                             Swal.fire('Success', response.message, 'success');

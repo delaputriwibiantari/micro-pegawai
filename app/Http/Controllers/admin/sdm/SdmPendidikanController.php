@@ -29,7 +29,7 @@ class SdmPendidikanController extends Controller
     {
         $person = $this->sdmpendidikanService->getPersonDetailByUuid($uuid);
 
-        return view('admin.sdm.riwayat_pendidikan.index', ['person' => $person, 'id' => $uuid]);
+        return view('admin.sdm.pendidikan.index', ['person' => $person, 'id' => $uuid]);
     }
 
     public function list(string $uuid, Request $request): JsonResponse

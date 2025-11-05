@@ -2,7 +2,7 @@
     $('#form_detail_pendidikan').on('show.bs.modal', function (e) {
         const button = $(e.relatedTarget);
         const id = button.data("id");
-        const detail = '{{ route('admin.pendidikan.show', [':id']) }}';
+        const detail = '{{ route('admin.sdm.pendidikan.show', [':id']) }}';
 
 
         DataManager.fetchData(detail.replace(':id', id))

@@ -1,5 +1,5 @@
 @php use Carbon\Carbon; @endphp
-@extends('admin.layouts.index')
+@extends('admin.layout.index')
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('assets/plugins/datatables/dataTables.bootstrap5.min.css') }}">

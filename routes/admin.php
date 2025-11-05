@@ -45,7 +45,7 @@ Route::prefix('sdm')->name('sdm.')->group(function () {
         ->name('sdm.find_by_nik');
 
     Route::prefix('pendidikan')->name('pendidikan.')->group(function () {
-        Route::get('/', [SdmPendidikanController::class, 'index'])
+        Route::get('/{id}', [SdmPendidikanController::class, 'index'])
             ->name('index');
         Route::get('data', [SdmPendidikanController::class, 'list'])
             ->name('list');
@@ -57,6 +57,8 @@ Route::prefix('sdm')->name('sdm.')->group(function () {
             ->name('update');
             Route::get('show/{id}', [SdmPendidikanController::class, 'show'])
                 ->name('show'); // Menjadi: admin.person.show
+        Route::post('destroy/{id}', [SdmPendidikanController::class, 'destroy'])
+            ->name('destroy');
     });
 });
 
