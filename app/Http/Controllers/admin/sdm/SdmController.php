@@ -12,7 +12,7 @@ use App\Services\Tools\TransactionService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
+
 
 class SdmController extends Controller
 {
@@ -26,29 +26,35 @@ class SdmController extends Controller
 
     public function index(): View
     {
-        return view('admin.sdm.index');
+        return view('admin.sdm.sdm.index');
     }
 
-    public function list(): JsonResponse
+    public function histori(string $uuid): View
     {
-        $data = $this->sdmService->getListData();
+        $person = $this->sdmService->getPersonDetailByUuid($uuid);
+        $data = $this->sdmService->getHistoriByUuid($uuid);
 
-        // Tambahkan action untuk setiap row
-        $data->transform(function ($row) {
-            $row->action = implode(' ', [
-                '<button type="button" data-id="'.$row->id.'" title="Detail" data-bs-toggle="modal" data-bs-target="#detail-button" aria-label="Detail" class="btn btn-icon btn-bg-light btn-active-text-primary btn-sm m-1 detail-button">
-                    <span class="bi bi-file-text" aria-hidden="true"></span>
-                </button>',
-                $this->transactionService->actionButton($row->id, 'edit'),
-            ]);
-            return $row;
-        });
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Data berhasil diambil',
-            'data' => $data
+        return view('admin.sdm.sdm.histori', [
+            'person' => $person,
+            'data' => $data,
+            'id' => $uuid,
         ]);
+    }
+
+    public function list(Request $request): JsonResponse
+    {
+        return $this->transactionService->handleWithDataTable(
+            function () use ($request) {
+                return $this->sdmService->getListData($request);
+            },
+            [
+                'action' => fn($row) => implode(' ', [
+                    $this->transactionService->actionButton($row->id_sdm, 'detail'),
+                    $this->transactionService->actionButton($row->id_sdm, 'edit'),
+                    $this->transactionService->actionLink(route('admin.sdm.sdm.histori', $row->uuid_person), 'histori', 'Riwayat'),
+                ]),
+            ]
+        );
     }
 
     public function listApi(): JsonResponse
@@ -60,10 +66,13 @@ class SdmController extends Controller
 
     public function store(SdmStoreRequest $request): JsonResponse
     {
+        if ($this->sdmService->checkDuplicate($request->id_person)) {
+            return $this->responseService->errorResponse('Kombinasi jenis/status SDM untuk person ini sudah terdaftar');
+        }
 
         return $this->transactionService->handleWithTransaction(function () use ($request) {
             $payload = $request->only([
-               'nip',
+                'nip',
                 'status_pegawai',
                 'tipe_pegawai',
                 'tanggal_masuk',
@@ -76,77 +85,16 @@ class SdmController extends Controller
         });
     }
 
-        public function showDetail(string $id): JsonResponse
-        {
+
+    public function show(string $id): JsonResponse
+    {
         return $this->transactionService->handleWithShow(function () use ($id) {
             $data = $this->sdmService->getDetailData($id);
 
-            if (!$data) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Data tidak ditemukan'
-                ], 404);
-            }
-
-            $fotoUrl = $data->foto
-                ? asset('storage/person/' . $data->foto)
-                : asset('assets/img/default-user.png');
-
-
-            return response()->json([
-                'success' => true,
-                'message' => 'Data berhasil diambil',
-                'data' => [
-                    'nama_lengkap' => $data->nama_lengkap,
-                    'nik' => $data->nik,
-                    'nip' => $data->nip ?? '-',
-                    'alamat' => $data->alamat,
-                    'foto' => $fotoUrl,
-                    'status_pegawai' => $data->status_pegawai,
-                    'tipe_pegawai' => $data->tipe_pegawai,
-                    'tanggal_masuk' => $data->tanggal_masuk,
-                    'id_person' => $data->id_person,
-                    'id_sdm' => $data->id
-                ]
-            ]);
+            return $this->responseService->successResponse('Data berhasil diambil', $data);
         });
-        }
-
-    public function show(string $id)
-    {
-        $data = $this->sdmService->getDetailData($id);
-
-        if (!$data) {
-            return redirect()->back()->with('error', 'Data tidak ditemukan');
-        }
-
-        return view('admin.sdm.view.detail', compact('data'));
     }
 
-    public function cari(Request $request): JsonResponse
-    {
-        $request->validate([
-            'nik' => 'required|string|size:16|regex:/^[0-9]+$/'
-        ]);
-
-        $person = $this->sdmService->findPersonByNik($request->nik);
-
-        if (!$person) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Data tidak ditemukan atau sudah terdaftar di SDM',
-                'data' => null
-            ]);
-        }
-
-        $formatted = $this->sdmService->formatPersonData($person);
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Data ditemukan',
-            'data' => $formatted
-        ]);
-    }
 
     public function update(SdmUpdateRequest $request, string $id): JsonResponse
     {
@@ -154,7 +102,6 @@ class SdmController extends Controller
         if (!$data) {
             return $this->responseService->errorResponse('Data tidak ditemukan');
         }
-
 
         return $this->transactionService->handleWithTransaction(function () use ($request, $data) {
              $payload = $request->only([
@@ -171,7 +118,17 @@ class SdmController extends Controller
         });
     }
 
+    public function find_by_nik($nik): JsonResponse
+    {
+        return $this->transactionService->handleWithShow(function () use ($nik) {
+            $data = $this->sdmService->findByNik($nik);
+            if (!$data) {
+                return $this->responseService->errorResponse('Data tidak ditemukan');
+            }
 
+            return $this->responseService->successResponse('Data berhasil diambil', $data);
+        });
+    }
 
 
 }

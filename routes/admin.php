@@ -30,16 +30,17 @@ Route::prefix('sdm')->name('sdm.')->group(function () {
     Route::get('/', [SdmController::class, 'index'])
         ->name('index');
     Route::get('data', [SdmController::class, 'list'])
-        ->name('list');
-    Route::get('cari', [SdmController::class, 'cari'])
-        ->name('cari');
-    Route::post('store', [SdmController::class, 'store'])
-        ->name('store');
+        ->name('sdm.list');     
+    Route::get('show/{id}', [SdmController::class, 'show'])
+        ->name('sdm.show');
+    Route::post('/store', [SdmController::class, 'store'])
+        ->name('sdm.store');
     Route::post('update/{id}', [SdmController::class, 'update'])
-        ->name('update');
-
-    Route::get('showdetail/{id}', [SdmController::class, 'showdetail'])
-        ->name('showdetail');
+        ->name('sdm.update');
+    Route::get('histori/{id}', [SdmController::class, 'histori'])
+        ->name('sdm.histori');
+    Route::get('find/by/nik/{id}', [SdmController::class, 'find_by_nik'])
+        ->name('sdm.find_by_nik');
 
 });
 

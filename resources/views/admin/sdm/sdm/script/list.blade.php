@@ -35,7 +35,7 @@
             responsive: true,
             searchHighlight: true,
             ajax: {
-                url: '{{ route('admin.sdm.list') }}',
+                url: '{{ route('admin.sdm.sdm.list') }}',
                 cache: false,
             },
             order: [],

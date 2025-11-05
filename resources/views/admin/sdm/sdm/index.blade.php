@@ -62,8 +62,8 @@
         </div>
     </div>
 
-    @include('admin.sdm.view.create')
-    @include('admin.sdm.view.edit')
+    @include('admin.sdm.sdm.view.create')
+    @include('admin.sdm.sdm.view.edit')
 @endsection
 
 @section('javascript')
@@ -100,8 +100,8 @@
             });
         }
     </script>
-    @include('admin.sdm.script.list')
-    @include('admin.sdm.script.create')
-    @include('admin.sdm.script.edit')
-    @include('admin.sdm.script.detail')
+    @include('admin.sdm.sdm.script.list')
+    @include('admin.sdm.sdm.script.create')
+    @include('admin.sdm.sdm.script.edit')
+    @include('admin.sdm.sdm.script.detail')
 @endsection

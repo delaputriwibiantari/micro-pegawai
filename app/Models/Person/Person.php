@@ -26,6 +26,7 @@ final class Person extends Model implements Auditable
     protected $dateFormat = 'Y-m-d';
 
     protected $fillable = [
+        'uuid_person',
         'nama_lengkap',
         'nama_panggilan',
         'tempat_lahir',
@@ -57,7 +58,17 @@ final class Person extends Model implements Auditable
 
     ];
 
-    
+    protected static function boot(): void
+    {
+        parent::boot();
+
+        Person::creating(function ($model) {
+            if (empty($model->uuid_person)) {
+                $model->uuid_person = (string)Str::uuid();
+            }
+        });
+    }
+
 
     public function setNamaLengkapAttribute($value): void
     {
