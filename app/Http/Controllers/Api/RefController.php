@@ -18,6 +18,7 @@ final class RefController extends Controller
         private readonly TransactionService          $transactionService,
         private readonly ResponseService             $responseService,
         private readonly RefHubunganKeluargaService  $refHubunganKeluargaService,
+        private readonly RefEselonService            $refEselonService,
     ) {}
 
         public function jenjangPendidikan(): JsonResponse
@@ -33,6 +34,15 @@ final class RefController extends Controller
     {
         return $this->transactionService->handleWithShow(function () {
             $data = $this->refHubunganKeluargaService->getListDataOrdered('id_hubungan_keluarga');
+
+            return $this->responseService->successResponse('Data berhasil diambil', $data);
+        });
+    }
+
+    public function eselon(): JsonResponse
+    {
+        return $this->transactionService->handleWithShow(function () {
+            $data = $this->refEselonService->getListDataOrdered('id_eselon');
 
             return $this->responseService->successResponse('Data berhasil diambil', $data);
         });

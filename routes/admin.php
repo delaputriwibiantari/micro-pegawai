@@ -4,6 +4,7 @@ use App\Http\Controllers\admin\pendidikan\PendidikanController;
 
 use App\Http\Controllers\Content\PortalController;
 use App\Http\Controllers\admin\person\PersonController;
+use App\Http\Controllers\admin\ref\RefEselonController;
 use App\Http\Controllers\admin\ref\RefHubunganKeluargaController;
 use App\Http\Controllers\admin\sdm\SdmController;
 use App\Http\Controllers\admin\ref\RefJenjangPendidikanController;
@@ -88,6 +89,19 @@ Route::prefix('ref')->group(function () {
             ->name('ref.hubungan-keluarga.store');
         Route::post('update/{id}', [RefHubunganKeluargaController::class, 'update'])
             ->name('ref.hubungan-keluarga.update');
+    });
+
+    Route::prefix('eselon')->group(function () {
+        Route::get('/', [RefEselonController::class, 'index'])
+            ->name('ref.eselon.index');
+        Route::get('data', [RefEselonController::class, 'list'])
+            ->name('ref.eselon.list');
+        Route::get('show/{id}', [RefEselonController::class, 'show'])
+            ->name('ref.eselon.show');
+        Route::post('/store', [RefEselonController::class, 'store'])
+            ->name('ref.eselon.store');
+        Route::post('update/{id}', [RefEselonController::class, 'update'])
+            ->name('ref.eselon.update');
     });
 });
 

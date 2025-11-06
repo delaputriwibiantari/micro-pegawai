@@ -44,7 +44,7 @@
                         <span class="menu-title px-4">Jenis Asuransi</span>
                     </a>
                     <a class="menu-link {{ request()->routeIs('admin.ref.eselon.*') ? 'active' : '' }}"
-                       href="#">
+                       href="{{ route('admin.ref.eselon.index') }}">
                         <span class="menu-title px-4">Eselon</span>
                     </a>
                 </div>
