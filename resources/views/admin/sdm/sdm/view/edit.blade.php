@@ -72,7 +72,7 @@
                                     <span>Nama Lengkap</span>
                                 </label>
                                 <input type="text" id="edit_nama_lengkap" class="form-control form-control-sm fs-sm-8 fs-lg-6"
-                                       maxlength="30" readonly/>
+                                       maxlength="30" readonly />
                                 <div class="invalid-feedback"></div>
                             </div>
 

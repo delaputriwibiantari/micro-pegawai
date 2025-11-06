@@ -15,12 +15,13 @@
         DataManager.fetchData(detail.replace(':id', id)).then(response => {
             if (response.success) {
                 const data = response.data;
-                $("#edit_nip").text(data.nip);
-                $("#edit_status_pegawai").text(data.status_pegawai);
-                $("#edit_tipe_pegawai").text(data.tipe_pegawai);
-                $("#edit_id_person").text(data.id_person);
-                $("#edit_nama_lengkap").text(data.nama_lengkap);
-                edit_tanggal_masuk.setDate(response.data.tanggal_masuk);
+                $("#edit_nip").val(data.nip);
+                $("#edit_status_pegawai").val(data.status_pegawai).trigger('change');
+                $("#edit_tipe_pegawai").val(data.tipe_pegawai).trigger('change');
+                $("#edit_id_person").val(data.id_person);
+                $("#edit_nama_lengkap").val(data.nama_lengkap);
+                 edit_tanggal_masuk.setDate(data.tanggal_masuk, true);
+                 
             } else {
                 Swal.fire("Warning", response.message, "warning");
             }

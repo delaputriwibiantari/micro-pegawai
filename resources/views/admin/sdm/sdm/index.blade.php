@@ -60,7 +60,7 @@
             </div>
         </div>
     </div>
-
+    @include('admin.sdm.sdm.view.detail')
     @include('admin.sdm.sdm.view.create')
     @include('admin.sdm.sdm.view.edit')
 @endsection

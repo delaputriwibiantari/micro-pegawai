@@ -6,6 +6,7 @@
 @section('css')
     <link rel="stylesheet" href="{{ asset('assets/plugins/datatables/dataTables.bootstrap5.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/plugins/datatables/responsive.bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/datatables/buttons.dataTables.min.css') }}">
 @endsection
 
 @section('list')
@@ -131,7 +132,9 @@
                     </ul>
                 </div>
 
-                <div class="table-responsive shadow rounded border p-4">
+
+                <div class="table-responsive mb-8 shadow p-4 mx-0 border-hover-dark border-primary border-1 border-dashed fs-sm-8 fs-lg-6 rounded-2">
+                    <div class="table-responsive">
                     <table id="example"
                            class="table table-sm align-middle table-row-bordered table-row-solid gs-0 gy-2">
                         <thead>
@@ -163,6 +166,7 @@
                         @endforelse
                         </tbody>
                     </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -170,9 +174,18 @@
 @endsection
 
 @section('javascript')
-    <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+     <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/lodash.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables/dataTables.bootstrap5.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/dataTables.colReorder.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/dataTables.buttons.min.js') }}"></script>
+
+    <script src="{{ asset('assets/plugins/datatables/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/jszip.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/buttons.colVis.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/print.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables/responsive.bootstrap.min.js') }}"></script>
     <script>
         $('#example').DataTable();
