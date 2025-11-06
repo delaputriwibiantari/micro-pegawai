@@ -35,7 +35,7 @@
             responsive: true,
             searchHighlight: true,
             ajax: {
-                url: '{{ route('admin.admin.person.list') }}',
+                url: '{{ route('admin.sdm.pendidikan.list') }}',
                 cache: false,
             },
             order: [],

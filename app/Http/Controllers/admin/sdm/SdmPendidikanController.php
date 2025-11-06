@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\admin\sdm;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ref\SdmPendidikanStoreRequest;
+use App\Http\Requests\Sdm\SdmPendidikanStoreRequest;
 use App\Http\Requests\Sdm\SdmPendidikanUpdateRequest;
 use App\Services\Sdm\SdmPendidikanService;
 use App\Services\Tools\FileUploadService;

@@ -127,7 +127,7 @@
                 <div class="card-toolbar mb-4">
                     <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
                         <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#form_create" title="Tambah Riwayat Pendidikan">
+                                data-bs-target="#form_create_pendidikan" title="Tambah Pendidikan">
                             Tambah Pendidikan
                         </button>
                     </div>

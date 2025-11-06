@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\ref;
+namespace App\Http\Requests\Sdm;
 
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
@@ -30,7 +30,7 @@ class SdmPendidikanStoreRequest extends FormRequest
             'tahun_masuk' => 'required|string|max:255',
             'tahun_lulus' => 'required|string|max:255',
             'jenis_nilai' => 'required|in:IPK,NILAI',
-            'sks' => 'nullable|integer|min:0|max:10',
+            'sks' => 'nullable|integer|min:0|max:200',
             'sumber_biaya' => 'required|in:MANDIRI,BEASISWA',
         ];
     }

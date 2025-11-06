@@ -151,7 +151,6 @@
                                 <td>{{ $item->status_pegawai ?? '-' }}</td>
                                 <td>{{ $item->tipe_pegawai ?? '-' }}</td>
                                 <td>{{ $item->tahun_masuk ?? '-' }}</td>
-
                             </tr>
                         @empty
                             <tr>
