@@ -35,14 +35,16 @@ class SdmPendidikanController extends Controller
     public function list(string $uuid, Request $request): JsonResponse
     {
         return $this->transactionService->handleWithDataTable(
+
             function () use ($uuid, $request) {
                 return $this->sdmpendidikanService->getListData($uuid, $request);
+                
             },
             [
                 'action' => fn($row) => implode(' ', [
-                    $this->transactionService->actionButton($row->id_riwayat_pendidikan, 'detail'),
-                    $this->transactionService->actionButton($row->id_riwayat_pendidikan, 'edit'),
-                    $this->transactionService->actionButton($row->id_riwayat_pendidikan, 'delete'),
+                    $this->transactionService->actionButton($row->id, 'detail'),
+                    $this->transactionService->actionButton($row->id, 'edit'),
+                    $this->transactionService->actionButton($row->id, 'delete'),
                 ]),
             ]
         );

@@ -19,15 +19,17 @@ final class SdmPendidikan extends Model implements Auditable
         SkipsEmptyAudit::transformAudit insteadof AuditableTrait;
     }
 
-    public $incrementing = true;
-    public $timestamps = true;
+    public $incrementing = false;
+    public $timestamps = false;
     protected $table = 'pendidikan';
     protected $primaryKey = 'id';
     protected $keyType = 'int';
     protected $dateFormat = 'Y-m-d';
 
     protected $fillable = [
+        'id',
         'id_sdm',
+        'id_jenjang_pendidikan',
         'institusi',
         'jurusan',
         'tahun_masuk',
@@ -35,6 +37,8 @@ final class SdmPendidikan extends Model implements Auditable
         'jenis_nilai',
         'sks',
         'sumber_biaya',
+        'file_ijazah',
+        'file_transkip',
 
     ];
 
@@ -44,6 +48,11 @@ final class SdmPendidikan extends Model implements Auditable
 
     protected $casts =[
         'id_sdm' => 'integer',
+        'id' => 'integer',
+        'id_sdm' => 'integer',
+        'tahun_masuk' => 'integer',
+        'tahun_lulus' => 'integer',
+        'jumlah_sks' => 'integer',
 
     ];
 

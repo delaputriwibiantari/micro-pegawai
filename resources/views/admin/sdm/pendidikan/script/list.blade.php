@@ -35,8 +35,9 @@
             responsive: true,
             searchHighlight: true,
             ajax: {
-                url: '{{ route('admin.sdm.pendidikan.list') }}',
+                url: '{{ route('admin.sdm.pendidikan.list', $id) }}',
                 cache: false,
+                
             },
             order: [],
             ordering: true,
@@ -48,19 +49,31 @@
             },
                 {
                     data: 'institusi',
-                    name: 'institusi'
+                    name: 'institusi',
+                    render: function (data) {
+                        return data;
+                    }
                 },
                  {
                     data: 'jurusan',
-                    name: 'jurusan'
+                    name: 'jurusan',
+                    render: function (data) {
+                        return data;
+                    }
                 },
                  {
                     data: 'tahun_masuk',
-                    name: 'tahun_masuk'
+                    name: 'tahun_masuk',
+                    render: function (data) {
+                        return data;
+                    }
                 },
                  {
                     data: 'tahun_lulus',
-                    name: 'tahun_lulus'
+                    name: 'tahun_lulus',
+                    render: function (data) {
+                        return data;
+                    }
                 },
                 {
                     data: 'jenis_nilai',
@@ -71,7 +84,10 @@
                 },
                 {
                     data: 'sks',
-                    name: 'sks'
+                    name: 'sks',
+                    render: function (data) {
+                        return data;
+                    }
                 },
                 {
                     data: 'sumber_biaya',
@@ -82,7 +98,10 @@
                 },
                 {
                     data: 'nama_lengkap',
-                    name: 'nama_lengkap'
+                    name: 'nama_lengkap',
+                    render: function (data) {
+                        return data;
+                    }
                 },
                  {
                     data: 'file_ijazah',
@@ -129,4 +148,3 @@
 
     load_data();
 </script>
-

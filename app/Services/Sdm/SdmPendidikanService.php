@@ -27,7 +27,7 @@ class  SdmPendidikanService{
         $idSdm = Sdm::query()
             ->join('person', 'person.id', '=', 'sdm.id_person')
             ->where('person.uuid_person', $uuid)
-            ->value('person_sdm.id_sdm');
+            ->value('sdm.id_sdm');
 
         if (!$idSdm) {
             return collect();
@@ -55,7 +55,7 @@ class  SdmPendidikanService{
     public function getDetailData(string $id): ?SdmPendidikan
     {
         return SdmPendidikan::query()
-            ->leftJoin('ref_jenjang_pendidikan', 'ref_jenjang_pendidikan.id_jenjang_pendidikan', '=', 'sdm__pendidikan.id_jenjang_pendidikan')
+            ->leftJoin('ref_jenjang_pendidikan', 'ref_jenjang_pendidikan.id_jenjang_pendidikan', '=', 'pendidikan.id_jenjang_pendidikan')
             ->select([
                 'pendidikan.*',
                 'ref_jenjang_pendidikan.jenjang_pendidikan',
@@ -96,7 +96,7 @@ class  SdmPendidikanService{
         return Sdm::query()
             ->join('person', 'person.id', '=', 'sdm.id_person')
             ->where('person.uuid_person', $uuid)
-            ->value('person_sdm.id');
+            ->value('sdm.id');
     }
 
     public function handleFileUpload($file, int $idSdm, string $dokumen): ?array
@@ -109,9 +109,9 @@ class  SdmPendidikanService{
             ->join('person', 'person.id', '=', 'sdm.id_person')
             ->select([
                 'person.uuid_person',
-                'person.nama',
+                'person.nama_lengkap',
             ])
-            ->where('person_sdm.id_sdm', $idSdm)
+            ->where('sdm.id', $idSdm)
             ->first();
 
         $uniqueCode = substr(md5(uniqid()), 0, 6);
@@ -119,7 +119,7 @@ class  SdmPendidikanService{
 
         $data = [
             'id_sdm' => $personSdm->uuid_person ?? 'unknown',
-            'nama' => $personSdm->nama ?? 'unknown',
+            'nama_lengkap' => $personSdm->nama_lengkap ?? 'unknown',
             'dokumen' => $dokumen,
             'unique_code' => $uniqueCode,
         ];
@@ -137,9 +137,9 @@ class  SdmPendidikanService{
             ->join('person', 'person.id', '=', 'sdm.id_person')
             ->select([
                 'person.uuid_person',
-                'person.nama',
+                'person.nama_lengkap',
             ])
-            ->where('person_sdm.id_sdm', $idSdm)
+            ->where('sdm.id', $idSdm)
             ->first();
 
         $uniqueCode = substr(md5(uniqid()), 0, 6);
@@ -147,7 +147,7 @@ class  SdmPendidikanService{
 
         $data = [
             'id_sdm' => $personSdm->uuid_person ?? 'unknown',
-            'nama' => $personSdm->nama ?? 'unknown',
+            'nama_lengkap' => $personSdm->nama_lengkap ?? 'unknown',
             'dokumen' => $dokumen,
             'unique_code' => $uniqueCode,
         ];

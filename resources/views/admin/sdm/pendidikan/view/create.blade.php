@@ -1,65 +1,107 @@
+<!-- Modal Create -->
 <div class="modal fade" id="form_create_pendidikan" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog"
      aria-hidden="true">
-   <div class="modal-dialog modal-lg" role="document">
-        <form method="post" id="bt_submit_create" enctype="multipart/form-data">
-            @csrf
-            <div class="modal-content shadow-lg rounded-4">
-                <div class="modal-header bg-light border-bottom">
-                    <h5 class="modal-title fw-bold text-primary">Tambah Pendidikan</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
 
+                    Tambah Riwayat Pendidikan
+                </h5>
+                <a type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></a>
+            </div>
+
+            <form method="post" id="bt_submit_create" novalidate enctype="multipart/form-data">
                 <div class="modal-body">
-
-                    <div class="row">
-                        <div class="col-md-13">
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">Institusi</label>
-                            <input type="text" id="institusi" name="institusi" class="form-control form-control-sm" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">Jurusan</label>
-                            <input type="text" id="jurusan" name="jurusan" class="form-control form-control-sm" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">Tahun Masuk</label>
-                            <input type="text" id="tahun_masuk" name="tahun_masuk" class="form-control form-control-sm" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">Tahun Lulus</label>
-                            <input type="text" id="tahun_lulus" name="tahun_lulus" class="form-control form-control-sm" required>
-                        </div>
-                        <div class="d-flex flex-column mb-2">
-                                <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
-                                    <span>Jenis Nilai</span>
-                                </label>
-                                <select data-control="select2" id="jenis_nilai" name="jenis_nilai"
-                                        class="form-control form-control-sm fs-sm-8 fs-lg-6" data-allow-clear="true"
-                                        data-placeholder="Pilih Jenis Nilai" required>
-                                    <option value="">Pilih Jenis Nilai</option>
-                                    <option value="IPK">IPK</option>
-                                    <option value="NILAI">NILAI</option>
+                    <input type="hidden" name="uuid_person" value="{{ $id }}">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="d-flex flex-column mb-2">
+                                <label class="fs-sm-8 fs-lg-6 fw-bolder mb-1 required">Jenjang Pendidikan</label>
+                                <select data-control="select2"
+                                        class="form-select form-select-sm fs-sm-8 fs-lg-6"
+                                        id="id_jenjang_pendidikan"
+                                        name="id_jenjang_pendidikan"
+                                        data-placeholder="Pilih Jenjang Pendidikan"
+                                        data-allow-clear="true" required>
                                 </select>
                                 <div class="invalid-feedback"></div>
                             </div>
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">SKS</label>
-                            <input type="text" id="sks" name="sks" class="form-control form-control-sm" required>
                         </div>
-                        <div class="d-flex flex-column mb-2">
-                                <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
-                                    <span>Sumber Biaya</span>
-                                </label>
-                                <select data-control="select2" id="sumber_biaya" name="sumber_biaya"
-                                        class="form-control form-control-sm fs-sm-8 fs-lg-6" data-allow-clear="true"
-                                        data-placeholder="Pilih Sumber Biaya" required>
-                                    <option value="">Pilih Sumber Biaya</option>
-                                    <option value="BEASISWA">BEASISWA</option>
+                        <div class="col-md-6">
+                            <div class="d-flex flex-column mb-2">
+                                <label class="fs-sm-8 fs-lg-6 fw-bolder mb-1">Institusi</label>
+                                <input type="text" name="institusi"
+                                       class="form-control form-control-sm fs-sm-8 fs-lg-6"
+                                       id="institusi" placeholder="Masukkan nama sekolah" maxlength="100">
+                                <div class="invalid-feedback"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex flex-column mb-2">
+                                <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">Jurusan</label>
+                                <input type="text" name="jurusan" class="form-control form-control-sm fs-sm-8 fs-lg-6"
+                                       id="jurusan" placeholder="Masukkan jurusan" maxlength="100">
+                                <div class="invalid-feedback"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex flex-column mb-2">
+                                <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">Tahun
+                                    Masuk</label>
+                                <input type="number" name="tahun_masuk"
+                                       class="form-control form-control-sm fs-sm-8 fs-lg-6"
+                                       id="tahun_masuk" placeholder="Masukkan tahun masuk" min="1900" max="2100">
+                                <div class="invalid-feedback"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex flex-column mb-2">
+                                <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">Tahun
+                                    Lulus</label>
+                                <input type="number" name="tahun_lulus"
+                                       class="form-control form-control-sm fs-sm-8 fs-lg-6"
+                                       id="tahun_lulus" placeholder="Masukkan tahun lulus" min="1900" max="2100">
+                                <div class="invalid-feedback"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex flex-column mb-2">
+                                <label class="fs-sm-8 fs-lg-6 fw-bolder mb-1">Jenis Nilai</label>
+                                <select data-control="select2" name="jenis_nilai"
+                                        class="form-select form-select-sm fs-sm-8 fs-lg-6"
+                                        id="jenis_nilai" data-allow-clear="true"
+                                        data-placeholder="Pilih Jenis Nilai">
+                                            <option value="IPK">IPK</option>
+                                            <option value="NILAI">NILAI</option>
+                                </select>
+                                <div class="invalid-feedback"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex flex-column mb-2">
+                                <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">Jumlah
+                                    SKS</label>
+                                <input type="number" name="sks"
+                                       class="form-control form-control-sm fs-sm-8 fs-lg-6"
+                                       id="sks" placeholder="Masukkan jumlah SKS" min="0" max="200">
+                                <div class="invalid-feedback"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex flex-column mb-2">
+                                <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">Sumber
+                                    Biaya</label>
+                                <select data-control="select2" name="sumber_biaya"
+                                        class="form-select form-select-sm fs-sm-8 fs-lg-6"
+                                        id="sumber_biaya" data-allow-clear="true"
+                                        data-placeholder="Pilih Sumber Biaya">
                                     <option value="MANDIRI">MANDIRI</option>
+                                    <option value="BEASISWA">BEASISWA</option>
                                 </select>
                                 <div class="invalid-feedback"></div>
                             </div>
-                                                    </div>
+                        </div>
                         <div class="col-md-6">
                             <div class="d-flex flex-column mb-2">
                                 <label class="fs-sm-8 fs-lg-6 fw-bolder mb-1">File Ijazah</label>
@@ -84,17 +126,18 @@
                                 <div class="invalid-feedback"></div>
                             </div>
                         </div>
-
-                        <input type="hidden" id="id_sdm" name="id_sdm">
-
-
-                        <div class="mt-3">
-                            <button type="submit" id="bt_pendidikan_create" class="btn btn-success btn-sm">Simpan Pendidikan</button>
-                        </div>
                     </div>
-
                 </div>
-            </div>
-        </form>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-dark fs-sm-8 fs-lg-6" data-bs-dismiss="modal">
+                        Batal
+                    </button>
+                    <button type="submit" class="btn btn-sm btn-primary fs-sm-8 fs-lg-6">
+                        <span class="indicator-label">Simpan</span>
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>

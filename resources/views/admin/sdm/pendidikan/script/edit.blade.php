@@ -15,7 +15,7 @@
                     $('#edit_tahun_lulus').val(response.data.tahun_lulus);
                     $('#edit_jenis_nilai').val(response.data.jenis_nilai).trigger('change');
                     $('#edit_sks').val(response.data.sks);
-                    $('#edit_sumber_biaya').val(response.data.sumber_biaya)trigger('change');
+                    $('#edit_sumber_biaya').val(response.data.sumber_biaya).trigger('change');
                      if (data.file_ijazah) {
                     $('#current_file_ijazah_name').text(data.file_ijazah);
                     const fileUrl = '{{ route('admin.view-file', [':folder', ':filename']) }}'
@@ -123,7 +123,7 @@
                     }).catch(error => {
                         ErrorHandler.handleError(error);
                     });
-                }
+                
             })
         });
     }).on('hidden.bs.modal', function () {

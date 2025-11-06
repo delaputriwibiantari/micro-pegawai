@@ -49,7 +49,7 @@ Route::prefix('sdm')->name('sdm.')->group(function () {
     Route::prefix('pendidikan')->name('pendidikan.')->group(function () {
         Route::get('/{id}', [SdmPendidikanController::class, 'index'])
             ->name('index');
-        Route::get('data', [SdmPendidikanController::class, 'list'])
+        Route::get('data/{id}', [SdmPendidikanController::class, 'list'])
             ->name('list');
         Route::get('cari', [SdmPendidikanController::class, 'cari'])
             ->name('cari');
