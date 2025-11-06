@@ -4,30 +4,23 @@
         const id = button.data("id");
         const detail = "{{ route('admin.sdm.sdm.show', ':id') }}";
 
-        let edit_tmt = $("#edit_tmt").flatpickr({
+        let edit_tanggal_masuk = $("#edit_tanggal_masuk").flatpickr({
             dateFormat: "Y-m-d",
             altFormat: "d/m/Y",
             allowInput: false,
             altInput: true,
         });
 
-        let edit_tmt_pensiun = $("#edit_tmt_pensiun").flatpickr({
-            dateFormat: "Y-m-d",
-            altFormat: "d/m/Y",
-            allowInput: false,
-            altInput: true,
-        });
 
         DataManager.fetchData(detail.replace(':id', id)).then(response => {
             if (response.success) {
                 const data = response.data;
-                $("#edit_nama").text(data.nama);
-                $("#edit_nik").text(data.nik);
-                $("#edit_nomor_hp").text(data.nomor_hp);
-                $("#edit_nomor_sk").val(data.nomor_sk);
-                $('#edit_nomor_karpeg').val(response.data.nomor_karpeg);
-                edit_tmt.setDate(response.data.tmt);
-                edit_tmt_pensiun.setDate(response.data.tmt_pensiun);
+                $("#edit_nip").text(data.nip);
+                $("#edit_status_pegawai").text(data.status_pegawai);
+                $("#edit_tipe_pegawai").text(data.tipe_pegawai);
+                $("#edit_id_person").text(data.id_person);
+                $("#edit_nama_lengkap").text(data.nama_lengkap);
+                edit_tanggal_masuk.setDate(response.data.tanggal_masuk);
             } else {
                 Swal.fire("Warning", response.message, "warning");
             }
@@ -53,11 +46,10 @@
                 if (result.value) {
                     DataManager.openLoading();
                     const input = {
-                        "nomor_karpeg": $("#edit_nomor_karpeg").val(),
                         "nip": $("#edit_nip").val(),
-                        "nomor_sk": $("#edit_nomor_sk").val(),
-                        "tmt": $("#edit_tmt").val(),
-                        "tmt_pensiun": $("#edit_tmt_pensiun").val(),
+                        "status_pegawai": $("#edit_status_pegawai").val(),
+                        "tipe_pegawai": $("#edit_tipe_pegawai").val(),
+                        "tanggal_masuk": $("#edit_tanggal_masuk").val(),
                     };
                     DataManager.postData(updateUrl, input).then(response => {
                         if (response.success) {
