@@ -17,12 +17,22 @@ final class RefController extends Controller
         private readonly RefJenjangPendidikanService $refJenjangPendidikanService,
         private readonly TransactionService          $transactionService,
         private readonly ResponseService             $responseService,
+        private readonly RefHubunganKeluargaService  $refHubunganKeluargaService,
     ) {}
 
         public function jenjangPendidikan(): JsonResponse
     {
         return $this->transactionService->handleWithShow(function () {
             $data = $this->refJenjangPendidikanService->getListDataOrdered('id_jenjang_pendidikan');
+
+            return $this->responseService->successResponse('Data berhasil diambil', $data);
+        });
+    }
+
+    public function hubunganKeluarga(): JsonResponse
+    {
+        return $this->transactionService->handleWithShow(function () {
+            $data = $this->refHubunganKeluargaService->getListDataOrdered('id_hubungan_keluarga');
 
             return $this->responseService->successResponse('Data berhasil diambil', $data);
         });

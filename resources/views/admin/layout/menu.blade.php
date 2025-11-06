@@ -36,7 +36,7 @@
                         <span class="menu-title px-4">Jenjang Pendidikan</span>
                     </a>
                     <a class="menu-link {{ request()->routeIs('admin.ref.hubungan-keluarga.*') ? 'active' : '' }}"
-                       href="#">
+                       href="{{ route('admin.ref.hubungan-keluarga.index') }}">
                         <span class="menu-title px-4">Hubungan Keluarga</span>
                     </a>
                     <a class="menu-link {{ request()->routeIs('admin.ref.jenis-asuransi.*') ? 'active' : '' }}"
