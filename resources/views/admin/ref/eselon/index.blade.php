@@ -10,23 +10,21 @@
     <li class="breadcrumb-item">
         <span class="bullet bg-gray-200 w-5px h-2px"></span>
     </li>
-
-    <li class="breadcrumb-item text-dark">Jenis Asuransi</li>
+    <li class="breadcrumb-item text-dark">Eselon</li>
 @endsection
 
 @section('content')
     <div class="container-fluid">
-
         <div class="content flex-column-fluid">
             <div class="card mb-xl-8 mb-5 border-2 shadow">
                 <div class="card-header">
                     <h3 class="card-title align-items-start flex-column">
-                        <span class="card-label fw-bolder mb-1 ">Data Jenis Asuransi</span>
+                        <span class="card-label fw-bolder mb-1">Data Eselon</span>
                     </h3>
                     <div class="card-toolbar">
                         <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
                             <a type="button" class="btn btn-sm btn-primary fs-sm-8 fs-lg-6" data-bs-toggle="modal"
-                               data-bs-target="#form_create" title='Tambah Jenis Asuransi'>Tambah Jenis Asuransi</a>
+                               data-bs-target="#form_create" title="Tambah Eselon">Tambah Eselon</a>
                         </div>
                     </div>
                 </div>
@@ -35,35 +33,30 @@
                             class="notice d-flex border-primary mb-4 rounded border border-dashed p-4 shadow bg-hover-light-dark">
                         <div class="d-flex flex-stack fs-sm-8 fs-lg-6">
                             <div class="row">
-                                <span class="text-gray-700">Berikut ini adalah data jenis asuransi.</span>
+                                <span class="text-gray-700">Berikut ini adalah data eselon.</span>
                             </div>
                         </div>
                     </div>
                     <div class="table-responsive mb-8 shadow p-4 mx-0 border-hover-dark border-primary border-1 border-dashed fs-sm-8 fs-lg-6 rounded-2">
-                        <div class="table-responsive">
-                            <table id="example"
-                                   class="table table-sm align-middle table-row-bordered table-row-solid gs-0 gy-2">
-                                <thead>
-                                <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0 fs-sm-8 fs-lg-6">
-                                    <th class="min-w-75px ps-5">Aksi</th>
-                                    <th class="min-w-150px">Kode Asuransi</th>
-                                    <th class="min-w-150px">Nama Asuransi</th>
-                                    <th class="min-w-150px">penyelenggara</th>
-                                    <th class="min-w-150px">Tipe Asuransi</th>
-                                </tr>
-                                </thead>
-                                <tbody class="text-gray-800 fw-bolder fs-sm-8 fs-lg-6">
-                                </tbody>
-                            </table>
-                        </div>
+                        <table id="example"
+                               class="table table-sm align-middle table-row-bordered table-row-solid gs-0 gy-2">
+                            <thead>
+                            <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0 fs-sm-8 fs-lg-6">
+                                <th class="min-w-75px ps-5">Aksi</th>
+                                <th class="min-w-100px">Eselon</th>
+                            </tr>
+                            </thead>
+                            <tbody class="text-gray-800 fw-bolder fs-sm-8 fs-lg-6">
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    @include('admin.ref.jenis_asuransi.view.detail')
-    @include('admin.ref.jenis_asuransi.view.create')
-    @include('admin.ref.jenis_asuransi.view.edit')
+    @include('admin.ref.eselon.view.detail')
+    @include('admin.ref.eselon.view.create')
+    @include('admin.ref.eselon.view.edit')
 @endsection
 
 @section('javascript')
@@ -80,9 +73,8 @@
     <script src="{{ asset('assets/plugins/datatables/buttons.colVis.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables/print.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables/responsive.bootstrap.min.js') }}"></script>
-
-    @include('admin.ref.jenis_asuransi.script.list')
-    @include('admin.ref.jenis_asuransi.script.create')
-    @include('admin.ref.jenis_asuransi.script.edit')
-    @include('admin.ref.jenis_asuransi.script.detail')
+    @include('admin.ref.eselon.script.list')
+    @include('admin.ref.eselon.script.create')
+    @include('admin.ref.eselon.script.edit')
+    @include('admin.ref.eselon.script.detail')
 @endsection

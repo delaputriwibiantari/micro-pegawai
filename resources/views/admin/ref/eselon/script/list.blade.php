@@ -2,7 +2,7 @@
     function load_data() {
         $.fn.dataTable.ext.errMode = 'none';
         const table = $('#example').DataTable({
-            dom: "lBfrtip",
+            dom: 'lBfrtip',
             stateSave: true,
             stateDuration: -1,
             pageLength: 10,
@@ -18,13 +18,13 @@
                 columns: ':not(.noVis)'
             },
                 {
-                    extend: "csv",
+                    extend: 'csv',
                     titleAttr: 'Csv',
                     action: newexportaction,
                     className: 'btn btn-sm btn-dark rounded-2',
                 },
                 {
-                    extend: "excel",
+                    extend: 'excel',
                     titleAttr: 'Excel',
                     action: newexportaction,
                     className: 'btn btn-sm btn-dark rounded-2',
@@ -35,34 +35,23 @@
             responsive: true,
             searchHighlight: true,
             ajax: {
-                url: '{{ route('admin.ref.jenis-asuransi.list') }}',
-                cache: false,
+                url: '{{ route('admin.ref.eselon.list') }}',
+                cache: false
             },
             order: [],
             ordering: true,
-            columns: [{
-                data: "action",
-                name: "action",
-                orderable: false,
-                searchable: false
-            },
+            columns: [
                 {
-                    data: "kode_asuransi",
-                    name: "kode_asuransi"
+                    data: 'action',
+                    name: 'action',
+                    orderable: false,
+                    searchable: false
                 },
                 {
-                    data: "nama_asuransi",
-                    name: "nama_asuransi"
-                },
-                {
-                    data: "penyelenggara",
-                    name: "penyelenggara"
-                },
-                {
-                    data: "tipe_asuransi",
-                    name: "tipe_asuransi"
-                },
-            ],
+                    data: 'eselon',
+                    name: 'eselon'
+                }
+            ]
         });
         const performOptimizedSearch = _.debounce(function (query) {
             try {
@@ -70,7 +59,7 @@
                     table.search(query).draw();
                 }
             } catch (error) {
-                console.error("Error during search:", error);
+                console.error('Error during search:', error);
             }
         }, 1000);
 

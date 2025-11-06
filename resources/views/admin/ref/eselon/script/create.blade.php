@@ -16,12 +16,9 @@
                 if (result.value) {
                     DataManager.openLoading();
                     const input = {
-                        "kode_asuransi": $("#kode_asuransi").val(),
-                        "nama_asuransi": $("#nama_asuransi").val(),
-                        "penyelenggara": $("#penyelenggara").val(),
-                        "tipe_asuransi": $("#tipe_asuransi").val(),
+                        "eselon": $("#eselon").val(),
                     };
-                    const action = "{{ route('admin.ref.jenis-asuransi.store') }}";
+                    const action = "{{ route('admin.ref.eselon.store') }}";
                     DataManager.postData(action, input).then(response => {
                         if (response.success) {
                             Swal.fire('Success', response.message, 'success');

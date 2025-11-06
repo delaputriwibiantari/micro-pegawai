@@ -3,14 +3,11 @@
         $(this).attr('aria-hidden', 'false');
         const button = $(e.relatedTarget);
         const id = button.data("id");
-        const detail = '{{ route('admin.ref.jenis-asuransi.show', [':id']) }}';
+        const detail = '{{ route('admin.ref.eselon.show', [':id']) }}';
         DataManager.fetchData(detail.replace(':id', id))
             .then(function (response) {
                 if (response.success) {
-                    $("#detail_kode_asuransi").text(response.data.kode_asuransi);
-                    $("#detail_nama_asuransi").text(response.data.nama_asuransi);
-                    $("#detail_penyelenggara").text(response.data.penyelenggara);
-                    $("#detail_tipe_asuransi").text(response.data.tipe_asuransi);
+                    $("#detail_eselon").text(response.data.eselon);
                     $("#null_data").hide();
                     $("#show_data").show();
                 } else {

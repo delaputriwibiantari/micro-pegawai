@@ -7,9 +7,10 @@
         DataManager.fetchData(detail.replace(':id', id))
             .then(function (response) {
                 if (response.success) {
-                    $("#edit_jenis_asuransi").val(response.data.jenis_asuransi);
-                    $("#edit_nama_produk").val(response.data.nama_produk);
-                    $("#edit_provider").val(response.data.provider);
+                    $("#edit_kode_asuransi").val(response.data.kode_asuransi);
+                    $("#edit_nama_asuransi").val(response.data.nama_asuransi);
+                    $("#edit_penyelenggara").val(response.data.penyelenggara);
+                    $("#edit_tipe_asuransi").val(response.data.tipe_asuransi);
                 } else {
                     Swal.fire('Warning', response.message, 'warning');
                 }
@@ -33,8 +34,9 @@
                     DataManager.openLoading();
                     const input = {
                         "jenis_asuransi": $("#edit_jenis_asuransi").val(),
-                        "nama_produk": $("#edit_nama_produk").val(),
-                        "provider": $("#edit_provider").val()
+                        "nama_asuransi": $("#edit_nama_asuransi").val(),
+                        "penyelenggara": $("#edit_penyelenggara").val()
+                        "tipe_asuransi": $("#edit_tipe_asuransi").val()
                     };
                     const update = '{{ route('admin.ref.jenis-asuransi.update', [':id']) }}';
                     DataManager.putData(update.replace(':id', id), input).then(response => {

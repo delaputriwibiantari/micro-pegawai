@@ -12,9 +12,9 @@
                         <div class="col-md-12">
                             <div class="d-flex flex-column mb-2">
                                 <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required ">
-                                    <span>Jenis Asuransi</span>
+                                    <span>Kode Asuransi</span>
                                 </label>
-                                <input type="text" id="jenis_asuransi"
+                                <input type="text" id="kode_asuransi"
                                        class="form-control form-control-sm  fs-sm-8 fs-lg-6"
                                        required>
                                 <div class="invalid-feedback"></div>
@@ -23,9 +23,9 @@
                         <div class="col-md-12">
                             <div class="d-flex flex-column mb-2">
                                 <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required ">
-                                    <span>Nama Produk</span>
+                                    <span>Nama Asuransi</span>
                                 </label>
-                                <input type="text" id="nama_produk"
+                                <input type="text" id="nama_asuransi"
                                        class="form-control form-control-sm  fs-sm-8 fs-lg-6"
                                        required>
                                 <div class="invalid-feedback"></div>
@@ -34,9 +34,19 @@
                         <div class="col-md-12">
                             <div class="d-flex flex-column mb-2">
                                 <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required ">
-                                    <span>Provider</span>
+                                    <span>Penyelenggara</span>
                                 </label>
-                                <input type="text" id="provider" class="form-control form-control-sm  fs-sm-8 fs-lg-6"
+                                <input type="text" id="penyelenggara" class="form-control form-control-sm  fs-sm-8 fs-lg-6"
+                                       required>
+                                <div class="invalid-feedback"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="d-flex flex-column mb-2">
+                                <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required ">
+                                    <span>Tipe Asuransi</span>
+                                </label>
+                                <input type="text" id="tipe_asuransi" class="form-control form-control-sm  fs-sm-8 fs-lg-6"
                                        required>
                                 <div class="invalid-feedback"></div>
                             </div>

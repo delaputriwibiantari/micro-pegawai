@@ -9,21 +9,27 @@
             <div class="modal-body">
                 <div class="d-flex flex-column mb-2">
                     <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
-                        <span>Jenis Asuransi</span>
+                        <span>kode Asuransi</span>
                     </label>
-                    <p class="fw-light fs-sm-8 fs-lg-6" id="detail_jenis_asuransi"></p>
+                    <p class="fw-light fs-sm-8 fs-lg-6" id="detail_kode_asuransi"></p>
                 </div>
                 <div class="d-flex flex-column mb-2">
                     <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
-                        <span>Nama Produk</span>
+                        <span>Nama Asuransi</span>
                     </label>
-                    <p class="fw-light fs-sm-8 fs-lg-6" id="detail_nama_produk"></p>
+                    <p class="fw-light fs-sm-8 fs-lg-6" id="detail_nama_asuransi"></p>
                 </div>
                 <div class="d-flex flex-column mb-2">
                     <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
-                        <span>Provider</span>
+                        <span>Penyelenggara</span>
                     </label>
-                    <p class="fw-light fs-sm-8 fs-lg-6" id="detail_provider"></p>
+                    <p class="fw-light fs-sm-8 fs-lg-6" id="detail_penyelenggara"></p>
+                </div>
+                <div class="d-flex flex-column mb-2">
+                    <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
+                        <span>Tipe Asuransi</span>
+                    </label>
+                    <p class="fw-light fs-sm-8 fs-lg-6" id="detail_tipe_asuransi"></p>
                 </div>
             </div>
             <div class="modal-footer">

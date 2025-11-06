@@ -1,7 +1,21 @@
 <script defer>
-    $("#form_create").on("show.bs.modal", function (e) {
+    $("#form_edit").on("show.bs.modal", function (e) {
+        const button = $(e.relatedTarget);
+        const id = button.data("id");
+        const detail = '{{ route('admin.ref.eselon.show', [':id']) }}';
 
-        $("#bt_submit_create").on("submit", function (e) {
+        DataManager.fetchData(detail.replace(':id', id))
+            .then(function (response) {
+                if (response.success) {
+                    $("#edit_eselon").val(response.data.eselon);
+                } else {
+                    Swal.fire('Warning', response.message, 'warning');
+                }
+            }).catch(function (error) {
+            ErrorHandler.handleError(error);
+        });
+
+        $("#bt_submit_edit").on("submit", function (e) {
             e.preventDefault();
             Swal.fire({
                 title: 'Kamu yakin?',
@@ -16,13 +30,10 @@
                 if (result.value) {
                     DataManager.openLoading();
                     const input = {
-                        "kode_asuransi": $("#kode_asuransi").val(),
-                        "nama_asuransi": $("#nama_asuransi").val(),
-                        "penyelenggara": $("#penyelenggara").val(),
-                        "tipe_asuransi": $("#tipe_asuransi").val(),
+                        "eselon": $("#edit_eselon").val()
                     };
-                    const action = "{{ route('admin.ref.jenis-asuransi.store') }}";
-                    DataManager.postData(action, input).then(response => {
+                    const update = '{{ route('admin.ref.eselon.update', [':id']) }}';
+                    DataManager.putData(update.replace(':id', id), input).then(response => {
                         if (response.success) {
                             Swal.fire('Success', response.message, 'success');
                             setTimeout(function () {
@@ -30,15 +41,15 @@
                             }, 1000);
                         }
                         if (!response.success && response.errors) {
-                            const validationErrorFilter = new ValidationErrorFilter();
+                            const validationErrorFilter = new ValidationErrorFilter(
+                                "edit_");
                             validationErrorFilter.filterValidationErrors(response);
-                            Swal.fire('Warning', 'validasi bermasalah', 'warning');
+                            Swal.fire('Peringatan', 'Isian Anda belum lengkap atau tidak valid.', 'warning');
                         }
 
                         if (!response.success && !response.errors) {
-                            Swal.fire('Peringatan', response.message, 'warning');
+                            Swal.fire('Warning', response.message, 'warning');
                         }
-
                     }).catch(error => {
                         ErrorHandler.handleError(error);
                     });
