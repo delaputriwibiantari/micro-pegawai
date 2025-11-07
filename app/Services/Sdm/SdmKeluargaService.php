@@ -35,9 +35,9 @@ final readonly class SdmKeluargaService
 
         return SdmKeluarga::query()
             ->leftJoin('person as anggota', 'anggota.id', '=', 'keluarga.id_person')
-            ->leftJoin('ref_hubungan_keluarga', 'ref_hubungan_keluarga.id_hubungan_keluarga', '=', 'sdm_keluarga.id_hubungan_keluarga')
+            ->leftJoin('ref_hubungan_keluarga', 'ref_hubungan_keluarga.id_hubungan_keluarga', '=', 'keluarga.id_hubungan_keluarga')
             ->select([
-                'keluarga.id_keluarga',
+                'keluarga.id',
                 'keluarga.id_sdm',
                 'keluarga.id_person',
                 'ref_hubungan_keluarga.hubungan_keluarga as hubungan',
@@ -46,7 +46,7 @@ final readonly class SdmKeluargaService
                 'keluarga.pendidikan_terakhir',
                 'keluarga.penghasilan',
                 'anggota.nama_lengkap as nama_anggota',
-                'anggota.nik  as nik_anggota',
+                'anggota.nik as nik_anggota',
                 'anggota.uuid_person as uuid_anggota',
             ])
             ->where('keluarga.id_sdm', $idSdm)
@@ -72,7 +72,7 @@ final readonly class SdmKeluargaService
                 'anggota.uuid_person as uuid_anggota',
                 'ref_hubungan_keluarga.hubungan_keluarga as hubungan',
             ])
-            ->where('keluarga.id_keluarga', $id)
+            ->where('keluarga.id', $id)
             ->first();
     }
 

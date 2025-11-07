@@ -2,7 +2,7 @@
     $('#form_edit').on('show.bs.modal', function (e) {
         const button = $(e.relatedTarget);
         const id = button.data("id");
-        const detail = "{{ route('admin.sdm.pendidikan.show', ':id') }}";
+        const detail = "{{ route('admin.sdm.keluarga.show', ':id') }}";
 
 
     DataManager.fetchData(detail.replace(':id', id)).then(response => {

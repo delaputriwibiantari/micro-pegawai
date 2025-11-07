@@ -1,6 +1,7 @@
 <script defer>
     $("#form_create_keluarga").on("show.bs.modal", function (e) {
-
+        fetchDataDropdown("{{ route('api.ref.hubungan-keluarga') }}", '#id_hubungan_keluarga', 'hubungan_keluarga', 'hubungan_keluarga');
+         const currentPersonId = "{{ $id ?? '' }}";
         $('#btn_search_person').on('click', function () {
             const nik = $('#search_nik').val().trim();
 
@@ -30,7 +31,7 @@
                         $('#person_alamat').text(`${data.desa}, ${data.kecamatan}, ${data.kabupaten}, ${data.provinsi}`.replace(/^,\s*|,\s*$/g, '').replace(/,\s*,/g, ','));
                         $('#id_person').val(data.id);
                         $('#person_info').show();
-                        $('#sdm_form').show();
+                        $('#keluarga_form').show();
                         $('#btn_save').show();
 
                         Swal.fire('Success', 'Person ditemukan!', 'success');
@@ -58,19 +59,15 @@
 
         $("#bt_submit_create").on("submit", function (e) {
             e.preventDefault();
-             console.log('DEBUG SEBELUM SUBMIT:');
-                console.log('ID Person value:', $('#id_person').val());
-                console.log('ID Person element:', document.getElementById('id_person'));
-                console.log('Form data:', {
-                    id_person: $('#id_person').val(),
-                    nip: $('#nip').val(),
-                    status_pegawai: $('#status_pegawai').val(),
-                    tipe_pegawai: $('#tipe_pegawai').val(),
-                    tanggal_masuk: $('#tanggal_masuk').val()
-                });
+
 
             if (!$('#id_person').val()) {
                 Swal.fire('Warning', 'Pilih person terlebih dahulu dengan mencari NIK', 'warning');
+                return;
+            }
+            if (!$('#id_hubungan_keluarga').val()) {
+                Swal.fire('Warning', 'Hubungan Keluarga wajib dipilih', 'warning');
+                $('#id_hubungan_keluarga').focus();
                 return;
             }
 
@@ -87,6 +84,7 @@
                 if (result.value) {
                     DataManager.openLoading();
                     const input = {
+                        "uuid_person": currentPersonId,
                         "id_person": $("#id_person").val(),
                         "id_sdm": $("#id_sdm").val(),
                         "id_hubungan_keluarga": $("#id_hubungan_keluarga").val(),
@@ -95,7 +93,7 @@
                         "pendidikan_terakhir": $("#pendidikan_terakhir").val(),
                         "penghasilan": $("#penghasilan").val(),
                     };
-                    const action = "{{ route('admin.sdm.sdm.store') }}";
+                    const action = "{{ route('admin.sdm.keluarga.store') }}";
                     DataManager.postData(action, input).then(response => {
                         if (response.success) {
                             Swal.fire('Success', response.message, 'success');

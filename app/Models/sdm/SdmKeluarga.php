@@ -16,7 +16,7 @@ final class SdmKeluarga extends Model implements Auditable
         SkipsEmptyAudit::transformAudit insteadof AuditableTrait;
     }
 
-    public $incrementing = true;
+    public $incrementing = false;
 
     public $timestamps = false;
 

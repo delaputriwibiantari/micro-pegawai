@@ -29,7 +29,7 @@
                         <div class="row mb-3">
                             <div class="col-6">
                                 <label class="fw-bolder mb-1">Pendidikan Terakhir</label>
-                                <p id="detail_pendidikan terakhir" class="fw-light"></p>
+                                <p id="detail_pendidikan_terakhir" class="fw-light"></p>
                             </div>
                             <div class="col-6">
                                 <label class="fw-bolder mb-1">Penghasilan</label>

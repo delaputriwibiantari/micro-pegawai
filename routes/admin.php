@@ -70,13 +70,13 @@ Route::prefix('sdm')->name('sdm.')->group(function () {
         Route::get('data/{id}', [SdmKeluargaController::class, 'list'])
             ->name('list');
         Route::get('show/{id}', [SdmKeluargaController::class, 'show'])
-            ->name('sdm.keluarga.show');
+            ->name('show');
         Route::post('/store', [SdmKeluargaController::class, 'store'])
-            ->name('sdm.keluarga.store');
+            ->name('store');
         Route::post('update/{id}', [SdmKeluargaController::class, 'update'])
             ->name('update');
         Route::post('destroy/{id}', [SdmKeluargaController::class, 'destroy'])
-            ->name('sdm.keluarga.destroy');
+            ->name('destroy');
         Route::get('find/by/nik/{id}', [SdmKeluargaController::class, 'find_by_nik'])
             ->name('find_by_nik');
     });

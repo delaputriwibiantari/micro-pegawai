@@ -12,7 +12,7 @@
         }).then((result) => {
             if (result.value) {
                 DataManager.openLoading();
-                const destroy = '{{ route('admin.sdm.pendidikan.destroy', [':id']) }}';
+                const destroy = '{{ route('admin.sdm.keluarga.destroy', [':id']) }}';
                 DataManager.deleteData(destroy.replace(':id', id)).then(response => {
                     if (response.success) {
                         Swal.fire('Success', response.message, 'success');

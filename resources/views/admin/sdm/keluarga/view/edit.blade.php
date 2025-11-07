@@ -29,8 +29,8 @@
                                             class="form-control form-control-sm fs-sm-8 fs-lg-6" data-allow-clear="true"
                                             data-placeholder="Pilih Status Tanggungan" required>
                                         <option value="">Pilih Status Tanggungan</option>
-                                        <option value="YA">Tetap</option>
-                                        <option value="TIDAK">Kontrak</option>
+                                        <option value="YA">YA</option>
+                                        <option value="TIDAK">TIDAK</option>
                                     </select>
                                           <div class="invalid-feedback"></div>
                                     </div>

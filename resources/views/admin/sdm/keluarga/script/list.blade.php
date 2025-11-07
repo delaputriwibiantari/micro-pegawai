@@ -48,11 +48,20 @@
                 searchable: false
             },
             {
-                    data: 'id_hubungan_keluarga',
-                    name: 'id_hubungan_keluarga',
-                    render: function (data) {
-                        return data;
-                    }
+                    data: 'id_person',
+                    name: 'id_person',
+
+                },
+                {
+                    data: 'id_sdm',
+                    name: 'id_sdm',
+
+                },
+            {
+                    data: 'hubungan',
+                    name: 'hubungan',
+                    
+
                 },
                 {
                     data: 'status_tanggungan',
