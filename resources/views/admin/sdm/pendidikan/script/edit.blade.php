@@ -126,8 +126,8 @@
                     }).catch(error => {
                         ErrorHandler.handleError(error);
                     });
-
-            })
+                }
+            });
         });
     }).on('hidden.bs.modal', function () {
         const $m = $(this);
