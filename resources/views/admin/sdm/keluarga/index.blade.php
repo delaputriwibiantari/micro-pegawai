@@ -102,11 +102,11 @@
                                href="{{ route('admin.sdm.sdm.histori', ['id' => $id]) }}">Beranda</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-active-primary ms-0 me-8 py-5 active text-nowrap"
+                            <a class="nav-link text-active-primary ms-0 me-8 py-5 text-nowrap"
                                href="{{ route('admin.sdm.pendidikan.index', ['id' => $id]) }}">Pendidikan</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-active-primary ms-0 me-8 py-5 text-nowrap"
+                            <a class="nav-link text-active-primary ms-0 me-8 py-5 active text-nowrap"
                                href="{{ route('admin.sdm.keluarga.index', ['id' => $id]) }}">Keluarga</a>
                         </li>
                         <li class="nav-item">

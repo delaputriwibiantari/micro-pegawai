@@ -11,52 +11,59 @@
 
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-md-13">
-                            <div class="mb-8">
-                                <label class="form-label fw-bold">NIK</label>
-                               <input type="text" id="nik" class="form-control form-control-sm fs-sm-8 fs-lg-6"
-                                   maxlength="16" placeholder="Masukkan NIK untuk mencari person anggota keluarga"
-                                   required>
-                                <div class="invalid-feedback"></div>
-                            </div>
+                        <div class="col-12">
+                            <div class="col-md-13">
+                                <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
+                                        <span>NIK</span>
+                                    </label>
+                                    <input type="text" id="search_nik" class="form-control form-control-sm fs-sm-8 fs-lg-6"
+                                        maxlength="16"
+                                        placeholder="Masukkan NIK untuk mencari person" required>
+                                    <div class="invalid-feedback"></div>
 
-                            <!-- Bagian hasil NIK (otomatis muncul nanti kalau valid) -->
-                            <div id="result_nik" class="p-2 bg-light border rounded d-none">
-                               <h6 class="text-success mb-2">Data Ditemukan:</h6>
-                           <div class="row">
-                            <div class="col-md-6">
-                                <p class="mb-1"><strong>Nama:</strong> <span id="person_nama"></span></p>
-                                <p class="mb-1"><strong>NIK:</strong> <span id="person_nik"></span></p>
-                                <p class="mb-1"><strong>Tempat Lahir:</strong> <span id="person_tempat_lahir"></span>
-                                </p>
-                            </div>
-                            <div class="col-md-6">
-                                <p class="mb-1"><strong>Tanggal Lahir:</strong> <span
-                                            id="person_tanggal_lahir"></span></p>
-                                <p class="mb-1"><strong>Alamat:</strong> <span id="person_alamat"></span></p>
-                            </div>
-                        </div>
-                        <input type="hidden" id="id_person" name="id_person">
-                        <input type="hidden" id="id_sdm" name="id_sdm">
-                            </div>
+                                <!-- Bagian hasil NIK (otomatis muncul nanti kalau valid) -->
+                                <div id="result_nik" class="p-2 bg-light border rounded d-none">
+                                    <p class="mb-1 fw-bold text-success" id="nama_person"></p>
+                                    <p class="mb-0 text-muted small" id="alamat_person"></p>
+                                </div>
 
-                            <!-- Tombol di bawah input -->
-                            <div class="d-flex justify-content-start mt-3">
-                                <button type="button" id="btn-Cari" class="btn btn-primary btn-sm me-2">
-                                    Cari Person
-                                </button>
-                                <button type="button" class="btn btn-dark btn-sm" data-bs-dismiss="modal">
-                                    Tutup
-                                </button>
+                                <!-- Tombol di bawah input -->
+                                <div class="d-flex justify-content-start mt-3">
+                                    <button type="button" id="btn_search_person" class="btn btn-primary btn-sm me-2">
+                                        Cari Person
+                                    </button>
+                                    <button type="button" id="btn_clear_person" class="btn btn-dark btn-sm" data-bs-dismiss="modal">
+                                        Clear
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <!-- Hasil pencarian person -->
-                    <div id="info_person" class="mt-3"></div>
-                    <h6 class="fw-bold text-primary mt-4" id="nama_person_heading"></h6>
+                        <div id="person_info" style="display:none;"
+                             class="mb-4 p-4 bg-light-success border border-success border-dashed rounded">
+                            <h6 class="text-success mb-3 fw-bold">
+                                Data Person Ditemukan:
+                            </h6>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p class="mb-1"><strong>Nama:</strong> <span id="person_nama_lengkap"></span></p>
+                                    <p class="mb-1"><strong>NIK:</strong> <span id="person_nik"></span></p>
+                                    <p class="mb-1"><strong>Tempat Lahir:</strong> <span
+                                                id="person_tempat_lahir"></span>
+                                    </p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p class="mb-1"><strong>Tanggal Lahir:</strong> <span
+                                                id="person_tanggal_lahir"></span></p>
+                                    <p class="mb-1"><strong>Alamat:</strong> <span id="person_alamat"></span></p>
+                                </div>
+                            </div>
+                            <input type="hidden" id="id_person" name="id_person">
+                        </div>
 
                     <!-- Form lanjutan SDM -->
-
+                    <div class="row" id="keluarga_form" style="display:none;">
                          <div class="col-md-6">
                             <div class="d-flex flex-column mb-2">
                                 <label class="fs-sm-8 fs-lg-6 fw-bolder mb-1 required">Hubungan</label>
@@ -118,7 +125,7 @@
                             <button type="submit" id="bt_submit_create" class="btn btn-sm btn-primary fs-sm-8 fs-lg-6">Simpan</button>
                         </div>
                     </div>
-
+                </div>
                 </div>
             </div>
         </form>
