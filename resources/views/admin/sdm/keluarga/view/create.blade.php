@@ -42,7 +42,7 @@
 
                             <!-- Tombol di bawah input -->
                             <div class="d-flex justify-content-start mt-3">
-                                <button type="button" id="btn-Cari" data-url="{{ route('admin.sdm.cari') }}" class="btn btn-primary btn-sm me-2">
+                                <button type="button" id="btn-Cari" class="btn btn-primary btn-sm me-2">
                                     Cari Person
                                 </button>
                                 <button type="button" class="btn btn-dark btn-sm" data-bs-dismiss="modal">

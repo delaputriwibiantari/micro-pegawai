@@ -14,7 +14,7 @@
                     $('#edit_pendidikan_terakhir').val(response.data.pendidikan_terakhir);
                     $('#edit_penghasilan').val(response.data.penghasilan);
 
-                fetchDataDropdown("{{ route('api.ref.hubungan_keluarga') }}", "#edit_id_hubungan_keluarga", "hubungan_keluarga", "hubungan_keluarga", function () {
+                fetchDataDropdown("{{ route('api.ref.hubungan-keluarga') }}", "#edit_id_hubungan_keluarga", "hubungan_keluarga", "hubungan_keluarga", function () {
                     $("#edit_id_hubungan_keluarga").val(data.id_hubungan_keluarga).trigger("change");
                 });
                 } else {

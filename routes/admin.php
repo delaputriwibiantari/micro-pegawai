@@ -8,6 +8,7 @@ use App\Http\Controllers\admin\ref\RefEselonController;
 use App\Http\Controllers\admin\ref\RefHubunganKeluargaController;
 use App\Http\Controllers\admin\sdm\SdmController;
 use App\Http\Controllers\admin\ref\RefJenjangPendidikanController;
+use App\Http\Controllers\admin\sdm\SdmKeluargaController;
 use App\Http\Controllers\admin\sdm\SdmPendidikanController;
 use Illuminate\Support\Facades\Route;
 
@@ -61,6 +62,23 @@ Route::prefix('sdm')->name('sdm.')->group(function () {
                 ->name('show'); // Menjadi: admin.person.show
         Route::post('destroy/{id}', [SdmPendidikanController::class, 'destroy'])
             ->name('destroy');
+    });
+
+    Route::prefix('keluarga')->name('keluarga.')->group(function () {
+        Route::get('/{id}', [SdmKeluargaController::class, 'index'])
+            ->name('index');
+        Route::get('data/{id}', [SdmKeluargaController::class, 'list'])
+            ->name('list');
+        Route::get('show/{id}', [SdmKeluargaController::class, 'show'])
+            ->name('sdm.keluarga.show');
+        Route::post('/store', [SdmKeluargaController::class, 'store'])
+            ->name('sdm.keluarga.store');
+        Route::post('update/{id}', [SdmKeluargaController::class, 'update'])
+            ->name('update');
+        Route::post('destroy/{id}', [SdmKeluargaController::class, 'destroy'])
+            ->name('sdm.keluarga.destroy');
+        Route::get('find/by/nik/{id}', [SdmKeluargaController::class, 'find_by_nik'])
+            ->name('find_by_nik');
     });
 });
 
