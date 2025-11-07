@@ -27,7 +27,7 @@ class  SdmPendidikanService{
         $idSdm = Sdm::query()
             ->join('person', 'person.id', '=', 'sdm.id_person')
             ->where('person.uuid_person', $uuid)
-            ->value('sdm.id_sdm');
+            ->value('sdm.id');
 
         if (!$idSdm) {
             return collect();

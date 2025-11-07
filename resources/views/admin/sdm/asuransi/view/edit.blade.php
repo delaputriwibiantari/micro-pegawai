@@ -10,38 +10,46 @@
 
                 <div class="modal-body">
                     <div class="row">
-                            <div class="d-flex flex-column mb-2">
-                                <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
-                                    <span>Kode Asuransi</span>
-                                </label>
-                                <input type="text" id="edit_kode_asuransi" class="form-control form-control-sm fs-sm-8 fs-lg-6"
-                                       maxlength="30"/>
-                                <div class="invalid-feedback"></div>
-                            </div>
-
+                            <div class="row">
+                                    <div class="col-6">
+                                    <div class="d-flex flex-column mb-2">
+                                         <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
+                                    <span>Jenis Asuransi</span>
+                                    </label>
+                                    <select data-control="select2" id="edit_id_jenis_asuransi"
+                                            class="form-control form-control-sm fs-sm-8 fs-lg-6" data-allow-clear="true"
+                                            data-placeholder="Pilih Jenis Asuransi" required>
+                                        <option value="">Pilih Jenis Pegawai</option>
+                                        <option value="TETAP">Tetap</option>
+                                        <option value="KONTRAK">Kontrak</option>
+                                    </select>
+                                          <div class="invalid-feedback"></div>
+                                    </div>
+                                    </div>
+                                </div>
                              <div class="d-flex flex-column mb-2">
                                 <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
-                                    <span>Nama Asuransi</span>
+                                    <span>Nomor Peserta</span>
                                 </label>
-                                <input type="text" id="edit_nama_asuransi"
+                                <input type="text" id="edit_nomor_peserta"
                                        class="form-control form-control-sm fs-sm-8 fs-lg-6" required/>
                                 <div class="invalid-feedback"></div>
                              </div>
 
                              <div class="d-flex flex-column mb-2">
                                 <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
-                                    <span>Penyelenggara</span>
+                                    <span>Tanggal Aktif</span>
                                 </label>
-                                <input type="text" id="edit_penyelenggara"
+                                <input type="date" id="edit_tanggal_aktif"
                                        class="form-control form-control-sm fs-sm-8 fs-lg-6" required/>
                                 <div class="invalid-feedback"></div>
                              </div>
 
                              <div class="d-flex flex-column mb-2">
                                 <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
-                                    <span>Tipe Asuransi</span>
+                                    <span>Status</span>
                                 </label>
-                                <input type="text" id="edit_tipe_asuransi"
+                                <input type="text" id="edit_status"
                                        class="form-control form-control-sm fs-sm-8 fs-lg-6" required/>
                                 <div class="invalid-feedback"></div>
                              </div>

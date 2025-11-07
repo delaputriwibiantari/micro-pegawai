@@ -37,7 +37,7 @@
             ajax: {
                 url: '{{ route('admin.sdm.pendidikan.list', $id) }}',
                 cache: false,
-                
+
             },
             order: [],
             ordering: true,
@@ -47,6 +47,13 @@
                 orderable: false,
                 searchable: false
             },
+            {
+                    data: 'id_jenjang_pendidikan',
+                    name: 'id_jenjang_pendidikan',
+                    render: function (data) {
+                        return data;
+                    }
+                },
                 {
                     data: 'institusi',
                     name: 'institusi',
@@ -94,13 +101,6 @@
                     name: 'sumber_biaya',
                     render: function (data) {
                         return data === 'BEASISWA' ? 'BEASISWA' : (data === 'MANDIRI' ? 'MANDIRI' : data);
-                    }
-                },
-                {
-                    data: 'nama_lengkap',
-                    name: 'nama_lengkap',
-                    render: function (data) {
-                        return data;
                     }
                 },
                  {

@@ -1,4 +1,4 @@
-<!-- Modal Create -->
+
 <div class="modal fade" id="form_create_pendidikan" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog"
      aria-hidden="true">
     <div class="modal-dialog modal-xl">
@@ -14,6 +14,7 @@
             <form method="post" id="bt_submit_create" novalidate enctype="multipart/form-data">
                 <div class="modal-body">
                     <input type="hidden" name="uuid_person" value="{{ $id }}">
+                    <input type="hidden" name="id_sdm" id="id_sdm">
                     <div class="row g-3">
                         <div class="col-md-6">
                             <div class="d-flex flex-column mb-2">

@@ -1,22 +1,23 @@
 <script defer>
-    $('#form_edit_pendidikan').on('show.bs.modal', function (e) {
-        // Don't reset here - let global cleaner handle it
+    $('#form_edit').on('show.bs.modal', function (e) {
         const button = $(e.relatedTarget);
         const id = button.data("id");
-        const detail = '{{ route('admin.sdm.pendidikan.show', [':id']) }}';
+        const detail = "{{ route('admin.sdm.pendidikan.show', ':id') }}";
 
 
-        DataManager.fetchData(detail.replace(':id', id))
-            .then(function (response) {
-                if (response.success) {
+    DataManager.fetchData(detail.replace(':id', id)).then(response => {
+            if (response.success) {
+                const data = response.data;
+                    $('#edit_id_jenjang_pendidikan').val(data.id_jenjang_pendidikan).trigger('change');
                     $('#edit_institusi').val(response.data.institusi);
                     $('#edit_jurusan').val(response.data.jurusan);
                     $('#edit_tahun_masuk').val(response.data.tahun_masuk);
                     $('#edit_tahun_lulus').val(response.data.tahun_lulus);
-                    $('#edit_jenis_nilai').val(response.data.jenis_nilai).trigger('change');
+                    $('#edit_jenis_nilai').val(data.jenis_nilai).trigger('change');
                     $('#edit_sks').val(response.data.sks);
-                    $('#edit_sumber_biaya').val(response.data.sumber_biaya).trigger('change');
-                     if (data.file_ijazah) {
+                    $('#edit_sumber_biaya').val(data.sumber_biaya).trigger('change');
+
+                if (data.file_ijazah) {
                     $('#current_file_ijazah_name').text(data.file_ijazah);
                     const fileUrl = '{{ route('admin.view-file', [':folder', ':filename']) }}'
                         .replace(':folder', 'pendidikan')
@@ -49,7 +50,7 @@
         });
 
 
-        $('#bt_submit_edit').off('submit').on('submit', function (e) {
+        $("#bt_submit_edit").on("submit", function (e) {
             e.preventDefault();
                         const fileIjazahInput = document.getElementById('edit_file_ijazah');
             const fileTranskipInput = document.getElementById('edit_file_transkip');
@@ -93,6 +94,7 @@
                 if (result.value) {
                     DataManager.openLoading();
                     const formData = new FormData();
+                    formData.append('id_jenjang_pendidikan', $('#edit_id_jenjang_pendidikan').val());
                     formData.append('institusi', $('#edit_institusi').val());
                     formData.append('jurusan', $('#edit_jurusan').val());
                     formData.append('tahun_masuk', $('#edit_tahun_masuk').val());
@@ -100,30 +102,31 @@
                     formData.append('jenis_nilai', $('#edit_jenis_nilai').val());
                     formData.append('sks', $('#edit_sks').val());
                     formData.append('sumber_biaya', $('#edit_sumber_biaya').val());
+                   if (fileIjazah) {
+                        formData.append('file_ijazah', fileIjazah);
                     }
+                    if (fileTranskip) {
+                        formData.append('file_transkip', fileTranskip);
+                    }
+                    const updateUrl = "{{ route('admin.sdm.pendidikan.update', ':id') }}";
+                    DataManager.formData(updateUrl.replace(":id", id), formData).then(response => {
 
-                    const update = '{{ route('admin.sdm.pendidikan.update', [':id']) }}';
-                    DataManager.formData(update.replace(':id', id), formData).then(response => {
                         if (response.success) {
-                            Swal.fire('Success', response.message, 'success');
-                            setTimeout(function () {
-                                location.reload();
-                            }, 1000);
+                            Swal.fire("Success", response.message, "success");
+                            setTimeout(() => location.reload(), 1000);
                         }
                         if (!response.success && response.errors) {
-                            const validationErrorFilter = new ValidationErrorFilter(
-                                'edit_');
+                            const validationErrorFilter = new ValidationErrorFilter();
                             validationErrorFilter.filterValidationErrors(response);
-                            Swal.fire('Peringatan', 'Isian Anda belum lengkap atau tidak valid.', 'warning');
+                            Swal.fire("Warning", "Validasi bermasalah", "warning");
                         }
-
                         if (!response.success && !response.errors) {
-                            Swal.fire('Warning', response.message, 'warning');
+                            Swal.fire('Peringatan', response.message, 'warning');
                         }
                     }).catch(error => {
                         ErrorHandler.handleError(error);
                     });
-                
+
             })
         });
     }).on('hidden.bs.modal', function () {

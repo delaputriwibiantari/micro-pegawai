@@ -1,4 +1,4 @@
-<div class="modal fade" id="form_create" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog"
+<div class="modal fade" id="form_create_asuransi" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog"
      aria-hidden="true">
    <div class="modal-dialog modal-lg" role="document">
         <form method="post" id="bt_submit_create">
@@ -65,16 +65,16 @@
 
                     <!-- Form lanjutan SDM -->
                     <div class="row" id="sdm_form" style="display:none;">
-                            <div class="col-md-4">
+                            < class="col-md-4">
                                 <div class="col-md-4">
                                 <div class="d-flex flex-column mb-2">
                                     <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
                                         <span>Jenis Asuransi</span>
                                     </label>
-                                    <select data-control="select2" id="status_pegawai" name="status_pegawai"
+                                    <select data-control="select2" id="id_jenis_asuransi" name="id_jenis_asuransi"
                                             class="form-control form-control-sm fs-sm-8 fs-lg-6" data-allow-clear="true"
                                             data-placeholder="Pilih Jenis Kelamin" required>
-                                        <option value="">Pilih Jenis Pegawai</option>
+                                        <option value="">Pilih Jenis Asuransi</option>
                                         <option value="TETAP">Tetap</option>
                                         <option value="KONTRAK">Kontrak</option>
                                     </select>
@@ -83,52 +83,31 @@
                             </div>
                                 <div class="d-flex flex-column mb-2">
                                     <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
-                                        <span>ID Jenis Asuransi</span>
+                                        <span>Nomer Peserta</span>
                                     </label>
-                                    <input type="text" id="nip"
+                                    <input type="text" id="nomer_peserta"
                                            class="form-control form-control-sm fs-sm-8 fs-lg-6" maxlength="20">
                                     <div class="invalid-feedback"></div>
                                 </div>
-                            </div>
                             <div class="col-md-4">
                                 <div class="d-flex flex-column mb-2">
                                     <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
-                                        <span>Status Pegawai</span>
+                                        <span>Tanggal Aktif</span>
                                     </label>
-                                    <select data-control="select2" id="status_pegawai" name="status_pegawai"
-                                            class="form-control form-control-sm fs-sm-8 fs-lg-6" data-allow-clear="true"
-                                            data-placeholder="Pilih Jenis Kelamin" required>
-                                        <option value="">Pilih Jenis Pegawai</option>
-                                        <option value="TETAP">Tetap</option>
-                                        <option value="KONTRAK">Kontrak</option>
-                                    </select>
+                                    <input type="date" id="tanggal_aktif" name="tanggal_aktif" class="form-control form-control-sm" required>
                                     <div class="invalid-feedback"></div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="d-flex flex-column mb-2">
+                            <div class="d-flex flex-column mb-2">
                                     <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
-                                        <span>Tipe Pegawai</span>
+                                        <span>Status</span>
                                     </label>
-                                    <select data-control="select2" id="tipe_pegawai" name="tipe_pegawai"
-                                            class="form-control form-control-sm fs-sm-8 fs-lg-6" data-allow-clear="true"
-                                            data-placeholder="Pilih Jenis Kelamin" required>
-                                        <option value="">Pilih Jenis Tipe Pegawai</option>
-                                        <option value="FULL TIME">Full Time</option>
-                                        <option value="PART TIME">Part Time</option>
-                                    </select>
+                                    <input type="text" id="status"
+                                           class="form-control form-control-sm fs-sm-8 fs-lg-6" maxlength="20">
                                     <div class="invalid-feedback"></div>
                                 </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="d-flex flex-column mb-2">
-                                    <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
-                                        <span>Tanggal Masuk</span>
-                                    </label>
-                                    <input type="date" id="tanggal_masuk" name="tanggal_masuk" class="form-control form-control-sm" required>
-                                    <div class="invalid-feedback"></div>
-                                </div>
-                            </div>
+
+
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-sm btn-dark fs-sm-8 fs-lg-6" data-bs-dismiss="modal">
                                     Tutup

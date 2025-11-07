@@ -1,13 +1,14 @@
 <script defer>
-    $('#form_detail_pendidikan').on('show.bs.modal', function (e) {
+    $('#form_detail').on('show.bs.modal', function (e) {
         const button = $(e.relatedTarget);
         const id = button.data("id");
         const detail = '{{ route('admin.sdm.pendidikan.show', [':id']) }}';
 
 
-        DataManager.fetchData(detail.replace(':id', id))
-            .then(function (response) {
-                if (response.success) {
+        DataManager.fetchData(detail.replace(':id', id)).then(response => {
+            if (response.success) {
+                const data = response.data;
+                    $('#detail_id_jenjang_pendidikan').text(response.data.id_jenjang_pendidikan);
                     $('#detail_institusi').text(response.data.institusi);
                     $('#detail_jurusan').text(response.data.jurusan);
                     $('#detail_tahun_masuk').text(response.data.tahun_masuk);

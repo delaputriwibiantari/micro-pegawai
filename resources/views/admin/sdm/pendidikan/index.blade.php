@@ -12,7 +12,7 @@
     <li class="breadcrumb-item">
         <span class="bullet bg-gray-200 w-5px h-2px"></span>
     </li>
-    <li class="breadcrumb-item text-dark"> Pendidikan</li>
+    <li class="breadcrumb-item text-dark">Riwayat Pendidikan</li>
 @endsection
 
 @section('content')
@@ -57,7 +57,7 @@
                                     @if ($person->nomor_hp)
                                         <div class="col-md-6">
                                             <div class="d-flex align-items-center text-gray-600">
-                                                <span class="fs-7">HP: {{ $person->nomor_hp }}</span>
+                                                <span class="fs-7">HP: {{ $person->no_hp }}</span>
                                             </div>
                                         </div>
                                     @endif
@@ -98,12 +98,12 @@
                 <div class="nav-wrapper mb-6">
                     <ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-6 fw-semibold flex-nowrap overflow-auto">
                         <li class="nav-item">
-                            <a class="nav-link text-active-primary ms-0 me-8 py-5 active text-nowrap"
+                            <a class="nav-link text-active-primary ms-0 me-8 py-5 text-nowrap"
                                href="{{ route('admin.sdm.sdm.histori', ['id' => $id]) }}">Beranda</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-active-primary ms-0 me-8 py-5 text-nowrap"
-                               href="{{ route('admin.sdm.pendidikan.index', ['id' => $id]) }}">Pendidikan</a>
+                            <a class="nav-link text-active-primary ms-0 me-8 py-5 active text-nowrap"
+                               href="#">Pendidikan</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-active-primary ms-0 me-8 py-5 text-nowrap"
@@ -127,8 +127,8 @@
                 <div class="card-toolbar mb-4">
                     <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
                         <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#form_create_pendidikan" title="Tambah Pendidikan">
-                            Tambah Pendidikan
+                                data-bs-target="#form_create_pendidikan" title="Tambah Riwayat Pendidikan">
+                            Tambah Riwayat Pendidikan
                         </button>
                     </div>
                 </div>
@@ -140,6 +140,7 @@
                             <thead>
                             <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0 fs-sm-8 fs-lg-6">
                                 <th class="min-w-75px ps-5">Aksi</th>
+                                <th class="min-w-150px">Jenjang Pendidikan</th>
                                 <th class="min-w-150px">Institusi</th>
                                 <th class="min-w-150px">Jurusan</th>
                                 <th class="min-w-120px">Tahun Masuk</th>

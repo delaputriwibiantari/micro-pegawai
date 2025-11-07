@@ -1,4 +1,4 @@
-<div class="modal fade" id="form_detail_pendidikan" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog"
+<div class="modal fade" id="form_detail" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog"
      aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -11,6 +11,10 @@
                     <!-- Kolom 1 -->
                     <div class="col-md-6">
                         <h6 class="text-primary fw-bold mb-3 border-bottom border-primary pb-2">Informasi Akademik</h6>
+                        <div class="d-flex flex-column mb-3">
+                            <label class="fw-bolder mb-1">Jenjang Pendidikan</label>
+                            <p id="detail_id_jenjang_pendidikan" class="fw-light"></p>
+                        </div>
 
                         <div class="d-flex flex-column mb-3">
                             <label class="fw-bolder mb-1">Institusi</label>
