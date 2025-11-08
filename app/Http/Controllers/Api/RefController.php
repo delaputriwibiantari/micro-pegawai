@@ -19,6 +19,7 @@ final class RefController extends Controller
         private readonly ResponseService             $responseService,
         private readonly RefHubunganKeluargaService  $refHubunganKeluargaService,
         private readonly RefEselonService            $refEselonService,
+        private readonly RefJenisAsuransiService     $refJenisAsuransiService,
     ) {}
 
         public function jenjangPendidikan(): JsonResponse
@@ -43,6 +44,20 @@ final class RefController extends Controller
     {
         return $this->transactionService->handleWithShow(function () {
             $data = $this->refEselonService->getListDataOrdered('id_eselon');
+
+            return $this->responseService->successResponse('Data berhasil diambil', $data);
+        });
+    }
+
+    public function jenisAsuransi(): JsonResponse
+    {
+        return $this->transactionService->handleWithShow(function () {
+            $data = $this->refJenisAsuransiService->getListDataOrdered('id_jenis_asuransi');
+
+            $data->transform(function ($item) {
+                $item->setAttribute('jenis_asuransi', $item->nama_produk . ' (' . $item->jenis_asuransi . ')');
+                return $item;
+            });
 
             return $this->responseService->successResponse('Data berhasil diambil', $data);
         });

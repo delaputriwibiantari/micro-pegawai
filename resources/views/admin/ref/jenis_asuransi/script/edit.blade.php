@@ -33,9 +33,9 @@
                 if (result.value) {
                     DataManager.openLoading();
                     const input = {
-                        "jenis_asuransi": $("#edit_jenis_asuransi").val(),
+                        "kode_asuransi": $("#edit_kode_asuransi").val(),
                         "nama_asuransi": $("#edit_nama_asuransi").val(),
-                        "penyelenggara": $("#edit_penyelenggara").val()
+                        "penyelenggara": $("#edit_penyelenggara").val(),
                         "tipe_asuransi": $("#edit_tipe_asuransi").val()
                     };
                     const update = '{{ route('admin.ref.jenis-asuransi.update', [':id']) }}';

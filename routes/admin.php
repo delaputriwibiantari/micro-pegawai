@@ -6,6 +6,7 @@ use App\Http\Controllers\Content\PortalController;
 use App\Http\Controllers\admin\person\PersonController;
 use App\Http\Controllers\admin\ref\RefEselonController;
 use App\Http\Controllers\admin\ref\RefHubunganKeluargaController;
+use App\Http\Controllers\admin\ref\RefJenisAsuransiController;
 use App\Http\Controllers\admin\sdm\SdmController;
 use App\Http\Controllers\admin\ref\RefJenjangPendidikanController;
 use App\Http\Controllers\admin\sdm\SdmKeluargaController;
@@ -120,6 +121,19 @@ Route::prefix('ref')->group(function () {
             ->name('ref.eselon.store');
         Route::post('update/{id}', [RefEselonController::class, 'update'])
             ->name('ref.eselon.update');
+    });
+
+    Route::prefix('jenis-asuransi')->group(function () {
+        Route::get('/', [RefJenisAsuransiController::class, 'index'])
+            ->name('ref.jenis-asuransi.index');
+        Route::get('data', [RefJenisAsuransiController::class, 'list'])
+            ->name('ref.jenis-asuransi.list');
+        Route::get('show/{id}', [RefJenisAsuransiController::class, 'show'])
+            ->name('ref.jenis-asuransi.show');
+        Route::post('/store', [RefJenisAsuransiController::class, 'store'])
+            ->name('ref.jenis-asuransi.store');
+        Route::post('update/{id}', [RefJenisAsuransiController::class, 'update'])
+            ->name('ref.jenis-asuransi.update');
     });
 });
 
