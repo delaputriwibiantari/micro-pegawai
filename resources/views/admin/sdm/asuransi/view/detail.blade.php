@@ -6,39 +6,68 @@
                 <h5 class="modal-title" id="exampleModalLabel">Detail Asuransi</h5>
                 <a type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></a>
             </div>
-            <div class="modal-body">
+            < class="modal-body">
                 <div class="row">
-                    <!-- Kolom 2: Data Dasar -->
                     <div class="col-md-4">
-                        <h6 class="text-primary fw-bold mb-3 border-bottom border-primary pb-2">Data Dasar</h6>
-                        <div class="d-flex flex-column mb-3">
-                            <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
-                                <span>Jenis Asuransi</span>
-                            </label>
-                            <p id="detail_id_Jenis_asuransi" class="fw-light fs-sm-8 fs-lg-6"></p>
+                        <div class="d-flex flex-column mb-2">
+                            <label class="fs-sm-8 fs-lg-6 fw-bolder mb-1">Nama</label>
+                            <p id="detail_nama_lengkap" class="fw-light fs-sm-8 fs-lg-6"></p>
                         </div>
-
-                        <div class="d-flex flex-column mb-3">
-                            <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
-                                <span>Nomor Peserta</span>
-                            </label>
-                            <p id="detail_nomor_peserta" class="fw-light fs-sm-8 fs-lg-6"></p>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="d-flex flex-column mb-2">
+                            <label class="fs-sm-8 fs-lg-6 fw-bolder mb-1">NIK</label>
+                            <p id="detail_nik" class="fw-light fs-sm-8 fs-lg-6"></p>
                         </div>
-                    <!-- Kolom 3: Alamat -->
-                    <div class="col-md-5">
-                        <h6 class="text-primary fw-bold mb-3 border-bottom border-primary pb-2">Alamat</h6>
-
-                        <div class="d-flex flex-column mb-3">
-                            <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
-                                <span>Tanggal Aktif</span>
-                            </label>
-                            <p id="detail_tanggal_aktif" class="fw-light fs-sm-8 fs-lg-6" style="min-height: 60px;"></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="d-flex flex-column mb-2">
+                            <label class="fs-sm-8 fs-lg-6 fw-bolder mb-1">Jenis Asuransi</label>
+                            <p id="detail_id_jenis_asuransi" class="fw-light fs-sm-8 fs-lg-6"></p>
                         </div>
-                        <div class="d-flex flex-column mb-3">
-                            <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
-                                <span>Status</span>
-                            </label>
-                            <p id="detail_status" class="fw-light fs-sm-8 fs-lg-6" style="min-height: 60px;"></p>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="d-flex flex-column mb-2">
+                            <label class="fs-sm-8 fs-lg-6 fw-bolder mb-1">Nama Peserta</label>
+                            <p id="detail_nama_peserta" class="fw-light fs-sm-8 fs-lg-6"></p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="d-flex flex-column mb-2">
+                            <label class="fs-sm-8 fs-lg-6 fw-bolder mb-1">Nomor Registrasi</label>
+                            <p id="detail_nomor_registrasi" class="fw-light fs-sm-8 fs-lg-6"></p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="d-flex flex-column mb-2">
+                            <label class="fs-sm-8 fs-lg-6 fw-bolder mb-1">Kartu Anggota</label>
+                            <p id="detail_kartu_anggota" class="fw-light fs-sm-8 fs-lg-6"></p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="d-flex flex-column mb-2">
+                            <label class="fs-sm-8 fs-lg-6 fw-bolder mb-1">Status</label>
+                            <p id="detail_status" class="fw-light fs-sm-8 fs-lg-6"></p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="d-flex flex-column mb-2">
+                            <label class="fs-sm-8 fs-lg-6 fw-bolder mb-1">Tanggal Mulai</label>
+                            <p id="detail_tanggal_mulai" class="fw-light fs-sm-8 fs-lg-6"></p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="d-flex flex-column mb-2">
+                            <label class="fs-sm-8 fs-lg-6 fw-bolder mb-1">Tanggal Berakhir</label>
+                            <p id="detail_tanggal_berakhir" class="fw-light fs-sm-8 fs-lg-6"></p>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="d-flex flex-column mb-2">
+                            <label class="fs-sm-8 fs-lg-6 fw-bolder mb-1">Keterangan</label>
+                            <p id="detail_keterangan" class="fw-light fs-sm-8 fs-lg-6"></p>
                         </div>
                     </div>
                 </div>

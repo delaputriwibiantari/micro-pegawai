@@ -1,5 +1,6 @@
 <script defer>
     function load_data() {
+        fetchDataDropdown('{{ route('api.ref.jenis-asuransi') }}', '#list_id_jenis_asuransi', 'jenis_asuransi', 'jenis_asuransi');
         $.fn.dataTable.ext.errMode = 'none';
         const table = $('#example').DataTable({
             dom: 'lBfrtip',
@@ -35,8 +36,12 @@
             responsive: true,
             searchHighlight: true,
             ajax: {
-                url: '{{ route('admin.admin.person.list') }}',
+                url: '{{ route('admin.sdm.asuransi.list', $id ?? '') }}',
                 cache: false,
+                data: function (d) {
+                    d.id_jenis_asuransi = $('#list_id_jenis_asuransi').val();
+                    d.status = $('#list_status').val();
+                }
             },
             order: [],
             ordering: true,
@@ -47,22 +52,47 @@
                 searchable: false
             },
                 {
-                    data: 'kode_asuransi',
-                    name: 'kode_asuransi'
+                    data: 'nama_lengkap',
+                    name: 'nama_lengkap'
                 },
-                 {
+                {
+                    data: 'nik',
+                    name: 'nik'
+                },
+                {
+                    data: 'nomer_peserta',
+                    name: 'nomer_peserta'
+                },
+                {
+                    data: 'kartu_anggota',
+                    name: 'kartu_anggota'
+                },
+                {
+                    data: 'jenis_asuransi',
+                    name: 'jenis_asuransi'
+                },
+                {
                     data: 'nama_asuransi',
                     name: 'nama_asuransi'
                 },
-                 {
-                    data: 'penyelenggara',
-                    name: 'penyelenggara'
+                {
+                    data: 'status',
+                    name: 'status'
                 },
-                 {
-                    data: 'tipe_asuransi',
-                    name: 'tipe_asuransi'
+                {
+                    data: 'tanggal_mulai',
+                    name: 'tanggal_mulai',
+                    render: function (data) {
+                        return formatter.formatDate(data);
+                    }
                 },
-
+                {
+                    data: 'tanggal_berakhir',
+                    name: 'tanggal_berakhir',
+                    render: function (data) {
+                        return formatter.formatDate(data);
+                    }
+                },
             ],
         });
         const performOptimizedSearch = _.debounce(function (query) {
@@ -77,6 +107,16 @@
 
         $('#example_filter input').unbind().on('input', function () {
             performOptimizedSearch($(this).val());
+        });
+
+        $('#list_id_jenis_asuransi').on('change', function () {
+            rowsSelected = [];
+            table.ajax.reload();
+        });
+
+        $('#list_status').on('change', function () {
+            rowsSelected = [];
+            table.ajax.reload();
         });
     }
 
