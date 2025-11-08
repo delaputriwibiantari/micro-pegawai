@@ -4,6 +4,7 @@ namespace App\Services\Ref;
 
 use App\Models\Ref\RefJenisAsuransi;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Schema;
 
 final class RefJenisAsuransiService
 {
@@ -12,8 +13,12 @@ final class RefJenisAsuransiService
         return RefJenisAsuransi::all();
     }
 
-    public function getListDataOrdered(string $orderBy): Collection
+    public function getListDataOrdered(string $orderBy = 'id'): Collection
     {
+        if (!Schema::hasColumn('ref_jenis_asuransi', $orderBy)) {
+        $orderBy = 'id';
+        }
+
         return RefJenisAsuransi::orderBy($orderBy)->get();
     }
 

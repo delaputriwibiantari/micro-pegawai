@@ -1,6 +1,6 @@
 <script defer>
     $("#form_create_asuransi").on("show.bs.modal", function (e) {
-        fetchDataDropdown("{{ route('api.ref.jenis_asuransi') }}", '#id_jenis_asuransi', 'jenis_asuransi', 'jenis_asuransi');
+        fetchDataDropdown("{{ route('api.ref.jenis-asuransi') }}", '#id_jenis_asuransi', 'jenis_asuransi', 'jenis_asuransi');
           $("#tanggal_mulai").flatpickr({
             dateFormat: "Y-m-d",
             altFormat: "d/m/Y",
@@ -44,7 +44,7 @@
                         $('#person_alamat').text(`${data.desa}, ${data.kecamatan}, ${data.kabupaten}, ${data.provinsi}`.replace(/^,\s*|,\s*$/g, '').replace(/,\s*,/g, ','));
                         $('#id_person').val(data.id);
                         $('#person_info').show();
-                        $('#keluarga_form').show();
+                        $('#asuransi_form').show();
                         $('#btn_save').show();
 
                         Swal.fire('Success', 'Person ditemukan!', 'success');

@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\pendidikan\PendidikanController;
-
+use App\Http\Controllers\admin\person\PersonAsuransiController;
 use App\Http\Controllers\Content\PortalController;
 use App\Http\Controllers\admin\person\PersonController;
 use App\Http\Controllers\admin\ref\RefEselonController;
@@ -79,6 +79,23 @@ Route::prefix('sdm')->name('sdm.')->group(function () {
         Route::post('destroy/{id}', [SdmKeluargaController::class, 'destroy'])
             ->name('destroy');
         Route::get('find/by/nik/{id}', [SdmKeluargaController::class, 'find_by_nik'])
+            ->name('find_by_nik');
+    });
+
+    Route::prefix('asuransi')->name('asuransi.')->group(function () {
+        Route::get('/{id}', [PersonAsuransiController::class, 'index'])
+            ->name('index');
+        Route::get('data/{id}', [PersonAsuransiController::class, 'list'])
+            ->name('list');
+        Route::get('show/{id}', [PersonAsuransiController::class, 'show'])
+            ->name('show');
+        Route::post('/store', [PersonAsuransiController::class, 'store'])
+            ->name('store');
+        Route::post('update/{id}', [PersonAsuransiController::class, 'update'])
+            ->name('update');
+        Route::post('destroy/{id}', [PersonAsuransiController::class, 'destroy'])
+            ->name('destroy');
+        Route::get('find/by/nik/{id}', [PersonAsuransiController::class, 'find_by_nik'])
             ->name('find_by_nik');
     });
 });
