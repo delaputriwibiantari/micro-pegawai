@@ -1,6 +1,7 @@
 <script defer>
     $("#form_create_asuransi").on("show.bs.modal", function (e) {
-        fetchDataDropdown("{{ route('api.ref.jenis-asuransi') }}", '#id_jenis_asuransi', 'jenis_asuransi', 'jenis_asuransi');
+        fetchDataDropdown("{{ route('api.ref.jenis-asuransi') }}", '#id_jenis_asuransi', 'id', 'nama_asuransi');
+
           $("#tanggal_mulai").flatpickr({
             dateFormat: "Y-m-d",
             altFormat: "d/m/Y",
@@ -97,7 +98,6 @@
                 if (result.value) {
                     DataManager.openLoading();
                     const input = {
-                        "uuid_person": currentPersonId,
                         "id_person": $("#id_person").val(),
                         "id_jenis_asuransi": $("#id_jenis_asuransi").val(),
                         "nomer_peserta": $("#nomer_peserta").val(),
@@ -140,7 +140,7 @@
 
     function clearPersonSearch() {
         $('#person_info').hide();
-        $('#sdm_form').hide();
+        $('#asuransi_form').hide();
         $('#btn_save').hide();
         $('#id_person').val('');
         $('#search_nik').val('');

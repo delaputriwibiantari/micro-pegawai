@@ -1,6 +1,6 @@
 <script defer>
     function load_data() {
-        fetchDataDropdown('{{ route('api.ref.jenis-asuransi') }}', '#list_id_jenis_asuransi', 'jenis_asuransi', 'jenis_asuransi');
+        fetchDataDropdown('{{ route('api.ref.jenis-asuransi') }}', '#list_id_jenis_asuransi', 'id', 'nama_asuransi');
         $.fn.dataTable.ext.errMode = 'none';
         const table = $('#example').DataTable({
             dom: 'lBfrtip',

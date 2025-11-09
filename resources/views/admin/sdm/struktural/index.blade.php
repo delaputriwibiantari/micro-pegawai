@@ -12,7 +12,7 @@
     <li class="breadcrumb-item">
         <span class="bullet bg-gray-200 w-5px h-2px"></span>
     </li>
-    <li class="breadcrumb-item text-dark">Asuransi</li>
+    <li class="breadcrumb-item text-dark">Struktural</li>
 @endsection
 
 @section('content')
@@ -110,7 +110,7 @@
                                href="{{ route('admin.sdm.keluarga.index', ['id' => $id]) }}">Keluarga</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-active-primary ms-0 me-8 py-5 active text-nowrap"
+                            <a class="nav-link text-active-primary ms-0 me-8 py-5 text-nowrap"
                                href="{{ route('admin.sdm.asuransi.index', ['id' => $id]) }}">Asuransi</a>
                         </li>
                         <li class="nav-item">
@@ -118,8 +118,8 @@
                                href="#">Rekening</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-active-primary ms-0 me-8 py-5 text-nowrap"
-                               href="#">Struktural</a>
+                            <a class="nav-link text-active-primary ms-0 me-8 py-5 active text-nowrap"
+                               href="{{ route('admin.sdm.struktural.index', ['id' => $id]) }}">Struktural</a>
                         </li>
                     </ul>
                 </div>
@@ -127,61 +127,29 @@
                 <div class="card-toolbar mb-4">
                     <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
                         <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#form_create_asuransi" title="Tambah Pendidikan">
-                            Tambah asuransi
+                                data-bs-target="#form_create_struktural" title="Tambah Riwayat Pendidikan">
+                            Tambah Struktural
                         </button>
                     </div>
                 </div>
 
-               <div class="table-responsive mb-8 shadow p-4 mx-0 border-hover-dark border-primary border-1 border-dashed fs-sm-8 fs-lg-6 rounded-2">
-                    <div class="row mb-5">
-                        <div class="col-12">
-                            <h6 class="text-primary fw-bold border-bottom border-primary pb-2 mb-4">
-                                Filter Data
-                            </h6>
-                        </div>
-                        <div class="col-md-6 col-lg-4 mb-3">
-                            <label for="list_id_jenis_asuransi" class="fs-sm-8 fs-lg-6 fw-bolder mb-1">
-                                Jenis Asuransi
-                            </label>
-                            <select data-control="select2"
-                                    class="form-select form-select-sm fs-sm-8 fs-lg-6"
-                                    id="list_id_jenis_asuransi"
-                                    name="list_id_jenis_asuransi"
-                                    data-placeholder="Pilih Jenis Asuransi"
-                                    data-allow-clear="true">
-                            </select>
-                        </div>
-                        <div class="col-md-6 col-lg-4 mb-3">
-                            <label for="list_status" class="fs-sm-8 fs-lg-6 fw-bolder mb-1">
-                                Status
-                            </label>
-                            <select data-control="select2"
-                                    class="form-select form-select-sm fs-sm-8 fs-lg-6"
-                                    id="list_status"
-                                    name="list_status"
-                                    data-placeholder="Pilih Status"
-                                    data-allow-clear="true">
-                                <option value="AKTIF">Aktif</option>
-                                <option value="TIDAK AKTIF">Tidak Aktif</option>
-                            </select>
-                        </div>
-                    </div>
+                <div class="table-responsive mb-8 shadow p-4 mx-0 border-hover-dark border-primary border-1 border-dashed fs-sm-8 fs-lg-6 rounded-2">
                     <div class="table-responsive">
                         <table id="example"
                                class="table table-sm align-middle table-row-bordered table-row-solid gs-0 gy-2">
                             <thead>
                             <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0 fs-sm-8 fs-lg-6">
                                 <th class="min-w-75px ps-5">Aksi</th>
-                                <th class="min-w-150px">Nama</th>
-                                <th class="min-w-120px">NIK</th>
-                                <th class="min-w-120px">Nomor Registrasi</th>
-                                <th class="min-w-120px">Kartu Anggota</th>
-                                <th class="min-w-120px">Jenis Asuransi</th>
-                                <th class="min-w-120px">Nama Asuransik</th>
-                                <th class="min-w-100px">Status</th>
-                                <th class="min-w-120px">Tanggal Mulai</th>
-                                <th class="min-w-120px">Tanggal Berakhir</th>
+                                <th class="min-w-150px">Jenjang Pendidikan</th>
+                                <th class="min-w-150px">Institusi</th>
+                                <th class="min-w-150px">Jurusan</th>
+                                <th class="min-w-120px">Tahun Masuk</th>
+                                <th class="min-w-100px">Tahun Lulus</th>
+                                <th class="min-w-120px">Jenis Nilai</th>
+                                <th class="min-w-100px">SKS</th>
+                                <th class="min-w-100px">Sumber Biaya</th>
+                                <th class="min-w-120px">Ijazah</th>
+                                <th class="min-w-120px">Traskip</th>
                             </tr>
                             </thead>
                             <tbody class="text-gray-800 fw-bolder fs-sm-8 fs-lg-6">
@@ -192,9 +160,9 @@
             </div>
         </div>
     </div>
-    @include('admin.sdm.asuransi.view.detail')
-    @include('admin.sdm.asuransi.view.create')
-    @include('admin.sdm.asuransi.view.edit')
+    @include('admin.sdm.struktural.view.detail')
+    @include('admin.sdm.struktural.view.create')
+    @include('admin.sdm.struktural.view.edit')
 @endsection
 
 @section('javascript')
@@ -231,9 +199,9 @@
             });
         }
     </script>
-    @include('admin.sdm.asuransi.script.list')
-    @include('admin.sdm.asuransi.script.create')
-    @include('admin.sdm.asuransi.script.edit')
-    @include('admin.sdm.asuransi.script.detail')
-    @include('admin.sdm.asuransi.script.delete')
+    @include('admin.sdm.struktural.script.list')
+    @include('admin.sdm.struktural.script.create')
+    @include('admin.sdm.struktural.script.edit')
+    @include('admin.sdm.struktural.script.detail')
+    @include('admin.sdm.struktural.script.delete')
 @endsection
