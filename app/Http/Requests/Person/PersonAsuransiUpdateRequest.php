@@ -17,9 +17,9 @@ class PersonAsuransiUpdateRequest extends FormRequest
     {
         return [
             'id_jenis_asuransi' => 'required|integer|exists:ref_jenis_asuransi,id',
-            'nomor_registrasi' => 'nullable|string|max:16',
+            'nomer_peserta' => 'nullable|string|max:16',
             'kartu_anggota' => 'nullable|string|max:16',
-            'status_aktif' => 'nullable|in:AKTIF,NONAKTIF,BEARKHIR',
+            'status' => 'nullable|in:AKTIF,NONAKTIF,BEARKHIR',
             'tanggal_mulai' => 'nullable|date',
             'tanggal_berakhir' => 'nullable|date',
             'keterangan' => 'nullable|string',
@@ -30,9 +30,9 @@ class PersonAsuransiUpdateRequest extends FormRequest
     {
         return [
             'id_jenis_asuransi' => 'Jenis Asuransi',
-            'nomor_registrasi' => 'Nomor Peserta',
+            'nomer_peserta' => 'Nomor Peserta',
             'kartu_anggota' => 'Kartu Anggota',
-            'status_aktif' => 'Status Aktif',
+            'status' => 'Status Aktif',
             'tanggal_mulai' => 'Tanggal Mulai',
             'tanggal_berakhir' => 'Tanggal Berakhir',
             'keterangan' => 'Keterangan',
@@ -56,11 +56,11 @@ class PersonAsuransiUpdateRequest extends FormRequest
             'id_jenis_asuransi.required' => 'Field :attribute wajib diisi.',
             'id_jenis_asuransi.integer' => 'Field :attribute harus berupa angka.',
             'id_jenis_asuransi.exists' => 'Field :attribute tidak ditemukan.',
-            'nomor_peserta.string' => 'Field :attribute harus berupa teks.',
-            'nomor_peserta.max' => 'Field :attribute maksimal :max karakter.',
+            'nomer_peserta.string' => 'Field :attribute harus berupa teks.',
+            'nomer_peserta.max' => 'Field :attribute maksimal :max karakter.',
             'kartu_anggota.string' => 'Field :attribute harus berupa teks.',
             'kartu_anggota.max' => 'Field :attribute maksimal :max karakter.',
-            'status_aktif.in' => 'Field :attribute harus salah satu dari: AKTIF, NONAKTIF, BERAKHIR.',
+            'status.in' => 'Field :attribute harus salah satu dari: AKTIF, NONAKTIF, BERAKHIR.',
             'tanggal_mulai.date' => 'Field :attribute harus berupa tanggal yang valid.',
             'tanggal_berakhir.date' => 'Field :attribute harus berupa tanggal yang valid.',
             'keterangan.string' => 'Field :attribute harus berupa teks.',

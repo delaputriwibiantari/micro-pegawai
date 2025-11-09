@@ -119,7 +119,11 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-active-primary ms-0 me-8 py-5 text-nowrap"
-                               href="#">Struktural</a>
+                               href="{{ route('admin.sdm.struktural.index', ['id' => $id]) }}">Struktural</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-active-primary ms-0 me-8 py-5 text-nowrap"
+                               href="#">Dokumen</a>
                         </li>
                     </ul>
                 </div>
@@ -127,7 +131,7 @@
                 <div class="card-toolbar mb-4">
                     <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
                         <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#form_create_asuransi" title="Tambah Pendidikan">
+                                data-bs-target="#form_create_asuransi" title="Tambah Asuransi">
                             Tambah asuransi
                         </button>
                     </div>

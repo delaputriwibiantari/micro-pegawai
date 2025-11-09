@@ -121,6 +121,10 @@
                             <a class="nav-link text-active-primary ms-0 me-8 py-5 active text-nowrap"
                                href="{{ route('admin.sdm.struktural.index', ['id' => $id]) }}">Struktural</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-active-primary ms-0 me-8 py-5 text-nowrap"
+                               href="#">Dokumen</a>
+                        </li>
                     </ul>
                 </div>
 

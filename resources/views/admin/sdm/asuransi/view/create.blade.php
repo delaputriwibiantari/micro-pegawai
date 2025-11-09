@@ -10,7 +10,6 @@
                 </div>
 
                 <div class="modal-body">
-
                     <div class="row">
                         <div class="col-12">
                             <div class="col-md-13">

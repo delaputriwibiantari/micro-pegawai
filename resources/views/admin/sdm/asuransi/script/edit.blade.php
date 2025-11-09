@@ -1,5 +1,5 @@
 <script defer>
-    $("#form_edit_asuransi").on("show.bs.modal", function (e) {
+    $("#form_edit").on("show.bs.modal", function (e) {
         const button = $(e.relatedTarget);
         const id = button.data("id");
         const detail = "{{ route('admin.sdm.asuransi.show', ':id') }}";
@@ -30,7 +30,7 @@
                 edit_tanggal_berakhir.setDate(response.data.tanggal_berakhir);
                 $("#edit_keterangan").val(data.keterangan);
 
-                fetchDataDropdown("{{ route('api.ref.jenis-asuransi') }}", "#edit_id_jenis_asuransi", "jenis_asuransi", "jenis_asuransi", function () {
+                fetchDataDropdown("{{ route('api.ref.jenis-asuransi') }}", "#edit_id_jenis_asuransi", "jenis_asuransi", "nama_asuransi", function () {
                     $("#edit_id_jenis_asuransi").val(data.id_jenis_asuransi).trigger("change");
                 });
 
@@ -41,6 +41,7 @@
             .catch(error => {
                 ErrorHandler.handleError(error);
             });
+
 
         $("#bt_submit_edit").on("submit", function (e) {
             e.preventDefault();
@@ -89,15 +90,14 @@
                         .catch(error => {
                             ErrorHandler.handleError(error);
                         });
-                }
+                    }
             });
         });
-    })
-        .on("hidden.bs.modal", function () {
-            const $m = $(this);
-            $m.find('form').trigger('reset');
-            $m.find('select, textarea').val('').trigger('change');
-            $m.find('.is-invalid, .is-valid').removeClass('is-invalid is-valid');
-            $m.find('.invalid-feedback, .valid-feedback, .text-danger').remove();
-        });
+   }).on('hidden.bs.modal', function () {
+        const $m = $(this);
+        $m.find('form').trigger('reset');
+        $m.find('select, textarea').val('').trigger('change');
+        $m.find('.is-invalid, .is-valid').removeClass('is-invalid is-valid');
+        $m.find('.invalid-feedback, .valid-feedback, .text-danger').remove();
+    });
 </script>

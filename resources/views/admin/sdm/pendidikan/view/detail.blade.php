@@ -96,12 +96,9 @@
                     </div>
                 </div>
 
-
                     </div>
-
                 </div>
             </div>
-
             <div class="modal-footer">
                 <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal" aria-label="Close">
                     Tutup

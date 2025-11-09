@@ -41,7 +41,7 @@ final readonly class PersonAsuransiService
                 'asuransi_karyawan.status',
                 'asuransi_karyawan.tanggal_mulai',
                 'asuransi_karyawan.tanggal_berakhir',
-                'person.id',
+                'person.id as person_id',
                 'person.nama_lengkap',
                 'person.nik',
                 'person.uuid_person',
