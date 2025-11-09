@@ -16,7 +16,7 @@ class PersonAsuransiUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id_jenis_asuransi' => 'required|integer|exists:ref_jenis_asuransi,id_jenis_asuransi',
+            'id_jenis_asuransi' => 'required|integer|exists:ref_jenis_asuransi,id',
             'nomor_registrasi' => 'nullable|string|max:16',
             'kartu_anggota' => 'nullable|string|max:16',
             'status_aktif' => 'nullable|in:AKTIF,NONAKTIF,BEARKHIR',

@@ -34,7 +34,7 @@ final readonly class PersonAsuransiService
             ->select([
                 'asuransi_karyawan.id',
                 'asuransi_karyawan.id_jenis_asuransi as id_jenis_asuransi',
-                'ref_jenis_asuransi.id as id_ref_jenis_asuransi',
+                'ref_jenis_asuransi.id',
                 'ref_jenis_asuransi.nama_asuransi as jenis_asuransi',
                 'asuransi_karyawan.nomer_peserta',
                 'asuransi_karyawan.kartu_anggota',

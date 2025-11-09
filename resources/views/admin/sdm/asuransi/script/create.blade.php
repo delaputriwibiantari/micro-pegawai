@@ -79,11 +79,15 @@
                 Swal.fire('Warning', 'Pilih person terlebih dahulu dengan mencari NIK', 'warning');
                 return;
             }
-            if (!$('#id_jenis_asuransi').val()) {
+            const idJenisAsuransi = $('#id_jenis_asuransi').val();
+            if (!idJenisAsuransi) {
                 Swal.fire('Warning', 'Jenis Asuransi wajib dipilih', 'warning');
                 $('#id_jenis_asuransi').focus();
                 return;
             }
+
+            console.log('id_jenis_asuransi value:', idJenisAsuransi);
+            console.log('id_jenis_asuransi element:', $('#id_jenis_asuransi'));
 
             Swal.fire({
                 title: 'Kamu yakin?',
@@ -99,7 +103,7 @@
                     DataManager.openLoading();
                     const input = {
                         "id_person": $("#id_person").val(),
-                        "id_jenis_asuransi": $("#id_jenis_asuransi").val(),
+                        "id_jenis_asuransi": idJenisAsuransi,
                         "nomer_peserta": $("#nomer_peserta").val(),
                         "kartu_anggota": $("#kartu_anggota").val(),
                         "tanggal_mulai": $("#tanggal_mulai").val(),

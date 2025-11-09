@@ -61,7 +61,7 @@ final class PersonAsuransiController extends Controller
             return $this->responseService->errorResponse('Person tidak ditemukan', 404);
         }
 
-        $status = $request->input('status_aktif', 'AKTIF');
+        $status = $request->input('status', 'AKTIF');
 
         if ($status === 'AKTIF') {
             if ($this->personAsuransiService->checkActivePolisExists($idPerson, $request->id_jenis_asuransi)) {
@@ -75,7 +75,7 @@ final class PersonAsuransiController extends Controller
                 'tanggal_mulai', 'tanggal_berakhir', 'keterangan',
             ]);
             $payload['id_person'] = $idPerson;
-            $payload['status_aktif'] = $status;
+            $payload['status'] = $status;
 
             $data = $this->personAsuransiService->create($payload);
 
@@ -100,7 +100,7 @@ final class PersonAsuransiController extends Controller
         }
 
         $nextJenis = $request->filled('id_jenis_asuransi') ? (int)$request->id_jenis_asuransi : $data->id_jenis_asuransi;
-        $nextStatus = $request->input('status_aktif', $data->status_aktif);
+        $nextStatus = $request->input('status', $data->status);
 
         if ($nextStatus === 'AKTIF') {
             if ($this->personAsuransiService->checkActivePolisExistsForUpdate($data, $nextJenis)) {
@@ -111,7 +111,7 @@ final class PersonAsuransiController extends Controller
         return $this->transactionService->handleWithTransaction(function () use ($request, $data) {
             $payload = $request->only([
                 'id_jenis_asuransi', 'id_person', 'nomer_peserta', 'kartu_anggota',
-                'status_aktif', 'tanggal_mulai', 'tanggal_berakhir', 'keterangan',
+                'status', 'tanggal_mulai', 'tanggal_berakhir', 'keterangan',
             ]);
             $updatedData = $this->personAsuransiService->update($data, $payload);
 
