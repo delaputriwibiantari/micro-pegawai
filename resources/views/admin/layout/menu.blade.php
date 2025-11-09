@@ -52,11 +52,30 @@
                     </a>
                 </div>
             </div>
-           <a class="menu-link {{ request()->routeIs('admin.coba.index') ? 'active' : '' }}"
-   href="{{ route('admin.coba.index') }}">
-    <span class="menu-title">Coba</span>
-</a>
-
+             @php
+                $masterActive = request()->routeIs('admin.master.periode.*') || request()->routeIs('admin.master.unit.*')|| request()->routeIs('admin.master.jabatan.*');
+            @endphp
+            <div data-kt-menu-trigger="click"
+                 class="menu-item menu-accordion {{ $masterActive ? 'here show' : '' }}">
+                <span class="menu-link">
+                    <span class="menu-title">Master</span>
+                    <span class="menu-arrow"></span>
+                </span>
+                <div class="menu-sub menu-sub-accordion menu-active-bg">
+                    <a class="menu-link {{ request()->routeIs('admin.master.periode.*') ? 'active' : '' }}"
+                       href="#">
+                        <span class="menu-title px-4">Periode</span>
+                    </a>
+                    <a class="menu-link {{ request()->routeIs('admin.master.unit.*') ? 'active' : '' }}"
+                       href="#">
+                        <span class="menu-title px-4">Unit</span>
+                    </a>
+                    <a class="menu-link {{ request()->routeIs('admin.master.jabatan.*') ? 'active' : '' }}"
+                       href="#">
+                        <span class="menu-title px-4">Jabatan</span>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
