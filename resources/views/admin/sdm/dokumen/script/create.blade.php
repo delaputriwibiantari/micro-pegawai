@@ -1,5 +1,7 @@
 <script defer>
     $('#form_create_dokumen').on('show.bs.modal', function (e) {
+        fetchDataDropdown("{{ route('api.ref.jenis-dokumen') }}", '#id_jenis_dokumen', 'jenis_dokumen', 'jenis_dokumen');
+
         $('#tgl_terbit').flatpickr({
             dateFormat: 'Y-m-d',
             altFormat: 'd/m/Y',
@@ -35,7 +37,7 @@
                     formData.append('tgl_terbit', $('#tgl_terbit').val());
                     formData.append('tgl_berlaku', $('#tgl_berlaku').val());
 
-                    const action = "{{ route('admin.asuransi.store') }}";
+                    const action = "{{ route('admin.dokumen.store') }}";
                     DataManager.formData(action, formData).then(response => {
                         if (response.success) {
                             Swal.fire('Success', response.message, 'success');

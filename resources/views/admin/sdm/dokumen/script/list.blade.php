@@ -35,8 +35,9 @@
             responsive: true,
             searchHighlight: true,
             ajax: {
-                url: '{{ route('admin.admin.person.list') }}',
+                url: '{{ route('admin.sdm.dokumen.list', $id) }}',
                 cache: false,
+
             },
             order: [],
             ordering: true,
@@ -46,29 +47,34 @@
                 orderable: false,
                 searchable: false
             },
+            {
+                    data: 'id_jenis_dokumen',
+                    name: 'id_jenis_dokumen',
+                    render: function (data) {
+                        return data;
+                    }
+                },
                 {
-                    data: 'jenis_dokumen',
-                    name: 'jenis_dokumen'
+                    data: 'nomor_dokumen',
+                    name: 'nomor_dokumen',
+                    render: function (data) {
+                        return data;
+                    }
                 },
                  {
-                    data: 'nomor_dokumen',
-                    name: 'nomor_dokumen'
-                },
-                {
                     data: 'tgl_terbit',
                     name: 'tgl_terbit',
                     render: function (data) {
-                        return data == null ? '' : formatter.formatDate(data);
+                        return data;
                     }
                 },
-                {
+                 {
                     data: 'tgl_berlaku',
                     name: 'tgl_berlaku',
                     render: function (data) {
-                        return data == null ? '' : formatter.formatDate(data);
+                        return data;
                     }
                 },
-
             ],
         });
         const performOptimizedSearch = _.debounce(function (query) {
