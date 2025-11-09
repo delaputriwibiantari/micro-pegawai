@@ -1,6 +1,6 @@
 <script defer>
     $("#form_create_asuransi").on("show.bs.modal", function (e) {
-        fetchDataDropdown("{{ route('api.ref.jenis-asuransi') }}", '#id_jenis_asuransi', 'id', 'nama_asuransi');
+        fetchDataDropdown("{{ route('api.ref.jenis-asuransi') }}", '#id_jenis_asuransi', 'jenis_asuransi', 'nama_asuransi');
 
           $("#tanggal_mulai").flatpickr({
             dateFormat: "Y-m-d",

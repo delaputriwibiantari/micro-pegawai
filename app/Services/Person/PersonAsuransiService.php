@@ -30,11 +30,11 @@ final readonly class PersonAsuransiService
 
         return PersonAsuransi::query()
             ->leftJoin('person', 'person.id', '=', 'asuransi_karyawan.id_person')
-            ->leftJoin('ref_jenis_asuransi', 'ref_jenis_asuransi.id', '=', 'asuransi_karyawan.id_jenis_asuransi')
+            ->leftJoin('ref_jenis_asuransi', 'ref_jenis_asuransi.id_jenis_asuransi', '=', 'asuransi_karyawan.id_jenis_asuransi')
             ->select([
                 'asuransi_karyawan.id',
-                'asuransi_karyawan.id_jenis_asuransi as id_jenis_asuransi',
-                'ref_jenis_asuransi.id',
+                'asuransi_karyawan.id_jenis_asuransi',
+                'ref_jenis_asuransi.id_jenis_asuransi',
                 'ref_jenis_asuransi.nama_asuransi as jenis_asuransi',
                 'asuransi_karyawan.nomer_peserta',
                 'asuransi_karyawan.kartu_anggota',
@@ -65,11 +65,11 @@ final readonly class PersonAsuransiService
     {
         return PersonAsuransi::query()
             ->leftJoin('person', 'person.id', '=', 'asuransi_karyawan.id_person')
-            ->leftJoin('ref_jenis_asuransi', 'ref_jenis_asuransi.id', '=', 'asuransi_karyawan.id_jenis_asuransi')
+            ->leftJoin('ref_jenis_asuransi', 'ref_jenis_asuransi.id_jenis_asuransi', '=', 'asuransi_karyawan.id_jenis_asuransi')
             ->select([
                 'asuransi_karyawan.*',
                 'person.nama_lengkap', 'person.nik', 'person.uuid_person',
-                'ref_jenis_asuransi.id', 'ref_jenis_asuransi.nama_asuransi',
+                'ref_jenis_asuransi.id_jenis_asuransi', 'ref_jenis_asuransi.nama_asuransi',
             ])
             ->where('asuransi_karyawan.id', $id)
             ->first();

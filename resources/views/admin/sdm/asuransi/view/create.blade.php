@@ -106,7 +106,8 @@
                                         class="form-control form-control-sm fs-sm-8 fs-lg-6" data-allow-clear="true"
                                         data-placeholder="Pilih Status">
                                     <option value="AKTIF" selected>Aktif</option>
-                                    <option value="TIDAK AKTIF">Tidak Aktif</option>
+                                    <option value="NONAKTIF">Nonaktif</option>
+                                    <option value="BERAKHIR">Berakhir</option>
                                 </select>
                                 <div class="invalid-feedback"></div>
                             </div>

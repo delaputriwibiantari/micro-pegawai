@@ -178,7 +178,6 @@
                                 <th class="min-w-120px">Nomor Registrasi</th>
                                 <th class="min-w-120px">Kartu Anggota</th>
                                 <th class="min-w-120px">Jenis Asuransi</th>
-                                <th class="min-w-120px">Nama Asuransik</th>
                                 <th class="min-w-100px">Status</th>
                                 <th class="min-w-120px">Tanggal Mulai</th>
                                 <th class="min-w-120px">Tanggal Berakhir</th>

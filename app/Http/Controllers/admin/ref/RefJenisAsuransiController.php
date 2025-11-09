@@ -34,7 +34,7 @@ final class RefJenisAsuransiController extends Controller
             },
             [
                 'action' => function ($row) {
-                    $rowId = $row->id;
+                    $rowId = $row->id_jenis_asuransi;
 
                     return implode(' ', [
                         $this->transactionService->actionButton($rowId, 'detail'),

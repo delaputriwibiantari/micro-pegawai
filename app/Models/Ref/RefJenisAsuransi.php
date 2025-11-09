@@ -20,7 +20,7 @@ final class RefJenisAsuransi extends Model implements Auditable
 
     protected $table = 'ref_jenis_asuransi';
 
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'id_jenis_asuransi';
 
     protected $fillable = [
         'kode_asuransi',
@@ -30,11 +30,11 @@ final class RefJenisAsuransi extends Model implements Auditable
     ];
 
     protected $guarded = [
-        'id',
+        'id_jenis_asuransi',
     ];
 
     protected $casts = [
-        'id' => 'integer',
+        'id_jenis_asuransi' => 'integer',
     ];
 
     public function setKodeAsuransiAttribute($value): void

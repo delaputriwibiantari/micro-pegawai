@@ -18,7 +18,7 @@ class PersonAsuransiStoreRequest extends FormRequest
         return [
             'uuid_person' => 'required_without:id_person|uuid|exists:person,uuid_person',
             'id_person' => 'required_without:uuid_person|integer|exists:person,id',
-            'id_jenis_asuransi' => 'required|integer|exists:ref_jenis_asuransi,id',
+            'id_jenis_asuransi' => 'required|integer|exists:ref_jenis_asuransi,id_jenis_asuransi',
             'nomer_peserta' => 'nullable|string|max:16',
             'kartu_anggota' => 'nullable|string|max:16',
             'status' => 'nullable|in:AKTIF,NONAKTIF,BEARKHIR',

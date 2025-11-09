@@ -13,12 +13,8 @@ final class RefJenisAsuransiService
         return RefJenisAsuransi::all();
     }
 
-    public function getListDataOrdered(string $orderBy = 'id'): Collection
+    public function getListDataOrdered(string $orderBy): Collection
     {
-        if (!Schema::hasColumn('ref_jenis_asuransi', $orderBy)) {
-        $orderBy = 'id';
-        }
-
         return RefJenisAsuransi::orderBy($orderBy)->get();
     }
 
