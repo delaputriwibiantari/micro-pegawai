@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AlmtController;
+use App\Http\Controllers\Api\MasterController;
 use App\Http\Controllers\Api\RefController;
 use App\Http\Controllers\content\AuthController;
 use App\Http\Controllers\content\PortalController;
@@ -26,6 +27,12 @@ Route::prefix('ref')->group(function () {
     Route::get('eselon', [RefController::class, 'eselon'])->name('api.ref.eselon');
     Route::get('jenis-asuransi', [RefController::class, 'jenisAsuransi'])->name('api.ref.jenis-asuransi');
 
+});
+
+Route::prefix('master')->group(function () {
+    Route::get('periode', [MasterController::class, 'periode'])->name('api.master.periode');
+    Route::get('unit', [MasterController::class, 'unit'])->name('api.master.unit');
+    Route::get('jabatan', [MasterController::class, 'jabatan'])->name('api.master.jabatan');
 });
 
 Route::post('/send', [AuthController::class, 'send']);

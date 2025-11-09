@@ -63,15 +63,15 @@
                 </span>
                 <div class="menu-sub menu-sub-accordion menu-active-bg">
                     <a class="menu-link {{ request()->routeIs('admin.master.periode.*') ? 'active' : '' }}"
-                       href="#">
+                       href="{{ route('admin.master.periode.index') }}">
                         <span class="menu-title px-4">Periode</span>
                     </a>
                     <a class="menu-link {{ request()->routeIs('admin.master.unit.*') ? 'active' : '' }}"
-                       href="#">
+                       href="{{ route('admin.master.unit.index') }}">
                         <span class="menu-title px-4">Unit</span>
                     </a>
                     <a class="menu-link {{ request()->routeIs('admin.master.jabatan.*') ? 'active' : '' }}"
-                       href="#">
+                       href="{{ route('admin.master.jabatan.index') }}">
                         <span class="menu-title px-4">Jabatan</span>
                     </a>
                 </div>

@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\admin\master\MasterJabatanController;
+use App\Http\Controllers\Admin\Master\MasterPeriodeController;
+use App\Http\Controllers\admin\master\MasterUnitController;
 use App\Http\Controllers\admin\pendidikan\PendidikanController;
 use App\Http\Controllers\admin\person\PersonAsuransiController;
 use App\Http\Controllers\Content\PortalController;
@@ -12,6 +15,7 @@ use App\Http\Controllers\admin\ref\RefJenjangPendidikanController;
 use App\Http\Controllers\admin\sdm\SdmKeluargaController;
 use App\Http\Controllers\admin\sdm\SdmPendidikanController;
 use App\Http\Controllers\Admin\Sdm\SdmRekeningController;
+use App\Http\Controllers\admin\sdm\SdmStrukturalController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('view-file/{folder}/{filename}', [PortalController::class, 'viewFile'])
@@ -114,6 +118,21 @@ Route::prefix('sdm')->name('sdm.')->group(function () {
         Route::post('destroy/{id}', [SdmRekeningController::class, 'destroy'])
             ->name('destroy');
     });
+
+    Route::prefix('struktural')->name('struktural.')->group(function () {
+        Route::get('/{id}', [SdmStrukturalController::class, 'index'])
+            ->name('index');
+        Route::get('data/{id}', [SdmStrukturalController::class, 'list'])
+            ->name('list');
+        Route::get('show/{id}', [SdmStrukturalController::class, 'show'])
+            ->name('show');
+        Route::post('/store', [SdmStrukturalController::class, 'store'])
+            ->name('store');
+        Route::post('update/{id}', [SdmStrukturalController::class, 'update'])
+            ->name('update');
+        Route::post('destroy/{id}', [SdmStrukturalController::class, 'destroy'])
+            ->name('destroy');
+    });
 });
 
 Route::prefix('ref')->group(function () {
@@ -170,6 +189,48 @@ Route::prefix('ref')->group(function () {
     });
 });
 
+Route::prefix('master')->name('master.')->group(function () {
+
+    Route::prefix('periode')->name('periode.')->group(function () {
+        Route::get('/', [MasterPeriodeController::class, 'index'])
+            ->name('index');
+        Route::get('data', [MasterPeriodeController::class, 'list'])
+            ->name('list');
+        Route::get('show/{id}', [MasterPeriodeController::class, 'show'])
+            ->name('show');
+        Route::post('/store', [MasterPeriodeController::class, 'store'])
+            ->name('store');
+        Route::post('update/{id}', [MasterPeriodeController::class, 'update'])
+            ->name('update');
+    });
+
+    Route::prefix('unit')->name('unit.')->group(function () {
+        Route::get('/', [MasterUnitController::class, 'index'])
+            ->name('index');
+        Route::get('data', [MasterUnitController::class, 'list'])
+            ->name('list');
+        Route::get('show/{id}', [MasterUnitController::class, 'show'])
+            ->name('show');
+        Route::post('/store', [MasterUnitController::class, 'store'])
+            ->name('store');
+        Route::post('update/{id}', [MasterUnitController::class, 'update'])
+            ->name('update');
+    });
+
+    Route::prefix('jabatan')->name('jabatan.')->group(function () {
+        Route::get('/', [MasterJabatanController::class, 'index'])
+            ->name('index');
+        Route::get('data', [MasterJabatanController::class, 'list'])
+            ->name('list');
+        Route::get('show/{id}', [MasterJabatanController::class, 'show'])
+            ->name('show');
+        Route::post('/store', [MasterJabatanController::class, 'store'])
+            ->name('store');
+        Route::post('update/{id}', [MasterJabatanController::class, 'update'])
+            ->name('update');
+    });
+
+});
 
     Route::get('/coba', function () {
         return view('admin.coba.index');

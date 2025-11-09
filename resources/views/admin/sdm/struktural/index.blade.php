@@ -32,7 +32,7 @@
                             <div class="d-flex flex-column flex-grow-1">
                                 <div class="d-flex align-items-center mb-3">
                                     <h2 class="text-gray-900 text-hover-primary fs-2 fw-bold me-1">
-                                        {{ $person->nama_lengkap ?? 'Nama tidak tersedia' }}
+                                        {{ $person->nama ?? 'Nama tidak tersedia' }}
                                     </h2>
                                 </div>
                                 <div class="row g-3">
@@ -43,7 +43,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="d-flex align-items-center text-gray-600">
-                                            <span class="fs-7">No. KK: {{ $person->kk ?? '-' }}</span>
+                                            <span class="fs-7">No. KK: {{ $person->nomor_kk ?? '-' }}</span>
                                         </div>
                                     </div>
                                     @if ($person->npwp)
@@ -57,7 +57,7 @@
                                     @if ($person->nomor_hp)
                                         <div class="col-md-6">
                                             <div class="d-flex align-items-center text-gray-600">
-                                                <span class="fs-7">HP: {{ $person->no_hp }}</span>
+                                                <span class="fs-7">HP: {{ $person->nomor_hp }}</span>
                                             </div>
                                         </div>
                                     @endif
@@ -115,7 +115,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-active-primary ms-0 me-8 py-5 text-nowrap"
-                               href="#">Rekening</a>
+                               href="{{ route('admin.sdm.rekening.index', ['id' => $id]) }}">Rekening</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-active-primary ms-0 me-8 py-5 active text-nowrap"
@@ -127,7 +127,7 @@
                 <div class="card-toolbar mb-4">
                     <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
                         <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#form_create_struktural" title="Tambah Riwayat Pendidikan">
+                                data-bs-target="#form_create" title="Tambah Struktural">
                             Tambah Struktural
                         </button>
                     </div>
@@ -140,16 +140,18 @@
                             <thead>
                             <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0 fs-sm-8 fs-lg-6">
                                 <th class="min-w-75px ps-5">Aksi</th>
-                                <th class="min-w-150px">Jenjang Pendidikan</th>
-                                <th class="min-w-150px">Institusi</th>
-                                <th class="min-w-150px">Jurusan</th>
-                                <th class="min-w-120px">Tahun Masuk</th>
-                                <th class="min-w-100px">Tahun Lulus</th>
-                                <th class="min-w-120px">Jenis Nilai</th>
-                                <th class="min-w-100px">SKS</th>
-                                <th class="min-w-100px">Sumber Biaya</th>
-                                <th class="min-w-120px">Ijazah</th>
-                                <th class="min-w-120px">Traskip</th>
+                                <th class="min-w-150px">Unit</th>
+                                <th class="min-w-150px">Jabatan</th>
+                                <th class="min-w-120px">Nomor SK</th>
+                                <th class="min-w-120px">Tanggal SK</th>
+                                <th class="min-w-120px">Tanggal Masuk</th>
+                                <th class="min-w-120px">Eselon</th>
+                                <th class="min-w-100px">Masa Jabatan</th>
+                                <th class="min-w-120px">Tanggal Keluar</th>
+                                <th class="min-w-120px">SK Masuk</th>
+                                <th class="min-w-120px">SK Keluar</th>
+                                <th class="min-w-120px">Periode</th>
+                                <th class="min-w-120px">Status</th>
                             </tr>
                             </thead>
                             <tbody class="text-gray-800 fw-bolder fs-sm-8 fs-lg-6">
