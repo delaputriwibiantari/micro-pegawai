@@ -11,6 +11,7 @@ use App\Http\Controllers\admin\sdm\SdmController;
 use App\Http\Controllers\admin\ref\RefJenjangPendidikanController;
 use App\Http\Controllers\admin\sdm\SdmKeluargaController;
 use App\Http\Controllers\admin\sdm\SdmPendidikanController;
+use App\Http\Controllers\Admin\Sdm\SdmRekeningController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('view-file/{folder}/{filename}', [PortalController::class, 'viewFile'])
@@ -97,6 +98,21 @@ Route::prefix('sdm')->name('sdm.')->group(function () {
             ->name('destroy');
         Route::get('find/by/nik/{id}', [PersonAsuransiController::class, 'find_by_nik'])
             ->name('find_by_nik');
+    });
+
+    Route::prefix('rekening')->name('rekening.')->group(function () {
+        Route::get('/{id}', [SdmRekeningController::class, 'index'])
+            ->name('index');
+        Route::get('data/{id}', [SdmRekeningController::class, 'list'])
+            ->name('list');
+        Route::get('show/{id}', [SdmRekeningController::class, 'show'])
+            ->name('show');
+        Route::post('/store', [SdmRekeningController::class, 'store'])
+            ->name('store');
+        Route::post('update/{id}', [SdmRekeningController::class, 'update'])
+            ->name('update');
+        Route::post('destroy/{id}', [SdmRekeningController::class, 'destroy'])
+            ->name('destroy');
     });
 });
 

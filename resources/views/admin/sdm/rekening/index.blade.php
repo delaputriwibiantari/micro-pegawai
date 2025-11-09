@@ -1,5 +1,5 @@
 @php use Carbon\Carbon; @endphp
-@extends('admin.layouts.index')
+@extends('admin.layout.index')
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('assets/plugins/datatables/dataTables.bootstrap5.min.css') }}">
@@ -32,7 +32,7 @@
                             <div class="d-flex flex-column flex-grow-1">
                                 <div class="d-flex align-items-center mb-3">
                                     <h2 class="text-gray-900 text-hover-primary fs-2 fw-bold me-1">
-                                        {{ $person->nama ?? 'Nama tidak tersedia' }}
+                                        {{ $person->nama_lengkap ?? 'Nama tidak tersedia' }}
                                     </h2>
                                 </div>
                                 <div class="row g-3">
@@ -43,7 +43,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="d-flex align-items-center text-gray-600">
-                                            <span class="fs-7">No. KK: {{ $person->nomor_kk ?? '-' }}</span>
+                                            <span class="fs-7">No. KK: {{ $person->kk ?? '-' }}</span>
                                         </div>
                                     </div>
                                     @if ($person->npwp)
@@ -103,7 +103,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-active-primary ms-0 me-8 py-5 text-nowrap"
-                               href="{{ route('admin.sdm.riwayat-pendidikan.index', ['id' => $id]) }}">Pendidikan</a>
+                               href="{{ route('admin.sdm.pendidikan.index', ['id' => $id]) }}">Pendidikan</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-active-primary ms-0 me-8 py-5 text-nowrap"
@@ -114,7 +114,7 @@
                                href="{{ route('admin.sdm.asuransi.index', ['id' => $id]) }}">Asuransi</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-active-primary ms-0 me-8 py-5 activ text-nowrap"
+                            <a class="nav-link text-active-primary ms-0 me-8 py-5 active text-nowrap"
                                href="{{ route('admin.sdm.rekening.index', ['id' => $id]) }}">Rekening</a>
                         </li>
                         <li class="nav-item">
