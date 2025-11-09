@@ -114,7 +114,7 @@
                                href="{{ route('admin.sdm.asuransi.index', ['id' => $id]) }}">Asuransi</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-active-primary ms-0 me-8 py-5 activtext-nowrap"
+                            <a class="nav-link text-active-primary ms-0 me-8 py-5 activ text-nowrap"
                                href="{{ route('admin.sdm.rekening.index', ['id' => $id]) }}">Rekening</a>
                         </li>
                         <li class="nav-item">
