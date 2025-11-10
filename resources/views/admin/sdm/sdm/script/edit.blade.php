@@ -18,10 +18,11 @@
                 $("#edit_nip").val(data.nip);
                 $("#edit_status_pegawai").val(data.status_pegawai).trigger('change');
                 $("#edit_tipe_pegawai").val(data.tipe_pegawai).trigger('change');
-                $("#edit_id_person").val(data.id_person);
-                $("#edit_nama_lengkap").val(data.nama_lengkap);
+                $("#edit_nama_lengkap").text(data.nama_lengkap);
+                $("#edit_nik").text(data.nik);
+                $("#edit_no_hp").text(data.no_hp);
                  edit_tanggal_masuk.setDate(data.tanggal_masuk, true);
-                 
+
             } else {
                 Swal.fire("Warning", response.message, "warning");
             }

@@ -1,15 +1,42 @@
 <div class="modal fade" id="form_edit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog"
      aria-hidden="true">
-   <div class="modal-dialog modal-lg" role="document">
-        <form method="post" id="bt_submit_edit" enctype="multipart/form-data">
-            <div class="modal-content shadow-lg rounded-4">
-                <div class="modal-header bg-light border-bottom">
-                    <h5 class="modal-title fw-bold text-primary">Edit SDM</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <div class="modal-dialog modal-xl" role="document">
+        <form method="post" id="bt_submit_edit">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold" id="exampleModalLabel">
+                        Edit SDM
+                    </h5>
+                    <a type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></a>
                 </div>
-
                 <div class="modal-body">
                     <div class="row">
+                        <div class="col-md-4">
+                            <div class="d-flex flex-column mb-2">
+                                <label class="fs-sm-8 fs-lg-6 fw-bolder mb-1">Nama</label>
+                                <p id="edit_nama_lengkap"
+                                   class="fw-light fs-sm-8 fs-lg-6"></p>
+                            </div>
+
+                        </div>
+                        <div class="col-md-4">
+                            <div class="d-flex flex-column mb-2">
+                                <label class="fs-sm-8 fs-lg-6 fw-bolder mb-1">NIK</label>
+                                <p id="edit_nik"
+                                   class="fw-light fs-sm-8 fs-lg-6"></p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="d-flex flex-column mb-2">
+                                <label class="fs-sm-8 fs-lg-6 fw-bolder mb-1">Nomor HP</label>
+                                <p id="edit_no_hp"
+                                   class="fw-light fs-sm-8 fs-lg-6"></p>
+                            </div>
+                        </div>
+                    </div>
+
+                 <div class="row">
+                    <div class="col-md-4">
                         <div class="d-flex flex-column mb-2">
                                 <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
                                     <span>NIP</span>
@@ -18,9 +45,9 @@
                                        maxlength="30"/>
                                 <div class="invalid-feedback"></div>
                             </div>
-                                <div class="row">
-                                    <div class="col-6">
-                                    <div class="d-flex flex-column mb-2">
+                        </div>
+                                <div class="col-md-4">
+                                <div class="d-flex flex-column mb-2">
                                          <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
                                     <span>Status Pegawai</span>
                                     </label>
@@ -34,9 +61,9 @@
                                           <div class="invalid-feedback"></div>
                                     </div>
                                     </div>
-                                </div>
-                                     <div class="col-6">
-                                    <div class="d-flex flex-column mb-2">
+
+                                <div class="col-md-4">
+                                 <div class="d-flex flex-column mb-2">
                                         <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
                                             <span>Tipe Pegawai</span>
                                         </label>
@@ -50,7 +77,7 @@
                                         <div class="invalid-feedback"></div>
                                     </div>
                                 </div>
-
+                            <div class="col-md-4">
                             <div class="d-flex flex-column mb-2">
                                 <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
                                     <span>Tanggal Masuk</span>
@@ -59,30 +86,20 @@
                                        class="form-control form-control-sm fs-sm-8 fs-lg-6" required/>
                                 <div class="invalid-feedback"></div>
                             </div>
-                            <div class="d-flex flex-column mb-2">
-                                <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
-                                    <span>ID Person</span>
-                                </label>
-                                <input type="text" id="edit_id_person" class="form-control form-control-sm fs-sm-8 fs-lg-6"
-                                       maxlength="30" readonly/>
-                                <div class="invalid-feedback"></div>
-                            </div>
-                            <div class="d-flex flex-column mb-2">
-                                <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
-                                    <span>Nama Lengkap</span>
-                                </label>
-                                <input type="text" id="edit_nama_lengkap" class="form-control form-control-sm fs-sm-8 fs-lg-6"
-                                       maxlength="30" readonly />
-                                <div class="invalid-feedback"></div>
-                            </div>
+                        </div>
+                 </div>
 
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-sm btn-dark fs-sm-8 fs-lg-6" data-bs-dismiss="modal"
-                                    aria-label="Close">Close
-                            </button>
-                            <button type="submit" class="btn btn-sm btn-primary fs-sm-8 fs-lg-6">Simpan</button>
-                          </div>
-                    </div>
+
+                        <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-dark fs-sm-8 fs-lg-6" data-bs-dismiss="modal">
+                        Tutup
+                    </button>
+                    <button type="submit" class="btn btn-sm btn-primary fs-sm-8 fs-lg-6">
+                        <span class="indicator-label">Simpan</span>
+                        <span class="indicator-progress">Mohon tunggu...
+                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                        </span>
+                    </button>
                 </div>
             </div>
         </form>
