@@ -6,37 +6,40 @@
 
 
     DataManager.fetchData(detail.replace(':id', id)).then(response => {
-        if (response.success) {
-            const data = response.data;
-                $('#edit_id_jenis_dokumen').val(data.id_jenis_dokumen).trigger('change');
-                $('#edit_nama_dokumen').val(response.data.nama_dokumen);
+            if (response.success) {
+                const data = response.data;
+                    $('#edit_id_jenis_dokumen').val(data.id_jenis_dokumen).trigger('change');
+                    $('#edit_nama_dokumen').val(response.data.nama_dokumen);
 
                 if (data.file_dokumen) {
-                $('#current_file_dokumen_name').text(data.file_dokumen);
-                const fileUrl = '{{ route('admin.view-file', [':folder', ':filename']) }}'
-                    .replace(':folder', 'dokumen')
-                    .replace(':filename', data.file_dokumen);
-                $('#current_file_dokumen_link').attr('href', fileUrl);
-                $('#current_file_dokumen_info').show();
-            } else {
-                $('#current_file_dokumen_info').hide();
-            }
+                    $('#current_file_dokumen_name').text(data.file_dokumen);
+                    const fileUrl = '{{ route('admin.view-file', [':folder', ':filename']) }}'
+                        .replace(':folder', 'dokumen')
+                        .replace(':filename', data.file_dokumen);
+                    $('#current_file_dokumen_link').attr('href', fileUrl);
+                    $('#current_file_dokumen_info').show();
+                } else {
+                    $('#current_file_dokumen_info').hide();
+                }
 
-            fetchDataDropdown("{{ route('api.ref.jenis-dokumen') }}", "#edit_id_jenis_dokumen", "jenis_dokumen", "jenis_dokumen", function () {
-                $("#edit_id_jenis_dokumen").val(data.id_jenis_dokumen).trigger("change");
-            });
-            } else {
-                Swal.fire('Warning', response.message, 'warning');
-            }
-        }).catch(function (error) {
-        ErrorHandler.handleError(error);
-    });
+
+                fetchDataDropdown("{{ route('api.ref.jenis-dokumen') }}", "#edit_id_jenis_dokumen", "jenis_dokumen", "jenis_dokumen", function () {
+                    $("#edit_id_jenis_dokumen").val(data.id_jenis_dokumen).trigger("change");
+                });
+                } else {
+                    Swal.fire('Warning', response.message, 'warning');
+                }
+            }).catch(function (error) {
+            ErrorHandler.handleError(error);
+        });
 
 
         $("#bt_submit_edit").on("submit", function (e) {
             e.preventDefault();
             const fileDokumenInput = document.getElementById('edit_file_dokumen');
+
             const fileDokumen = fileDokumenInput.files[0];
+
             const allowedTypes = ['application/pdf', 'image/jpeg', 'image/jpg', 'image/png'];
 
             if (fileDokumen) {
@@ -50,7 +53,6 @@
                 }
 
             }
-
             Swal.fire({
                 title: 'Kamu yakin?',
                 text: 'Apakah datanya benar dan apa yang anda inginkan?',
@@ -65,11 +67,11 @@
                     DataManager.openLoading();
                     const formData = new FormData();
                     formData.append('id_jenis_dokumen', $('#edit_id_jenis_dokumen').val());
-                    formData.append('nomor_dokumen', $('#edit_nomor_dokumen').val());
-                     if (fileDokumen) {
+                    formData.append('nama_dokumen', $('#edit_nama_dokumen').val());
+
+                   if (fileDokumen) {
                         formData.append('file_dokumen', fileDokumen);
                     }
-
                     const updateUrl = "{{ route('admin.sdm.dokumen.update', ':id') }}";
                     DataManager.formData(updateUrl.replace(":id", id), formData).then(response => {
 

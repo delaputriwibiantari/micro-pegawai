@@ -157,9 +157,10 @@
             </div>
         </div>
     </div>
+    @include('admin.sdm.dokumen.view.edit')
     @include('admin.sdm.dokumen.view.detail')
     @include('admin.sdm.dokumen.view.create')
-    @include('admin.sdm.dokumen.view.edit')
+
 @endsection
 
 @section('javascript')

@@ -165,8 +165,8 @@
         </div>
     </div>
     @include('admin.sdm.pendidikan.view.detail')
-    @include('admin.sdm.pendidikan.view.create')
-    @include('admin.sdm.pendidikan.view.edit')
+    @include('admin.sdm.pendidikan.view.create')@include('admin.sdm.pendidikan.view.edit')
+
 @endsection
 
 @section('javascript')

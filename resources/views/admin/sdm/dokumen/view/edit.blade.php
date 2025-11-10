@@ -16,7 +16,7 @@
                                 <select id="edit_id_jenis_dokumen" name="id_jenis_dokumen"
                                         data-control="select2"
                                         class="form-select form-select-sm"
-                                        data-placeholder="Pilih Jenis Dokumen" required>
+                                        data-placeholder="Pilih Jenjang Dokumen" required>
                                 </select>
                             </div>
 
@@ -25,10 +25,13 @@
                                 <input type="text" id="edit_nama_dokumen" class="form-control form-control-sm" maxlength="30" />
                             </div>
 
-                             <div class="d-flex flex-column mb-2">
+
+                            <div class="d-flex flex-column mb-2">
                                 <label class="fw-bolder mb-1">File Dokumen</label>
                                 <input type="file" id="edit_file_dokumen" name="file_dokumen" class="form-control form-control-sm" accept=".pdf,.jpg,.jpeg,.png">
                             </div>
+
+                        </div>
 
                     </div>
                 </div>
