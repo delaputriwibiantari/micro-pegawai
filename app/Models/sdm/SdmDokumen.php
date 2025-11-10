@@ -19,8 +19,8 @@ final class SdmDokumen extends Model implements Auditable
         SkipsEmptyAudit::transformAudit insteadof AuditableTrait;
     }
 
-    public $incrementing = false;
-    public $timestamps = true;
+    public $incrementing = true;
+    public $timestamps = false;
     protected $table = 'dokumen';
     protected $primaryKey = 'id';
     protected $keyType = 'int';
@@ -55,6 +55,6 @@ final class SdmDokumen extends Model implements Auditable
     {
         $this->attributes['nama_dokumen'] = strtoupper(trim(strip_tags($value)));
     }
-    
+
 
 }

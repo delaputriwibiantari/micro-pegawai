@@ -48,8 +48,8 @@
                 searchable: false
             },
             {
-                    data: 'id_jenis_dokumen',
-                    name: 'id_jenis_dokumen',
+                    data: 'jenis_dokumen',
+                    name: 'jenis_dokumen',
                     render: function (data) {
                         return data;
                     }

@@ -2,7 +2,7 @@
     $("#form_detail").on("show.bs.modal", function(e) {
         const button = $(e.relatedTarget);
         const id = button.data("id");
-        const detail = "{{ route('admin.sdm.struktural.show', ':id') }}";
+        const detail = "{{ route('admin.sdm.dokumen.show', ':id') }}";
 
         DataManager.fetchData(detail.replace(':id', id)).then(response => {
                 if (response.success) {
