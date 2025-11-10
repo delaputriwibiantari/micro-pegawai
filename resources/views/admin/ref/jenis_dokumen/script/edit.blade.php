@@ -2,7 +2,7 @@
     $("#form_edit").on("show.bs.modal", function (e) {
         const button = $(e.relatedTarget);
         const id = button.data("id");
-        const detail = '{{ route('admin.ref.jenis_dokumen.show', [':id']) }}';
+        const detail = '{{ route('admin.ref.jenis-dokumen.show', [':id']) }}';
 
         DataManager.fetchData(detail.replace(':id', id))
             .then(function (response) {
@@ -32,7 +32,7 @@
                     const input = {
                         "jenis_dokumen": $("#edit_jenis_dokumen").val()
                     };
-                    const update = '{{ route('admin.ref.jenjang-pendidikan.update', [':id']) }}';
+                    const update = '{{ route('admin.ref.jenis-dokumen.update', [':id']) }}';
                     DataManager.putData(update.replace(':id', id), input).then(response => {
                         if (response.success) {
                             Swal.fire('Success', response.message, 'success');

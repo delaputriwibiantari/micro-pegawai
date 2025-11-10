@@ -25,6 +25,7 @@
                  $referensiActive = request()->routeIs('admin.ref.jenjang-pendidikan.*') ||
                                    request()->routeIs('admin.ref.hubungan-keluarga.*') ||
                                    request()->routeIs('admin.ref.jenis-asuransi.*') ||
+                                   request()->routeIs('admin.ref.jenis-dokumen.*') ||
                                    request()->routeIs('admin.ref.eselon.*');
             @endphp
             <div data-kt-menu-trigger="click"
@@ -49,6 +50,10 @@
                     <a class="menu-link {{ request()->routeIs('admin.ref.eselon.*') ? 'active' : '' }}"
                        href="{{ route('admin.ref.eselon.index') }}">
                         <span class="menu-title px-4">Eselon</span>
+                    </a>
+                    <a class="menu-link {{ request()->routeIs('admin.ref.jenis-dokumen.*') ? 'active' : '' }}"
+                       href="{{ route('admin.ref.jenis-dokumen.index') }}">
+                        <span class="menu-title px-4">Jenis Dokumen</span>
                     </a>
                 </div>
             </div>

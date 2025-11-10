@@ -132,7 +132,7 @@
                     <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
                         <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
                                 data-bs-target="#form_create" title="Tambah Riwayat Dokumen">
-                            Tambah Riwayat Dokumen
+                            Tambah Dokumen
                         </button>
                     </div>
                 </div>

@@ -35,7 +35,7 @@
             responsive: true,
             searchHighlight: true,
             ajax: {
-                url: '{{ route('admin.ref.jenis_dokumen.list') }}',
+                url: '{{ route('admin.ref.jenis-dokumen.list') }}',
                 cache: false,
             },
             order: [],

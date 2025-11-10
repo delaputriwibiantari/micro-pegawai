@@ -3,11 +3,11 @@
         $(this).attr('aria-hidden', 'false');
         const button = $(e.relatedTarget);
         const id = button.data("id");
-        const detail = '{{ route('admin.ref.jenis_dokumen.show', [':id']) }}';
+        const detail = '{{ route('admin.ref.jenis-dokumen.show', [':id']) }}';
         DataManager.fetchData(detail.replace(':id', id))
             .then(function (response) {
                 if (response.success) {
-                    $("#detail_jenis_dokumen").text(response.data.jenjang_pendidikan);
+                    $("#detail_jenis_dokumen").text(response.data.jenis_dokumen);
                     $("#null_data").hide();
                     $("#show_data").show();
                 } else {

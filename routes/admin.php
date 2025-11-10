@@ -10,8 +10,10 @@ use App\Http\Controllers\admin\person\PersonController;
 use App\Http\Controllers\admin\ref\RefEselonController;
 use App\Http\Controllers\admin\ref\RefHubunganKeluargaController;
 use App\Http\Controllers\admin\ref\RefJenisAsuransiController;
+use App\Http\Controllers\admin\ref\RefJenisDokumenController;
 use App\Http\Controllers\admin\sdm\SdmController;
 use App\Http\Controllers\admin\ref\RefJenjangPendidikanController;
+use App\Http\Controllers\admin\sdm\SdmDokumenController;
 use App\Http\Controllers\admin\sdm\SdmKeluargaController;
 use App\Http\Controllers\admin\sdm\SdmPendidikanController;
 use App\Http\Controllers\Admin\Sdm\SdmRekeningController;
@@ -58,8 +60,6 @@ Route::prefix('sdm')->name('sdm.')->group(function () {
             ->name('index');
         Route::get('data/{id}', [SdmPendidikanController::class, 'list'])
             ->name('list');
-        Route::get('cari', [SdmPendidikanController::class, 'cari'])
-            ->name('cari');
         Route::post('store', [SdmPendidikanController::class, 'store'])
             ->name('store');
         Route::post('update/{id}', [SdmPendidikanController::class, 'update'])
@@ -67,6 +67,21 @@ Route::prefix('sdm')->name('sdm.')->group(function () {
             Route::get('show/{id}', [SdmPendidikanController::class, 'show'])
                 ->name('show'); // Menjadi: admin.person.show
         Route::post('destroy/{id}', [SdmPendidikanController::class, 'destroy'])
+            ->name('destroy');
+    });
+
+    Route::prefix('dokumen')->name('dokumen.')->group(function () {
+        Route::get('/{id}', [SdmDokumenController::class, 'index'])
+            ->name('index');
+        Route::get('data/{id}', [SdmDokumenController::class, 'list'])
+            ->name('list');
+        Route::post('store', [SdmDokumenController::class, 'store'])
+            ->name('store');
+        Route::post('update/{id}', [SdmDokumenController::class, 'update'])
+            ->name('update');
+            Route::get('show/{id}', [SdmDokumenController::class, 'show'])
+                ->name('show'); // Menjadi: admin.person.show
+        Route::post('destroy/{id}', [SdmDokumenController::class, 'destroy'])
             ->name('destroy');
     });
 
@@ -147,6 +162,19 @@ Route::prefix('ref')->group(function () {
             ->name('ref.jenjang-pendidikan.store');
         Route::post('update/{id}', [RefJenjangPendidikanController::class, 'update'])
             ->name('ref.jenjang-pendidikan.update');
+    });
+
+    Route::prefix('jenis-dokumen')->group(function () {
+        Route::get('/', [RefJenisDokumenController::class, 'index'])
+            ->name('ref.jenis-dokumen.index');
+        Route::get('data', [RefJenisDokumenController::class, 'list'])
+            ->name('ref.jenis-dokumen.list');
+        Route::get('show/{id}', [RefJenisDokumenController::class, 'show'])
+            ->name('ref.jenis-dokumen.show');
+        Route::post('/store', [RefJenisDokumenController::class, 'store'])
+            ->name('ref.jenis-dokumen.store');
+        Route::post('update/{id}', [RefJenisDokumenController::class, 'update'])
+            ->name('ref.jenis-dokumen.update');
     });
 
     Route::prefix('hubungan-keluarga')->group(function () {

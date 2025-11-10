@@ -13,10 +13,17 @@
 
                     <div class="row">
                         <div class="col-md-13">
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">Jenis Dokumen</label>
-                            <input type="text" id="jenis_dokumen" name="jenis_dokumen" class="form-control form-control-sm" required>
-                        </div>
+                        <div class="d-flex flex-column mb-2">
+                                <label class="fs-sm-8 fs-lg-6 fw-bolder mb-1 required">Jenis Dokumen</label>
+                                <select data-control="select2"
+                                        class="form-select form-select-sm fs-sm-8 fs-lg-6"
+                                        id="id_jenis_dokumen"
+                                        name="id_jenis_dokumen"
+                                        data-placeholder="Pilih Jenis Dokumen"
+                                        data-allow-clear="true" required>
+                                </select>
+                                <div class="invalid-feedback"></div>
+                            </div>
                         <div class="mb-3">
                             <label class="form-label fw-bold">Nama Dokumen</label>
                             <input type="text" id="nama_dokumen" name="nama_dokumen" class="form-control form-control-sm" required>

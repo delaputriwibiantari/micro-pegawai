@@ -18,7 +18,7 @@
                     const input = {
                         "jenis_dokumen": $("#jenis_dokumen").val(),
                     };
-                    const action = "{{ route('admin.ref.jenis_dokumen.store') }}";
+                    const action = "{{ route('admin.ref.jenis-dokumen.store') }}";
                     DataManager.postData(action, input).then(response => {
                         if (response.success) {
                             Swal.fire('Success', response.message, 'success');

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Services\Ref\RefEselonService;
 use App\Services\Ref\RefHubunganKeluargaService;
 use App\Services\Ref\RefJenisAsuransiService;
+use App\Services\Ref\RefJenisDokumenService;
 use App\Services\Ref\RefJenjangPendidikanService;
 use App\Services\Tools\ResponseService;
 use App\Services\Tools\TransactionService;
@@ -15,6 +16,7 @@ final class RefController extends Controller
 {
     public function __construct(
         private readonly RefJenjangPendidikanService $refJenjangPendidikanService,
+        private readonly RefJenisDokumenService      $refJenisDokumenService,
         private readonly TransactionService          $transactionService,
         private readonly ResponseService             $responseService,
         private readonly RefHubunganKeluargaService  $refHubunganKeluargaService,
@@ -26,6 +28,15 @@ final class RefController extends Controller
     {
         return $this->transactionService->handleWithShow(function () {
             $data = $this->refJenjangPendidikanService->getListDataOrdered('id_jenjang_pendidikan');
+
+            return $this->responseService->successResponse('Data berhasil diambil', $data);
+        });
+    }
+
+    public function jenisDokumen(): JsonResponse
+    {
+        return $this->transactionService->handleWithShow(function () {
+            $data = $this->refJenisDokumenService->getListDataOrdered('id_jenis_dokumen');
 
             return $this->responseService->successResponse('Data berhasil diambil', $data);
         });

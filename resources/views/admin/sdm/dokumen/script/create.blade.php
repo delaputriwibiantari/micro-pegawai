@@ -1,6 +1,6 @@
 <script defer>
     $('#form_create_dokumen').on('show.bs.modal', function (e) {
-        fetchDataDropdown("{{ route('api.ref.jenis-dokumen') }}", '#id_jenis_dokumen', 'jenis_dokumen', 'jenis_dokumen');
+        fetchDataDropdown("{{ route('api.ref.jenis-dokumen') }}", '#id_jenis_dokumen', 'jenis-dokumen', 'jenis-dokumen');
 
 
       $('#bt_submit_create').off('submit').on('submit', function (e) {
@@ -34,12 +34,12 @@
                 if (result.value) {
                     DataManager.openLoading();
                     const formData = new FormData();
-                    formData.append('jenis_dokumen', $('#jenis_dokumen').val());
+                    formData.append('id_jenis_dokumen', $('#id_jenis_dokumen').val());
                     formData.append('nama_dokumen', $('#nama_dokumen').val());
                    if (fileDokumen) {
                         formData.append('file_dokumen', fileDokumen);
                     }
-                    const action = "{{ route('admin.dokumen.store') }}";
+                    const action = "{{ route('admin.sdm.dokumen.store') }}";
                     DataManager.formData(action, formData).then(response => {
                         if (response.success) {
                             Swal.fire('Success', response.message, 'success');
