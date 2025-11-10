@@ -28,7 +28,7 @@
                             <label class="form-label fw-bold">Nama Dokumen</label>
                             <input type="text" id="nama_dokumen" name="nama_dokumen" class="form-control form-control-sm" required>
                         </div>
-                        <div class="col-md-6">
+
                             <div class="d-flex flex-column mb-2">
                                 <label class="fs-sm-8 fs-lg-6 fw-bolder mb-1">Upload File</label>
                                 <input type="file" id="file_dokumen" name="file_dokumen"
@@ -39,15 +39,12 @@
                                 </div>
                                 <div class="invalid-feedback"></div>
                             </div>
-                        </div>
-                        <div class="mt-3">
-                             <button type="button" class="btn btn-sm btn-dark fs-sm-8 fs-lg-6" data-bs-dismiss="modal"
-                            aria-label="Close">Close
-                              </button>
+
+                        <div class="modal-footer">
+                             <button type="button" class="btn btn-sm btn-dark fs-sm-8 fs-lg-6" data-bs-dismiss="modal" aria-label="Close">Close</button>
                             <button type="submit" id="bt_submit_create" class="btn btn-sm btn-primary fs-sm-8 fs-lg-6">Simpan</button>
                         </div>
                     </div>
-
                 </div>
             </div>
         </form>

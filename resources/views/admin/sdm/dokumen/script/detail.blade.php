@@ -12,7 +12,7 @@
                    if (data.file_dokumen) {
                         $('#detail_file_dokumen_name').text(data.file_dokumen);
                         const fileUrl = '{{ route('admin.view-file', [':folder', ':filename']) }}'
-                            .replace(':folder', 'pendidikan')
+                            .replace(':folder', 'dokumen')
                             .replace(':filename', data.file_dokumen);
                         $('#detail_file_dokumen_link').attr('href', fileUrl);
                         $('#detail_file_dokumen_section').show();

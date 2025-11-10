@@ -1,6 +1,6 @@
 <script defer>
-    $('#form_create_dokumen').on('show.bs.modal', function (e) {
-        fetchDataDropdown("{{ route('api.ref.jenis-dokumen') }}", '#id_jenis_dokumen', 'jenis-dokumen', 'jenis-dokumen');
+    $('#form_create').on('show.bs.modal', function (e) {
+        fetchDataDropdown("{{ route('api.ref.jenis-dokumen') }}", '#id_jenis_dokumen', 'jenis_dokumen', 'jenis_dokumen');
 
 
       $('#bt_submit_create').off('submit').on('submit', function (e) {
@@ -34,8 +34,10 @@
                 if (result.value) {
                     DataManager.openLoading();
                     const formData = new FormData();
+                    formData.append('uuid_person', '{{ $id }}');
                     formData.append('id_jenis_dokumen', $('#id_jenis_dokumen').val());
                     formData.append('nama_dokumen', $('#nama_dokumen').val());
+
                    if (fileDokumen) {
                         formData.append('file_dokumen', fileDokumen);
                     }

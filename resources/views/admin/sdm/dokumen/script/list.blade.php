@@ -68,7 +68,7 @@
                     render: function (data, type, row) {
                         if (data) {
                             const fileUrl = '{{ route('admin.view-file', [':folder', ':filename']) }}'
-                                .replace(':folder', 'pendidikan')
+                                .replace(':folder', 'dokumen')
                                 .replace(':filename', data);
                             return `<a href="${fileUrl}" target="_blank" class="btn btn-sm btn-light-primary">Lihat</a>`;
                         }

@@ -8,8 +8,7 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <!-- Kolom 1 -->
-                    <div class="col-md-6">
+
                         <h6 class="text-primary fw-bold mb-3 border-bottom border-primary pb-2">Informasi Akademik</h6>
                         <div class="d-flex flex-column mb-3">
                             <label class="fw-bolder mb-1">Hubungan Keluarga</label>
@@ -26,17 +25,16 @@
                             <p id="detail_pekerjaan" class="fw-light"></p>
                         </div>
 
-                        <div class="row mb-3">
-                            <div class="col-6">
+
+                            <div class="d-flex flex-column mb-3">
                                 <label class="fw-bolder mb-1">Pendidikan Terakhir</label>
                                 <p id="detail_pendidikan_terakhir" class="fw-light"></p>
                             </div>
-                            <div class="col-6">
+                            <div class="d-flex flex-column mb-3">
                                 <label class="fw-bolder mb-1">Penghasilan</label>
                                 <p id="detail_penghasilan" class="fw-light"></p>
                             </div>
-                        </div>
-                    </div>
+
                 </div>
                         <div class="modal-footer">
                         <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal" aria-label="Close">

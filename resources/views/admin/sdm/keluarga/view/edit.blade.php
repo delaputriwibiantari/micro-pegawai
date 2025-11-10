@@ -10,7 +10,7 @@
 
                 <div class="modal-body">
                     <div class="row">
-                         <div class="col-md-6">
+                         
                             <div class="d-flex flex-column mb-2">
                                 <label class="fw-bolder mb-1 required">Hubungan Keluarga</label>
                                 <select id="edit_id_hubungan_keluarga" name="id_hubungan_keluarga"
@@ -19,8 +19,7 @@
                                         data-placeholder="Pilih Hubungan Keluarga" required>
                                 </select>
                             </div>
-                                <div class="row">
-                                    <div class="col-6">
+
                                     <div class="d-flex flex-column mb-2">
                                          <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
                                     <span>Status Tanggungan</span>
@@ -34,8 +33,7 @@
                                     </select>
                                           <div class="invalid-feedback"></div>
                                     </div>
-                                    </div>
-                                </div>
+
                             <div class="d-flex flex-column mb-2">
                                 <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
                                     <span>Pekerjaan</span>
@@ -60,6 +58,7 @@
                                        maxlength="30" readonly />
                                 <div class="invalid-feedback"></div>
                             </div>
+                         </div>
 
                           <div class="modal-footer">
                             <button type="button" class="btn btn-sm btn-dark fs-sm-8 fs-lg-6" data-bs-dismiss="modal"
@@ -67,9 +66,9 @@
                             </button>
                             <button type="submit" class="btn btn-sm btn-primary fs-sm-8 fs-lg-6">Simpan</button>
                           </div>
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
+
+                </form>
+             </div>
+          </div>
+      </div>
+
