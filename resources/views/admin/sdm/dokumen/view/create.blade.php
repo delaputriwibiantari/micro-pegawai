@@ -18,18 +18,21 @@
                             <input type="text" id="jenis_dokumen" name="jenis_dokumen" class="form-control form-control-sm" required>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label fw-bold">Nomor Dokumen</label>
-                            <input type="text" id="nomor_dokumen" name="nomor_dokumen" class="form-control form-control-sm" required>
+                            <label class="form-label fw-bold">Nama Dokumen</label>
+                            <input type="text" id="nama_dokumen" name="nama_dokumen" class="form-control form-control-sm" required>
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">Tanggal Terbit</label>
-                            <input type="text" id="tgl_terbit" name="tgl_terbit" class="form-control form-control-sm" required>
+                        <div class="col-md-6">
+                            <div class="d-flex flex-column mb-2">
+                                <label class="fs-sm-8 fs-lg-6 fw-bolder mb-1">Upload File</label>
+                                <input type="file" id="file_dokumen" name="file_dokumen"
+                                       class="form-control form-control-sm fs-sm-8 fs-lg-6"
+                                       accept=".pdf,.jpg,.jpeg,.png">
+                                <div class="form-text fs-sm-9 fs-lg-7 text-muted">
+                                    Format file: PDF, JPG, JPEG, PNG. Maksimal 5MB
+                                </div>
+                                <div class="invalid-feedback"></div>
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">Tanggal Berlaku</label>
-                            <input type="text" id="tgl_berlaku" name="tgl_berlaku" class="form-control form-control-sm" required>
-                        </div>
-
                         <div class="mt-3">
                              <button type="button" class="btn btn-sm btn-dark fs-sm-8 fs-lg-6" data-bs-dismiss="modal"
                             aria-label="Close">Close

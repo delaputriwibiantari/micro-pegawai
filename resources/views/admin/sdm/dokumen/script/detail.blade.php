@@ -8,10 +8,19 @@
                 if (response.success) {
                     const data = response.data;
                     $("#detail_jenis_dokumen").text(data.jenis_dokumen);
-                    $("#detail_nomor_dokumen").text(data.nomor_dokumen);
-                    $("#detail_tgl_terbit").text(formatter.formatDate(data.tgl_terbit));
-                    $("#detail_tgl_berlaku").text(formatter.formatDate(data.tgl_berlaku));
-
+                    $("#detail_nama_dokumen").text(data.nama_dokumen);
+                   if (data.file_dokumen) {
+                        $('#detail_file_dokumen_name').text(data.file_dokumen);
+                        const fileUrl = '{{ route('admin.view-file', [':folder', ':filename']) }}'
+                            .replace(':folder', 'pendidikan')
+                            .replace(':filename', data.file_dokumen);
+                        $('#detail_file_dokumen_link').attr('href', fileUrl);
+                        $('#detail_file_dokumen_section').show();
+                        $('#no_file_dokumen_section').hide();
+                    } else {
+                        $('#detail_file_dokumen_section').hide();
+                        $('#no_file_dokumen_section').show();
+                    }
                 } else {
                     Swal.fire("Warning", response.message, "warning");
                 }

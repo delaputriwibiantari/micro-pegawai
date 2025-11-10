@@ -17,21 +17,31 @@
                         </div>
 
                         <div class="d-flex flex-column mb-3">
-                            <label class="fw-bolder mb-1">Nomor Dokumen</label>
-                            <p id="detail_nomor_dokumen" class="fw-light"></p>
+                            <label class="fw-bolder mb-1">Nama Dokumen</label>
+                            <p id="detail_nama_dokumen" class="fw-light"></p>
                         </div>
 
-                        <div class="d-flex flex-column mb-3">
-                            <label class="fw-bolder mb-1">Tanggal Terbit</label>
-                            <p id="detail_tgl_terbit" class="fw-light"></p>
-                        </div>
-
-                        <div class="row mb-3">
-                            <div class="col-6">
-                                <label class="fw-bolder mb-1">Tanggal Berlaku</label>
-                                <p id="detail_tgl_berlaku" class="fw-light"></p>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="d-flex flex-column mb-2">
+                            <label class="fs-sm-8 fs-lg-6 fw-bolder mb-1">File Dokumen</label>
+                            <div id="detail_file_ijazah_section">
+                                <div class="d-flex align-items-center mb-3">
+                                    <a href="#" id="detail_file_dokumen_link" target="_blank" class="btn btn-sm btn-light-primary">
+                                        Lihat File
+                                    </a>
+                                    <span id="detail_file_ijazah_name" class="ms-3 text-muted"></span>
+                                </div>
+                            </div>
+                            <div id="no_file_ijazah_section" style="display: none;">
+                                <div class="alert alert-warning">
+                                    Tidak ada file Ijazah yang diupload.
+                                </div>
                             </div>
                         </div>
+                    </div>
+
+
                     </div>
                 </div>
 

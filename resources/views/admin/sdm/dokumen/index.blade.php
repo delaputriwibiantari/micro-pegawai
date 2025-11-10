@@ -145,9 +145,8 @@
                             <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0 fs-sm-8 fs-lg-6">
                                 <th class="min-w-75px ps-5">Aksi</th>
                                 <th class="min-w-150px">Jenis Dokumen</th>
-                                <th class="min-w-150px">Nomor Dokumen</th>
-                                <th class="min-w-120px">Tanggal Terbit</th>
-                                <th class="min-w-100px">Tanggal Berlaku</th>
+                                <th class="min-w-150px">Nama Dokumen</th>
+                                <th class="min-w-120px">File Dokumen</th>
                             </tr>
                             </thead>
                             <tbody class="text-gray-800 fw-bolder fs-sm-8 fs-lg-6">

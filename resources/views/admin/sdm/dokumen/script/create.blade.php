@@ -2,23 +2,25 @@
     $('#form_create_dokumen').on('show.bs.modal', function (e) {
         fetchDataDropdown("{{ route('api.ref.jenis-dokumen') }}", '#id_jenis_dokumen', 'jenis_dokumen', 'jenis_dokumen');
 
-        $('#tgl_terbit').flatpickr({
-            dateFormat: 'Y-m-d',
-            altFormat: 'd/m/Y',
-            altInput: true,
-            allowInput: false,
-        });
-
-        $('#tgl_berlaku').flatpickr({
-            dateFormat: 'Y-m-d',
-            altFormat: 'd/m/Y',
-            altInput: true,
-            allowInput: false,
-        });
 
       $('#bt_submit_create').off('submit').on('submit', function (e) {
-
             e.preventDefault();
+            const fileDokumenInput = document.getElementById('file_dokumen');
+            const fileDokumen = fileDokumenInput.files[0];
+            const allowedTypes = ['application/pdf', 'image/jpeg', 'image/jpg', 'image/png'];
+
+            if (fileDokumen) {
+                if (fileDokumen.size > 5 * 1024 * 1024) {
+                    Swal.fire("Warning", "Ukuran file Dokumen tidak boleh lebih dari 10MB", "warning");
+                    return;
+                }
+                if (!allowedTypes.includes(fileDokumen.type)) {
+                    Swal.fire("Warning", "Format file Dokumen harus PDF, JPG, JPEG, atau PNG", "warning");
+                    return;
+                }
+
+            }
+
             Swal.fire({
                 title: 'Kamu yakin?',
                 text: 'Apakah datanya benar dan apa yang anda inginkan?',
@@ -33,10 +35,10 @@
                     DataManager.openLoading();
                     const formData = new FormData();
                     formData.append('jenis_dokumen', $('#jenis_dokumen').val());
-                    formData.append('nomor_dokumen', $('#nomor_dokumen').val());
-                    formData.append('tgl_terbit', $('#tgl_terbit').val());
-                    formData.append('tgl_berlaku', $('#tgl_berlaku').val());
-
+                    formData.append('nama_dokumen', $('#nama_dokumen').val());
+                   if (fileDokumen) {
+                        formData.append('file_dokumen', fileDokumen);
+                    }
                     const action = "{{ route('admin.dokumen.store') }}";
                     DataManager.formData(action, formData).then(response => {
                         if (response.success) {

@@ -55,24 +55,24 @@
                     }
                 },
                 {
-                    data: 'nomor_dokumen',
-                    name: 'nomor_dokumen',
+                    data: 'nama_dokumen',
+                    name: 'nama_dokumen',
                     render: function (data) {
                         return data;
                     }
                 },
+
                  {
-                    data: 'tgl_terbit',
-                    name: 'tgl_terbit',
-                    render: function (data) {
-                        return data;
-                    }
-                },
-                 {
-                    data: 'tgl_berlaku',
-                    name: 'tgl_berlaku',
-                    render: function (data) {
-                        return data;
+                    data: 'file_dokumen',
+                    name: 'file_dokumen',
+                    render: function (data, type, row) {
+                        if (data) {
+                            const fileUrl = '{{ route('admin.view-file', [':folder', ':filename']) }}'
+                                .replace(':folder', 'pendidikan')
+                                .replace(':filename', data);
+                            return `<a href="${fileUrl}" target="_blank" class="btn btn-sm btn-light-primary">Lihat</a>`;
+                        }
+                        return '-';
                     }
                 },
             ],

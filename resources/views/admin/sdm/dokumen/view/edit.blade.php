@@ -21,21 +21,15 @@
                             </div>
 
                             <div class="d-flex flex-column mb-2">
-                                <label class="fw-bolder mb-1">Nomor Dokumen</label>
-                                <input type="text" id="edit_nomor_dokumen" class="form-control form-control-sm" maxlength="30" />
+                                <label class="fw-bolder mb-1">Nama Dokumen</label>
+                                <input type="text" id="edit_nama_dokumen" class="form-control form-control-sm" maxlength="30" />
                             </div>
 
-                            <div class="d-flex flex-column mb-2">
-                                <label class="fw-bolder mb-1 required">Tanggal Terbit</label>
-                                <input type="text" id="edit_tgl_terbit" class="form-control form-control-sm" required />
+                             <div class="d-flex flex-column mb-2">
+                                <label class="fw-bolder mb-1">File Dokumen</label>
+                                <input type="file" id="edit_file_dokumen" name="file_dokumen" class="form-control form-control-sm" accept=".pdf,.jpg,.jpeg,.png">
                             </div>
 
-                            <div class="row">
-                                <div class="col-6">
-                                    <label class="fw-bolder mb-1 required">Tanggal Berlaku</label>
-                                    <input type="text" id="edit_tgl_berlaku" class="form-control form-control-sm" required />
-                                </div>
-                            </div>
                     </div>
                 </div>
 

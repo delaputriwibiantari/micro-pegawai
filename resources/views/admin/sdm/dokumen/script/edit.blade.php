@@ -4,28 +4,23 @@
         const id = button.data("id");
         const detail = "{{ route('admin.sdm.pendidikan.show', ':id') }}";
 
-         let edit_tanggal_sk = $("#edit_tgl_terbit").flatpickr({
-            dateFormat: "Y-m-d",
-            altFormat: "d/m/Y",
-            allowInput: false,
-            altInput: true,
-        });
-        let edit_tanggal_sk = $("#edit_tgl_berlaku").flatpickr({
-            dateFormat: "Y-m-d",
-            altFormat: "d/m/Y",
-            allowInput: false,
-            altInput: true,
-        });
-
 
     DataManager.fetchData(detail.replace(':id', id)).then(response => {
             if (response.success) {
                 const data = response.data;
                     $('#edit_id_jenis_dokumen').val(data.id_jenis_dokumen).trigger('change');
-                    $('#edit_nomor_dokumen').val(response.data.nomor_dokumen);
-                     edit_tgl_terbit.setDate(data.tgl_terbit);
-                     edit_tgl_berlaku.setDate(data.tgl_berlaku);
+                    $('#edit_nama_dokumen').val(response.data.nama_dokumen);
 
+                    if (data.file_dokumen) {
+                    $('#current_file_dokumen_name').text(data.file_dokumen);
+                    const fileUrl = '{{ route('admin.view-file', [':folder', ':filename']) }}'
+                        .replace(':folder', 'dokumen')
+                        .replace(':filename', data.file_dokumen);
+                    $('#current_file_dokumen_link').attr('href', fileUrl);
+                    $('#current_file_dokumen_info').show();
+                } else {
+                    $('#current_file_dokumen_info').hide();
+                }
 
                 fetchDataDropdown("{{ route('api.ref.jenis-dokumen') }}", "#edit_id_jenis_dokumen", "jenis_dokumen", "jenis_dokumen", function () {
                     $("#edit_id_jenis_dokumen").val(data.id_jenis_dokumen).trigger("change");
@@ -40,6 +35,22 @@
 
         $("#bt_submit_edit").on("submit", function (e) {
             e.preventDefault();
+            const fileDokumenInput = document.getElementById('edit_file_dokumen');
+            const fileDokumen = fileDokumenInput.files[0];
+            const allowedTypes = ['application/pdf', 'image/jpeg', 'image/jpg', 'image/png'];
+
+            if (fileDokumen) {
+                if (fileDokumen.size > 5 * 1024 * 1024) {
+                    Swal.fire("Warning", "Ukuran file Dokumen tidak boleh lebih dari 10MB", "warning");
+                    return;
+                }
+                if (!allowedTypes.includes(fileDokumen.type)) {
+                    Swal.fire("Warning", "Format file Dokumen harus PDF, JPG, JPEG, atau PNG", "warning");
+                    return;
+                }
+
+            }
+
             Swal.fire({
                 title: 'Kamu yakin?',
                 text: 'Apakah datanya benar dan apa yang anda inginkan?',
@@ -55,8 +66,9 @@
                     const formData = new FormData();
                     formData.append('id_jenis_dokumen', $('#edit_id_jenis_dokumen').val());
                     formData.append('nomor_dokumen', $('#edit_nomor_dokumen').val());
-                    formData.append('tgl_terbit', $('#edit_tgl_terbit').val());
-                    formData.append('tgl_berlaku', $('#edit_tgl_berlaku').val());
+                     if (fileIjazah) {
+                        formData.append('file_dokumen', fileDokumen);
+                    }
 
                     const updateUrl = "{{ route('admin.sdm.dokumen.update', ':id') }}";
                     DataManager.formData(updateUrl.replace(":id", id), formData).then(response => {
