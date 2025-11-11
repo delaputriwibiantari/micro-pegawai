@@ -87,10 +87,10 @@ class  PersonService{
         }
 
         if ($person && $person->foto) {
-            return $this->fileUploadService->updateFileByType($foto, $person->foto, 'person_foto');
+            return $this->fileUploadService->updateFileByType($foto, $person->foto, 'foto');
         }
 
-        return $this->fileUploadService->uploadByType($foto, 'person_foto');
+        return $this->fileUploadService->uploadByType($foto, 'foto');
     }
 
     public function findByNik(string $nik): ?Person
