@@ -10,7 +10,6 @@
                 </div>
 
                 <div class="modal-body">
-
                     <div class="row">
                         <div class="col-12">
                             <div class="col-md-13">
@@ -33,7 +32,7 @@
                                     <button type="button" id="btn_search_person" class="btn btn-primary btn-sm me-2">
                                         Cari Person
                                     </button>
-                                    <button type="button" id="btn_clear_person" class="btn btn-dark btn-sm" data-bs-dismiss="modal">
+                                    <button type="button" id="btn_clear_person"  class="btn btn-sm btn-dark fs-sm-8 fs-lg-6" class="btn btn-sm btn-warning">
                                         Clear
                                     </button>
                                 </div>
@@ -114,6 +113,7 @@
                                     <div class="invalid-feedback"></div>
                                 </div>
                             </div>
+                        </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-sm btn-dark fs-sm-8 fs-lg-6" data-bs-dismiss="modal">
                                     Tutup
@@ -123,8 +123,6 @@
                                     Simpan
                                 </button>
                             </div>
-                        </div>
-
                 </div>
             </div>
         </form>

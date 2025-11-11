@@ -1,11 +1,11 @@
 <div class="modal fade" id="form_create_asuransi" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog"
      aria-hidden="true">
    <div class="modal-dialog modal-lg" role="document">
-        <form method="post" id="bt_submit_create">
+        <form method="post" id="bt_submit_create" enctype="multipart/form-data">
             @csrf
             <div class="modal-content shadow-lg rounded-4">
                 <div class="modal-header bg-light border-bottom">
-                    <h5 class="modal-title fw-bold text-primary" id="exampleModalLabel">Tambah SDM</h5>
+                    <h5 class="modal-title fw-bold text-primary">Tambah Keluarga</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
@@ -32,7 +32,7 @@
                                     <button type="button" id="btn_search_person" class="btn btn-primary btn-sm me-2">
                                         Cari Person
                                     </button>
-                                    <button type="button" id="btn_clear_person" class="btn btn-dark btn-sm" data-bs-dismiss="modal">
+                                    <button type="button" id="btn_clear_person"  class="btn btn-sm btn-dark fs-sm-8 fs-lg-6" class="btn btn-sm btn-warning">
                                         Clear
                                     </button>
                                 </div>
@@ -144,14 +144,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-sm btn-dark fs-sm-8 fs-lg-6" data-bs-dismiss="modal">
-                             Tutup
-                        </button>
-                    <button type="submit" class="btn btn-sm btn-primary fs-sm-8 fs-lg-6" id="btn_save"
-                          style="display:none;">
-                         Simpan
-                    </button>
+                      <div class="modal-footer">
+                            <button type="button" class="btn btn-sm btn-dark fs-sm-8 fs-lg-6" data-bs-dismiss="modal">
+                               Tutup
+                            </button>
+                            <button type="submit" class="btn btn-sm btn-primary fs-sm-8 fs-lg-6" id="btn_save"
+                                    style="display:none;">
+                                 Simpan
+                            </button>
+                      </div>
                 </div>
             </div>
         </form>

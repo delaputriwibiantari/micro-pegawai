@@ -1,9 +1,11 @@
 <div class="modal fade" id="form_detail" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog"
      aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Detail Pendidikan</h5>
+                <h5 class="modal-title" id="exampleModalLabel">
+                    Detail Asuransi
+                </h5>
                 <a type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></a>
             </div>
             <div class="modal-body">
@@ -39,7 +41,6 @@
 
                     <!-- Kolom 2 -->
                     <div class="col-md-6">
-
                         <div class="d-flex flex-column mb-3">
                             <label class="fw-bolder mb-1">Jumlah SKS</label>
                             <p id="detail_sks" class="fw-light"></p>
@@ -54,10 +55,7 @@
                             <label class="fw-bolder mb-1">Sumber Biaya</label>
                             <p id="detail_sumber_biaya" class="fw-light"></p>
                         </div>
-
-
-                            <div class="col-md-6">
-                                <div class="d-flex flex-column mb-2">
+                            <div class="d-flex flex-column mb-3">
                                     <label class="fs-sm-8 fs-lg-6 fw-bolder mb-1">File Ijazah</label>
                                     <div id="detail_file_ijazah_section">
                                         <div class="d-flex align-items-center mb-3">
@@ -72,10 +70,8 @@
                                             Tidak ada file Ijazah yang diupload.
                                         </div>
                                     </div>
-                                </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="d-flex flex-column mb-2">
+                            <div class="d-flex flex-column mb-3">
                                     <label class="fs-sm-8 fs-lg-6 fw-bolder mb-1">File Transkip</label>
                                     <div id="detail_file_transkip_section">
                                         <div class="d-flex align-items-center mb-3">
@@ -90,9 +86,7 @@
                                             Tidak ada file Transkip yang diupload.
                                         </div>
                                     </div>
-                                </div>
                             </div>
-
                     </div>
                 </div>
             </div>
