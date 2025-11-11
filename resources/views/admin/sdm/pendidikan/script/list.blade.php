@@ -48,8 +48,8 @@
                 searchable: false
             },
             {
-                    data: 'id_jenjang_pendidikan',
-                    name: 'id_jenjang_pendidikan',
+                    data: 'jenjang_pendidikan',
+                    name: 'jenjang_pendidikan',
                     render: function (data) {
                         return data;
                     }

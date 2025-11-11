@@ -50,9 +50,7 @@
             {
                     data: 'jenis_dokumen',
                     name: 'jenis_dokumen',
-                    render: function (data) {
-                        return data;
-                    }
+                    
                 },
                 {
                     data: 'nama_dokumen',

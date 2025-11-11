@@ -13,7 +13,7 @@
             <a class="menu-link" href="{{ route('index') }}">
                 <span class="menu-title">Dashboard</span>
             </a>
-            <a class="menu-link {{ request()->routeIs('admin.person.index') ? 'active' : '' }}"
+            <a class="menu-link {{ request()->routeIs('admin.admin.person.index') ? 'active' : '' }}"
                href="{{ route('admin.admin.person.index') }}">
                 <span class="menu-title">Person</span>
             </a>

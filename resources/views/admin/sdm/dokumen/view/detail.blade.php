@@ -8,9 +8,6 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <!-- Kolom 1 -->
-                    <div class="col-md-6">
-                        <h6 class="text-primary fw-bold mb-3 border-bottom border-primary pb-2">Informasi Akademik</h6>
                         <div class="d-flex flex-column mb-3">
                             <label class="fw-bolder mb-1">Jenis Dokumen</label>
                             <p id="detail_id_jenis_dokumen" class="fw-light"></p>
@@ -21,7 +18,7 @@
                             <p id="detail_nama_dokumen" class="fw-light"></p>
                         </div>
 
-                <div class="row">
+
                     <div class="col-md-6">
                         <div class="d-flex flex-column mb-2">
                             <label class="fs-sm-8 fs-lg-6 fw-bolder mb-1">File Dokumen</label>
@@ -41,13 +38,8 @@
                         </div>
                     </div>
 
-
                     </div>
                 </div>
-
-                    </div>
-                </div>
-            </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal" aria-label="Close">
                     Tutup

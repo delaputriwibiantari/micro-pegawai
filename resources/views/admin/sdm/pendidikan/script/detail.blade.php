@@ -12,7 +12,7 @@
                     $('#detail_institusi').text(response.data.institusi);
                     $('#detail_jurusan').text(response.data.jurusan);
                     $('#detail_tahun_masuk').text(response.data.tahun_masuk);
-                    $('#detail_tahun_lulus').text(formatter.formatDate(response.data.tahun_lulus));
+                    $('#detail_tahun_lulus').text(response.data.tahun_lulus);
                     $('#detail_sks').text(response.data.sks);
                     $('#detail_jenis_nilai').text(response.data.jenis_nilai === 'IPK' ? 'IPK' : (response.data.jenis_nilai === 'NILAI' ? 'NILAI' : response.data.jenis_nilai));
                     $('#detail_sumber_biaya').text(response.data.sumber_biaya === 'BEASISWA' ? 'BEASISWA' : (response.data.sumber_biaya === 'MANDIRI' ? 'MANDIRI' : response.data.sumber_biaya));

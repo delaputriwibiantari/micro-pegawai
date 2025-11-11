@@ -9,8 +9,6 @@
 
                 <div class="modal-body">
                     <div class="row">
-
-                        <div class="col-md-6">
                             <div class="d-flex flex-column mb-2">
                                 <label class="fw-bolder mb-1 required">Jenis Dokumen</label>
                                 <select id="edit_id_jenis_dokumen" name="id_jenis_dokumen"
@@ -30,8 +28,6 @@
                                 <label class="fw-bolder mb-1">File Dokumen</label>
                                 <input type="file" id="edit_file_dokumen" name="file_dokumen" class="form-control form-control-sm" accept=".pdf,.jpg,.jpeg,.png">
                             </div>
-
-                        </div>
 
                     </div>
                 </div>
