@@ -30,8 +30,8 @@
                     </div>
                     <div class="col-md-4">
                         <div class="d-flex flex-column mb-2">
-                            <label class="fs-sm-8 fs-lg-6 fw-bolder mb-1">Nama Peserta</label>
-                            <p id="detail_nama_peserta" class="fw-light fs-sm-8 fs-lg-6"></p>
+                            <label class="fs-sm-8 fs-lg-6 fw-bolder mb-1">Nama Anggota</label>
+                            <p id="detail_nama_anggota" class="fw-light fs-sm-8 fs-lg-6"></p>
                         </div>
                     </div>
                     <div class="col-md-4">

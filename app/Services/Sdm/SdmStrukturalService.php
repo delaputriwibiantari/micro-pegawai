@@ -160,11 +160,11 @@ final readonly class SdmStrukturalService
             ->first();
 
         $uniqueCode = substr(md5(uniqid()), 0, 6);
-        $template = '{id_sdm}_{nama}_{dokumen}_{unique_code}';
+        $template = '{id_sdm}_{nama_lengkap}_{dokumen}_{unique_code}';
 
         $data = [
             'id_sdm' => $personSdm->uuid_person ?? 'unknown',
-            'nama' => $personSdm->nama ?? 'unknown',
+            'nama_lengkap' => $personSdm->nama_lengkap ?? 'unknown',
             'dokumen' => $dokumen,
             'unique_code' => $uniqueCode,
         ];
@@ -188,11 +188,11 @@ final readonly class SdmStrukturalService
             ->first();
 
         $uniqueCode = substr(md5(uniqid()), 0, 6);
-        $template = '{id_sdm}_{nama}_{dokumen}_{unique_code}';
+        $template = '{id_sdm}_{nama_lengkap}_{dokumen}_{unique_code}';
 
         $data = [
             'id_sdm' => $personSdm->uuid_person ?? 'unknown',
-            'nama' => $personSdm->nama ?? 'unknown',
+            'nama_lengkap' => $personSdm->nama_lengkap ?? 'unknown',
             'dokumen' => $dokumen,
             'unique_code' => $uniqueCode,
         ];

@@ -115,7 +115,7 @@ class  SdmPendidikanService{
             ->first();
 
         $uniqueCode = substr(md5(uniqid()), 0, 6);
-        $template = '{id_sdm}_{nama}_{dokumen}_{unique_code}';
+        $template = '{id_sdm}_{nama_lengkap}_{dokumen}_{unique_code}';
 
         $data = [
             'id_sdm' => $personSdm->uuid_person ?? 'unknown',
@@ -127,7 +127,7 @@ class  SdmPendidikanService{
         return $this->fileUploadService->uploadWithTemplate($file, 'pendidikan', $template, $data);
     }
 
-    public function updateFileUpload($file, string $oldFileName, int $idSdm, string $dokumen): ?array
+    public function updateFileUpload($file, ?string $oldFileName, int $idSdm, string $dokumen): ?array
     {
         if (!$file) {
             return null;
@@ -143,7 +143,7 @@ class  SdmPendidikanService{
             ->first();
 
         $uniqueCode = substr(md5(uniqid()), 0, 6);
-        $template = '{id_sdm}_{nama}_{dokumen}_{unique_code}';
+        $template = '{id_sdm}_{nama_lengkap}_{dokumen}_{unique_code}';
 
         $data = [
             'id_sdm' => $personSdm->uuid_person ?? 'unknown',
@@ -151,6 +151,9 @@ class  SdmPendidikanService{
             'dokumen' => $dokumen,
             'unique_code' => $uniqueCode,
         ];
+
+        // Handle null oldFileName - berikan default value string kosong
+        $oldFileName = $oldFileName ?? '';
 
         return $this->fileUploadService->updateWithTemplate($file, $oldFileName, 'pendidikan', $template, $data);
     }

@@ -147,7 +147,7 @@
                             <th class="min-w-150px">Nip</th>
                             <th class="min-w-150px">Status Pegawai</th>
                             <th class="min-w-100px">Tipe Pegawai</th>
-                            <th class="min-w-80px">Tahun Masuk</th>
+                            <th class="min-w-80px">Tanggal Masuk</th>
                         </tr>
                         </thead>
                         <tbody class="text-gray-800 fw-bolder fs-sm-8 fs-lg-6">
@@ -157,7 +157,7 @@
                                 <td>{{ $item->nip ?? '-' }}</td>
                                 <td>{{ $item->status_pegawai ?? '-' }}</td>
                                 <td>{{ $item->tipe_pegawai ?? '-' }}</td>
-                                <td>{{ $item->tahun_masuk ?? '-' }}</td>
+                                <td class="">{{ $item->tanggal_masuk ? Carbon::parse($item->tanggal_masuk)->format('d M Y') : '-' }}</td>
                             </tr>
                         @empty
                             <tr>

@@ -27,7 +27,7 @@ class SdmPendidikanStoreRequest extends FormRequest
             'uuid_person' => 'required|uuid|exists:person,uuid_person',
             'id_jenjang_pendidikan' => 'nullable|integer|exists:ref_jenjang_pendidikan,id_jenjang_pendidikan',
             'institusi' => 'required|string|max:255',
-            'jurusan' => 'required|string|max:255',
+            'jurusan' => 'nullable|string|max:255',
             'tahun_masuk' => 'nullable|numeric|digits:4|min:1900|max:2099',
             'tahun_lulus' => 'nullable|numeric|digits:4|min:1900|max:2099',
             'jenis_nilai' => 'required|in:IPK,NILAI',
@@ -107,7 +107,7 @@ class SdmPendidikanStoreRequest extends FormRequest
             'file_ijazah.file' => 'File ijazah harus berupa file.',
             'file_ijazah.max' => 'File ijazah maksimal 10MB.',
             'file_ijazah.mimes' => 'File ijazah harus bertipe pdf, jpg, jpeg, atau png.',
-            
+
             'file_transkip.file' => 'File transkip harus berupa file.',
             'file_transkip.max' => 'File transkip maksimal 10MB.',
             'file_transkip.mimes' => 'File transkip harus bertipe pdf, jpg, jpeg, atau png.',

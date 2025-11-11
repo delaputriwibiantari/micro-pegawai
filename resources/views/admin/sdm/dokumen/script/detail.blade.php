@@ -7,7 +7,7 @@
         DataManager.fetchData(detail.replace(':id', id)).then(response => {
                 if (response.success) {
                     const data = response.data;
-                    $("#detail_id_jenis_dokumen").text(data.id_jenis_dokumen);
+                    $("#detail_id_jenis_dokumen").text(data.jenis_dokumen);
                     $("#detail_nama_dokumen").text(data.nama_dokumen);
                    if (data.file_dokumen) {
                         $('#detail_file_dokumen_name').text(data.file_dokumen);

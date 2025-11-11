@@ -9,8 +9,8 @@
                 if (response.success) {
                     $('#detail_nama_lengkap').text(response.data.nama_lengkap);
                     $('#detail_nik').text(response.data.nik);
-                    $('#detail_id_jenis_asuransi').text(response.data.id_jenis_asuransi);
-                    $('#detail_nama_asuransi').text(response.data.nama_asuransi);
+                    $('#detail_id_jenis_asuransi').text(response.data.nama_asuransi ?? '-'); // ✅ ubah ini
+                    $('#detail_nama_anggota').text(response.data.nama_lengkap ?? '-');
                     $('#detail_nomer_peserta').text(response.data.nomer_peserta);
                     $('#detail_kartu_anggota').text(response.data.kartu_anggota);
                     $('#detail_status').text(response.data.status);

@@ -8,7 +8,7 @@
         DataManager.fetchData(detail.replace(':id', id)).then(response => {
             if (response.success) {
                 const data = response.data;
-                    $('#detail_id_jenjang_pendidikan').text(response.data.id_jenjang_pendidikan);
+                    $('#detail_id_jenjang_pendidikan').text(response.data.jenjang_pendidikan);
                     $('#detail_institusi').text(response.data.institusi);
                     $('#detail_jurusan').text(response.data.jurusan);
                     $('#detail_tahun_masuk').text(response.data.tahun_masuk);

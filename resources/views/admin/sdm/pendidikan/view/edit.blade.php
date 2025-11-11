@@ -26,7 +26,7 @@
                             </div>
 
                             <div class="d-flex flex-column mb-2">
-                                <label class="fw-bolder mb-1 required">Jurusan</label>
+                                <label class="fw-bolder mb-1">Jurusan</label>
                                 <input type="text" id="edit_jurusan" class="form-control form-control-sm" required />
                             </div>
 
@@ -53,7 +53,7 @@
                             </div>
 
                             <div class="d-flex flex-column mb-2">
-                                <label class="fw-bolder mb-1 required">Jumlah SKS</label>
+                                <label class="fw-bolder mb-1">Jumlah SKS</label>
                                 <input type="text" id="edit_sks" class="form-control form-control-sm" required />
                             </div>
 

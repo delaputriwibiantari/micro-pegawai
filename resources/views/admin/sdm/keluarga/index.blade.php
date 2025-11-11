@@ -144,13 +144,13 @@
                             <thead>
                             <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0 fs-sm-8 fs-lg-6">
                                 <th class="min-w-75px ps-5">Aksi</th>
-                                <th class="min-w-150px">ID Person</th>
-                                <th class="min-w-150px">ID SDM</th>
-                                <th class="min-w-150px">Hubungan</th>
-                                <th class="min-w-150px">Sataus Tanggungan</th>
-                                <th class="min-w-150px">Pekerjaan</th>
+                                <th class="min-w-150px">Nama Anggota</th>
+                                <th class="min-w-120px">NIK Anggota</th>
+                                <th class="min-w-120px">Hubungan</th>
+                                <th class="min-w-100px">Status Tanggungan</th>
+                                <th class="min-w-120px">Pekerjaan</th>
                                 <th class="min-w-120px">Pendidikan Terakhir</th>
-                                <th class="min-w-100px">penghasilan</th>
+                                <th class="min-w-120px">Penghasilan</th>
                             </tr>
                             </thead>
                             <tbody class="text-gray-800 fw-bolder fs-sm-8 fs-lg-6">

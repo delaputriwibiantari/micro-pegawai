@@ -2,7 +2,7 @@
     function load_data() {
         $.fn.dataTable.ext.errMode = 'none';
         const table = $('#example').DataTable({
-            dom: 'lBfrtip',
+            dom: "lBfrtip",
             stateSave: true,
             stateDuration: -1,
             pageLength: 10,
@@ -18,13 +18,13 @@
                 columns: ':not(.noVis)'
             },
                 {
-                    extend: 'csv',
+                    extend: "csv",
                     titleAttr: 'Csv',
                     action: newexportaction,
                     className: 'btn btn-sm btn-dark rounded-2',
                 },
                 {
-                    extend: 'excel',
+                    extend: "excel",
                     titleAttr: 'Excel',
                     action: newexportaction,
                     className: 'btn btn-sm btn-dark rounded-2',
@@ -35,60 +35,62 @@
             responsive: true,
             searchHighlight: true,
             ajax: {
-                url: '{{ route('admin.sdm.keluarga.list', $id)}}',
+                url: '{{ route('admin.sdm.keluarga.list', $id) }}',
                 cache: false,
-
             },
             order: [],
             ordering: true,
             columns: [{
-                data: 'action',
-                name: 'action',
+                data: "action",
+                name: "action",
                 orderable: false,
                 searchable: false
             },
-            {
-                    data: 'id_person',
-                    name: 'id_person',
-
+                {
+                    data: 'nama_anggota',
+                    name: 'nama_anggota'
                 },
                 {
-                    data: 'id_sdm',
-                    name: 'id_sdm',
-
+                    data: 'nik_anggota',
+                    name: 'nik_anggota'
                 },
-            {
+                {
                     data: 'hubungan',
-                    name: 'hubungan',
-                    
-
+                    name: 'hubungan'
                 },
                 {
                     data: 'status_tanggungan',
                     name: 'status_tanggungan',
                     render: function (data) {
-                        return data === 'YA' ? 'YA' : (data === 'TIDAK' ? 'TIDAK' : data);
+                        return data;
                     }
                 },
-                 {
+                {
                     data: 'pekerjaan',
                     name: 'pekerjaan',
                     render: function (data) {
                         return data;
                     }
                 },
-                 {
+                {
                     data: 'pendidikan_terakhir',
                     name: 'pendidikan_terakhir',
                     render: function (data) {
                         return data;
                     }
                 },
-                 {
+                {
                     data: 'penghasilan',
                     name: 'penghasilan',
                     render: function (data) {
-                        return data;
+                        if (!data || data === null || data === '') return '-';
+                        try {
+                            const number = parseFloat(data);
+                            if (isNaN(number)) return '-';
+                            return 'Rp ' + new Intl.NumberFormat('id-ID').format(number);
+                        } catch (e) {
+                            return data;
+                        }
                     }
                 },
             ],
@@ -99,12 +101,17 @@
                     table.search(query).draw();
                 }
             } catch (error) {
-                console.error('Error during search:', error);
+                console.error("Error during search:", error);
             }
         }, 1000);
 
         $('#example_filter input').unbind().on('input', function () {
             performOptimizedSearch($(this).val());
+        });
+
+        $('#list_id_hubungan_keluarga').on('change', function () {
+            rowsSelected = [];
+            table.ajax.reload();
         });
     }
 

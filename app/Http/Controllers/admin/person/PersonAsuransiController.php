@@ -110,8 +110,8 @@ final class PersonAsuransiController extends Controller
 
         return $this->transactionService->handleWithTransaction(function () use ($request, $data) {
             $payload = $request->only([
-                'id_jenis_asuransi', 'id_person', 'nomer_peserta', 'kartu_anggota',
-                'status', 'tanggal_mulai', 'tanggal_berakhir', 'keterangan',
+                'id_jenis_asuransi', 'nomer_peserta', 'kartu_anggota',
+                'tanggal_mulai', 'tanggal_berakhir', 'keterangan',  
             ]);
             $updatedData = $this->personAsuransiService->update($data, $payload);
 
