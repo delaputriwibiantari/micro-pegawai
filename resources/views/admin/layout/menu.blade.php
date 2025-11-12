@@ -84,6 +84,10 @@
                        href="{{ route('admin.master.jabatan.index') }}">
                         <span class="menu-title px-4">Jabatan</span>
                     </a>
+                    <a class="menu-link {{ request()->routeIs('admin.master.user.*') ? 'active' : '' }}"
+                       href="{{ route('admin.master.user.index') }}">
+                        <span class="menu-title px-4">Manajemen User</span>
+                    </a>
                 </div>
             </div>
         </div>

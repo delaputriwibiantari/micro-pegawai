@@ -36,6 +36,7 @@ class PortalController extends Controller
     {
        $username = $request->input('username');
        $password = $request->input('password');
+       
 
        $validationRules =[
            'username' => 'required',

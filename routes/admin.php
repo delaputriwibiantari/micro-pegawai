@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\master\MasterJabatanController;
 use App\Http\Controllers\Admin\Master\MasterPeriodeController;
 use App\Http\Controllers\admin\master\MasterUnitController;
+use App\Http\Controllers\admin\master\MasterUserController;
 use App\Http\Controllers\admin\pendidikan\PendidikanController;
 use App\Http\Controllers\admin\person\PersonAsuransiController;
 use App\Http\Controllers\Content\PortalController;
@@ -256,6 +257,19 @@ Route::prefix('master')->name('master.')->group(function () {
         Route::post('/store', [MasterUnitController::class, 'store'])
             ->name('store');
         Route::post('update/{id}', [MasterUnitController::class, 'update'])
+            ->name('update');
+    });
+
+    Route::prefix('user')->name('user.')->group(function () {
+        Route::get('/', [MasterUserController::class, 'index'])
+            ->name('index');
+        Route::get('data', [MasterUserController::class, 'list'])
+            ->name('list');
+        Route::get('show/{id}', [MasterUserController::class, 'show'])
+            ->name('show');
+        Route::post('/store', [MasterUserController::class, 'store'])
+            ->name('store');
+        Route::post('update/{id}', [MasterUserController::class, 'update'])
             ->name('update');
     });
 
