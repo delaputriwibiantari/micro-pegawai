@@ -17,7 +17,7 @@ class SdmRekeningUpdateRequest extends FormRequest
     {
         return [
             'no_rekening' => 'sometimes|string|max:25',
-            'bank' => 'sometimes|string|max:50',
+            'id_bank' => 'sometimes|exists:bank,id_bank',
             'nama_pemilik' => 'sometimes|string|max:100|nullable',
             'kode_bank' => 'sometimes|string|max:10|nullable',
             'cabang_bank' => 'sometimes|string|max:100|nullable',
@@ -31,7 +31,7 @@ class SdmRekeningUpdateRequest extends FormRequest
     {
         return [
             'no_rekening' => 'Nomor Rekening',
-            'bank' => 'Bank',
+            'id_bank' => 'Id Bank',
             'nama_pemilik' => 'Nama Pemilik',
             'kode_bank' => 'Kode Bank',
             'cabang_bank' => 'Cabang Bank',
@@ -57,8 +57,8 @@ class SdmRekeningUpdateRequest extends FormRequest
         return [
             'no_rekening.string' => 'Nomor rekening harus berupa teks.',
             'no_rekening.max' => 'Nomor rekening maksimal 25 karakter.',
-            'bank.string' => 'Nama bank harus berupa teks.',
-            'bank.max' => 'Nama bank maksimal 50 karakter.',
+            'id_bank.integer' => 'Id Bank tidak valid.',
+            'id_bank.exists' => 'Id Bank tidak ditemukan.',
             'nama_pemilik.string' => 'Nama pemilik harus berupa teks.',
             'nama_pemilik.max' => 'Nama pemilik maksimal 100 karakter.',
             'kode_bank.string' => 'Kode bank harus berupa teks.',

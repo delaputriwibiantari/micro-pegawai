@@ -8,13 +8,17 @@
             if (response.success) {
                 const data = response.data;
                 $("#edit_no_rekening").val(data.no_rekening);
-                $("#edit_bank").val(data.bank);
+                $("#edit_id_bank").val(data.bank).trigger("change");
                 $("#edit_nama_pemilik").val(data.nama_pemilik);
                 $("#edit_kode_bank").val(data.kode_bank);
                 $("#edit_cabang_bank").val(data.cabang_bank);
                 $("#edit_jenis_rekening").val(data.jenis_rekening).trigger("change");
                 $("#edit_status_aktif").val(data.status_aktif).trigger("change");
                 $("#edit_rekening_utama").val(data.rekening_utama).trigger("change");
+
+                fetchDataDropdown("{{ route('api.ref.bank') }}", "#edit_id_bank", "bank", "nama_bank", function () {
+                    $("#edit_id_bank").val(data.id_bank).trigger("change");
+                });
 
             } else {
                 Swal.fire("Warning", response.message, "warning");
@@ -38,16 +42,12 @@
                 $('#edit_no_rekening').focus();
                 return;
             }
-            if (!$('#edit_bank').val()) {
+            if (!$('#edit_id_bank').val()) {
                 Swal.fire('Warning', 'Nama bank wajib diisi', 'warning');
-                $('#edit_bank').focus();
+                $('#edit_id_bank').focus();
                 return;
             }
-            if ($('#edit_bank').val().length > 50) {
-                Swal.fire('Warning', 'Nama bank maksimal 50 karakter', 'warning');
-                $('#edit_bank').focus();
-                return;
-            }
+
 
             // Optional field length validations
             if ($('#edit_nama_pemilik').val() && $('#edit_nama_pemilik').val().length > 100) {

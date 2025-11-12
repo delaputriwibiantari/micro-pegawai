@@ -26,10 +26,14 @@
                         </div>
                         <div class="col-md-6">
                             <div class="d-flex flex-column mb-2">
-                                <label class="fs-sm-8 fs-lg-6 fw-bolder mb-1 required">Bank</label>
-                                <input type="text" name="bank"
-                                       class="form-control form-control-sm fs-sm-8 fs-lg-6"
-                                       id="bank" placeholder="Masukkan nama bank" maxlength="50" required>
+                                <label class="fs-sm-8 fs-lg-6 fw-bolder mb-1 required">Nama Bank</label>
+                                <select data-control="select2"
+                                        class="form-select form-select-sm fs-sm-8 fs-lg-6"
+                                        id="id_bank"
+                                        name="id_bank"
+                                        data-placeholder="Pilih Bank"
+                                        data-allow-clear="true" required>
+                                </select>
                                 <div class="invalid-feedback"></div>
                             </div>
                         </div>

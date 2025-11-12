@@ -1,5 +1,6 @@
 <script defer>
     $("#form_create").on("show.bs.modal", function (e) {
+        fetchDataDropdown("{{ route('api.ref.bank') }}", '#id_bank', 'bank', 'nama_bank');
         $("#bt_submit_create").on("submit", function (e) {
             e.preventDefault();
 
@@ -14,14 +15,14 @@
                 $('#no_rekening').focus();
                 return;
             }
-            if (!$('#bank').val()) {
+            if (!$('#id_bank').val()) {
                 Swal.fire('Warning', 'Nama bank wajib diisi', 'warning');
-                $('#bank').focus();
+                $('#id_bank').focus();
                 return;
             }
-            if ($('#bank').val().length > 50) {
+            if ($('#id_bank').val().length > 50) {
                 Swal.fire('Warning', 'Nama bank maksimal 50 karakter', 'warning');
-                $('#bank').focus();
+                $('#id_bank').focus();
                 return;
             }
 
@@ -61,7 +62,7 @@
                     const input = {
                         "uuid_person": "{{ $id }}",
                         "no_rekening": $("#no_rekening").val(),
-                        "bank": $("#bank").val(),
+                        "id_bank": $("#id_bank").val(),
                         "nama_pemilik": $("#nama_pemilik").val(),
                         "kode_bank": $("#kode_bank").val(),
                         "cabang_bank": $("#cabang_bank").val(),

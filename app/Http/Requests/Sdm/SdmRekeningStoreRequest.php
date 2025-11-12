@@ -17,8 +17,8 @@ class SdmRekeningStoreRequest extends FormRequest
     {
         return [
             'uuid_person' => 'required|uuid|exists:person,uuid_person',
+            'id_bank' => 'required|exists:bank,id_bank',
             'no_rekening' => 'required|string|max:25',
-            'bank' => 'required|string|max:50',
             'nama_pemilik' => 'nullable|string|max:100',
             'kode_bank' => 'nullable|string|max:10',
             'cabang_bank' => 'nullable|string|max:100',
@@ -33,7 +33,7 @@ class SdmRekeningStoreRequest extends FormRequest
         return [
             'uuid_person' => 'UUID Person',
             'no_rekening' => 'Nomor Rekening',
-            'bank' => 'Bank',
+            'id_bank' => 'Id Bank',
             'nama_pemilik' => 'Nama Pemilik',
             'kode_bank' => 'Kode Bank',
             'cabang_bank' => 'Cabang Bank',
@@ -63,9 +63,9 @@ class SdmRekeningStoreRequest extends FormRequest
             'no_rekening.required' => 'Nomor rekening wajib diisi.',
             'no_rekening.string' => 'Nomor rekening harus berupa teks.',
             'no_rekening.max' => 'Nomor rekening maksimal 25 karakter.',
-            'bank.required' => 'Nama bank wajib diisi.',
-            'bank.string' => 'Nama bank harus berupa teks.',
-            'bank.max' => 'Nama bank maksimal 50 karakter.',
+            'id_bank.required' => 'Id Bank wajib diisi.',
+            'id_bank.integer' => 'Id Bank tidak valid.',
+            'id_bank.exists' => 'Id Bank tidak ditemukan.',
             'nama_pemilik.string' => 'Nama pemilik harus berupa teks.',
             'nama_pemilik.max' => 'Nama pemilik maksimal 100 karakter.',
             'kode_bank.string' => 'Kode bank harus berupa teks.',

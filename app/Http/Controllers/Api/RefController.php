@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Services\Ref\RefEselonService;
+use App\Services\Ref\RefBankService;
 use App\Services\Ref\RefHubunganKeluargaService;
 use App\Services\Ref\RefJenisAsuransiService;
 use App\Services\Ref\RefJenisDokumenService;
@@ -22,6 +23,7 @@ final class RefController extends Controller
         private readonly RefHubunganKeluargaService  $refHubunganKeluargaService,
         private readonly RefEselonService            $refEselonService,
         private readonly RefJenisAsuransiService     $refJenisAsuransiService,
+        private readonly RefBankService              $refBankService,
     ) {}
 
         public function jenjangPendidikan(): JsonResponse
@@ -55,6 +57,15 @@ final class RefController extends Controller
     {
         return $this->transactionService->handleWithShow(function () {
             $data = $this->refEselonService->getListDataOrdered('id_eselon');
+
+            return $this->responseService->successResponse('Data berhasil diambil', $data);
+        });
+    }
+
+    public function bank(): JsonResponse
+    {
+        return $this->transactionService->handleWithShow(function () {
+            $data = $this->refBankService->getListDataOrdered('id_bank');
 
             return $this->responseService->successResponse('Data berhasil diambil', $data);
         });

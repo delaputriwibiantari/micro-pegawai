@@ -24,7 +24,7 @@
                         <div class="d-flex flex-column mb-2">
                             <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">Bank</label>
                             <p class="fw-light fs-sm-8 fs-lg-6"
-                               id="detail_bank"></p>
+                               id="detail_id_bank" name="id_bank"></p>
                         </div>
                     </div>
                     <div class="col-md-6">

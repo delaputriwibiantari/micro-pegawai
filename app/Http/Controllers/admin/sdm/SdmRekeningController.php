@@ -65,7 +65,7 @@ final class SdmRekeningController extends Controller
         }
         return $this->transactionService->handleWithTransaction(function () use ($request, $idSdm) {
             $payload = $request->only([
-                'no_rekening', 'bank', 'nama_pemilik', 'kode_bank', 'cabang_bank',
+                'id_bank','no_rekening','nama_pemilik', 'kode_bank', 'cabang_bank',
                 'rekening_utama', 'jenis_rekening', 'status_aktif',
             ]);
             $payload['id_sdm'] = $idSdm;
@@ -93,7 +93,7 @@ final class SdmRekeningController extends Controller
         }
         return $this->transactionService->handleWithTransaction(function () use ($request, $data) {
             $payload = $request->only([
-                'no_rekening', 'bank', 'nama_pemilik', 'kode_bank', 'cabang_bank',
+                'id_bank','no_rekening','nama_pemilik', 'kode_bank', 'cabang_bank',
                 'rekening_utama', 'jenis_rekening', 'status_aktif',
             ]);
             if (array_key_exists('rekening_utama', $payload) && $payload['rekening_utama'] === 'y') {

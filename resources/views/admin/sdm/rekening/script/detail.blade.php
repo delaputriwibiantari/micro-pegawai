@@ -8,7 +8,7 @@
             if (response.success) {
                 const data = response.data;
                 $("#detail_no_rekening").text(data.no_rekening);
-                $("#detail_bank").text(data.bank);
+                $("#detail_id_bank").text(data.bank);
                 $("#detail_nama_pemilik").text(data.nama_pemilik);
                 $("#detail_kode_bank").text(data.kode_bank);
                 $("#detail_cabang_bank").text(data.cabang_bank);

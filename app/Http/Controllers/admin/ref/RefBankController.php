@@ -23,7 +23,7 @@ class RefBankController extends Controller
 
     public function index(): View
     {
-        return view('admin.ref.hubungan_keluarga.index');
+        return view('admin.ref.bank.index');
     }
 
     public function list(): JsonResponse

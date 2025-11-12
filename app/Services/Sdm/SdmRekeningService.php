@@ -34,11 +34,13 @@ final readonly class SdmRekeningService
         }
 
         return SdmRekening::query()
+            ->join('bank', 'bank.id_bank', '=', 'sdm_rekening.id_bank')
             ->select([
                 'sdm_rekening.id_rekening',
                 'sdm_rekening.id_sdm',
+                'sdm_rekening.id_bank',
+                'bank.nama_bank as bank', // ambil nama bank dari tabel ref_bank
                 'sdm_rekening.no_rekening',
-                'sdm_rekening.bank',
                 'sdm_rekening.nama_pemilik',
                 'sdm_rekening.kode_bank',
                 'sdm_rekening.cabang_bank',
@@ -60,10 +62,11 @@ final readonly class SdmRekeningService
                 fn($q, $utama) => $q->where('sdm_rekening.rekening_utama', $utama)
             )
             ->orderByDesc('sdm_rekening.rekening_utama')
-            ->orderBy('sdm_rekening.bank')
+            ->orderBy('bank.nama_bank') // urutkan berdasarkan nama bank
             ->orderBy('sdm_rekening.no_rekening')
             ->get();
     }
+
 
     public function create(array $data): SdmRekening
     {
@@ -72,8 +75,16 @@ final readonly class SdmRekeningService
 
     public function getDetailData(string $id): ?SdmRekening
     {
-        return SdmRekening::query()->where('id_rekening', $id)->first();
+        return SdmRekening::query()
+            ->join('bank', 'bank.id_bank', '=', 'sdm_rekening.id_bank')
+            ->select([
+                'sdm_rekening.*',
+                'bank.nama_bank as bank'
+            ])
+            ->where('sdm_rekening.id_rekening', $id)
+            ->first();
     }
+
 
     public function findById(string $id): ?SdmRekening
     {

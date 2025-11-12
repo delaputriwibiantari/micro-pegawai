@@ -29,7 +29,7 @@ final class SdmRekening extends Model implements Auditable
     protected $fillable = [
         'id_sdm',
         'no_rekening',
-        'bank',
+        'id_bank',
         'nama_pemilik',
         'kode_bank',
         'cabang_bank',
@@ -43,6 +43,7 @@ final class SdmRekening extends Model implements Auditable
     protected $casts = [
         'id_rekening' => 'integer',
         'id_sdm' => 'integer',
+        'id_bank' => 'integer',
     ];
 
     public function setNoRekeningAttribute($v): void
@@ -50,10 +51,6 @@ final class SdmRekening extends Model implements Auditable
         $this->attributes['no_rekening'] = trim(strip_tags((string)$v));
     }
 
-    public function setBankAttribute($v): void
-    {
-        $this->attributes['bank'] = trim(strip_tags((string)$v));
-    }
 
     public function setNamaPemilikAttribute($v): void
     {

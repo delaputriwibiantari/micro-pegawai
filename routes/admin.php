@@ -7,6 +7,7 @@ use App\Http\Controllers\admin\pendidikan\PendidikanController;
 use App\Http\Controllers\admin\person\PersonAsuransiController;
 use App\Http\Controllers\Content\PortalController;
 use App\Http\Controllers\admin\person\PersonController;
+use App\Http\Controllers\admin\ref\RefBankController;
 use App\Http\Controllers\admin\ref\RefEselonController;
 use App\Http\Controllers\admin\ref\RefHubunganKeluargaController;
 use App\Http\Controllers\admin\ref\RefJenisAsuransiController;
@@ -188,6 +189,19 @@ Route::prefix('ref')->group(function () {
             ->name('ref.hubungan-keluarga.store');
         Route::post('update/{id}', [RefHubunganKeluargaController::class, 'update'])
             ->name('ref.hubungan-keluarga.update');
+    });
+
+    Route::prefix('bank')->group(function () {
+        Route::get('/', [RefBankController::class, 'index'])
+            ->name('ref.bank.index');
+        Route::get('data', [RefBankController::class, 'list'])
+            ->name('ref.bank.list');
+        Route::get('show/{id}', [RefBankController::class, 'show'])
+            ->name('ref.bank.show');
+        Route::post('/store', [RefBankController::class, 'store'])
+            ->name('ref.bank.store');
+        Route::post('update/{id}', [RefBankController::class, 'update'])
+            ->name('ref.bank.update');
     });
 
     Route::prefix('eselon')->group(function () {
