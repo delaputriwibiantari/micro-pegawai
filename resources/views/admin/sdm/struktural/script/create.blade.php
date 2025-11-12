@@ -12,14 +12,14 @@
             }
         });
 
-        $("#tanggal_sk").flatpickr({
+        $("#tanggal_penetapan_jabatan").flatpickr({
             dateFormat: "Y-m-d",
             altFormat: "d/m/Y",
             allowInput: false,
             altInput: true,
         });
 
-        $("#tanggal_masuk").flatpickr({
+        $("#tanggal_mulai_menjabat").flatpickr({
             dateFormat: "Y-m-d",
             altFormat: "d/m/Y",
             allowInput: false,
@@ -81,8 +81,8 @@
                     formData.append("id_unit", $("#id_unit").val());
                     formData.append("id_jabatan", $("#id_jabatan").val());
                     formData.append("nomor_sk", $("#nomor_sk").val());
-                    formData.append("tanggal_sk", $("#tanggal_sk").val());
-                    formData.append("tanggal_masuk", $("#tanggal_masuk").val());
+                    formData.append("tanggal_penetapan_jabatan", $("#tanggal_penetapan_jabatan").val());
+                    formData.append("tanggal_mulai_menjabat", $("#tanggal_mulai_menjabat").val());
                     formData.append("masa_jabatan", $("#masa_jabatan").val());
                     formData.append("tanggal_keluar", $("#tanggal_keluar").val());
                     formData.append("sk_pemberhentian", $("#sk_pemberhentian").val());

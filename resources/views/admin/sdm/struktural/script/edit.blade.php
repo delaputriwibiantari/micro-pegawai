@@ -4,14 +4,14 @@
         const id = button.data("id");
         const detail = "{{ route('admin.sdm.struktural.show', ':id') }}";
 
-        let edit_tanggal_sk = $("#edit_tanggal_sk").flatpickr({
+        let edit_tanggal_penetapan_jabatan = $("#edit_tanggal_penetapan_jabatan").flatpickr({
             dateFormat: "Y-m-d",
             altFormat: "d/m/Y",
             allowInput: false,
             altInput: true,
         });
 
-        let edit_tanggal_masuk = $("#edit_tanggal_masuk").flatpickr({
+        let edit_tanggal_mulai_menjabat = $("#edit_tanggal_mulai_menjabat").flatpickr({
             dateFormat: "Y-m-d",
             altFormat: "d/m/Y",
             allowInput: false,
@@ -33,8 +33,8 @@
                 $("#edit_sk_pemberhentian").val(data.sk_pemberhentian);
                 $("#edit_alasan_keluar").val(data.alasan_keluar);
                 $("#edit_keterangan").val(data.keterangan);
-                edit_tanggal_sk.setDate(data.tanggal_sk);
-                edit_tanggal_masuk.setDate(data.tanggal_masuk);
+                edit_tanggal_penetapan_jabatan.setDate(data.tanggal_penetapan_jabatan);
+                edit_tanggal_mulai_menjabat.setDate(data.tanggal_mulai_menjabat);
                 edit_tanggal_keluar.setDate(data.tanggal_keluar);
                 if (data.file_sk_masuk) {
                     $('#current_file_sk_masuk_name').text(data.file_sk_masuk);
@@ -139,8 +139,8 @@
                     formData.append("id_unit", $("#edit_id_unit").val());
                     formData.append("id_jabatan", $("#edit_id_jabatan").val());
                     formData.append("nomor_sk", $("#edit_nomor_sk").val());
-                    formData.append("tanggal_sk", $("#edit_tanggal_sk").val());
-                    formData.append("tanggal_masuk", $("#edit_tanggal_masuk").val());
+                    formData.append("tanggal_penetapan_jabatan", $("#edit_tanggal_penetapan_jabatan").val());
+                    formData.append("tanggal_mulai_menjabat", $("#edit_tanggal_mulai_menjabat").val());
                     formData.append("masa_jabatan", $("#edit_masa_jabatan").val());
                     formData.append("tanggal_keluar", $("#edit_tanggal_keluar").val());
                     formData.append("sk_pemberhentian", $("#edit_sk_pemberhentian").val());

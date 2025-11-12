@@ -92,7 +92,7 @@ final class SdmStrukturalController extends Controller
         }
         return $this->transactionService->handleWithTransaction(function () use ($request, $idSdm, $fileSkMasuk, $fileSkKeluar) {
             $payload = $request->only([
-                'id_unit', 'id_jabatan', 'nomor_sk', 'tanggal_sk', 'tanggal_masuk',
+                'id_unit', 'id_jabatan', 'nomor_sk', 'tanggal_penetapan_jabatan', 'tanggal_mulai_menjabat',
                 'masa_jabatan', 'tanggal_keluar', 'sk_pemberhentian',
                 'alasan_keluar', 'keterangan',
             ]);
@@ -142,7 +142,7 @@ final class SdmStrukturalController extends Controller
         }
         return $this->transactionService->handleWithTransaction(function () use ($request, $data, $fileSkMasuk, $fileSkKeluar) {
             $payload = $request->only([
-                'id_unit', 'id_jabatan', 'nomor_sk', 'tanggal_sk', 'tanggal_masuk',
+                'id_unit', 'id_jabatan', 'nomor_sk', 'tanggal_penetapan_jabatan', 'tanggal_mulai_menjabat',
                 'masa_jabatan', 'tanggal_keluar', 'sk_pemberhentian',
                 'alasan_keluar', 'keterangan',
             ]);

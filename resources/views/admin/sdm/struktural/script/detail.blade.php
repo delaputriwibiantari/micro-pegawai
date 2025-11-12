@@ -10,8 +10,8 @@
                     $("#detail_nama_unit").text(data.nama_unit);
                     $("#detail_nama_jabatan").text(data.nama_jabatan);
                     $("#detail_nomor_sk").text(data.nomor_sk);
-                    $("#detail_tanggal_sk").text(formatter.formatDate(data.tanggal_sk));
-                    $("#detail_tanggal_masuk").text(formatter.formatDate(data.tanggal_masuk));
+                    $("#detail_tanggal_penetapan_jabatan").text(formatter.formatDate(data.tanggal_penetapan_jabatan));
+                    $("#detail_tanggal_mulai_menjabat").text(formatter.formatDate(data.tanggal_mulai_menjabat));
                     $("#detail_eselon").text(data.eselon);
                     $("#detail_masa_jabatan").text(data.masa_jabatan);
                     $("#detail_tanggal_keluar").text(formatter.formatDate(data.tanggal_keluar));

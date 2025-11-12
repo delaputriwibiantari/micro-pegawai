@@ -147,11 +147,10 @@
                                 <th class="min-w-150px">Unit</th>
                                 <th class="min-w-150px">Jabatan</th>
                                 <th class="min-w-120px">Nomor SK</th>
-                                <th class="min-w-120px">Tanggal SK</th>
-                                <th class="min-w-120px">Tanggal Masuk</th>
+                                <th class="min-w-120px">Tanggal Penetapan Jabatan</th>
+                                <th class="min-w-120px">Tanggal Mulai Menjabat</th>
                                 <th class="min-w-120px">Eselon</th>
                                 <th class="min-w-100px">Masa Jabatan</th>
-                                <th class="min-w-120px">Tanggal Keluar</th>
                                 <th class="min-w-120px">SK Masuk</th>
                                 <th class="min-w-120px">SK Keluar</th>
                                 <th class="min-w-120px">Periode</th>

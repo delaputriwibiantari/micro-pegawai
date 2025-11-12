@@ -65,15 +65,15 @@
                     name: 'nomor_sk'
                 },
                 {
-                    data: 'tanggal_sk',
-                    name: 'tanggal_sk',
+                    data: 'tanggal_penetapan_jabatan',
+                    name: 'tanggal_penetapan_jabatan',
                     render: function(data, type, row) {
                         return data == null ? "" : formatter.formatDate(data);
                     }
                 },
                 {
-                    data: 'tanggal_masuk',
-                    name: 'tanggal_masuk',
+                    data: 'tanggal_mulai_menjabat',
+                    name: 'tanggal_mulai_menjabat',
                     render: function(data, type, row) {
                         return data == null ? "" : formatter.formatDate(data);
                     }
@@ -87,13 +87,6 @@
                     name: 'masa_jabatan',
                     render: function(data) {
                         return data ? data + ' tahun' : '-';
-                    }
-                },
-                {
-                    data: 'tanggal_keluar',
-                    name: 'tanggal_keluar',
-                    render: function(data, type, row) {
-                        return data == null ? "" : formatter.formatDate(data);
                     }
                 },
                 {

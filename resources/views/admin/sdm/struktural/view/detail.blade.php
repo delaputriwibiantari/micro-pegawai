@@ -36,16 +36,16 @@
                     </div>
                     <div class="col-md-6">
                         <div class="d-flex flex-column mb-2">
-                            <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">Tanggal SK</label>
+                            <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">Tanggal Penetapan Jabatan</label>
                             <p class="fw-light fs-sm-8 fs-lg-6"
-                               id="detail_tanggal_sk"></p>
+                               id="detail_tanggal_penetapan_jabatan"></p>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="d-flex flex-column mb-2">
-                            <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">Tanggal Masuk</label>
+                            <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">Tanggal Mulai Menjabat</label>
                             <p class="fw-light fs-sm-8 fs-lg-6"
-                               id="detail_tanggal_masuk"></p>
+                               id="detail_tanggal_mulai_menjabat"></p>
                         </div>
                     </div>
                     <div class="col-md-6">

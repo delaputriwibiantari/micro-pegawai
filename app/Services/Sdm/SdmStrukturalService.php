@@ -36,7 +36,7 @@ final readonly class SdmStrukturalService
 
         $latestId = SdmStruktural::query()
             ->where('id_sdm', $idSdm)
-            ->orderByDesc('tanggal_sk')
+            ->orderByDesc('tanggal_penetapan_jabatan')
             ->orderByDesc('id_struktural')
             ->value('id_struktural');
 
@@ -53,7 +53,7 @@ final readonly class SdmStrukturalService
                 'ref_eselon.eselon',
             ])
             ->where('sdm_struktural.id_sdm', $idSdm)
-            ->orderByDesc('sdm_struktural.tanggal_sk')
+            ->orderByDesc('sdm_struktural.tanggal_penetapan_jabatan')
             ->orderBy('master_jabatan.jabatan')
             ->get();
 
@@ -121,7 +121,7 @@ final readonly class SdmStrukturalService
     {
         return SdmStruktural::query()
             ->where('id_sdm', $idSdm)
-            ->orderByDesc('tanggal_sk')
+            ->orderByDesc('tanggal_penetapan_jabatan')
             ->orderByDesc('id_struktural')
             ->value('id_struktural');
     }

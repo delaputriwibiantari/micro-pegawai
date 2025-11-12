@@ -52,21 +52,19 @@
                         </div>
                         <div class="col-md-6">
                             <div class="d-flex flex-column mb-2">
-                                <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">Tanggal
-                                    SK</label>
-                                <input type="text" name="tanggal_sk"
+                                <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">Tanggal Penetapan Jabatan</label>
+                                <input type="text" name="tanggal_penetapan_jabatan"
                                        class="form-control form-control-sm fs-sm-8 fs-lg-6"
-                                       id="edit_tanggal_sk" placeholder="Pilih tanggal SK" required>
+                                       id="edit_tanggal_penetapan_jabatan" placeholder="Pilih tanggal Penetapan Jabatan" required>
                                 <div class="invalid-feedback"></div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="d-flex flex-column mb-2">
-                                <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">Tanggal
-                                    Masuk</label>
-                                <input type="text" name="tanggal_masuk"
+                                <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">Tanggal Mulai Menjabat</label>
+                                <input type="text" name="tanggal_mulai_menjabat"
                                        class="form-control form-control-sm fs-sm-8 fs-lg-6"
-                                       id="edit_tanggal_masuk" placeholder="Pilih tanggal Masuk" required>
+                                       id="edit_tanggal_mulai_menjabat" placeholder="Pilih tanggal Mulai Menjabatan" required>
                                 <div class="invalid-feedback"></div>
                             </div>
                         </div>

@@ -34,8 +34,8 @@ final class SdmStruktural extends Model implements Auditable
         'id_unit',
         'id_jabatan',
         'nomor_sk',
-        'tanggal_sk',
-        'tanggal_masuk',
+        'tanggal_penetapan_jabatan',
+        'tanggal_mulai_menjabat',
         'id_eselon',
         'masa_jabatan',
         'tanggal_keluar',
@@ -55,8 +55,8 @@ final class SdmStruktural extends Model implements Auditable
         'id_jabatan' => 'integer',
         'id_eselon' => 'integer',
         'masa_jabatan' => 'integer',
-        'tanggal_sk' => 'date',
-        'tanggal_masuk' => 'date',
+        'tanggal_penetapan_jabatan' => 'date',
+        'tanggal_mulai_menjabat' => 'date',
         'tanggal_keluar' => 'date',
     ];
 
@@ -80,12 +80,12 @@ final class SdmStruktural extends Model implements Auditable
         $this->attributes['keterangan'] = $v === null ? null : trim((string)$v);
     }
 
-    public function getTanggalSkAttribute($v): ?string
+    public function getTanggalPenetapanJabatanAttribute($v): ?string
     {
         return $v ? Carbon::parse($v)->format('Y-m-d') : null;
     }
 
-    public function getTanggalMasukAttribute($v): ?string
+    public function getTanggalMulaiMenjabatAttribute($v): ?string
     {
         return $v ? Carbon::parse($v)->format('Y-m-d') : null;
     }
