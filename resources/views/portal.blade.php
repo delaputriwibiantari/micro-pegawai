@@ -20,44 +20,65 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="d-flex justify-content-center align-items-center">
-                        <form class="w-lg-500px w-sm-500px p-10 bg-white rounded-3 shadow" novalidate="novalidate"
-                              id="kt_sign_in_form" method="POST" action="{{ route('logindb') }}">
+                        <form class="w-lg-500px w-sm-500px p-10 bg-white rounded-3 shadow"
+                            novalidate="novalidate" id="kt_sign_in_form"
+                            method="POST" action="{{ route('logindb') }}">
                             @csrf
-                            <input type="hidden" name="recaptcha_token" id="recaptcha_token">
 
                             <div class="text-center mb-11">
                                 <h1 class="text-dark fw-bolder mb-4">Masuk</h1>
                             </div>
+
+                            <!-- Username -->
                             <div class="d-flex flex-column mb-2">
                                 <label class="form-label fs-6 fw-bold mb-2">
-                                    <span class="required">nama pengguna</span>
+                                    <span class="required">Nama Pengguna</span>
                                 </label>
-                                <input type="text" placeholder="Masukkan nama pengguna" name="username"
-                                       autocomplete="off" class="form-control bg-transparent">
+                                <input type="text" name="username" placeholder="Masukkan nama pengguna"
+                                    value="{{ old('username') }}"
+                                    class="form-control bg-transparent @error('username') is-invalid @enderror">
+                                @error('username')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
-                            <div class="d-flex flex-column mb-2" data-kt-password-meter="true">
+
+                            <!-- Password -->
+                            <div class="d-flex flex-column mb-2">
                                 <label class="form-label fs-6 fw-bold mb-2">
                                     <span class="required">Kata Sandi</span>
                                 </label>
                                 <div class="position-relative mb-2">
-                                    <input class="form-control bg-transparent" type="password"
-                                           placeholder="Masukkan kata sandi" name="password" autocomplete="off">
-                                    <span class="btn btn-sm btn-icon position-absolute top-50 end-0 translate-middle-y me-2"
-                                          data-kt-password-meter-control="visibility">
-                                        <i class="bi bi-eye-slash fs-2"></i>
-                                        <i class="bi bi-eye fs-2 d-none"></i>
-                                    </span>
+                                    <input class="form-control bg-transparent @error('password') is-invalid @enderror"
+                                        type="password" name="password" placeholder="Masukkan kata sandi">
+                                    @error('password')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
-                             <div class="d-flex justify-content-end mb-3">
-                                <a href="{{ route('forgot') }}" class="form-label fs-6 fw-bold mb-2 text-black">Forgot Password?</a>
+
+                            <!-- Google reCAPTCHA -->
+                            <div class="d-flex flex-column mb-2">
+                                {!! NoCaptcha::display() !!}
+                                @if ($errors->has('g-recaptcha-response'))
+                                    <span class="text-danger small">{{ $errors->first('g-recaptcha-response') }}</span>
+                                @endif
                             </div>
+
+                            <div class="d-flex justify-content-end mb-3">
+                                <a href="{{ route('forgot') }}" class="form-label fs-6 fw-bold mb-2 text-black">
+                                    Lupa Kata Sandi?
+                                </a>
+                            </div>
+
                             <div class="d-grid my-4">
                                 <button type="submit" id="kt_sign_in_submit" class="btn btn-primary">
                                     <span class="indicator-label">Masuk</span>
                                 </button>
                             </div>
                         </form>
+
+
+
                     </div>
                 </div>
             </div>
@@ -70,6 +91,8 @@
 </div>
 <script src="{{ asset('assets/plugins/plugins.bundle.js') }}"></script>
 <script src="{{ asset('assets/js/scripts.bundle.js') }}"></script>
+<!-- Tambahkan ini di bawah sebelum tag </body> -->
+{!! NoCaptcha::renderJs() !!}
 </body>
 
 </html>

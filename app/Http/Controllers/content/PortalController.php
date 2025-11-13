@@ -34,30 +34,38 @@ class PortalController extends Controller
 
     public function logindb(Request $request): RedirectResponse
     {
+
        $username = $request->input('username');
        $password = $request->input('password');
 
 
-       $validationRules =[
-           'username' => 'required',
-           'password' => 'required'
-       ];
+        $validationRules = [
+            'username' => 'required',
+            'password' => 'required',
+            'g-recaptcha-response' => 'required|captcha'
+        ];
 
-       $customMessages =[
-           'username.required' => 'Username wajib diisi',
-           'password.required' => 'Password wajib diisi'
-       ];
 
-       $validator = Validator::make($request->all(), $validationRules, $customMessages);
+        $customMessages = [
+            'username.required' => 'Username wajib diisi',
+            'password.required' => 'Password wajib diisi',
+            'g-recaptcha-response.required' => 'Silakan centang captcha terlebih dahulu',
+            'g-recaptcha-response.captcha' => 'Verifikasi captcha gagal, coba lagi.'
+        ];
 
-       if ($validator->fails()) {
+        $validator = Validator::make($request->all(), $validationRules, $customMessages);
+
+        if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
+
+        $username = $request->input('username');
+        $password = $request->input('password');
 
         if (Auth::guard('admin')->attempt(['email' => $username, 'password' => $password])) {
             return redirect()->intended();
         } else {
-            return redirect()->back()->with('error', 'nama pengguna dan kata kunci salah');
+            return redirect()->back()->with('error', 'Nama pengguna atau kata sandi salah');
         }
     }
 
