@@ -65,7 +65,7 @@ final class MasterUserController extends Controller
         });
     }
 
-    public function update(MasterUnitRequest $request, string $id): JsonResponse
+    public function update(MasterUserRequest $request, string $id): JsonResponse
     {
         $data = $this->userService->findById($id);
         if (!$data) {

@@ -41,7 +41,7 @@
                         role: $('#edit_role').val(),
                     };
                     const update = '{{ route('admin.master.user.update', [':id']) }}';
-                    DataManager.putData(update.replace(':id', id), input).then(response => {
+                    DataManager.postData(update.replace(':id', id), input).then(response => {
                         if (response.success) {
                             Swal.fire('Success', response.message, 'success');
                             setTimeout(function () {

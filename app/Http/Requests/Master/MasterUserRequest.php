@@ -36,7 +36,7 @@ class MasterUserRequest extends FormRequest
                 Rule::unique('admin', 'email')->ignore($id),
             ],
             'password' => [
-                $this->isMethod('post') ? 'required' : 'nullable',
+                $this->routeIs('admin.master.user.store') ? 'required' : 'nullable',
                 'string',
                 'min:10',
                 'max:64',
