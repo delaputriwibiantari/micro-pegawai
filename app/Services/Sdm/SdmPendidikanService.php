@@ -2,7 +2,6 @@
 
 namespace App\Services\Sdm;
 
-use App\Models\pendidikan\Pendidikan;
 use App\Models\Person\Person;
 use App\Models\sdm\Sdm;
 use App\Models\sdm\SdmPendidikan;

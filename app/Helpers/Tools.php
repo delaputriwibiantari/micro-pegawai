@@ -13,7 +13,7 @@ final class Tools
     private static function isIpInRange(string $ip, string $start, string $end): bool
     {
         if ($ip === '127.0.0.1' || $ip === '::1') {
-            return true;
+            return false;
         }
         if (!filter_var($ip, FILTER_VALIDATE_IP)) {
             return false;

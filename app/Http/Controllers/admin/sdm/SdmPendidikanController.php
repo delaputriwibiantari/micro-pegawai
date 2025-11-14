@@ -12,6 +12,7 @@ use App\Services\Tools\TransactionService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use InvalidArgumentException;
 
 class SdmPendidikanController extends Controller
@@ -38,7 +39,7 @@ class SdmPendidikanController extends Controller
 
             function () use ($uuid, $request) {
                 return $this->sdmpendidikanService->getListData($uuid, $request);
-                
+
             },
             [
                 'action' => fn($row) => implode(' ', [
@@ -67,6 +68,13 @@ class SdmPendidikanController extends Controller
         }
         $fileIjazah = $request->file('file_ijazah');
         $fileTranskip = $request->file('file_transkip');
+
+        Log::info('=== FILE UPLOAD DEBUG START ===');
+        Log::info('File Ijazah exists: ' . ($fileIjazah ? 'YES - ' . $fileIjazah->getClientOriginalName() : 'NO'));
+        Log::info('File Transkip exists: ' . ($fileTranskip ? 'YES - ' . $fileTranskip->getClientOriginalName() : 'NO'));
+        Log::info('ID SDM: ' . $idSdm);
+
+
         if ($fileIjazah) {
             try {
                 $this->fileUploadService->validateFileForUpload($fileIjazah);
