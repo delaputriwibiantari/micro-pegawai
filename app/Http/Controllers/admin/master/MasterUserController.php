@@ -38,7 +38,6 @@ final class MasterUserController extends Controller
                     $rowId = $row->id;
 
                     return implode(' ', [
-                        $this->transactionService->actionButton($rowId, 'detail'),
                         $this->transactionService->actionButton($rowId, 'edit'),
                     ]);
                 },
