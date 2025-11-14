@@ -10,7 +10,7 @@
 
                 <div class="modal-body">
                     <div class="row">
-                         
+
                             <div class="d-flex flex-column mb-2">
                                 <label class="fw-bolder mb-1 required">Hubungan Keluarga</label>
                                 <select id="edit_id_hubungan_keluarga" name="id_hubungan_keluarga"
@@ -47,7 +47,7 @@
                                     <span>Pendidikan Terakhir</span>
                                 </label>
                                 <input type="text" id="edit_pendidikan_terakhir" class="form-control form-control-sm fs-sm-8 fs-lg-6"
-                                       maxlength="30" readonly/>
+                                       maxlength="30"/>
                                 <div class="invalid-feedback"></div>
                             </div>
                             <div class="d-flex flex-column mb-2">
@@ -55,7 +55,7 @@
                                     <span>Penghasilan</span>
                                 </label>
                                 <input type="text" id="edit_penghasilan" class="form-control form-control-sm fs-sm-8 fs-lg-6"
-                                       maxlength="30" readonly />
+                                       maxlength="30"/>
                                 <div class="invalid-feedback"></div>
                             </div>
                          </div>

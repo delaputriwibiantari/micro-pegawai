@@ -8,7 +8,6 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                        <h6 class="text-primary fw-bold mb-3 border-bottom border-primary pb-2">Informasi Akademik</h6>
                         <div class="d-flex flex-column mb-3">
                             <label class="fw-bolder mb-1">Nama Anggota</label>
                             <p id="detail_nama_anggota" class="fw-light"></p>

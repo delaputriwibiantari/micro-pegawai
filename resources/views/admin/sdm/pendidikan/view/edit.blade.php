@@ -54,7 +54,7 @@
 
                             <div class="d-flex flex-column mb-2">
                                 <label class="fw-bolder mb-1">Jumlah SKS</label>
-                                <input type="text" id="edit_sks" class="form-control form-control-sm" required />
+                                <input type="text" id="edit_sks" class="form-control form-control-sm"/>
                             </div>
 
                             <div class="d-flex flex-column mb-2">

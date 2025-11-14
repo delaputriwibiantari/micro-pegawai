@@ -32,7 +32,8 @@ class AuthController extends Controller
             Mail::to($request->email)->send(new OTP($otp, $maskedEmail));
 
             $data = [
-                'otp' => $otp
+                'otp' => $otp,
+                'otp_expired_at' => now()->addMinutes(5),
             ];
 
             $user->update($data);
@@ -57,6 +58,13 @@ class AuthController extends Controller
             ], 404);
         }
 
+        if (now()->greaterThan($user->otp_expired_at)) {
+            return response()->json([
+                'success' => false,
+                'message' => 'OTP sudah kedaluwarsa',
+            ], 400);
+        }
+
         return response()->json([
             'success' => true,
             'message' => 'Verifikasi OTP berhasil',
@@ -67,7 +75,7 @@ class AuthController extends Controller
 
     private function generateSecureOTP(int $length = 6): string
     {
-        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $characters = '0123456789';
         $charactersLength = strlen($characters);
         return implode('', array_map(
             fn() => $characters[random_int(0, $charactersLength - 1)],

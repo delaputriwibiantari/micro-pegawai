@@ -26,6 +26,7 @@ class OTP extends Mailable
             ->with([
                 'otp' => $this->otp,
                 'email' => $this->email,
+                'expired_in' => '5 menit',
             ]);
     }
 }

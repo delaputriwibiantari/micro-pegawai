@@ -34,6 +34,14 @@ final class FileUploadService
      */
     private function validateFile(UploadedFile $file): void
     {
+        $filesToCheck = is_array($file) ? $file : [$file];
+        $this->validateFileSize($filesToCheck);
+
+        // 🔹 Validasi isi & format file
+        foreach ($filesToCheck as $file) {
+            $this->validateFileContent($file);
+        }
+
         // Basic validation
         if (!$file->isValid()) {
             throw new InvalidArgumentException('File upload gagal atau corrupt');
@@ -45,16 +53,20 @@ final class FileUploadService
 
         // Extension validation
         $extension = strtolower($file->getClientOriginalExtension());
-        $allowedTypes = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'pdf'];
+        $allowedTypes = ['pdf', 'docx', 'xlsx', 'pptx','jpg', 'jpeg', 'png','zip',];
 
         if (!in_array($extension, $allowedTypes)) {
             throw new InvalidArgumentException("Tipe file tidak diizinkan: $extension");
         }
 
+
         // Enhanced security validation
         $this->validateFileContent($file);
         $this->validateMimeType($file, $extension);
         $this->scanForMaliciousContent($file);
+        $this->validateFileSize([$file]);
+        $this->validateFileContent($file);
+
     }
 
     /**
@@ -63,21 +75,47 @@ final class FileUploadService
     private function validateFileContent(UploadedFile $file): void
     {
         $filePath = $file->getPathname();
-        $fileHandle = fopen($filePath, 'rb');
 
-        if (!$fileHandle) {
-            throw new InvalidArgumentException('Tidak dapat membaca file');
+        if (!is_readable($filePath)) {
+            throw new InvalidArgumentException('Tidak dapat membaca file.');
         }
 
-        // Baca magic bytes pertama
+
+        $fileHandle = fopen($filePath, 'rb');
         $magicBytes = fread($fileHandle, 16);
         fclose($fileHandle);
 
         $extension = strtolower($file->getClientOriginalExtension());
 
-        // Validasi magic bytes untuk setiap tipe file
+
         $this->validateMagicBytes($magicBytes, $extension);
+
+
+        if (in_array($extension, ['zip', 'docx', 'xlsx', 'pptx'])) {
+            $zip = new \ZipArchive();
+            if ($zip->open($filePath) === true) {
+                for ($i = 0; $i < $zip->numFiles; $i++) {
+                    $stat = $zip->statIndex($i);
+                    // Deteksi enkripsi pada tiap file di dalam ZIP
+                    if (($stat['encryption_method'] ?? 0) !== 0) {
+                        $zip->close();
+                        throw new InvalidArgumentException("File ZIP/Office terenkripsi tidak diizinkan.");
+                    }
+                }
+
+                // Jika ZIP kosong atau rusak
+                if ($zip->numFiles === 0) {
+                    $zip->close();
+                    throw new InvalidArgumentException("File ZIP/Office kosong atau tidak valid.");
+                }
+
+                $zip->close();
+            } else {
+                throw new InvalidArgumentException("File ZIP/Office tidak dapat dibuka atau rusak.");
+            }
+        }
     }
+
 
     /**
      * Validasi magic bytes file header
@@ -107,6 +145,18 @@ final class FileUploadService
             ],
             'webp' => [
                 "RIFF", // WEBP (first 4 bytes)
+            ],
+            'docx' => [
+                "PK\x03\x04", // Office files (ZIP-based)
+            ],
+            'xlsx' => [
+                "PK\x03\x04", // Office files (ZIP-based)
+            ],
+            'pptx' => [
+                "PK\x03\x04", // Office files (ZIP-based)
+            ],
+            'zip' => [
+                "PK\x03\x04", // ZIP file
             ]
         ];
 
@@ -408,11 +458,19 @@ final class FileUploadService
      */
     private function sanitizeForFilename(string $string): string
     {
-        // Remove atau replace karakter yang tidak diinginkan
+        if (preg_match('/\x{200B}|\x{200C}|\x{200D}|\x{FEFF}/u', $string)) {
+            throw new InvalidArgumentException('Nama file mengandung karakter tak terlihat.');
+        }
         $string = preg_replace('/[^a-zA-Z0-9\-_.]/', '_', $string);
         $string = preg_replace('/_+/', '_', $string); // Multiple underscore jadi satu
 
-        return trim($string, '_');
+
+        $string = trim($string, '_');
+        if ($string === '') {
+            throw new InvalidArgumentException('Nama file tidak valid setelah sanitasi.');
+        }
+
+        return $string;
     }
 
     /**
@@ -431,11 +489,24 @@ final class FileUploadService
     private function upload(UploadedFile $file, string $directory, ?string $customFileName = null): array
     {
         $this->validateFile($file);
+        $originalName = $file->getClientOriginalName();
+        if (preg_match('/\.[^.]+?\.[^.]+$/', $originalName)) {
+            throw new InvalidArgumentException('Nama file tidak boleh memiliki double extension (misal: file.jpg.php)');
+        }
+
 
         $fileName = $customFileName ?: $this->generateDefaultFileName($file);
         $path = Storage::disk($this->disk)->putFileAs($directory, $file, $fileName);
 
-        return ['file_name' => $fileName, 'original_name' => $file->getClientOriginalName(), 'path' => $path, 'size' => $file->getSize(), 'mime_type' => $file->getClientMimeType() ?: $file->getMimeType(), 'extension' => strtolower($file->getClientOriginalExtension()), 'url' => asset('storage/' . $path)];
+        return [
+            'file_name'      => $fileName,
+            'original_name'  => $originalName,
+            'path'           => $path,
+            'size'           => $file->getSize(),
+            'mime_type'      => $file->getClientMimeType() ?: $file->getMimeType(),
+            'extension'      => strtolower($file->getClientOriginalExtension()),
+            'url'            => asset('storage/' . $path),
+        ];
     }
 
     /**
@@ -481,4 +552,51 @@ final class FileUploadService
 
         return $uploadResult;
     }
+
+    private function validateFileSize(array $files): void
+    {
+        // Total size limit (25 MB)
+        $maxTotalSize = 25 * 1024 * 1024; // bytes
+        $totalSize = 0;
+
+        // Batas ukuran per tipe (dalam byte)
+        $typeLimits = [
+            'pdf'  => 10 * 1024 * 1024,
+            'docx' => 10 * 1024 * 1024,
+            'xlsx' => 10 * 1024 * 1024,
+            'pptx' => 10 * 1024 * 1024,
+            'jpg'  => 8 * 1024 * 1024,
+            'jpeg' => 8 * 1024 * 1024,
+            'png'  => 8 * 1024 * 1024,
+            'zip'  => 15 * 1024 * 1024,
+        ];
+
+        foreach ($files as $file) {
+            if (!$file instanceof UploadedFile) {
+                continue;
+            }
+
+            $extension = strtolower($file->getClientOriginalExtension());
+            $size = $file->getSize();
+            $totalSize += $size;
+
+            // 🔹 1. Periksa ukuran maksimum per tipe file
+            if (isset($typeLimits[$extension]) && $size > $typeLimits[$extension]) {
+                $maxMb = round($typeLimits[$extension] / 1024 / 1024, 1);
+                throw new InvalidArgumentException("File {$file->getClientOriginalName()} melebihi batas ukuran {$maxMb} MB untuk tipe {$extension}.");
+            }
+
+            // 🔹 2. Periksa batas per file absolut (10 MB)
+            if ($size > 10 * 1024 * 1024) {
+                throw new InvalidArgumentException("File {$file->getClientOriginalName()} melebihi batas maksimum 10 MB per file.");
+            }
+        }
+
+        // 🔹 3. Periksa total semua file dalam sekali unggah
+        if ($totalSize > $maxTotalSize) {
+            $totalMb = round($totalSize / 1024 / 1024, 1);
+            throw new InvalidArgumentException("Total ukuran semua file ({$totalMb} MB) melebihi batas maksimum 25 MB per unggahan.");
+        }
+    }
+
 }
