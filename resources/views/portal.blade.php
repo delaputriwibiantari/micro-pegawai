@@ -20,9 +20,18 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="d-flex justify-content-center align-items-center">
+
                         <form class="w-lg-500px w-sm-500px p-10 bg-white rounded-3 shadow"
                             novalidate="novalidate" id="kt_sign_in_form"
                             method="POST" action="{{ route('logindb') }}">
+                            @if (session('error'))
+                                <div class="alert alert-danger text-center" id="lock-message">
+                                    {{ session('error') }}
+                                    @if (session('lock_seconds'))
+                                        <span id="countdown" data-seconds="{{ session('lock_seconds') }}"></span>
+                                    @endif
+                                </div>
+                            @endif
                             @csrf
 
                             <div class="text-center mb-11">
@@ -75,9 +84,8 @@
                                     <span class="indicator-label">Masuk</span>
                                 </button>
                             </div>
+
                         </form>
-
-
 
                     </div>
                 </div>
@@ -93,6 +101,36 @@
 <script src="{{ asset('assets/js/scripts.bundle.js') }}"></script>
 <!-- Tambahkan ini di bawah sebelum tag </body> -->
 {!! NoCaptcha::renderJs() !!}
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const countdownEl = document.getElementById('countdown');
+    const btnLogin = document.getElementById('kt_sign_in_submit');
+    if (!countdownEl) return;
+
+    let remaining = parseInt(countdownEl.dataset.seconds);
+
+    // Disable tombol login selama terkunci
+    btnLogin.disabled = true;
+
+    const updateTimer = () => {
+        const minutes = Math.floor(remaining / 60);
+        const seconds = remaining % 60;
+        countdownEl.textContent = ` (${minutes}:${seconds.toString().padStart(2, '0')})`;
+
+        if (remaining <= 0) {
+            btnLogin.disabled = false;
+            window.location.reload(); // refresh agar bisa login lagi
+        } else {
+            remaining--;
+            setTimeout(updateTimer, 1000);
+        }
+    };
+
+    updateTimer();
+});
+</script>
+
 </body>
 
 </html>

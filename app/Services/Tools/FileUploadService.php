@@ -273,7 +273,7 @@ final class FileUploadService
     private function getConfigForType(string $type): array
     {
         return match ($type) {
-            'person_foto' => ['directory' => 'person'],
+            'person_foto', 'foto', 'person/photo' => ['directory' => 'person'],
             'pendidikan' => ['directory' => 'pendidikan'],
             'golongan' => ['directory' => 'golongan'],
             'struktural' => ['directory' => 'struktural'],
