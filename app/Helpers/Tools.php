@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+
 final class Tools
 {
     public static function isPrivateIp(string $ip): bool
@@ -25,4 +26,22 @@ final class Tools
 
         return false;
     }
+     public static function maskEmail(string $email): string
+    {
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            return $email;
+        }
+
+        [$local, $domain] = explode('@', $email);
+
+        // Mask bagian sebelum @
+        $localMasked = substr($local, 0, 2) . '**' . substr($local, -2);
+
+        // Mask domain
+        $domainParts = explode('.', $domain);
+        $maskedDomain = substr($domainParts[0], 0, 2) . '**.' . substr($domainParts[1], 0, 1) . '*';
+
+        return $localMasked . '@' . $maskedDomain;
+    }
+
 }

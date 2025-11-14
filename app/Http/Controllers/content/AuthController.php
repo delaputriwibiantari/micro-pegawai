@@ -5,48 +5,46 @@ namespace App\Http\Controllers\content;
 use App\Http\Controllers\Controller;
 use App\Mail\OTP;
 use App\Models\App\Admin;
+use App\Helpers\Tools;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-use App\Helpers\Tools; // ✅ tambahkan ini di atas
 
 class AuthController extends Controller
 {
     public function send(Request $request)
-{
-    $request->validate([
-        'email' => 'required|email',
-    ]);
+    {
+        $request->validate([
+            'email' => 'required|email',
+        ]);
 
-    $user = Admin::where('email', $request->email)->first();
+         $user = Admin::where('email', $request->email)->first();
 
-    if (!$user) {
+        if (!$user) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Email tidak ditemukan',
+                ], 404);
+            }
+
+            $otp = $this->generateSecureOTP();
+
+           $maskedEmail = Tools::maskEmail($request->email);
+            Mail::to($request->email)->send(new OTP($otp, $maskedEmail));
+
+            $data = [
+                'otp' => $otp
+            ];
+
+            $user->update($data);
         return response()->json([
-            'success' => false,
-            'message' => 'Email tidak ditemukan',
-        ], 404);
+            'success' => true,
+            'message' => 'Kode OTP sudah dikirim',
+        ]);
     }
-
-    $otp = $this->generateSecureOTP();
-
-    // 🟢 Ubah bagian ini:
-    Mail::to($request->email)->send(new \App\Mail\OTP($otp, $request->email));
-
-    $data = [
-        'otp' => $otp
-    ];
-
-    $user->update($data);
-
-    return response()->json([
-        'success' => true,
-        'message' => 'Kode OTP sudah dikirim',
-    ]);
-}
-
 
     public function verifikasi(Request $request)
     {
-        $request->validate([
+         $request->validate([
             'otp' => 'required|string|size:6',
         ]);
 
@@ -64,6 +62,7 @@ class AuthController extends Controller
             'message' => 'Verifikasi OTP berhasil',
             'data' => $user
         ]);
+
     }
 
     private function generateSecureOTP(int $length = 6): string

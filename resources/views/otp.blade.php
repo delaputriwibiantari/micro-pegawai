@@ -91,6 +91,8 @@
         Kode OTP Anda
     </div>
     <div class="content">
+       <p>Kami telah mengirimkan kode ke email Anda:</p>
+        <p><strong>{{ $email }}</strong></p>
         <p>Gunakan kode OTP berikut untuk verifikasi Anda. Kode ini berlaku selama 10 menit:</p>
         <div class="otp-code">
             {{ $otp }}

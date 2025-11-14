@@ -54,6 +54,7 @@
                             </div>
 
                             <div id="alert-otp" class="alert alert-danger d-none"></div>
+                            <p id="masked-email" class="text-muted mb-4 text-center"></p>
 
                             <div class="d-flex flex-column mb-2">
                                 <label class="form-label fs-6 fw-bold mb-2">
@@ -137,10 +138,14 @@ document.querySelector("#kt_sign_in_form").addEventListener("submit", async func
         console.log("Result:", result);
 
         if (response.ok) {
-            localStorage.setItem("reset_email", email);
+           localStorage.setItem("reset_email", email);
             document.getElementById("kt_sign_in_form").classList.add("d-none");
             document.getElementById("otpform").classList.remove("d-none");
             alert.classList.add("d-none");
+
+            // 🔹 Tambahkan ini agar masking email muncul
+            const masked = maskEmail(email);
+            document.getElementById("masked-email").innerText = "Kode OTP telah dikirim ke " + masked;
         } else {
             alert.classList.remove("d-none");
             alert.innerText = result.message || "Kirim OTP gagal.";
@@ -233,5 +238,11 @@ document.querySelector("#resetpassword").addEventListener("submit", async functi
         console.error("Error:", err);
     }
 });
+function maskEmail(email) {
+    if (!email || !email.includes('@')) return '';
+    const [user, domain] = email.split('@');
+    const maskedUser = user[0] + '*'.repeat(Math.max(0, user.length - 2)) + user.slice(-1);
+    return maskedUser + '@' + domain;
+}
 
 </script>
