@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Simpeg Universitas Nurul Jadid</title>
-    <link rel="icon" href="{{ asset('assets/media/logos/favicon.ico') }}" type="image/x-icon">
+    <title>Simpeg PT. Nusantara Teknologi Solusi</title>
+    <link rel="icon" href="{{ asset('assets/media/logos/favicon.png') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('assets/plugins/fonts/font.css') }}" media="print" onload="this.media='all'">
     <link rel="stylesheet" href="{{ asset('assets/plugins/plugins.bundle.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.bundle.css') }}">

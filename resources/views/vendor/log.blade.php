@@ -6,11 +6,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Universitas Nurul Jadid</title>
+    <title>PT. Nusantara Teknologi Solusi</title>
     <meta name="description"
-          content="Sistem kepegawaian Universitas Nurul Jadid - Akses semua layanan digital dengan satu akun">
-    <meta name="author" content="Universitas Nurul Jadid">
-    <meta name="publisher" content="Pusat Data & Sistem Informasi Universitas Nurul Jadid">
+          content="Sistem kepegawaian PT. Nusantara Teknologi Solusi - Akses semua layanan digital dengan satu akun">
+    <meta name="author" content="PT. Nusantara Teknologi Solusi">
+    <meta name="publisher" content="Pusat Data & Sistem Informasi PT. Nusantara Teknologi Solusi">
     <meta name="language" content="Indonesian">
     <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noodp, noydir, nocache, notranslate">
     <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, notranslate">
@@ -44,7 +44,7 @@
             }
         }
     </script>
-    <link rel="icon" href="{{ asset('assets/media/logos/favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('assets/media/logos/favicon.png') }}" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.6/css/dataTables.tailwindcss.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css">

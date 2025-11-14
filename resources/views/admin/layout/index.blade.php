@@ -6,18 +6,18 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no, viewport-fit=cover">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>SIMPEG Universitas Nurul Jadid</title>
+    <title>SIMPEG PT. Nusantara Teknologi Solusi</title>
     <meta name="description"
-          content="Sistem Kepegawaian Universitas Nurul Jadid - Akses semua layanan digital dengan satu akun">
-    <meta name="author" content="Universitas Nurul Jadid">
-    <meta name="publisher" content="Pusat Data & Sistem Informasi Universitas Nurul Jadid">
+          content="Sistem Kepegawaian PT. Nusantara Teknologi Solusi - Akses semua layanan digital dengan satu akun">
+    <meta name="author" content="PT. Nusantara Teknologi Solusi">
+    <meta name="publisher" content="Pusat Data & Sistem Informasi PT. Nusantara Teknologi Solusi">
     <meta name="language" content="Indonesian">
     <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noodp, noydir, nocache, notranslate">
     <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, notranslate">
     <meta name="bingbot" content="noindex, nofollow, noarchive, nosnippet">
     <meta name="slurp" content="noindex, nofollow, noarchive, nosnippet">
     <meta name="duckduckbot" content="noindex, nofollow, noarchive, nosnippet">
-    <link rel="icon" href="{{ asset('assets/media/logos/favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('assets/media/logos/favicon.png') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('assets/plugins/fonts/font.css') }}" media="print" onload="this.media='all'">
     <link rel="stylesheet" href="{{ asset('assets/plugins/plugins.bundle.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.bundle.css') }}">
@@ -39,7 +39,7 @@
              data-kt-drawer-direction="start"
              data-kt-drawer-toggle="#kt_aside_mobile_toggle">
             <div class="aside-logo flex-column-auto" id="kt_aside_logo">
-                <p class="text-white fw-bold fs-4 p-2">Universitas Nurul Jadid</p>
+                <p class="text-white fw-bold fs-4 p-2">PT. Nusantara Teknologi Solusi</p>
             </div>
             <div class="aside-menu flex-column-fluid">
                 @include('admin.layout.menu')
