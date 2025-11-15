@@ -231,6 +231,9 @@ return [
 
         'DataTables' => Yajra\DataTables\Facades\DataTables::class, // COMMENT DULU
         'NoCaptcha' => Anhskohbo\NoCaptcha\Facades\NoCaptcha::class,
+        'role' => \App\Http\Middleware\RoleMiddleware::class,
+        
+
 
     ],
 

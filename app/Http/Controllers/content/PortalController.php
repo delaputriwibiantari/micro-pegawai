@@ -70,8 +70,21 @@ class PortalController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
+
         if (Auth::guard('admin')->attempt(['email' => $username, 'password' => $password])) {
-            RateLimiter::clear($key); // reset hitungan gagal
+            $user = Auth::guard('admin')->user();
+
+            session()->regenerate();
+
+            session([
+                'id' => $user->id,
+                'role' => $user->role,
+                'email' => $user->email,
+                'name' => $user->name,
+                'login_time' => now(),
+            ]);
+
+            RateLimiter::clear($key);
             return redirect()->intended();
         }
 
@@ -110,6 +123,7 @@ class PortalController extends Controller
     {
         Auth::guard('admin')->logout();
 
+        session()->flush();
         return redirect()->route('index')->with('success', 'Anda telah berhasil keluar.');
     }
 

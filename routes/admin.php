@@ -22,133 +22,135 @@ use App\Http\Controllers\Admin\Sdm\SdmRekeningController;
 use App\Http\Controllers\admin\sdm\SdmStrukturalController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('view-file/{folder}/{filename}', [PortalController::class, 'viewFile'])
-    ->where(['folder' => '[A-Za-z0-9_\-]+', 'filename' => '[A-Za-z0-9_\-\.]+'])
-    ->name('view-file');
+Route::middleware(['role:admin,developer'])->group(function () {
+    Route::get('view-file/{folder}/{filename}', [PortalController::class, 'viewFile'])
+        ->where(['folder' => '[A-Za-z0-9_\-]+', 'filename' => '[A-Za-z0-9_\-\.]+'])
+        ->name('view-file');
 
-Route::prefix('admin')->name('admin.')->group(function () {
-    Route::prefix('person')->name('person.')->group(function () {
-        Route::get('/', [PersonController::class, 'index'])
-            ->name('index'); // Menjadi: admin.person.index
-        Route::get('data', [PersonController::class, 'list'])
-            ->name('list'); // Menjadi: admin.person.list
-        Route::get('show/{id}', [PersonController::class, 'show'])
-            ->name('show'); // Menjadi: admin.person.show
-        Route::post('/store', [PersonController::class, 'store'])
-            ->name('store'); // Menjadi: admin.person.store
-        Route::post('update/{id}', [PersonController::class, 'update'])
-            ->name('update'); // Menjadi: admin.person.update
-    });
-});
-
-Route::prefix('sdm')->name('sdm.')->group(function () {
-    Route::get('/', [SdmController::class, 'index'])
-        ->name('index');
-    Route::get('data', [SdmController::class, 'list'])
-        ->name('sdm.list');
-    Route::get('show/{id}', [SdmController::class, 'show'])
-        ->name('sdm.show');
-    Route::post('/store', [SdmController::class, 'store'])
-        ->name('sdm.store');
-    Route::post('update/{id}', [SdmController::class, 'update'])
-        ->name('sdm.update');
-    Route::get('histori/{id}', [SdmController::class, 'histori'])
-        ->name('sdm.histori');
-    Route::get('find/by/nik/{id}', [SdmController::class, 'find_by_nik'])
-        ->name('sdm.find_by_nik');
-
-    Route::prefix('pendidikan')->name('pendidikan.')->group(function () {
-        Route::get('/{id}', [SdmPendidikanController::class, 'index'])
-            ->name('index');
-        Route::get('data/{id}', [SdmPendidikanController::class, 'list'])
-            ->name('list');
-        Route::post('store', [SdmPendidikanController::class, 'store'])
-            ->name('store');
-        Route::post('update/{id}', [SdmPendidikanController::class, 'update'])
-            ->name('update');
-            Route::get('show/{id}', [SdmPendidikanController::class, 'show'])
+    Route::prefix('admin')->name('admin.')->group(function () {
+        Route::prefix('person')->name('person.')->group(function () {
+            Route::get('/', [PersonController::class, 'index'])
+                ->name('index'); // Menjadi: admin.person.index
+            Route::get('data', [PersonController::class, 'list'])
+                ->name('list'); // Menjadi: admin.person.list
+            Route::get('show/{id}', [PersonController::class, 'show'])
                 ->name('show'); // Menjadi: admin.person.show
-        Route::post('destroy/{id}', [SdmPendidikanController::class, 'destroy'])
-            ->name('destroy');
+            Route::post('/store', [PersonController::class, 'store'])
+                ->name('store'); // Menjadi: admin.person.store
+            Route::post('update/{id}', [PersonController::class, 'update'])
+                ->name('update'); // Menjadi: admin.person.update
+        });
     });
 
-    Route::prefix('dokumen')->name('dokumen.')->group(function () {
-        Route::get('/{id}', [SdmDokumenController::class, 'index'])
+    Route::prefix('sdm')->name('sdm.')->group(function () {
+        Route::get('/', [SdmController::class, 'index'])
             ->name('index');
-        Route::get('data/{id}', [SdmDokumenController::class, 'list'])
-            ->name('list');
-        Route::post('store', [SdmDokumenController::class, 'store'])
-            ->name('store');
-        Route::post('update/{id}', [SdmDokumenController::class, 'update'])
-            ->name('update');
-            Route::get('show/{id}', [SdmDokumenController::class, 'show'])
-                ->name('show'); // Menjadi: admin.person.show
-        Route::post('destroy/{id}', [SdmDokumenController::class, 'destroy'])
-            ->name('destroy');
-    });
+        Route::get('data', [SdmController::class, 'list'])
+            ->name('sdm.list');
+        Route::get('show/{id}', [SdmController::class, 'show'])
+            ->name('sdm.show');
+        Route::post('/store', [SdmController::class, 'store'])
+            ->name('sdm.store');
+        Route::post('update/{id}', [SdmController::class, 'update'])
+            ->name('sdm.update');
+        Route::get('histori/{id}', [SdmController::class, 'histori'])
+            ->name('sdm.histori');
+        Route::get('find/by/nik/{id}', [SdmController::class, 'find_by_nik'])
+            ->name('sdm.find_by_nik');
 
-    Route::prefix('keluarga')->name('keluarga.')->group(function () {
-        Route::get('/{id}', [SdmKeluargaController::class, 'index'])
-            ->name('index');
-        Route::get('data/{id}', [SdmKeluargaController::class, 'list'])
-            ->name('list');
-        Route::get('show/{id}', [SdmKeluargaController::class, 'show'])
-            ->name('show');
-        Route::post('/store', [SdmKeluargaController::class, 'store'])
-            ->name('store');
-        Route::post('update/{id}', [SdmKeluargaController::class, 'update'])
-            ->name('update');
-        Route::post('destroy/{id}', [SdmKeluargaController::class, 'destroy'])
-            ->name('destroy');
-        Route::get('find/by/nik/{id}', [SdmKeluargaController::class, 'find_by_nik'])
-            ->name('find_by_nik');
-    });
+        Route::prefix('pendidikan')->name('pendidikan.')->group(function () {
+            Route::get('/{id}', [SdmPendidikanController::class, 'index'])
+                ->name('index');
+            Route::get('data/{id}', [SdmPendidikanController::class, 'list'])
+                ->name('list');
+            Route::post('store', [SdmPendidikanController::class, 'store'])
+                ->name('store');
+            Route::post('update/{id}', [SdmPendidikanController::class, 'update'])
+                ->name('update');
+                Route::get('show/{id}', [SdmPendidikanController::class, 'show'])
+                    ->name('show'); // Menjadi: admin.person.show
+            Route::post('destroy/{id}', [SdmPendidikanController::class, 'destroy'])
+                ->name('destroy');
+        });
 
-    Route::prefix('asuransi')->name('asuransi.')->group(function () {
-        Route::get('/{id}', [PersonAsuransiController::class, 'index'])
-            ->name('index');
-        Route::get('data/{id}', [PersonAsuransiController::class, 'list'])
-            ->name('list');
-        Route::get('show/{id}', [PersonAsuransiController::class, 'show'])
-            ->name('show');
-        Route::post('/store', [PersonAsuransiController::class, 'store'])
-            ->name('store');
-        Route::post('update/{id}', [PersonAsuransiController::class, 'update'])
-            ->name('update');
-        Route::post('destroy/{id}', [PersonAsuransiController::class, 'destroy'])
-            ->name('destroy');
-        Route::get('find/by/nik/{id}', [PersonAsuransiController::class, 'find_by_nik'])
-            ->name('find_by_nik');
-    });
+        Route::prefix('dokumen')->name('dokumen.')->group(function () {
+            Route::get('/{id}', [SdmDokumenController::class, 'index'])
+                ->name('index');
+            Route::get('data/{id}', [SdmDokumenController::class, 'list'])
+                ->name('list');
+            Route::post('store', [SdmDokumenController::class, 'store'])
+                ->name('store');
+            Route::post('update/{id}', [SdmDokumenController::class, 'update'])
+                ->name('update');
+                Route::get('show/{id}', [SdmDokumenController::class, 'show'])
+                    ->name('show'); // Menjadi: admin.person.show
+            Route::post('destroy/{id}', [SdmDokumenController::class, 'destroy'])
+                ->name('destroy');
+        });
 
-    Route::prefix('rekening')->name('rekening.')->group(function () {
-        Route::get('/{id}', [SdmRekeningController::class, 'index'])
-            ->name('index');
-        Route::get('data/{id}', [SdmRekeningController::class, 'list'])
-            ->name('list');
-        Route::get('show/{id}', [SdmRekeningController::class, 'show'])
-            ->name('show');
-        Route::post('/store', [SdmRekeningController::class, 'store'])
-            ->name('store');
-        Route::post('update/{id}', [SdmRekeningController::class, 'update'])
-            ->name('update');
-        Route::post('destroy/{id}', [SdmRekeningController::class, 'destroy'])
-            ->name('destroy');
-    });
+        Route::prefix('keluarga')->name('keluarga.')->group(function () {
+            Route::get('/{id}', [SdmKeluargaController::class, 'index'])
+                ->name('index');
+            Route::get('data/{id}', [SdmKeluargaController::class, 'list'])
+                ->name('list');
+            Route::get('show/{id}', [SdmKeluargaController::class, 'show'])
+                ->name('show');
+            Route::post('/store', [SdmKeluargaController::class, 'store'])
+                ->name('store');
+            Route::post('update/{id}', [SdmKeluargaController::class, 'update'])
+                ->name('update');
+            Route::post('destroy/{id}', [SdmKeluargaController::class, 'destroy'])
+                ->name('destroy');
+            Route::get('find/by/nik/{id}', [SdmKeluargaController::class, 'find_by_nik'])
+                ->name('find_by_nik');
+        });
 
-    Route::prefix('struktural')->name('struktural.')->group(function () {
-        Route::get('/{id}', [SdmStrukturalController::class, 'index'])
-            ->name('index');
-        Route::get('data/{id}', [SdmStrukturalController::class, 'list'])
-            ->name('list');
-        Route::get('show/{id}', [SdmStrukturalController::class, 'show'])
-            ->name('show');
-        Route::post('/store', [SdmStrukturalController::class, 'store'])
-            ->name('store');
-        Route::post('update/{id}', [SdmStrukturalController::class, 'update'])
-            ->name('update');
-        Route::post('destroy/{id}', [SdmStrukturalController::class, 'destroy'])
-            ->name('destroy');
+        Route::prefix('asuransi')->name('asuransi.')->group(function () {
+            Route::get('/{id}', [PersonAsuransiController::class, 'index'])
+                ->name('index');
+            Route::get('data/{id}', [PersonAsuransiController::class, 'list'])
+                ->name('list');
+            Route::get('show/{id}', [PersonAsuransiController::class, 'show'])
+                ->name('show');
+            Route::post('/store', [PersonAsuransiController::class, 'store'])
+                ->name('store');
+            Route::post('update/{id}', [PersonAsuransiController::class, 'update'])
+                ->name('update');
+            Route::post('destroy/{id}', [PersonAsuransiController::class, 'destroy'])
+                ->name('destroy');
+            Route::get('find/by/nik/{id}', [PersonAsuransiController::class, 'find_by_nik'])
+                ->name('find_by_nik');
+        });
+
+        Route::prefix('rekening')->name('rekening.')->group(function () {
+            Route::get('/{id}', [SdmRekeningController::class, 'index'])
+                ->name('index');
+            Route::get('data/{id}', [SdmRekeningController::class, 'list'])
+                ->name('list');
+            Route::get('show/{id}', [SdmRekeningController::class, 'show'])
+                ->name('show');
+            Route::post('/store', [SdmRekeningController::class, 'store'])
+                ->name('store');
+            Route::post('update/{id}', [SdmRekeningController::class, 'update'])
+                ->name('update');
+            Route::post('destroy/{id}', [SdmRekeningController::class, 'destroy'])
+                ->name('destroy');
+        });
+
+        Route::prefix('struktural')->name('struktural.')->group(function () {
+            Route::get('/{id}', [SdmStrukturalController::class, 'index'])
+                ->name('index');
+            Route::get('data/{id}', [SdmStrukturalController::class, 'list'])
+                ->name('list');
+            Route::get('show/{id}', [SdmStrukturalController::class, 'show'])
+                ->name('show');
+            Route::post('/store', [SdmStrukturalController::class, 'store'])
+                ->name('store');
+            Route::post('update/{id}', [SdmStrukturalController::class, 'update'])
+                ->name('update');
+            Route::post('destroy/{id}', [SdmStrukturalController::class, 'destroy'])
+                ->name('destroy');
+        });
     });
 });
 
@@ -260,18 +262,7 @@ Route::prefix('master')->name('master.')->group(function () {
             ->name('update');
     });
 
-    Route::prefix('user')->name('user.')->group(function () {
-        Route::get('/', [MasterUserController::class, 'index'])
-            ->name('index');
-        Route::get('data', [MasterUserController::class, 'list'])
-            ->name('list');
-        Route::get('show/{id}', [MasterUserController::class, 'show'])
-            ->name('show');
-        Route::post('/store', [MasterUserController::class, 'store'])
-            ->name('store');
-        Route::post('update/{id}', [MasterUserController::class, 'update'])
-            ->name('update');
-    });
+
 
     Route::prefix('jabatan')->name('jabatan.')->group(function () {
         Route::get('/', [MasterJabatanController::class, 'index'])
@@ -286,6 +277,23 @@ Route::prefix('master')->name('master.')->group(function () {
             ->name('update');
     });
 
+});
+
+Route::middleware(['role:developer'])->group(function () {
+    Route::prefix('master')->name('master.')->group(function () {
+        Route::prefix('user')->name('user.')->group(function () {
+            Route::get('/', [MasterUserController::class, 'index'])
+                ->name('index');
+            Route::get('data', [MasterUserController::class, 'list'])
+                ->name('list');
+            Route::get('show/{id}', [MasterUserController::class, 'show'])
+                ->name('show');
+            Route::post('/store', [MasterUserController::class, 'store'])
+                ->name('store');
+            Route::post('update/{id}', [MasterUserController::class, 'update'])
+                ->name('update');
+        });
+    });
 });
 
 

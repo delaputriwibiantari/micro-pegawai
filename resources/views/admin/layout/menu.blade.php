@@ -1,3 +1,6 @@
+@if(session('admin_role') === 'developer')
+    <li>Manajemen User</li>
+@endif
 <div class="hover-scroll-overlay-y my-5 my-lg-5" id="kt_aside_menu_wrapper"
      data-kt-scroll="true"
      data-kt-scroll-activate="{default: false, lg: true}"
@@ -84,10 +87,14 @@
                        href="{{ route('admin.master.jabatan.index') }}">
                         <span class="menu-title px-4">Jabatan</span>
                     </a>
-                    <a class="menu-link {{ request()->routeIs('admin.master.user.*') ? 'active' : '' }}"
-                       href="{{ route('admin.master.user.index') }}">
-                        <span class="menu-title px-4">Manajemen User</span>
-                    </a>
+                    @auth('admin')
+                        @if(Auth::guard('admin')->user()->role === 'developer')
+                            <a class="menu-link {{ request()->routeIs('admin.master.user.*') ? 'active' : '' }}"
+                            href="{{ route('admin.master.user.index') }}">
+                                <span class="menu-title px-4">Manajemen User</span>
+                            </a>
+                        @endif
+                    @endauth
                 </div>
             </div>
         </div>
