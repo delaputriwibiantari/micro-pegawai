@@ -12,26 +12,85 @@
             const allowedTypes = ['application/pdf', 'image/jpeg', 'image/jpg', 'image/png'];
 
             if (fileIjazah) {
-                if (fileIjazah.size > 5 * 1024 * 1024) {
-                    Swal.fire("Warning", "Ukuran file Ijazah tidak boleh lebih dari 10MB", "warning");
+                const fileName = fileIjazah.name.toLowerCase();
+                const fileSize = fileIjazah.size;
+
+                const allowedExt = ['pdf', 'jpg', 'jpeg', 'png', 'docx', 'xlsx', 'pptx', 'zip'];
+                const ext = fileName.split('.').pop();
+
+                if (fileName.split('.').length > 2) {
+                    Swal.fire("Warning", "Nama file tidak boleh mengandung double extension.", "warning");
                     return;
                 }
-                if (!allowedTypes.includes(fileIjazah.type)) {
-                    Swal.fire("Warning", "Format file Ijazah harus PDF, JPG, JPEG, atau PNG", "warning");
+                const invisibleCharRegex = /[\u200B\u200C\u200D\uFEFF]/;
+                if (invisibleCharRegex.test(fileName)) {
+                    Swal.fire("Warning", "Nama file mengandung karakter tak terlihat. Silakan rename.", "warning");
                     return;
+                }
+                if (!allowedExt.includes(ext)) {
+                    Swal.fire("Warning", "Tipe file tidak diizinkan. Hanya PDF, JPG, JPEG, PNG.", "warning");
+                    return;
+                }
+
+                const allowedTypes = ["application/pdf", "image/jpeg", "image/png"];
+                if (!allowedTypes.includes(fileIjazah.type)) {
+                    Swal.fire("Warning", "Format file tidak valid / dicurigai dimodifikasi.", "warning");
+                    return;
+                }
+
+                if (fileSize > 5 * 1024 * 1024) {
+                    Swal.fire("Warning", "Ukuran file Ijazah tidak boleh lebih dari 5MB", "warning");
+                    return;
+                }
+
+                if (['jpg', 'jpeg', 'png'].includes(ext)) {
+                    const img = new Image();
+                    img.src = URL.createObjectURL(fileIjazah);
+                    img.onload = function () {
+                        console.log("Preview aman.");
+                    }
                 }
 
             }
 
             if (fileTranskip) {
-                if (fileTranskip.size > 5 * 1024 * 1024) {
-                    Swal.fire("Warning", "Ukuran file Transkip tidak boleh lebih dari 10MB", "warning");
+               const fileName = fileTranskip.name.toLowerCase();
+                const fileSize = fileTranskip.size;
+
+                const allowedExt = ['pdf', 'jpg', 'jpeg', 'png', 'docx', 'xlsx', 'pptx', 'zip'];
+                const ext = fileName.split('.').pop();
+
+                if (fileName.split('.').length > 2) {
+                    Swal.fire("Warning", "Nama file tidak boleh mengandung double extension.", "warning");
+                    return;
+                }
+                const invisibleCharRegex = /[\u200B\u200C\u200D\uFEFF]/;
+                if (invisibleCharRegex.test(fileName)) {
+                    Swal.fire("Warning", "Nama file mengandung karakter tak terlihat. Silakan rename.", "warning");
+                    return;
+                }
+                if (!allowedExt.includes(ext)) {
+                    Swal.fire("Warning", "Tipe file tidak diizinkan. Hanya PDF, JPG, JPEG, PNG.", "warning");
                     return;
                 }
 
+                const allowedTypes = ["application/pdf", "image/jpeg", "image/png"];
                 if (!allowedTypes.includes(fileTranskip.type)) {
-                    Swal.fire("Warning", "Format file Transkip harus PDF, JPG, JPEG, atau PNG", "warning");
+                    Swal.fire("Warning", "Format file tidak valid / dicurigai dimodifikasi.", "warning");
                     return;
+                }
+
+                if (fileSize > 5 * 1024 * 1024) {
+                    Swal.fire("Warning", "Ukuran file Transkip tidak boleh lebih dari 5MB", "warning");
+                    return;
+                }
+
+                if (['jpg', 'jpeg', 'png'].includes(ext)) {
+                    const img = new Image();
+                    img.src = URL.createObjectURL(fileTranskip);
+                    img.onload = function () {
+                        console.log("Preview aman.");
+                    }
                 }
             }
 

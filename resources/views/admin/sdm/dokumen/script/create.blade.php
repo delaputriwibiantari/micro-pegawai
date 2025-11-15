@@ -15,7 +15,7 @@
                 const fileSize = fileDokumen.size;
 
 
-                const allowedExt = ['pdf', 'jpg', 'jpeg', 'png', 'docx', 'xlsx', 'pptx'];
+                const allowedExt = ['pdf', 'jpg', 'jpeg', 'png', 'docx', 'xlsx', 'pptx', 'zip'];
                 const ext = fileName.split('.').pop();
 
                 if (fileName.split('.').length > 2) {
