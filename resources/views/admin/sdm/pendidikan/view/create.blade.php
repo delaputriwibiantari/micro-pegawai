@@ -69,9 +69,11 @@
                         <div class="col-md-6">
                             <div class="d-flex flex-column mb-2">
                                 <label class="fs-sm-8 fs-lg-6 fw-bolder mb-1">Jenis Nilai</label>
-                                <select data-control="select2" name="jenis_nilai"
+                                <select data-control="select2"
                                         class="form-select form-select-sm fs-sm-8 fs-lg-6"
-                                        id="jenis_nilai" data-allow-clear="true"
+                                        id="jenis_nilai"
+                                        name="jenis_nilai"
+                                         data-allow-clear="true"
                                         data-placeholder="Pilih Jenis Nilai">
                                             <option value="IPK">IPK</option>
                                             <option value="NILAI">NILAI</option>

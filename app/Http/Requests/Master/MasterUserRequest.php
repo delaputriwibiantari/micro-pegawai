@@ -29,10 +29,19 @@ class MasterUserRequest extends FormRequest
                     return $query->whereRaw('LOWER(nama) = LOWER(?)', [$this->nama]);
                 }),
             ],
-            'email' => [
+                'email' => [
                 'required',
                 'email',
-                'regex:/^[A-Za-z0-9._%+-]+@(gmail\.com|yahoo\.com)$/i',
+                'string',
+                'max:254',
+
+                // Validasi dari aturan kamu (no double dot + domain valid + karakter aman)
+                'regex:/^(?!.*\.\.)[A-Za-z0-9._%+\-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/',
+
+                // Validasi domain khusus user (gmail.com / yahoo.com)
+                'regex:/@(gmail\.com|yahoo\.com)$/i',
+
+                // Unique tapi abaikan user saat edit
                 Rule::unique('admin', 'email')->ignore($id),
             ],
             'password' => [
@@ -90,8 +99,11 @@ class MasterUserRequest extends FormRequest
             // --- Email ---
             'email.required' => 'Email wajib diisi.',
             'email.email' => 'Format email tidak valid.',
-            'email.regex' => 'Hanya domain gmail.com atau yahoo.com yang diperbolehkan.',
-            'email.unique' => 'Email sudah terdaftar.',
+            'email.string' => 'Email harus berupa teks.',
+            'email.max' => 'Email tidak boleh lebih dari 254 karakter.',
+            'email.regex' => 'Format email salah. Gunakan format yang benar dan domain harus gmail.com atau yahoo.com.',
+            'email.unique' => 'Email sudah digunakan.',
+
 
             // --- Password ---
             'password.required' => 'Password wajib diisi.',

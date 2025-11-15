@@ -4,13 +4,12 @@
         <form method="post" id="bt_submit_edit" enctype="multipart/form-data">
             <div class="modal-content shadow-lg rounded-4">
                 <div class="modal-header bg-light border-bottom">
-                    <h5 class="modal-title fw-bold text-primary">Edit SDM</h5>
+                    <h5 class="modal-title fw-bold text-primary">Edit Keluarga</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
                 <div class="modal-body">
                     <div class="row">
-
                             <div class="d-flex flex-column mb-2">
                                 <label class="fw-bolder mb-1 required">Hubungan Keluarga</label>
                                 <select id="edit_id_hubungan_keluarga" name="id_hubungan_keluarga"
@@ -66,7 +65,6 @@
                             </button>
                             <button type="submit" class="btn btn-sm btn-primary fs-sm-8 fs-lg-6">Simpan</button>
                           </div>
-
                 </form>
              </div>
           </div>

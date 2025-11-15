@@ -1,5 +1,6 @@
-<div class="modal fade" id="form_edit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
+<div class="modal fade" id="form_edit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog"
+     aria-hidden="true">
+   <div class="modal-dialog modal-lg" role="document">
         <form method="post" id="bt_submit_edit" enctype="multipart/form-data">
             <div class="modal-content shadow-lg rounded-4">
                 <div class="modal-header bg-light border-bottom">
@@ -9,8 +10,6 @@
 
                 <div class="modal-body">
                     <div class="row">
-
-                        <div class="col-md-6">
                             <div class="d-flex flex-column mb-2">
                                 <label class="fw-bolder mb-1 required">Jenjang Pendidikan</label>
                                 <select id="edit_id_jenjang_pendidikan" name="id_jenjang_pendidikan"
@@ -40,7 +39,7 @@
                                     <input type="text" id="edit_tahun_lulus" class="form-control form-control-sm" required />
                                 </div>
                             </div>
-                        </div>
+
 
                         <div class="col-md-6">
                             <div class="d-flex flex-column mb-2">

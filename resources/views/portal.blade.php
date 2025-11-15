@@ -93,7 +93,7 @@
         </div>
     </div>
     <footer class="mt-auto py-3 text-center">
-        <p class="text-dark fw-bold p-0 m-0">© {{ date('Y') }} Pusat Data & Sistem Informasi Universitas Nurul Jadid</p>
+        <p class="text-dark fw-bold p-0 m-0">© {{ date('Y') }} Pusat Data & Sistem Informasi PT. Nusantara Teknologi Solusi</p>
         <p class="p-0 m-0">{{ request()->ip() }}</p>
     </footer>
 </div>
