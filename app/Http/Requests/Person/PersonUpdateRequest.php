@@ -40,8 +40,16 @@ class PersonUpdateRequest extends FormRequest
             'rw' => 'nullable|string|max:3',
             'id_desa' => 'nullable|integer|exists:ref_almt_desa,id_desa',
             'npwp' => 'nullable|string|max:30',
-            'no_hp' => 'nullable|string|max:16',
-            'email' => 'nullable|email|max:100',
+            'no_hp' => [
+            'nullable',
+            'string',
+            'max:13',
+            'regex:/^(?:08[0-9]{8,11}|[1-9][0-9]{7,14})$/' ],
+            'email' => [
+            'required',
+            'string',
+            'max:254',
+            'regex:/^(?!.*\.\.)[A-Za-z0-9._%+\-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/' ],
             'foto' => 'nullable|image|max:2048|mimes:jpg,jpeg,png|mimetypes:image/jpeg,image/png',
         ];
     }
@@ -114,10 +122,17 @@ class PersonUpdateRequest extends FormRequest
             'id_desa.exists' => 'Field :attribute tidak ditemukan.',
             'npwp.string' => 'Field :attribute harus berupa teks.',
             'npwp.max' => 'Field :attribute maksimal :max karakter.',
-            'no_hp.string' => 'Field :attribute harus berupa teks.',
-            'no_hp.max' => 'Field :attribute maksimal :max karakter.',
-            'email.email' => 'Field :attribute harus berupa email yang valid.',
-            'email.max' => 'Field :attribute maksimal :max karakter.',
+            'no_hp.string' => 'Nomor HP harus berupa teks.',
+            'no_hp.max' => 'Email tidak boleh lebih dari 13 karakter.',
+            'no_hp.regex'  => 'Nomor HP tidak valid. Gunakan hanya angka 0–9 tanpa spasi atau simbol.
+                           Untuk nomor Indonesia harus diawali 08 dengan panjang 10–13 digit,
+                           atau nomor internasional 8–15 digit.',
+            'email.required' => 'Email wajib diisi.',
+            'email.string'   => 'Email harus berupa teks.',
+            'email.max'      => 'Email tidak boleh lebih dari 254 karakter.',
+            'email.regex'    => 'Format email tidak valid. Gunakan format local-part@domain,
+                                contoh: nama+tag@contoh.co.id.
+                                Pastikan tidak ada spasi atau dua titik berurutan.',
             'foto.image' => 'Field :attribute harus berupa gambar.',
             'foto.max' => 'Field :attribute maksimal :max KB.',
             'foto.mimes' => 'Field :attribute harus bertipe: jpg, jpeg, png.',

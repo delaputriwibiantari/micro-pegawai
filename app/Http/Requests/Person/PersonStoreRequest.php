@@ -42,6 +42,7 @@ class PersonStoreRequest extends FormRequest
             'no_hp' => [
             'nullable',
             'string',
+            'max:13',
             'regex:/^(?:08[0-9]{8,11}|[1-9][0-9]{7,14})$/' ],
             'email' => [
             'required',
@@ -122,6 +123,7 @@ class PersonStoreRequest extends FormRequest
             'npwp.string' => 'Field :attribute harus berupa teks.',
             'npwp.max' => 'Field :attribute maksimal :max karakter.',
             'no_hp.string' => 'Nomor HP harus berupa teks.',
+            'no_hp.max' => 'Email tidak boleh lebih dari 13 karakter.',
             'no_hp.regex'  => 'Nomor HP tidak valid. Gunakan hanya angka 0–9 tanpa spasi atau simbol.
                            Untuk nomor Indonesia harus diawali 08 dengan panjang 10–13 digit,
                            atau nomor internasional 8–15 digit.',
