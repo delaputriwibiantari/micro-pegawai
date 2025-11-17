@@ -80,6 +80,15 @@ class  PersonService{
         return $person;
     }
 
+    public function delete(Person $person): void
+    {
+        if ($person->foto) {
+            $this->fileUploadService->deleteFileByType($person->foto, 'Foto');
+        }
+
+        $person->delete();
+    }
+
     public function handleFileUpload($foto, ?Person $person = null): ?array
     {
         if (!$foto) {

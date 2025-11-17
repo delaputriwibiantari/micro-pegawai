@@ -39,6 +39,8 @@ Route::middleware(['role:admin,developer'])->group(function () {
                 ->name('store'); // Menjadi: admin.person.store
             Route::post('update/{id}', [PersonController::class, 'update'])
                 ->name('update'); // Menjadi: admin.person.update
+            Route::post('destroy/{id}', [PersonController::class, 'destroy'])
+                ->name('destroy');
         });
     });
 

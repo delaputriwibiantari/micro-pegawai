@@ -63,6 +63,20 @@ final class SdmKeluargaController extends Controller
         if ($this->sdmKeluargaService->checkDuplicate($idSdm, $request->id_person)) {
             return $this->responseService->errorResponse('Anggota keluarga ini sudah terdaftar untuk SDM tersebut.', 422);
         }
+        if (in_array($request->id_hubungan_keluarga, [1, 2, 3, 4])) {
+
+            $alreadyExist = $this->sdmKeluargaService->checkSingleSpouse(
+                $idSdm,
+                $request->id_hubungan_keluarga,
+            );
+
+            if ($alreadyExist) {
+                return $this->responseService->errorResponse(
+                    'Hubungan ' . strtolower($alreadyExist) . ' sudah ada. Tidak boleh lebih dari satu.',
+                    422
+                );
+            }
+        }
         return $this->transactionService->handleWithTransaction(function () use ($request, $idSdm) {
             $payload = $request->only([
                 'id_person', 'id_hubungan_keluarga', 'status_tanggungan',
@@ -72,6 +86,7 @@ final class SdmKeluargaController extends Controller
             $data = $this->sdmKeluargaService->create($payload);
             return $this->responseService->successResponse('Data berhasil dibuat', $data, 201);
         });
+
     }
 
     public function show(string $id): JsonResponse
@@ -94,6 +109,23 @@ final class SdmKeluargaController extends Controller
                 return $this->responseService->errorResponse('Anggota keluarga ini sudah terdaftar untuk SDM tersebut.', 422);
             }
         }
+        if ($request->filled('id_hubungan_keluarga')) {
+
+        if (in_array($request->id_hubungan_keluarga, [1, 2, 3, 4])) {
+
+            $alreadyExist = $this->sdmKeluargaService->checkSingleSpouseUpdate(
+                $data,
+                $request->id_hubungan_keluarga,
+            );
+
+            if ($alreadyExist) {
+                return $this->responseService->errorResponse(
+                    'Hubungan ' . strtolower($alreadyExist) . ' sudah ada. Tidak boleh lebih dari satu.',
+                    422
+                );
+            }
+         }
+        }
         return $this->transactionService->handleWithTransaction(function () use ($request, $data) {
             $payload = $request->only([
                 'id_person', 'id_hubungan_keluarga', 'status_tanggungan',
@@ -102,6 +134,7 @@ final class SdmKeluargaController extends Controller
             $updatedData = $this->sdmKeluargaService->update($data, $payload);
             return $this->responseService->successResponse('Data berhasil diperbarui', $updatedData);
         });
+
     }
 
     public function destroy(string $id): JsonResponse

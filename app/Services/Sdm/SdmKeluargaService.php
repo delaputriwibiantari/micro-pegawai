@@ -88,6 +88,15 @@ final readonly class SdmKeluargaService
         return $keluarga;
     }
 
+    public function checkSingleSpouseUpdate($keluarga, int $idHubungan)
+    {
+    return SdmKeluarga::where('id_sdm', $keluarga->id_sdm)
+        ->where('id_hubungan_keluarga', $idHubungan)
+        ->where('id', '!=', $keluarga->id)
+        ->exists();
+    }
+
+
     public function delete(SdmKeluarga $keluarga): void
     {
         $keluarga->delete();
@@ -120,4 +129,12 @@ final readonly class SdmKeluargaService
     {
         return $this->personService->findByNik($nik);
     }
+
+    public function checkSingleSpouse(int $idSdm, int $idHubungan)
+    {
+    return SdmKeluarga::where('id_sdm', $idSdm)
+        ->where('id_hubungan_keluarga', $idHubungan)
+        ->exists();
+    }
+
 }

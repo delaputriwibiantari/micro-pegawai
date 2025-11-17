@@ -35,6 +35,7 @@ class PersonController extends Controller
                 'action' => fn($row) => implode(' ', [
                     $this->transactionService->actionButton($row->id, 'detail'),
                     $this->transactionService->actionButton($row->id, 'edit'),
+                    $this->transactionService->actionButton($row->id, 'delete'),
                 ]),
             ]
         );
@@ -131,6 +132,19 @@ class PersonController extends Controller
             $data = $this->personService->getDetailData($id);
 
             return $this->responseService->successResponse('Data berhasil diambil', $data);
+        });
+    }
+     public function destroy(string $id): JsonResponse
+    {
+        $data = $this->personService->findById($id);
+        if (!$data) {
+            return $this->responseService->errorResponse('Data tidak ditemukan');
+        }
+
+        return $this->transactionService->handleWithTransaction(function () use ($data) {
+            $this->personService->delete($data);
+
+            return $this->responseService->successResponse('Data berhasil dihapus');
         });
     }
 
