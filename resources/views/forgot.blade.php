@@ -52,6 +52,8 @@
                             <div class="text-center mb-11">
                                 <h1 class="text-dark fw-bolder mb-4">Verifikasi OTP</h1>
                             </div>
+                            <input type="hidden" name="email" id="otp-email">
+
 
                             <div id="alert-otp" class="alert alert-danger d-none"></div>
                             <p id="masked-email" class="text-muted mb-4 text-center"></p>
@@ -163,6 +165,7 @@ document.querySelector("#otpform").addEventListener("submit", async function(e) 
 
     const otp = document.querySelector("#otp").value;
     const alert = document.getElementById("alert-otp");
+    const email = localStorage.getItem("reset_email");
 
     try {
         const response = await fetch("http://127.0.0.1:8000/api/verifikasii", {
@@ -171,7 +174,11 @@ document.querySelector("#otpform").addEventListener("submit", async function(e) 
                 "Content-Type": "application/json",
                 "Accept": "application/json",
             },
-            body: JSON.stringify({ otp })
+            body: JSON.stringify({
+                otp: otp,
+                email: email   // <-- WAJIB ADA
+            })
+
         });
 
         const result = await response.json();

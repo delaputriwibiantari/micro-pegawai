@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\StreamedResponse;
@@ -52,14 +53,37 @@ class PortalController extends Controller
         }
 
         $validationRules = [
-            'username' => 'required',
-            'password' => 'required',
+            'username' =>  [
+                'required',
+                'email',
+                'string',
+                'max:254',
+
+                'regex:/^(?!.*\.\.)[A-Za-z0-9._%+\-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/',
+                'regex:/@(gmail\.com|yahoo\.com)$/i',
+
+            ],
+            'password' => [
+                'string',
+                'min:10',
+                'max:64',
+                'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d\s])([^\s]*)$/',
+            ],
             'g-recaptcha-response' => 'required|captcha',
         ];
 
         $customMessages = [
             'username.required' => 'Username wajib diisi',
+            'username.email' => 'Format email tidak valid.',
+            'username.string' => 'Email harus berupa teks.',
+            'username.max' => 'Email tidak boleh lebih dari 254 karakter.',
+            'username.regex' => 'Format email salah. Gunakan format yang benar dan domain harus gmail.com atau yahoo.com.',
+            'username.unique' => 'Email sudah digunakan.',
             'password.required' => 'Password wajib diisi',
+            'password.string' => 'Password harus berupa teks.',
+            'password.min' => 'Password minimal harus terdiri dari :min karakter.',
+            'password.max' => 'Password maksimal hanya boleh :max karakter.',
+            'password.regex' => 'Password harus mengandung huruf besar, huruf kecil, angka, simbol, dan tidak boleh mengandung spasi.',
             'g-recaptcha-response.required' => 'Silakan centang captcha terlebih dahulu',
             'g-recaptcha-response.captcha' => 'Verifikasi captcha gagal, coba lagi.',
         ];

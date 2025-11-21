@@ -47,9 +47,13 @@ class AuthController extends Controller
     {
          $request->validate([
             'otp' => 'required|string|size:6',
+            'email' => 'required|email',
         ]);
 
-        $user = Admin::where('otp', $request->otp)->first();
+        $user = Admin::where('email', $request->email)
+             ->where('otp', $request->otp)
+             ->first();
+
 
         if (!$user) {
             return response()->json([
