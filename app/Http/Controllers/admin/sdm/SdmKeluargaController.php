@@ -65,7 +65,7 @@ final class SdmKeluargaController extends Controller
         }
         if (in_array($request->id_hubungan_keluarga, [1, 2, 3, 4])) {
 
-            $alreadyExist = $this->sdmKeluargaService->checkSingleSpouse(
+            $alreadyExist = $this->sdmKeluargaService->checkSingleSpouseCreate(
                 $idSdm,
                 $request->id_hubungan_keluarga,
             );
@@ -77,6 +77,7 @@ final class SdmKeluargaController extends Controller
                 );
             }
         }
+
         return $this->transactionService->handleWithTransaction(function () use ($request, $idSdm) {
             $payload = $request->only([
                 'id_person', 'id_hubungan_keluarga', 'status_tanggungan',

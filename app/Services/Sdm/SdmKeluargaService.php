@@ -3,6 +3,7 @@
 namespace App\Services\Sdm;
 
 use App\Models\Person\Person;
+use App\Models\Ref\RefHubunganKeluarga;
 use App\Models\sdm\Sdm;
 use App\Models\Sdm\SdmKeluarga;
 use App\Services\Person\PersonService;
@@ -89,12 +90,20 @@ final readonly class SdmKeluargaService
     }
 
     public function checkSingleSpouseUpdate($keluarga, int $idHubungan)
-    {
-    return SdmKeluarga::where('id_sdm', $keluarga->id_sdm)
+{
+    $existing = SdmKeluarga::where('id_sdm', $keluarga->id_sdm)
         ->where('id_hubungan_keluarga', $idHubungan)
         ->where('id', '!=', $keluarga->id)
-        ->exists();
+        ->first();
+
+    if ($existing) {
+        $relation = RefHubunganKeluarga::find($idHubungan);
+        return $relation ? $relation->hubungan_keluarga : null;
     }
+
+    return null;
+}
+
 
 
     public function delete(SdmKeluarga $keluarga): void
@@ -130,11 +139,19 @@ final readonly class SdmKeluargaService
         return $this->personService->findByNik($nik);
     }
 
-    public function checkSingleSpouse(int $idSdm, int $idHubungan)
-    {
-    return SdmKeluarga::where('id_sdm', $idSdm)
+    public function checkSingleSpouseCreate(int $idSdm, int $idHubungan)
+{
+    $existing = SdmKeluarga::where('id_sdm', $idSdm)
         ->where('id_hubungan_keluarga', $idHubungan)
-        ->exists();
+        ->first();
+
+    if ($existing) {
+        $relation = RefHubunganKeluarga::find($idHubungan);
+        return $relation ? $relation->hubungan_keluarga : null;
     }
+
+    return null;
+}
+
 
 }
