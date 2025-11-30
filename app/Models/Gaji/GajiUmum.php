@@ -1,0 +1,35 @@
+<?php
+
+namespace App\Models\Gaji;
+
+use App\Traits\SkipsEmptyAudit;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use OwenIt\Auditing\Contracts\Auditable;
+use OwenIt\Auditing\Auditable as AuditableTrait;
+
+final class GajiUmum extends Model implements Auditable
+{
+    use AuditableTrait;
+    use HasFactory;
+    use SkipsEmptyAudit {
+        SkipsEmptyAudit::boot as bootSkipsEmptyAudit;
+    }
+
+    public $timestamps = true;
+    protected $table = 'gaji_umum';
+    protected $primaryKey = 'id';
+    protected $fillable = [
+        'umum_id',
+        'nominal'
+    ];
+
+    protected $guarded = [
+        'id',
+    ];
+
+    protected $casts = [
+        'id' => 'integer'
+    ];
+
+}
