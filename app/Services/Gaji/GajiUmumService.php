@@ -19,7 +19,7 @@ final class GajiUmumService
 
     public function getDetailData(string $id): ?GajiUmum
     {
-        return GajiUmum::query()->where('master_unit.id_unit', $id)->first();
+        return GajiUmum::query()->where('gaji_umum.id', $id)->first();
     }
 
     public function findById(string $id): ?GajiUmum

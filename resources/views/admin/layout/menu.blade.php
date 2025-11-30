@@ -97,6 +97,22 @@
                     @endauth
                 </div>
             </div>
+             @php
+                $masterActive = request()->routeIs('admin.gaji.gaji_umum.*');
+            @endphp
+            <div data-kt-menu-trigger="click"
+                 class="menu-item menu-accordion {{ $masterActive ? 'here show' : '' }}">
+                <span class="menu-link">
+                    <span class="menu-title">Refrensi Gaji</span>
+                    <span class="menu-arrow"></span>
+                </span>
+            <div class="menu-sub menu-sub-accordion menu-active-bg">
+                    <a class="menu-link {{ request()->routeIs('admin.gaji.gaji_umum.*') ? 'active' : '' }}"
+                       href="{{ route('admin.gaji.gaji_umum.index') }}">
+                        <span class="menu-title px-4">Gaji Umum</span>
+                    </a>
+            </div>
+            </div>
         </div>
     </div>
 </div>

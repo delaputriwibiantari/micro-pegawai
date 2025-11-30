@@ -23,7 +23,7 @@ final class GajiUmumController extends Controller
 
     public function index(): View
     {
-        return view('admin.master.unit.index');
+        return view('admin.gaji.gaji_umum.index');
     }
 
     public function list(Request $request): JsonResponse

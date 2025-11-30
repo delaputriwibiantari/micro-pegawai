@@ -13,10 +13,11 @@ final class GajiUmum extends Model implements Auditable
     use AuditableTrait;
     use HasFactory;
     use SkipsEmptyAudit {
-        SkipsEmptyAudit::boot as bootSkipsEmptyAudit;
+        SkipsEmptyAudit::transformAudit insteadof AuditableTrait;
     }
 
-    public $timestamps = true;
+    protected $connection = 'gaji';
+    public $timestamps = false;
     protected $table = 'gaji_umum';
     protected $primaryKey = 'id';
     protected $fillable = [

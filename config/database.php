@@ -114,7 +114,7 @@ return [
             'url' => '',
             'host' => env('DB3_HOST', '127.0.0.1'),
             'port' => env('DB3_PORT', '3306'),
-            'database' => env('DB3_DATABASE', 'laravel'),
+            'database' => env('DB3_DATABASE', 'simpeg-micro-gaji'),
             'username' => env('DB3_USERNAME', 'root'),
             'password' => env('DB3_PASSWORD', ''),
             'unix_socket' => '',
