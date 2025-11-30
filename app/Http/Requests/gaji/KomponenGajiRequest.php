@@ -11,7 +11,7 @@ class KomponenGajiRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,36 @@ class KomponenGajiRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'komponen_id' => 'required|string|max:10',
+            'nama_komponen' => 'required|string|max:100',
+            'jenis'         => 'required|in:PENGHASIL,POTONGAN',
+            'deskripsi'     => 'nullable|string',
+            'is_umum'       => 'nullable|boolean',
+            'umum_id'       => 'nullable|string|max:100',
         ];
     }
+
+    public function attributes(): array
+    {
+        return [
+            'komponen_id'   => 'Kode Komponen',
+            'nama_komponen' => 'Nama Komponen',
+            'jenis'         => 'Jenis Komponen',
+            'deskripsi'     => 'Deskripsi',
+            'is_umum'       => 'Tipe Umum',
+            'umum_id'       => 'ID Umum',
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'komponen_id.required'   => 'Komponen Id attribute wajib diisi.',
+            'nama_komponen.required' => 'Nama Komponen attribute wajib diisi.',
+            'nama_komponen.string'   => 'Nama Komponen harus berupa teks.',
+            'jenis.required'         => 'Jenis attribute wajib dipilih.',
+            'jenis.in'               => 'Jenis attribute harus PENGHASIL atau POTONGAN.',
+        ];
+    }
+
 }
