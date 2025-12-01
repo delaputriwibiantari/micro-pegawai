@@ -23,7 +23,7 @@ final class KomponenGajiController extends Controller
 
     public function index(): View
     {
-        return view('admin.gaji.gaji_umum.index');
+        return view('admin.gaji.komponen_gaji.index');
     }
 
     public function list(Request $request): JsonResponse

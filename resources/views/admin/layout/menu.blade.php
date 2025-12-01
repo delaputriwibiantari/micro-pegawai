@@ -98,7 +98,7 @@
                 </div>
             </div>
              @php
-                $masterActive = request()->routeIs('admin.gaji.gaji_umum.*');
+                $masterActive = request()->routeIs('admin.gaji.gaji_umum.*')|| request()->routeIs('admin.gaji.kompnen_gaji.*');
             @endphp
             <div data-kt-menu-trigger="click"
                  class="menu-item menu-accordion {{ $masterActive ? 'here show' : '' }}">
@@ -106,12 +106,16 @@
                     <span class="menu-title">Refrensi Gaji</span>
                     <span class="menu-arrow"></span>
                 </span>
-            <div class="menu-sub menu-sub-accordion menu-active-bg">
+                <div class="menu-sub menu-sub-accordion menu-active-bg">
                     <a class="menu-link {{ request()->routeIs('admin.gaji.gaji_umum.*') ? 'active' : '' }}"
                        href="{{ route('admin.gaji.gaji_umum.index') }}">
                         <span class="menu-title px-4">Gaji Umum</span>
                     </a>
-            </div>
+                    <a class="menu-link {{ request()->routeIs('admin.gaji.komponen_gaji.*') ? 'active' : '' }}"
+                       href="{{ route('admin.gaji.komponen_gaji.index') }}">
+                        <span class="menu-title px-4">Komponen Gaji</span>
+                    </a>
+                 </div>
             </div>
         </div>
     </div>

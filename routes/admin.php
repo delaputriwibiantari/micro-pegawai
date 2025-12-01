@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\gaji\GajiUmumController;
+use App\Http\Controllers\admin\gaji\KomponenGajiController;
 use App\Http\Controllers\admin\master\MasterJabatanController;
 use App\Http\Controllers\Admin\Master\MasterPeriodeController;
 use App\Http\Controllers\admin\master\MasterUnitController;
@@ -312,6 +313,19 @@ Route::prefix('gaji')->group(function () {
             ->name('gaji.gaji_umum.store');
         Route::post('update/{id}', [GajiUmumController::class, 'update'])
             ->name('gaji.gaji_umum.update');
+    });
+
+    Route::prefix('komponen_gaji')->group(function () {
+        Route::get('/', [KomponenGajiController::class, 'index'])
+            ->name('gaji.komponen_gaji.index');
+        Route::get('data', [KomponenGajiController::class, 'list'])
+            ->name('gaji.komponen_gaji.list');
+        Route::get('show/{id}', [KomponenGajiController::class, 'show'])
+            ->name('gaji.komponen_gaji.show');
+        Route::post('/store', [KomponenGajiController::class, 'store'])
+            ->name('gaji.komponen_gaji.store');
+        Route::post('update/{id}', [KomponenGajiController::class, 'update'])
+            ->name('gaji.komponen_gaji.update');
     });
 
 });
