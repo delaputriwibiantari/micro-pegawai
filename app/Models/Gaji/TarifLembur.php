@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use OwenIt\Auditing\Contracts\Auditable;
 use OwenIt\Auditing\Auditable as AuditableTrait;
 
-final class GajiUmum extends Model implements Auditable
+final class TarifLembur extends Model implements Auditable
 {
     use AuditableTrait;
     use HasFactory;
@@ -17,21 +17,20 @@ final class GajiUmum extends Model implements Auditable
     }
 
     protected $connection = 'gaji';
-     public $incrementing = true;
-    public $timestamps = false;
-    protected $table = 'gaji_umum';
+    protected $table = 'tarif_lembur';
     protected $primaryKey = 'id';
+    public $timestamps = false;
+    public $incrementing = true;
     protected $fillable = [
-        'umum_id',
-        'nominal'
-    ];
-
-    protected $guarded = [
-        'id',
+        'tarif_id',
+        'jenis_lembur',
+        'tarif_per_jam',
+        'berlaku_sampai'
     ];
 
     protected $casts = [
-        'id' => 'integer'
+        'id' => 'integer',
+        'berlaku_sampai' => 'date'
     ];
 
 }

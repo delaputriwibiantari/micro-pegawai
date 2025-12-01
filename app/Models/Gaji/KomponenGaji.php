@@ -17,6 +17,7 @@ final class KomponenGaji extends Model implements Auditable
     }
 
     protected $connection = 'gaji';
+     public $incrementing = true;
     public $timestamps = true;
     protected $table = 'komponen_gaji';
     protected $primaryKey = 'id';
@@ -34,9 +35,9 @@ final class KomponenGaji extends Model implements Auditable
     ];
 
     protected $casts = [
-    'id'       => 'integer',
-    'is_umum'  => 'boolean',
-];
+        'id'       => 'integer',
+        'is_umum'  => 'boolean',
+    ];
     public function setKomponenIdAttribute($v): void
     {
         $this->attributes['komponen_id'] = $v ? trim(strip_tags($v)) : null;
