@@ -5,6 +5,7 @@ use App\Http\Controllers\admin\gaji\GajiPeriodeController;
 use App\Http\Controllers\admin\gaji\GajiUmumController;
 use App\Http\Controllers\admin\gaji\KomponenGajiController;
 use App\Http\Controllers\admin\gaji\TarifLemburController;
+use App\Http\Controllers\admin\gaji\TarifPotonganController;
 use App\Http\Controllers\admin\master\MasterJabatanController;
 use App\Http\Controllers\Admin\Master\MasterPeriodeController;
 use App\Http\Controllers\admin\master\MasterUnitController;
@@ -354,6 +355,19 @@ Route::prefix('gaji')->name('gaji.')->group(function () {
         Route::post('/store', [TarifLemburController::class, 'store'])
             ->name('store');
         Route::post('update/{id}', [TarifLemburController::class, 'update'])
+            ->name('update');
+    });
+
+    Route::prefix('tarif_potongan')->name('tarif_potongan.')->group(function () {
+        Route::get('/', [TarifPotonganController::class, 'index'])
+            ->name('index');
+        Route::get('data', [TarifPotonganController::class, 'list'])
+            ->name('list');
+        Route::get('show/{id}', [TarifPotonganController::class, 'show'])
+            ->name('show');
+        Route::post('/store', [TarifPotonganController::class, 'store'])
+            ->name('store');
+        Route::post('update/{id}', [TarifPotonganController::class, 'update'])
             ->name('update');
     });
 
