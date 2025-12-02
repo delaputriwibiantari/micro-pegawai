@@ -23,7 +23,7 @@ class GajiJabatanRequest extends FormRequest
     {
         return [
             'gaji_master_id' => 'required|string|max:10',
-            'komponen_id' => 'required|exists:komponen_gaji,komponen_id',
+            'komponen_id' => 'required|exists:gaji.komponen_gaji,komponen_id',
             'nominal' => 'required|numeric|min:0',
         ];
     }

@@ -24,7 +24,7 @@ final class GajiJabatanController extends Controller
 
     public function index(): View
     {
-        return view('admin.gaji.komponen_gaji.index');
+        return view('admin.gaji.gaji_jabatan.index');
     }
 
     public function list(Request $request): JsonResponse

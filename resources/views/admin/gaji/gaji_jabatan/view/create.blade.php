@@ -33,7 +33,7 @@
                                 <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
                                     <span>Nominal</span>
                                 </label>
-                                <input type="text" id="nomial"
+                                <input type="text" name="nominal" id="nominal"
                                        class="form-control form-control-sm fs-sm-8 fs-lg-6"
                                        required>
                                 <div class="invalid-feedback"></div>

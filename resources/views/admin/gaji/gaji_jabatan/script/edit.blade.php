@@ -14,7 +14,7 @@
                     $('#edit_gaji_master_id').val(data.gaji_master_id);
                     $('#edit_nominal').val(data.nominal);
 
-                    fetchDataDropdown('{{ route('api.gaji.gajijabatan') }}', '#edit_komponen_id_select', 'id', 'nama_komponen', () => {
+                    fetchDataDropdown('{{ route('api.gaji.komponengaji') }}', '#edit_komponen_id_select', 'id', 'nama_komponen', () => {
                         if (data.komponen_id) {
                             $('#edit_komponen_id_select').val(data.komponen_id).trigger('change');
                         }

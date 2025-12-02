@@ -12,16 +12,21 @@ final class GajiJabatanService
     public function getListData(Request $request): Collection
     {
         return GajiJabatan::query()
-            ->leftJoin('kompoenen_gaji', 'gaji_jabatan.komponen_id', '=', 'kompoenen_gaji.komponen_id')
+            ->leftJoin('komponen_gaji', 'gaji_jabatan.komponen_id', '=', 'komponen_gaji.komponen_id')
             ->select([
                 'gaji_jabatan.*',
-                'kompoenen_gaji.komponen_id',
-                'kompoenen_gaji.nama_komponen',
+                'komponen_gaji.komponen_id',
+                'komponen_gaji.nama_komponen',
             ])
             ->when($request->query('komponen_id'), function ($query, $id_unit) {
                 $query->where('gaji_jabatan.komponen_id', $id_unit);
             })
             ->get();
+    }
+
+    public function getListDataOrdered(string $orderBy): Collection
+    {
+        return GajiJabatan::orderBy($orderBy)->get();
     }
 
     public function create(array $data): GajiJabatan
@@ -32,11 +37,11 @@ final class GajiJabatanService
     public function getDetailData(string $id): ?GajiJabatan
     {
         return GajiJabatan::query()
-            ->leftJoin('komponen_gaji', 'gaji_jabatan.komponen_id', '=', 'kompoenen_gaji.komponen_id')
+            ->leftJoin('komponen_gaji', 'gaji_jabatan.komponen_id', '=', 'komponen_gaji.komponen_id')
             ->select([
                 'gaji_jabatan.*',
-                'kompoenen_gaji.komponen_id',
-                'kompoenen_gaji.nama_komponen',
+                'komponen_gaji.komponen_id',
+                'komponen_gaji.nama_komponen',
             ])
             ->where('gaji_jabatan.id', $id)
             ->first();
@@ -57,11 +62,11 @@ final class GajiJabatanService
     public function getApiData(Request $request): Collection
     {
         return KomponenGaji::query()
-            ->leftJoin('kompoenen_gaji', 'gaji_jabatan.komponen_id', '=', 'kompoenen_gaji.komponen_id')
+            ->leftJoin('komponen_gaji', 'gaji_jabatan.komponen_id', '=', 'komponen_gaji.komponen_id')
             ->select([
                 'gaji_jabatan.*',
-                'kompoenen_gaji.komponen_id',
-                'kompoenen_gaji.nama_komponen',
+                'komponen_gaji.komponen_id',
+                'komponen_gaji.nama_komponen',
             ])
             ->when($request->query('komponen_id'), function ($query, $id) {
                 $query->where('gaji_jabatan.komponen_id', $id);

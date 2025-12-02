@@ -28,6 +28,11 @@ final class KomponenGajiService
         return KomponenGaji::create($data);
     }
 
+    public function getListDataOrdered(string $orderBy): Collection
+    {
+        return KomponenGaji::orderBy($orderBy)->get();
+    }
+
     public function getDetailData(string $id): ?KomponenGaji
     {
         return KomponenGaji::query()

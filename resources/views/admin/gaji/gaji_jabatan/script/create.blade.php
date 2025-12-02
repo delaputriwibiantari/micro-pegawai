@@ -1,5 +1,6 @@
 <script defer>
     $('#form_create').on('show.bs.modal', function (e) {
+        fetchDataDropdown('{{ route('api.gaji.komponengaji') }}', '#komponen_id', 'id', 'nama_komponen');
         $('#bt_submit_create').on('submit', function (e) {
             e.preventDefault();
             Swal.fire({
@@ -24,6 +25,7 @@
                         nominal: $('#nominal').val(),
                         komponen_id
                     };
+                    console.log('Data yang akan dikirim:', input);
                     const action = '{{ route('admin.gaji.gaji_jabatan.store') }}';
                     DataManager.postData(action, input).then(response => {
                         if (response.success) {

@@ -47,8 +47,8 @@
                 name: 'gaji_master_id'
             },
             {
-                data: 'komponen_id',
-                name: 'komponen_id'
+                data: 'nama_komponen',
+                name: 'nama_komponen'
             },
             {
                 data: 'nominal',
