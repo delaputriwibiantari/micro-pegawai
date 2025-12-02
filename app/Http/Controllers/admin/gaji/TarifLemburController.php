@@ -53,7 +53,7 @@ final class TarifLemburController extends Controller
                 'tarif_id',
                 'jenis_lembur',
                 'tarif_per_jam',
-                'berlaku_sampai'
+                'berlaku_mulai'
 
             ]));
             return $this->responseService->successResponse('Data berhasil dibuat', $data, 201);
@@ -75,7 +75,7 @@ final class TarifLemburController extends Controller
                 'tarif_id',
                 'jenis_lembur',
                 'tarif-per_jam',
-                'berlaku_sampai'
+                'berlaku_mulai'
             ]));
             return $this->responseService->successResponse('Data berhasil diupdate', $data);
         });

@@ -27,7 +27,7 @@ class TarifLemburRequest extends FormRequest
             'tarif_id' => 'required|integer|max:10',
             'jenis_lembur' => 'required|in:BIASA,LIBUR',
             'tarif_per_jam' => 'required|decimal:15,2',
-            'berlaku_sampai' => 'required|date',
+            'berlaku_mulai' => 'required|date',
         ];
     }
 
@@ -37,7 +37,7 @@ class TarifLemburRequest extends FormRequest
             'tarif_id' => 'ID Tarif',
             'jenis_lembur' => 'Jenis Lembur',
             'tarif_per_jam' => 'Tarif Per Jam',
-            'berlaku_sampai' => 'Berlaku Sampai',
+            'berlaku_mulai' => 'Berlaku mulai',
         ];
     }
 
@@ -65,8 +65,8 @@ class TarifLemburRequest extends FormRequest
             'tarif_per_jam.required' => 'Field :attribute wajib diisi.',
             'tarif_per_jam.decimal' => 'Field :attribute harus berupa angka.',
 
-            'berlaku_sampai.required' => 'Field :attribute wajib diisi.',
-            'berlaku_sampai.date' => 'Field :attribute harus berupa tanggal.',
+            'berlaku_mulai.required' => 'Field :attribute wajib diisi.',
+            'berlaku_mulai.date' => 'Field :attribute harus berupa tanggal.',
         ];
     }
 }
