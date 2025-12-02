@@ -23,7 +23,7 @@ final class TarifLemburController extends Controller
 
     public function index(): View
     {
-        return view('admin.gaji.gaji_umum.index');
+        return view('admin.gaji.tarif_lembur.index');
     }
 
     public function list(Request $request):JsonResponse
@@ -52,7 +52,7 @@ final class TarifLemburController extends Controller
             $data = $this->tariflemburservice->create($request->only([
                 'tarif_id',
                 'jenis_lembur',
-                'tarif-per_jam',
+                'tarif_per_jam',
                 'berlaku_sampai'
 
             ]));

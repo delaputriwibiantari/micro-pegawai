@@ -23,7 +23,7 @@ final class GajiPeriodeController extends Controller
 
     public function index(): View
     {
-        return view('admin.gaji.gaji_umum.index');
+        return view('admin.gaji.gaji_periode.index');
     }
 
     public function list(Request $request):JsonResponse

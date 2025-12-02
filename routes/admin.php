@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\admin\gaji\GajiPeriodeController;
 use App\Http\Controllers\admin\gaji\GajiUmumController;
 use App\Http\Controllers\admin\gaji\KomponenGajiController;
+use App\Http\Controllers\admin\gaji\TarifLemburController;
 use App\Http\Controllers\admin\master\MasterJabatanController;
 use App\Http\Controllers\Admin\Master\MasterPeriodeController;
 use App\Http\Controllers\admin\master\MasterUnitController;
@@ -325,6 +327,32 @@ Route::prefix('gaji')->name('gaji.')->group(function () {
         Route::post('/store', [KomponenGajiController::class, 'store'])
             ->name('store');
         Route::post('update/{id}', [KomponenGajiController::class, 'update'])
+            ->name('update');
+    });
+
+    Route::prefix('gaji_periode')->name('gaji_periode.')->group(function () {
+        Route::get('/', [GajiPeriodeController::class, 'index'])
+            ->name('index');
+        Route::get('data', [GajiPeriodeController::class, 'list'])
+            ->name('list');
+        Route::get('show/{id}', [GajiPeriodeController::class, 'show'])
+            ->name('show');
+        Route::post('/store', [GajiPeriodeController::class, 'store'])
+            ->name('store');
+        Route::post('update/{id}', [GajiPeriodeController::class, 'update'])
+            ->name('update');
+    });
+
+    Route::prefix('tarif_lembur')->name('tarif_lembur.')->group(function () {
+        Route::get('/', [TarifLemburController::class, 'index'])
+            ->name('index');
+        Route::get('data', [TarifLemburController::class, 'list'])
+            ->name('list');
+        Route::get('show/{id}', [TarifLemburController::class, 'show'])
+            ->name('show');
+        Route::post('/store', [TarifLemburController::class, 'store'])
+            ->name('store');
+        Route::post('update/{id}', [TarifLemburController::class, 'update'])
             ->name('update');
     });
 
