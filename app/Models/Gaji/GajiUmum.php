@@ -17,7 +17,7 @@ final class GajiUmum extends Model implements Auditable
     }
 
     protected $connection = 'gaji';
-     public $incrementing = true;
+    public $incrementing = true;
     public $timestamps = false;
     protected $table = 'gaji_umum';
     protected $primaryKey = 'id';

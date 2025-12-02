@@ -51,21 +51,25 @@
                                 <div class="invalid-feedback"></div>
                             </div>
                             <div class="d-flex flex-column mb-2">
-                                <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
-                                    <span>Is Umum</span>
+                                <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
+                                    <span>Terapkan Umum</span>
                                 </label>
-                                <input type="text" id="is_umum"
-                                       class="form-control form-control-sm fs-sm-8 fs-lg-6"
-                                       required>
+                                <div class="form-check form-check-custom form-check-solid">
+                                    <input class="form-check-input" type="checkbox" value="1" id="is_umum" name="is_umum"/>
+                                    <label class="form-check-label" for="is_umum">
+                                        Ya
+                                    </label>
+                                </div>
                                 <div class="invalid-feedback"></div>
                             </div>
                             <div class="d-flex flex-column mb-2">
                                 <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
                                     <span>Umum Id</span>
                                 </label>
-                                <input type="text" id="umum_id"
-                                       class="form-control form-control-sm fs-sm-8 fs-lg-6"
-                                       required>
+                                <select data-control="select2" class="form-select form-select-sm fs-sm-8 fs-lg-6"
+                                    name="umum_id" id="umum_id" data-allow-clear="true" data-placeholder="Umum Id"
+                                    >
+                                </select>
                                 <div class="invalid-feedback"></div>
                             </div>
                         </div>

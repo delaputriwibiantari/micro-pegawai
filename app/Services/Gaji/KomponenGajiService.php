@@ -14,6 +14,7 @@ final class KomponenGajiService
             ->leftJoin('gaji_umum', 'komponen_gaji.umum_id', '=', 'gaji_umum.umum_id')
             ->select([
                 'komponen_gaji.*',
+                'gaji_umum.umum_id',
                 'gaji_umum.nominal',
             ])
             ->when($request->query('umum_id'), function ($query, $id_unit) {
@@ -33,6 +34,7 @@ final class KomponenGajiService
             ->leftJoin('gaji_umum', 'komponen_gaji.umum_id', '=', 'gaji_umum.umum_id')
             ->select([
                 'komponen_gaji.*',
+                'gaji_umum.umum_id',
                 'gaji_umum.nominal',
             ])
             ->where('komponen_gaji.id', $id)
@@ -57,6 +59,7 @@ final class KomponenGajiService
              ->leftJoin('gaji_umum', 'komponen_gaji.umum_id', '=', 'gaji_umum.umum_id')
             ->select([
                 'komponen_gaji.*',
+                'gaji_umum.umum_id',
                 'gaji_umum.nominal',
             ])
             ->when($request->query('umum_id'), function ($query, $id_unit) {

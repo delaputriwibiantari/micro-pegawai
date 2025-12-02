@@ -10,11 +10,14 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12">
+                            <!-- Hidden input untuk ID -->
+                            <input type="hidden" id="edit_id" name="id">
+
                             <div class="d-flex flex-column mb-2">
                                 <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
                                     <span>Komponen Id</span>
                                 </label>
-                                <input type="text" id="edit_Komponen_id"
+                                <input type="text" id="edit_komponen_id"
                                        class="form-control form-control-sm fs-sm-8 fs-lg-6"
                                        required>
                                 <div class="invalid-feedback"></div>
@@ -39,6 +42,7 @@
                                     <option value="PENGHASIL">PENGHASIL</option>
                                     <option value="POTONGAN">POTONGAN</option>
                                 </select>
+                                <div class="invalid-feedback"></div>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -54,12 +58,15 @@
                         </div>
                         <div class="col-md-12">
                             <div class="d-flex flex-column mb-2">
-                                <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
-                                    <span>Is Umum</span>
+                                <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
+                                    <span>Terapkan Umum</span>
                                 </label>
-                                <input type="text" id="edit_is_umum"
-                                       class="form-control form-control-sm fs-sm-8 fs-lg-6"
-                                       required>
+                                <div class="form-check form-check-custom form-check-solid">
+                                    <input class="form-check-input" type="checkbox" value="1" id="edit_is_umum" name="edit_is_umum"/>
+                                    <label class="form-check-label" for="edit_is_umum">
+                                        Ya
+                                    </label>
+                                </div>
                                 <div class="invalid-feedback"></div>
                             </div>
                         </div>
@@ -68,9 +75,10 @@
                                 <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
                                     <span>Umum Id</span>
                                 </label>
-                                <input type="text" id="edit_umum_id"
-                                       class="form-control form-control-sm fs-sm-8 fs-lg-6"
-                                       required>
+                                <select data-control="select2" class="form-select form-select-sm fs-sm-8 fs-lg-6"
+                                    name="edit_umum_id_select" id="edit_umum_id_select" data-allow-clear="true"
+                                    data-placeholder="Pilih Umum Id">
+                                </select>
                                 <div class="invalid-feedback"></div>
                             </div>
                         </div>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\AlmtController;
 use App\Http\Controllers\Api\MasterController;
 use App\Http\Controllers\Api\RefController;
+use App\Http\Controllers\Api\RefGajiController;
 use App\Http\Controllers\content\AuthController;
 use App\Http\Controllers\content\PortalController;
 use Illuminate\Support\Facades\Route;
@@ -34,6 +35,10 @@ Route::prefix('master')->group(function () {
     Route::get('periode', [MasterController::class, 'periode'])->name('api.master.periode');
     Route::get('unit', [MasterController::class, 'unit'])->name('api.master.unit');
     Route::get('jabatan', [MasterController::class, 'jabatan'])->name('api.master.jabatan');
+});
+
+Route::prefix('gaji')->group(function () {
+    Route::get('gajiumum', [RefGajiController::class, 'gajiumum'])->name('api.gaji.gajiumum');
 });
 
 Route::post('/send', [AuthController::class, 'send']);

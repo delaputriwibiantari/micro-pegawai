@@ -26,8 +26,12 @@ class KomponenGajiRequest extends FormRequest
             'nama_komponen' => 'required|string|max:100',
             'jenis'         => 'required|in:PENGHASIL,POTONGAN',
             'deskripsi'     => 'nullable|string',
-            'is_umum'       => 'nullable|boolean',
-            'umum_id'       => 'nullable|string|max:100',
+            'is_umum' => 'nullable|boolean',
+            'umum_id' => [
+                'required_if:is_umum,1',
+                'nullable',
+                'exists:gaji.gaji_umum,umum_id',
+            ],
         ];
     }
 

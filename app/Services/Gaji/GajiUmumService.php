@@ -12,6 +12,11 @@ final class GajiUmumService
         return GajiUmum::all();
     }
 
+    public function getListDataOrdered(string $orderBy): Collection
+    {
+        return GajiUmum::orderBy($orderBy)->get();
+    }
+
     public function create(array $data): GajiUmum
     {
         return GajiUmum::create($data);

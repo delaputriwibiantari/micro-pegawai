@@ -300,32 +300,32 @@ Route::middleware(['role:developer'])->group(function () {
     });
 });
 
-Route::prefix('gaji')->group(function () {
+Route::prefix('gaji')->name('gaji.')->group(function () {
 
-    Route::prefix('gaji_umum')->group(function () {
+    Route::prefix('gaji_umum')->name('gaji_umum.')->group(function () {
         Route::get('/', [GajiUmumController::class, 'index'])
-            ->name('gaji.gaji_umum.index');
+            ->name('index');
         Route::get('data', [GajiUmumController::class, 'list'])
-            ->name('gaji.gaji_umum.list');
+            ->name('list');
         Route::get('show/{id}', [GajiUmumController::class, 'show'])
-            ->name('gaji.gaji_umum.show');
+            ->name('show');
         Route::post('/store', [GajiUmumController::class, 'store'])
-            ->name('gaji.gaji_umum.store');
+            ->name('store');
         Route::post('update/{id}', [GajiUmumController::class, 'update'])
-            ->name('gaji.gaji_umum.update');
+            ->name('update');
     });
 
-    Route::prefix('komponen_gaji')->group(function () {
+    Route::prefix('komponen_gaji')->name('komponen_gaji.')->group(function () {
         Route::get('/', [KomponenGajiController::class, 'index'])
-            ->name('gaji.komponen_gaji.index');
+            ->name('index');
         Route::get('data', [KomponenGajiController::class, 'list'])
-            ->name('gaji.komponen_gaji.list');
+            ->name('list');
         Route::get('show/{id}', [KomponenGajiController::class, 'show'])
-            ->name('gaji.komponen_gaji.show');
+            ->name('show');
         Route::post('/store', [KomponenGajiController::class, 'store'])
-            ->name('gaji.komponen_gaji.store');
+            ->name('store');
         Route::post('update/{id}', [KomponenGajiController::class, 'update'])
-            ->name('gaji.komponen_gaji.update');
+            ->name('update');
     });
 
 });

@@ -17,8 +17,8 @@ final class KomponenGaji extends Model implements Auditable
     }
 
     protected $connection = 'gaji';
-     public $incrementing = true;
-    public $timestamps = true;
+    public $incrementing = true;
+    public $timestamps = false;
     protected $table = 'komponen_gaji';
     protected $primaryKey = 'id';
     protected $fillable = [
@@ -27,7 +27,7 @@ final class KomponenGaji extends Model implements Auditable
         'jenis',
         'deskripsi',
         'is_umum',
-        'umum_id'
+        'umum_id',
     ];
 
     protected $guarded = [

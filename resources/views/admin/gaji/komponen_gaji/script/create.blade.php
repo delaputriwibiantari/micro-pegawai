@@ -1,5 +1,6 @@
 <script defer>
     $('#form_create').on('show.bs.modal', function (e) {
+        fetchDataDropdown('{{ route('api.gaji.gajiumum') }}', '#umum_id', 'id', 'nominal');
         $('#bt_submit_create').on('submit', function (e) {
             e.preventDefault();
             Swal.fire({
@@ -17,15 +18,18 @@
             }).then((result) => {
                 if (result.value) {
                     DataManager.openLoading();
+                    const rawUmum = $('#umum_id').val();
+                    const umum_id = (rawUmum && rawUmum !== 'undefined' && rawUmum !== '') ? rawUmum : null;
                     const input = {
                         komponen_id: $('#komponen_id').val(),
                         nama_komponen: $('#nama_komponen').val(),
                         jenis: $('#jenis').val(),
                         deskripsi: $('#deskripsi').val(),
-                        is_umum: $('#is_umum').val(),
-                        umum_id: $('#umum_id').val(),
+                        is_umum: $('#is_umum').is(':checked') ? 1 : 0,
+                        umum_id
 
                     };
+                    console.log('Data yang akan dikirim:', input);
                     const action = '{{ route('admin.gaji.komponen_gaji.store') }}';
                     DataManager.postData(action, input).then(response => {
                         if (response.success) {
