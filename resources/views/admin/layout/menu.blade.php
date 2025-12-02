@@ -98,7 +98,7 @@
                 </div>
             </div>
              @php
-                $masterActive = request()->routeIs('admin.gaji.gaji_umum.*')|| request()->routeIs('admin.gaji.komponen_gaji.*')|| request()->routeIs('admin.gaji.gaji_periode.*')|| request()->routeIs('admin.gaji.tarif_lembur.*');
+                $masterActive = request()->routeIs('admin.gaji.gaji_umum.*')|| request()->routeIs('admin.gaji.komponen_gaji.*')|| request()->routeIs('admin.gaji.gaji_periode.*')|| request()->routeIs('admin.gaji.tarif_lembur.*')|| request()->routeIs('admin.gaji.gaji_jabatan.*');
             @endphp
             <div data-kt-menu-trigger="click"
                  class="menu-item menu-accordion {{ $masterActive ? 'here show' : '' }}">
@@ -122,6 +122,10 @@
                     <a class="menu-link {{ request()->routeIs('admin.gaji.tarif_lembur.*') ? 'active' : '' }}"
                        href="{{ route('admin.gaji.tarif_lembur.index') }}">
                         <span class="menu-title px-4">Tarif Lembur</span>
+                    </a>
+                    <a class="menu-link {{ request()->routeIs('admin.gaji.gaji_jabatan.*') ? 'active' : '' }}"
+                       href="{{ route('admin.gaji.gaji_jabatan.index') }}">
+                        <span class="menu-title px-4">Gaji Jabatan</span>
                     </a>
                  </div>
             </div>

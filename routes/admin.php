@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\gaji\GajiJabatanController;
 use App\Http\Controllers\admin\gaji\GajiPeriodeController;
 use App\Http\Controllers\admin\gaji\GajiUmumController;
 use App\Http\Controllers\admin\gaji\KomponenGajiController;
@@ -353,6 +354,19 @@ Route::prefix('gaji')->name('gaji.')->group(function () {
         Route::post('/store', [TarifLemburController::class, 'store'])
             ->name('store');
         Route::post('update/{id}', [TarifLemburController::class, 'update'])
+            ->name('update');
+    });
+
+    Route::prefix('gaji_jabatan')->name('gaji_jabatan.')->group(function () {
+        Route::get('/', [GajiJabatanController::class, 'index'])
+            ->name('index');
+        Route::get('data', [GajiJabatanController::class, 'list'])
+            ->name('list');
+        Route::get('show/{id}', [GajiJabatanController::class, 'show'])
+            ->name('show');
+        Route::post('/store', [GajiJabatanController::class, 'store'])
+            ->name('store');
+        Route::post('update/{id}', [GajiJabatanController::class, 'update'])
             ->name('update');
     });
 

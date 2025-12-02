@@ -11,7 +11,7 @@
         <span class="bullet bg-gray-200 w-5px h-2px"></span>
     </li>
 
-    <li class="breadcrumb-item text-dark">Gaji Umum</li>
+    <li class="breadcrumb-item text-dark">Gaji Jabatan</li>
 @endsection
 
 @section('content')
@@ -20,13 +20,13 @@
             <div class="card mb-xl-8 mb-5 border-2 shadow">
                 <div class="card-header">
                     <h3 class="card-title align-items-start flex-column">
-                        <span class="card-label fw-bolder mb-1">Data Gaji Umum</span>
+                        <span class="card-label fw-bolder mb-1">Data Gaji Jabtan</span>
                     </h3>
                     <div class="card-toolbar">
                         <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
                             <a type="button" class="btn btn-sm btn-primary fs-sm-8 fs-lg-6"
                                data-bs-toggle="modal" data-bs-target="#form_create"
-                               title="Tambah Gaji Jabtan">Tambah Gaji Umum</a>
+                               title="Tambah Gaji Jabatan">Tambah Gaji Jabatan</a>
                         </div>
                     </div>
                 </div>
@@ -34,7 +34,7 @@
                     <div class="notice d-flex border-primary mb-4 rounded border border-dashed p-4 shadow bg-hover-light-dark">
                         <div class="d-flex flex-stack fs-sm-8 fs-lg-6">
                             <div class="row">
-                                <span class="text-gray-700">Berikut ini adalah data gaji umum.</span>
+                                <span class="text-gray-700">Berikut ini adalah data gaji jabatan.</span>
                             </div>
                         </div>
                     </div>
@@ -44,7 +44,8 @@
                             <thead>
                             <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0 fs-sm-8 fs-lg-6">
                                 <th class="min-w-75px ps-5">Aksi</th>
-                                <th class="min-w-150px">ID Umum</th>
+                                <th class="min-w-150px">Gaji Master Id</th>
+                                <th class="min-w-150px">Komponen Id</th>
                                 <th class="min-w-120px">Nominal</th>
                             </tr>
                             </thead>
@@ -56,9 +57,9 @@
             </div>
         </div>
     </div>
-    @include('admin.gaji.gaji_umum.view.detail')
-    @include('admin.gaji.gaji_umum.view.create')
-    @include('admin.gaji.gaji_umum.view.edit')
+    @include('admin.gaji.gaji_jabatan.view.detail')
+    @include('admin.gaji.gaji_jabatan.view.create')
+    @include('admin.gaji.gaji_jabatan.view.edit')
 @endsection
 
 @section('javascript')
@@ -75,8 +76,8 @@
     <script src="{{ asset('assets/plugins/datatables/buttons.colVis.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables/print.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables/responsive.bootstrap.min.js') }}"></script>
-    @include('admin.gaji.gaji_umum.script.list')
-    @include('admin.gaji.gaji_umum.script.create')
-    @include('admin.gaji.gaji_umum.script.edit')
-    @include('admin.gaji.gaji_umum.script.detail')
+    @include('admin.gaji.gaji_jabatan.script.list')
+    @include('admin.gaji.gaji_jabatan.script.create')
+    @include('admin.gaji.gaji_jabatan.script.edit')
+    @include('admin.gaji.gaji_jabatan.script.detail')
 @endsection

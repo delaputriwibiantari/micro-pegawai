@@ -3,16 +3,13 @@
         $(this).attr('aria-hidden', 'false');
         const button = $(e.relatedTarget);
         const id = button.data('id');
-        const detail = '{{ route('admin.gaji.komponen_gaji.show', [':id']) }}';
+        const detail = '{{ route('admin.gaji.gaji_jabatan.show', [':id']) }}';
         DataManager.fetchData(detail.replace(':id', id))
             .then(function (response) {
                 if (response.success) {
+                    $('#detail_gaji_master_id').text(response.data.gaji_master_id);
                     $('#detail_komponen_id').text(response.data.komponen_id);
-                    $('#detail_nama_komponen').text(response.data.nama_komponen);
-                    $('#detail_jenis').text(response.data.jenis === 'PENGHASIL' ? 'PENGHASIL' : (response.data.jenis === 'POTONGAN' ? 'POTONGAN' : response.data.jenis));
-                    $('#detail_deskripsi').text(response.data.deskripsi);
-                    $('#detail_is_umum').text(response.data.is_umum);
-                    $('#detail_umum_id').text(response.data.umum_id);
+                    $('#detail_nominal').text(response.data.nominal);
                     $('#null_data').hide();
                     $('#show_data').show();
                 } else {
