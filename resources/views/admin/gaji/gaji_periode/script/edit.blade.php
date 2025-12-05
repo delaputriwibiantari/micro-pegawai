@@ -11,7 +11,7 @@
                     $('#edit_tahun').val(response.data.tahun);
                     $('#edit_tanggal_mulai').val(response.data.tanggal_mulai);
                     $('#edit_tanggal_selesai').val(response.data.tanggal_selesai);
-                    $('#edit_status').val(data.status).trigger('change');
+                    $('#edit_status').val(response.data.status).trigger('change');
                 } else {
                     Swal.fire('Warning', response.message, 'warning');
                 }
@@ -37,7 +37,7 @@
                 if (result.value) {
                     DataManager.openLoading();
                     const input = {
-                        priode_id: $('#edit_priode_id').val(),
+                        periode_id: $('#edit_periode_id').val(),
                         tahun: $('#edit_tahun').val(),
                         tanggal_mulai: $('#edit_tanggal_mulai').val(),
                         tanggal_selesai: $('#edit_tanggal_selesai').val(),

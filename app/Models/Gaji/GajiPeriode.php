@@ -5,6 +5,7 @@ namespace App\Models\Gaji;
 use App\Traits\SkipsEmptyAudit;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 use OwenIt\Auditing\Contracts\Auditable;
 use OwenIt\Auditing\Auditable as AuditableTrait;
 
@@ -37,4 +38,14 @@ final class GajiPeriode extends Model implements Auditable
         'tanggal_mulai' => 'date',
         'tanggal_selesai' => 'date',
     ];
+
+    public function getTanggalMulaiAttribute($value): ?string
+    {
+        return $value ? Carbon::parse($value)->format('Y-m-d') : null;
+    }
+
+    public function getTanggalSelesaiAttribute($value): ?string
+    {
+        return $value ? Carbon::parse($value)->format('Y-m-d') : null;
+    }
 }

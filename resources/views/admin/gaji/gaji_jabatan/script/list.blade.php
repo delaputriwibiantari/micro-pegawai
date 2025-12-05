@@ -47,9 +47,14 @@
                 name: 'gaji_master_id'
             },
             {
+                data: 'jabatan',
+                name: 'jabatan'
+            },
+            {
                 data: 'nama_komponen',
                 name: 'nama_komponen'
             },
+
             {
                 data: 'nominal',
                 name: 'nominal'

@@ -53,6 +53,7 @@ final class GajiJabatanController extends Controller
                 'gaji_master_id',
                 'komponen_id',
                 'nominal',
+                'id_jabatan',
             ]));
             return $this->responseService->successResponse('Data berhasil dibuat', $data, 201);
         });
@@ -79,6 +80,7 @@ final class GajiJabatanController extends Controller
                 'gaji_master_id',
                 'komponen_id',
                 'nominal',
+                'id_jabatan',
             ]));
             return $this->responseService->successResponse('Data berhasil diperbarui', $updatedData);
         });

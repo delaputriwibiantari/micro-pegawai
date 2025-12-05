@@ -35,7 +35,7 @@ class GajiPeriodeRequest extends FormRequest
     public function attributes()
     {
         return [
-            'periode_id' => 'Id Periode',
+            'periode_id' => 'Periode Id',
             'tahun' => 'Tahun',
             'tanggal_mulai' => 'Tanggal Mulai',
             'tanggal_selesai' => 'Tanggal Selesai',

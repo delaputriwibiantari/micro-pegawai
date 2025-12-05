@@ -3,6 +3,7 @@
 namespace App\Http\Requests\gaji;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class GajiJabatanRequest extends FormRequest
 {
@@ -25,6 +26,8 @@ class GajiJabatanRequest extends FormRequest
             'gaji_master_id' => 'required|string|max:10',
             'komponen_id' => 'required|exists:gaji.komponen_gaji,komponen_id',
             'nominal' => 'required|numeric|min:0',
+            'id_jabatan' => 'required|exists:mysql.master_jabatan,id_jabatan',
+
         ];
     }
 
@@ -34,6 +37,7 @@ class GajiJabatanRequest extends FormRequest
             'gaji_master_id' => 'Gaji Master ID',
             'komponen_id'   => 'Kode Komponen',
             'nominal'       => 'Nominal',
+            'id_jabatan'  => 'Id Jabatan',
 
         ];
     }
@@ -49,6 +53,8 @@ class GajiJabatanRequest extends FormRequest
             'nominal.required' => 'Nominal harus diisi.',
             'nominal.numeric' => 'Nominal harus berupa angka.',
             'nominal.min' => 'Nominal minimal 0.',
+            'id_jabatan.required' => 'ID Jabatan harus diisi.',
+            'id_jabatan.exists'   => 'ID Jabatan tidak ditemukan di database.',
         ];
     }
 }

@@ -24,7 +24,8 @@ final class GajiJabatan extends Model implements Auditable
     protected $fillable = [
         'gaji_master_id',
         'komponen_id',
-        'nominal'
+        'nominal',
+        'id_jabatan'
     ];
 
     protected $guarded = [
@@ -33,6 +34,7 @@ final class GajiJabatan extends Model implements Auditable
 
     protected $casts = [
         'id'       => 'integer',
+        'id_jabatan' => 'integer',
     ];
 
 

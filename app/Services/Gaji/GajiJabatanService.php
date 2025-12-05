@@ -6,23 +6,34 @@ use App\Models\Gaji\GajiJabatan;
 use App\Models\Gaji\KomponenGaji;
 use Illuminate\Support\Collection;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 final class GajiJabatanService
 {
     public function getListData(Request $request): Collection
     {
-        return GajiJabatan::query()
+        // ambil data gaji dari database gaji
+        $data = GajiJabatan::query()
             ->leftJoin('komponen_gaji', 'gaji_jabatan.komponen_id', '=', 'komponen_gaji.komponen_id')
             ->select([
                 'gaji_jabatan.*',
-                'komponen_gaji.komponen_id',
                 'komponen_gaji.nama_komponen',
             ])
-            ->when($request->query('komponen_id'), function ($query, $id_unit) {
-                $query->where('gaji_jabatan.komponen_id', $id_unit);
-            })
             ->get();
+
+        // ambil master jabatan dari database SDM
+        $masterJabatan = DB::connection('mysql')
+            ->table('master_jabatan')
+            ->pluck('jabatan', 'id_jabatan');
+
+        // mapping manual
+        foreach ($data as $row) {
+            $row->jabatan = $masterJabatan[$row->id_jabatan] ?? null;
+        }
+
+        return $data;
     }
+
 
     public function getListDataOrdered(string $orderBy): Collection
     {
@@ -34,18 +45,29 @@ final class GajiJabatanService
         return GajiJabatan::create($data);
     }
 
+
     public function getDetailData(string $id): ?GajiJabatan
     {
-        return GajiJabatan::query()
+        $data = GajiJabatan::query()
             ->leftJoin('komponen_gaji', 'gaji_jabatan.komponen_id', '=', 'komponen_gaji.komponen_id')
             ->select([
                 'gaji_jabatan.*',
-                'komponen_gaji.komponen_id',
                 'komponen_gaji.nama_komponen',
             ])
             ->where('gaji_jabatan.id', $id)
             ->first();
+
+        if (!$data) return null;
+
+        // ambil dari database SDM
+        $data->jabatan = DB::connection('mysql')
+            ->table('master_jabatan')
+            ->where('id_jabatan', $data->id_jabatan)
+            ->value('jabatan');
+
+        return $data;
     }
+
 
     public function findById(string $id): ?GajiJabatan
     {
@@ -63,13 +85,16 @@ final class GajiJabatanService
     {
         return KomponenGaji::query()
             ->leftJoin('komponen_gaji', 'gaji_jabatan.komponen_id', '=', 'komponen_gaji.komponen_id')
+            ->leftJoin('master_jabatan', 'gaji_jabatan.id_jabatan', '=', 'master_jabatan.id_jabatan')
             ->select([
                 'gaji_jabatan.*',
                 'komponen_gaji.komponen_id',
                 'komponen_gaji.nama_komponen',
+                'master_jabatan.jabatan',
             ])
-            ->when($request->query('komponen_id'), function ($query, $id) {
+            ->when($request->query('komponen_id'), function ($query, $id, $id_jabatan) {
                 $query->where('gaji_jabatan.komponen_id', $id);
+                 $query->where('gaji_jabatan.id_jabatan', $id_jabatan);
             })
             ->get();
     }

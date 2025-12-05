@@ -1,6 +1,7 @@
 <script defer>
     $('#form_create').on('show.bs.modal', function (e) {
-        fetchDataDropdown('{{ route('api.gaji.komponengaji') }}', '#komponen_id', 'id', 'nama_komponen');
+        fetchDataDropdown('{{ route('api.gaji.komponengaji') }}', '#komponen_id', 'komponen_id', 'nama_komponen');
+        fetchDataDropdown('{{ route('api.master.jabatan') }}', '#id_jabatan', 'id_jabatan', 'jabatan');
         $('#bt_submit_create').on('submit', function (e) {
             e.preventDefault();
             Swal.fire({
@@ -20,10 +21,14 @@
                     DataManager.openLoading();
                     const rawKomponen = $('#komponen_id').val();
                     const komponen_id = (rawKomponen && rawKomponen !== 'undefined' && rawKomponen !== '') ? rawKomponen : null;
+                    const rawJabatan = $('#id_jabatan').val();
+                    const id_jabatan = (rawJabatan&& rawJabatan!== 'undefined' && rawJabatan!== '') ? rawJabatan: null;
                     const input = {
                         gaji_master_id: $('#gaji_master_id').val(),
                         nominal: $('#nominal').val(),
-                        komponen_id
+                        komponen_id,
+                        id_jabatan
+
                     };
                     console.log('Data yang akan dikirim:', input);
                     const action = '{{ route('admin.gaji.gaji_jabatan.store') }}';

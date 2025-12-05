@@ -29,6 +29,14 @@ final class GajiPeriodeService {
 
     public function update(string $id, array $data): ?GajiPeriode
     {
-        return GajiPeriode::find($id)->update($data);
+        $model = GajiPeriode::find($id);
+
+        if (!$model) {
+            return null;
+        }
+
+        $model->update($data);
+        return $model;
     }
+
 }

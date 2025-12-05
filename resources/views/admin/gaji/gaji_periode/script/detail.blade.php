@@ -11,7 +11,7 @@
                     $('#detail_tahun').text(response.data.tahun);
                     $('#detail_tanggal_mulai').text(response.data.tanggal_mulai);
                     $('#detail_tanggal_selesai').text(response.data.tanggal_selesai);
-                    $('#detail_status').text(response.data.status === 'DRAFT' ? 'DRAFT' : (response.data.status === 'FINAL' ? 'FINAL' : (response.data.status === 'CLOSED' ? 'CLOSED' : response.data.status));
+                    $('#detail_status').text(response.data.status === 'DRAFT' ? 'DRAFT' : (response.data.status === 'FINAL' ? 'FINAL' : (response.data.status === 'CLOSED' ? 'CLOSED' : response.data.status)));
                     $('#null_data').hide();
                     $('#show_data').show();
                 } else {

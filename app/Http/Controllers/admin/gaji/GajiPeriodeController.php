@@ -71,19 +71,22 @@ final class GajiPeriodeController extends Controller
 
     public function update(GajiPeriodeRequest $request, string $id): JsonResponse
     {
-        $data = $this->gajiperiodeservice->findById($id);
-        if (!$data) {
-            return $this->responseService->errorResponse('Data tidak ditemukan');
-        }
-        return $this->transactionService->handleWithTransaction(function () use ($request, $data) {
-            $updatedData = $this->gajiperiodeservice->update($data, $request->only([
+        return $this->transactionService->handleWithTransaction(function () use ($request, $id) {
+
+            $data = $this->gajiperiodeservice->update($id, $request->only([
                 'periode_id',
                 'tahun',
                 'tanggal_mulai',
                 'tanggal_selesai',
                 'status',
             ]));
-            return $this->responseService->successResponse('Data berhasil diperbarui', $updatedData);
+
+            if (!$data) {
+                return $this->responseService->errorResponse('Data tidak ditemukan', 404);
+            }
+
+            return $this->responseService->successResponse('Data berhasil diperbarui', $data);
         });
     }
+
 }

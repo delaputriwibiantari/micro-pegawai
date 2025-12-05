@@ -45,8 +45,10 @@
                             <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0 fs-sm-8 fs-lg-6">
                                 <th class="min-w-75px ps-5">Aksi</th>
                                 <th class="min-w-150px">Gaji Master Id</th>
+                                <th class="min-w-120px">Jabatan</th>
                                 <th class="min-w-150px">Nama Komponen</th>
                                 <th class="min-w-120px">Nominal</th>
+
                             </tr>
                             </thead>
                             <tbody class="text-gray-800 fw-bolder fs-sm-8 fs-lg-6">
@@ -77,23 +79,21 @@
     <script src="{{ asset('assets/plugins/datatables/print.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables/responsive.bootstrap.min.js') }}"></script>
     <script>
-        function fetchDataDropdown(url, id, placeholder, name, callback) {
-            DataManager.executeOperations(url, "admin_" + url, 120).then(response => {
-                $(id).empty().append('<option></option>');
-                if (response.success) {
-                    response.data.forEach(item => {
-                        $(id).append(`<option value="${item['komponen_' + placeholder]}">${item[name]}</option>`);
-                    });
-                    $(id).select2();
-                    if (callback) {
-                        callback();
+        function fetchDataDropdown(url, id, valueKey, labelKey, callback) {
+            DataManager.executeOperations(url, "admin_" + url, 120)
+                .then(response => {
+                    $(id).empty().append('<option></option>');
+                    if (response.success) {
+                        response.data.forEach(item => {
+                            $(id).append(`<option value="${item[valueKey]}">${item[labelKey]}</option>`);
+                        });
+                        $(id).select2();
+                        if (callback) callback();
                     }
-                } else if (!response.errors) {
-                    Swal.fire('Warning', response.message, 'warning');
-                }
-            }).catch(error => {
-                ErrorHandler.handleError(error);
-            });
+                })
+                .catch(error => {
+                    ErrorHandler.handleError(error);
+                });
         }
     </script>
     @include('admin.gaji.gaji_jabatan.script.list')
