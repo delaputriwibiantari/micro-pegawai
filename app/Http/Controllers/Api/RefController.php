@@ -9,6 +9,7 @@ use App\Services\Ref\RefHubunganKeluargaService;
 use App\Services\Ref\RefJenisAsuransiService;
 use App\Services\Ref\RefJenisDokumenService;
 use App\Services\Ref\RefJenjangPendidikanService;
+use App\Services\Sdm\SdmService;
 use App\Services\Tools\ResponseService;
 use App\Services\Tools\TransactionService;
 use Illuminate\Http\JsonResponse;
@@ -24,6 +25,7 @@ final class RefController extends Controller
         private readonly RefEselonService            $refEselonService,
         private readonly RefJenisAsuransiService     $refJenisAsuransiService,
         private readonly RefBankService              $refBankService,
+        private readonly SdmService                  $sdmService
     ) {}
 
         public function jenjangPendidikan(): JsonResponse
@@ -83,5 +85,17 @@ final class RefController extends Controller
 
             return $this->responseService->successResponse('Data berhasil diambil', $data);
         });
+    }
+
+    public function sdm(): JsonResponse
+    {
+        $data = $this->sdmService->getListDataOrdered('id_sdm');
+
+        $data->transform(function ($item) {
+                $item->setAttribute('sdm', $item->nama_lengkap . ' (' . $item->sdm . ')');
+                return $item;
+            });
+
+        return $this->responseService->successResponse('Data berhasil diambil', $data);
     }
 }

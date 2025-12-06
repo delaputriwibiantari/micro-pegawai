@@ -29,6 +29,7 @@ Route::prefix('ref')->group(function () {
     Route::get('jenis-asuransi', [RefController::class, 'jenisAsuransi'])->name('api.ref.jenis-asuransi');
     Route::get('jenis-dokumen', [RefController::class, 'jenisDokumen'])->name('api.ref.jenis-dokumen');
     Route::get('bank', [RefController::class, 'bank'])->name('api.ref.bank');
+    Route::get('sdm', [RefController::class, 'sdm'])->name('api.ref.sdm');
 });
 
 Route::prefix('master')->group(function () {

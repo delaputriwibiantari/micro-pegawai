@@ -100,4 +100,9 @@ class  SdmService{
         return $this->personService->findByNik($nik);
     }
 
+    public function getListDataOrdered(string $orderBy): Collection
+    {
+        return Sdm::orderBy($orderBy)->get();
+    }
+
 }
