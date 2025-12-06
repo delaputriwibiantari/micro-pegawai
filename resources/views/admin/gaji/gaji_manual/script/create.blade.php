@@ -80,10 +80,6 @@
 
     });
 
-
-    // =======================================================
-    //               FUNCTION LOAD PERIODE GAJI
-    // =======================================================
     function loadPeriodeGaji() {
         $('#periode_id').html('').trigger("change");
 
@@ -95,7 +91,7 @@
                 res.data.forEach((item) => {
                     select.append(`
                         <option value="${item.id}">
-                            ${item.nama_periode} (${item.tanggal_mulai} - ${item.tanggal_selesai})
+                            ${item.tanggal_mulai} - ${item.tanggal_selesai}
                         </option>
                     `);
                 });
@@ -105,10 +101,6 @@
             .catch((err) => ErrorHandler.handleError(err));
     }
 
-
-    // =======================================================
-    //               FUNCTION LOAD PEGAWAI AKTIF
-    // =======================================================
     function loadPegawaiAktif() {
         $('#sdm_id').html('').trigger("change");
 
@@ -120,7 +112,7 @@
                 res.data.forEach((item) => {
                     select.append(`
                         <option value="${item.id}">
-                            ${item.nama_lengkap} (${item.nip ?? '-'})
+                            ${item.nama_lengkap}
                         </option>
                     `);
                 });

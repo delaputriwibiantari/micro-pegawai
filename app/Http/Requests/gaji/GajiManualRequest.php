@@ -22,7 +22,7 @@ class GajiManualRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'periode_id' => 'required|exists:gaji_priode,periode_id',
+            'periode_id' => 'required|exists:gaji.gaji_periode,periode_id',
             'id_sdm' => 'required|integer|exists:mysql.sdm,id_sdm',
 
             'komponen_id' => 'sometimes|required|exists:komponen_gaji,komponen_id',
