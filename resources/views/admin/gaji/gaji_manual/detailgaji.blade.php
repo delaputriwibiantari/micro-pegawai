@@ -1,0 +1,125 @@
+@php
+    use Carbon\Carbon;
+@endphp
+@extends('admin.layout.index')
+
+@section('css')
+    <link rel="stylesheet" href="{{ asset('assets/plugins/datatables/dataTables.bootstrap5.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/datatables/responsive.bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/datatables/buttons.dataTables.min.css') }}">
+@endsection
+
+@section('list')
+    <li class="breadcrumb-item text-muted">SDM</li>
+    <li class="breadcrumb-item">
+        <span class="bullet bg-gray-200 w-5px h-2px"></span>
+    </li>
+    <li class="breadcrumb-item text-dark">Riwayat SDM</li>
+@endsection
+
+@section('content')
+    <div class="container-fluid">
+        <div class="card mb-5 mb-xl-10">
+            <div class="card-body pt-9 pb-0">
+                <div class="d-flex flex-wrap flex-sm-nowrap mb-6">
+                    <div class="flex-grow-1">
+                        <div class="d-flex justify-content-between align-items-start flex-wrap mb-4">
+                            <div class="d-flex flex-column flex-grow-1">
+                                <div class="d-flex align-items-center mb-3">
+                                    <h2 class="text-gray-900 text-hover-primary fs-2 fw-bold me-1">
+                                        {{ $person->nama_lengkap ?? 'Nama tidak tersedia' }}
+                                    </h2>
+                                </div>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <div class="d-flex align-items-center text-gray-600">
+
+                                            <span class="fs-7">NIP: {{ $person->nip ?? '-' }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="d-flex align-items-center text-gray-600">
+
+                                            <span class="fs-7">Jabatan: {{ $person->kk ?? '-' }}</span>
+                                        </div>
+                                    </div>
+                                    @if ($person->npwp)
+                                        <div class="col-md-6">
+                                            <div class="d-flex align-items-center text-gray-600">
+
+                                                <span class="fs-7">Take Home Pay: {{ $person->npwp }}</span>
+                                            </div>
+                                        </div>
+                                    @endif
+
+                                    @if ($fullAddress)
+                                        <div class="col-12">
+                                            <div class="d-flex align-items-start text-gray-600">
+                                                <span class="fs-7">{{ $fullAddress }}</span>
+                                            </div>
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-responsive mb-8 shadow p-4 mx-0 border-hover-dark border-primary border-1 border-dashed fs-sm-8 fs-lg-6 rounded-2">
+                    <div class="table-responsive">
+                    <table id="example"
+                           class="table table-sm align-middle table-row-bordered table-row-solid gs-0 gy-2">
+                        <thead>
+                        <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0 fs-sm-8 fs-lg-6">
+                            <th class="min-w-150px">Aksi</th>
+                            <th class="min-w-150px">Nama Komponen</th>
+                            <th class="min-w-150px">Jenis</th>
+                            <th class="min-w-100px">Nominal</th>
+                            <th class="min-w-80px">Keterangan</th>
+                        </tr>
+                        </thead>
+                        <tbody class="text-gray-800 fw-bolder fs-sm-8 fs-lg-6">
+                        @forelse ($data as $item)
+                            <tr>
+                                <td class="text-gray-900 fw-bold">{{ $item->nama_komponen ?? '-' }}</td>
+                                <td>{{ $item->jenis?? '-' }}</td>
+                                <td>{{ $item->status_pegawai ?? '-' }}</td>
+                                <td>{{ $item->nominal ?? '-' }}</td>
+                                <td>{{ $item->keterangan ?? '-' }}</td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="8" class="text-center text-muted py-10">
+                                    <div class="d-flex flex-column align-items-center">
+                                        <span class="fs-6">Tidak ada data riwayat SDM</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforelse
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+
+@section('javascript')
+     <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/lodash.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/dataTables.bootstrap5.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/dataTables.colReorder.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/dataTables.buttons.min.js') }}"></script>
+
+    <script src="{{ asset('assets/plugins/datatables/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/jszip.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/buttons.colVis.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/print.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/responsive.bootstrap.min.js') }}"></script>
+    <script>
+        $('#example').DataTable();
+    </script>
+@endsection

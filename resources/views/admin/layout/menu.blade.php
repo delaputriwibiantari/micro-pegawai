@@ -98,7 +98,13 @@
                 </div>
             </div>
              @php
-                $masterActive = request()->routeIs('admin.gaji.gaji_umum.*')|| request()->routeIs('admin.gaji.komponen_gaji.*')|| request()->routeIs('admin.gaji.gaji_periode.*')|| request()->routeIs('admin.gaji.tarif_lembur.*')|| request()->routeIs('admin.gaji.gaji_jabatan.*')|| request()->routeIs('admin.gaji.tarif_potongan.*');
+                $masterActive = request()->routeIs('admin.gaji.gaji_manual.*')||
+                                request()->routeIs('admin.gaji.gaji_periode.*')||
+                                request()->routeIs('admin.gaji.komponen_gaji.*')||
+                                request()->routeIs('admin.gaji.gaji_umum.*')||
+                                request()->routeIs('admin.gaji.gaji_jabatan.*')||
+                                request()->routeIs('admin.gaji.tarif_lembur.*')||
+                                request()->routeIs('admin.gaji.tarif_potongan.*');
             @endphp
             <div data-kt-menu-trigger="click"
                  class="menu-item menu-accordion {{ $masterActive ? 'here show' : '' }}">
@@ -107,25 +113,29 @@
                     <span class="menu-arrow"></span>
                 </span>
                 <div class="menu-sub menu-sub-accordion menu-active-bg">
-                    <a class="menu-link {{ request()->routeIs('admin.gaji.gaji_umum.*') ? 'active' : '' }}"
-                       href="{{ route('admin.gaji.gaji_umum.index') }}">
-                        <span class="menu-title px-4">Gaji Umum</span>
-                    </a>
-                    <a class="menu-link {{ request()->routeIs('admin.gaji.komponen_gaji.*') ? 'active' : '' }}"
-                       href="{{ route('admin.gaji.komponen_gaji.index') }}">
-                        <span class="menu-title px-4">Komponen Gaji</span>
+                    <a class="menu-link {{ request()->routeIs('admin.gaji.gaji_manual.*') ? 'active' : '' }}"
+                       href="{{ route('admin.gaji.gaji_manual.index') }}">
+                        <span class="menu-title px-4">Penggajian Manual</span>
                     </a>
                     <a class="menu-link {{ request()->routeIs('admin.gaji.gaji_periode.*') ? 'active' : '' }}"
                        href="{{ route('admin.gaji.gaji_periode.index') }}">
                         <span class="menu-title px-4">Priode Gaji</span>
                     </a>
-                    <a class="menu-link {{ request()->routeIs('admin.gaji.tarif_lembur.*') ? 'active' : '' }}"
-                       href="{{ route('admin.gaji.tarif_lembur.index') }}">
-                        <span class="menu-title px-4">Tarif Lembur</span>
+                    <a class="menu-link {{ request()->routeIs('admin.gaji.komponen_gaji.*') ? 'active' : '' }}"
+                       href="{{ route('admin.gaji.komponen_gaji.index') }}">
+                        <span class="menu-title px-4">Komponen Gaji</span>
+                    </a>
+                    <a class="menu-link {{ request()->routeIs('admin.gaji.gaji_umum.*') ? 'active' : '' }}"
+                       href="{{ route('admin.gaji.gaji_umum.index') }}">
+                        <span class="menu-title px-4">Gaji Umum</span>
                     </a>
                     <a class="menu-link {{ request()->routeIs('admin.gaji.gaji_jabatan.*') ? 'active' : '' }}"
                        href="{{ route('admin.gaji.gaji_jabatan.index') }}">
                         <span class="menu-title px-4">Gaji Jabatan</span>
+                    </a>
+                    <a class="menu-link {{ request()->routeIs('admin.gaji.tarif_lembur.*') ? 'active' : '' }}"
+                       href="{{ route('admin.gaji.tarif_lembur.index') }}">
+                        <span class="menu-title px-4">Tarif Lembur</span>
                     </a>
                     <a class="menu-link {{ request()->routeIs('admin.gaji.tarif_potongan.*') ? 'active' : '' }}"
                        href="{{ route('admin.gaji.tarif_potongan.index') }}">
