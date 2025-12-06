@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Gaji\GajiPeriode;
 use App\Services\Gaji\GajiJabatanService;
+use App\Services\Gaji\GajiPeriodeService;
 use App\Services\Gaji\GajiUmumService;
 use App\Services\Gaji\KomponenGajiService;
 use App\Services\Ref\RefJenisDokumenService;
@@ -19,6 +21,7 @@ final class RefGajiController extends Controller
         private readonly TransactionService          $transactionService,
         private readonly ResponseService             $responseService,
         private readonly KomponenGajiService          $komponengajiservice,
+        private readonly GajiPeriodeService          $gajiperiodeservice
 
     ) {}
 
@@ -33,6 +36,13 @@ final class RefGajiController extends Controller
     public function komponengaji(): JsonResponse
     {
         $data = $this->komponengajiservice->getListDataOrdered('komponen_id');
+
+        return $this->responseService->successResponse('Data berhasil diambil', $data);
+    }
+
+    public function Gajiperiode(): JsonResponse
+    {
+        $data = $this->gajiperiodeservice->getListDataOrdered('periode_id');
 
         return $this->responseService->successResponse('Data berhasil diambil', $data);
     }

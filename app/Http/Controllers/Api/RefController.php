@@ -89,13 +89,15 @@ final class RefController extends Controller
 
     public function sdm(): JsonResponse
     {
-        $data = $this->sdmService->getListDataOrdered('id_sdm');
+        $data = $this->sdmService->getListDataOrdered('id');
 
         $data->transform(function ($item) {
-                $item->setAttribute('sdm', $item->nama_lengkap . ' (' . $item->sdm . ')');
+                $item->setAttribute('sdm', $item->nama_lengkap);
                 return $item;
             });
 
         return $this->responseService->successResponse('Data berhasil diambil', $data);
     }
+
+
 }

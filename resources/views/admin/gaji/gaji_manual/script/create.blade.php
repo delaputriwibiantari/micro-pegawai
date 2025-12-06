@@ -49,7 +49,7 @@
                         sdm_id: $("#sdm_id").val(),
                     };
 
-                    const url = "{{ route('admin.gajimanual.store') }}";
+                    const url = "{{ route('admin.gaji.gaji_manual.store') }}";
 
                     DataManager.postData(url, input)
                         .then((response) => {
@@ -87,7 +87,7 @@
     function loadPeriodeGaji() {
         $('#periode_id').html('').trigger("change");
 
-        DataManager.fetchData("{{ route('api.periode.gaji') }}")
+        DataManager.fetchData("{{ route('api.gaji.gajiperiode') }}")
             .then((res) => {
                 let select = $("#periode_id");
                 select.append(`<option value="">Pilih Periode</option>`);

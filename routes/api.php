@@ -41,6 +41,7 @@ Route::prefix('master')->group(function () {
 Route::prefix('gaji')->group(function () {
     Route::get('gajiumum', [RefGajiController::class, 'gajiumum'])->name('api.gaji.gajiumum');
     Route::get('komponengaji', [RefGajiController::class, 'komponengaji'])->name('api.gaji.komponengaji');
+    Route::get('gajiperiode', [RefGajiController::class, 'gajiperiode'])->name('api.gaji.gajiperiode');
 });
 
 Route::post('/send', [AuthController::class, 'send']);

@@ -346,7 +346,7 @@ Route::prefix('gaji')->name('gaji.')->group(function () {
             ->name('update');
     });
 
-    
+
     Route::prefix('tarif_lembur')->name('tarif_lembur.')->group(function () {
         Route::get('/', [TarifLemburController::class, 'index'])
             ->name('index');
@@ -390,16 +390,16 @@ Route::prefix('gaji')->name('gaji.')->group(function () {
         Route::get('/', [GajiManualController::class, 'index'])
             ->name('index');
         Route::get('data', [GajiManualController::class, 'list'])
-            ->name('gaji_manual.list');
+            ->name('list');
         Route::get('show/{id}', [GajiManualController::class, 'show'])
-            ->name('gaji_manual.show');
+            ->name('show');
         Route::post('/store', [GajiManualController::class, 'store'])
-            ->name('gaji_manual.store');
+            ->name('store');
         Route::post('update/{id}', [GajiManualController::class, 'update'])
-            ->name('gaji_manual.update');
+            ->name('update');
         Route::get('histori/{id}', [GajiManualController::class, 'detailgaji'])
-            ->name('gaji_manual.detailgaji');
+            ->name('detailgaji');
         Route::get('find/by/nik/{id}', [GajiManualController::class, 'find_by_nik'])
-            ->name('gaji_manual.find_by_nik');
+            ->name('find_by_nik');
     });
 });

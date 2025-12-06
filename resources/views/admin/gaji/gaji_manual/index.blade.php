@@ -62,8 +62,8 @@
             </div>
         </div>
     </div>
-    @include('admin.sdm.sdm.view.detail')
-    @include('admin.sdm.sdm.view.create')
+
+    @include('admin.gaji.gaji_manual.view.create')
 @endsection
 
 @section('javascript')
@@ -100,7 +100,7 @@
             });
         }
     </script>
-    @include('admin.sdm.sdm.script.list')
-    @include('admin.sdm.sdm.script.create')
-    @include('admin.sdm.sdm.script.detail')
+    @include('admin.gaji.gaji_manual.script.list')
+    @include('admin.gaji.gaji_manual.script.create')
+
 @endsection

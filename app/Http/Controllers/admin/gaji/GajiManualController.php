@@ -4,8 +4,8 @@ namespace App\Http\Controllers\admin\gaji;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\gaji\GajiManualRequest;
+use App\Services\Payroll\PayrollService;
 use App\Services\Gaji\GajiManualService;
-use App\Services\Payroll\GajiManualService as PayrollGajiManualService;
 use App\Services\Sdm\SdmService;
 use App\Services\Tools\ResponseService;
 use App\Services\Tools\TransactionService;
@@ -16,13 +16,11 @@ use Illuminate\View\View;
 final class GajiManualController extends Controller
 {
     public function __construct(
-        private readonly GajiManualService     $gajimanualservice,
-        private readonly TransactionService  $transactionService,
-        private readonly ResponseService     $responseService,
+        private readonly GajiManualService $gajimanualservice,
+        private readonly TransactionService $transactionService,
+        private readonly ResponseService $responseService,
         private readonly SdmService $sdmService
-    )
-    {
-    }
+    ) {}
 
     public function index(): View
     {
@@ -32,32 +30,35 @@ final class GajiManualController extends Controller
     public function list(Request $request): JsonResponse
     {
         return $this->transactionService->handleWithDataTable(
-            function () use ($request) {
-                return $this->gajimanualservice->getListData($request);
-            },
+            fn () => $this->gajimanualservice->getListData($request),
             [
-                'action' => function ($row) {
-                    $rowId = $row->transaksi_id;
-
-                    return implode(' ', [
-                        $this->transactionService->actionButton($rowId, 'detail'),
-                        $this->transactionService->actionButton($rowId, 'delete'),
-                    ]);
-                },
+                'action' => fn ($row) =>
+                    implode(' ', [
+                        $this->transactionService->actionButton($row->transaksi_id, 'detail'),
+                        $this->transactionService->actionButton($row->transaksi_id, 'delete'),
+                    ]),
             ]
         );
     }
 
+    /** ==============================
+     *  PROSES PAYROLL
+     *  ============================== */
     public function store(GajiManualRequest $request): JsonResponse
     {
         return $this->transactionService->handleWithTransaction(function () use ($request) {
 
-            $data = $this->gajimanualservice->create(
-                $request->only(['periode_id', 'sdm_id'])
+            $data = $this->gajimanualservice->prosesPayroll(
+                $request->only([
+                    'periode_id',
+                    'sdm_id',
+                    'gaji_master_id',
+                    'manual'   // komponen input manual opsional
+                ])
             );
 
             return $this->responseService->successResponse(
-                'Transaksi payroll berhasil dibuat',
+                'Transaksi payroll berhasil diproses.',
                 $data,
                 201
             );
@@ -97,6 +98,9 @@ final class GajiManualController extends Controller
         });
     }
 
+    /** ==============================
+     *  DETAIL KOMPONEN
+     *  ============================== */
     public function storeDetail(GajiManualRequest $request): JsonResponse
     {
         return $this->transactionService->handleWithTransaction(function () use ($request) {
@@ -105,7 +109,7 @@ final class GajiManualController extends Controller
                 $request->only(['transaksi_id', 'komponen_id', 'nominal', 'keterangan'])
             );
 
-            return $this->responseService->successResponse('Detail berhasil dibuat', $data, 201);
+            return $this->responseService->successResponse('Detail berhasil ditambahkan', $data, 201);
         });
     }
 
@@ -114,7 +118,7 @@ final class GajiManualController extends Controller
         $detail = $this->gajimanualservice->findDetailById($detailId);
 
         if (!$detail) {
-            return $this->responseService->errorResponse('Data tidak ditemukan');
+            return $this->responseService->errorResponse('Detail tidak ditemukan');
         }
 
         return $this->transactionService->handleWithTransaction(function () use ($request, $detail) {
@@ -127,16 +131,16 @@ final class GajiManualController extends Controller
             return $this->responseService->successResponse('Detail berhasil diperbarui', $updated);
         });
     }
+
+    /** ==============================
+     *  HISTORI GAJI SDM
+     *  ============================== */
     public function detailgaji(string $uuid): View
     {
-        $person = $this->sdmService->getPersonDetailByUuid($uuid);
-        $data = $this->sdmService->getHistoriByUuid($uuid);
-
         return view('admin.gaji.detailgaji', [
-            'person' => $person,
-            'data' => $data,
-            'id' => $uuid,
+            'person' => $this->sdmService->getPersonDetailByUuid($uuid),
+            'data'   => $this->sdmService->getHistoriByUuid($uuid),
+            'id'     => $uuid,
         ]);
     }
-
 }

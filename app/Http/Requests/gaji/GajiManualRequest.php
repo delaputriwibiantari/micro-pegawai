@@ -23,7 +23,13 @@ class GajiManualRequest extends FormRequest
     {
         return [
             'periode_id' => 'required|exists:gaji_priode,periode_id',
-            'id_sdm' => 'required|integer|exists:mysql.sdm,id_sdm'
+            'id_sdm' => 'required|integer|exists:mysql.sdm,id_sdm',
+
+            'komponen_id' => 'sometimes|required|exists:komponen_gaji,komponen_id',
+            'nominal'     => 'sometimes|required|numeric|min:0',
+            'keterangan'  => 'sometimes|nullable|string|max:255',
+
+            'transaksi_id' => 'sometimes|required|exists:gaji_trx,transaksi_id',
         ];
     }
 
@@ -32,6 +38,10 @@ class GajiManualRequest extends FormRequest
         return [
             'periode_id' => 'Periode Gaji',
             'sdm_id'     => 'Pegawai',
+            'komponen_id' => 'Komponen Gaji',
+            'nominal'     => 'Nominal',
+            'keterangan'  => 'Keterangan',
+            'transaksi_id' => 'ID Transaksi',
         ];
     }
 
@@ -43,6 +53,15 @@ class GajiManualRequest extends FormRequest
 
             'id_sdm.required' => 'Pegawai wajib dipilih.',
             'id_sdm.exists'   => 'Pegawai tidak ditemukan di database SDM.',
+
+            'komponen_id.required' => 'Komponen wajib dipilih.',
+            'komponen_id.exists'   => 'Komponen tidak valid.',
+
+            'nominal.required' => 'Nominal wajib diisi.',
+            'nominal.numeric'  => 'Nominal harus berupa angka.',
+
+            'transaksi_id.required' => 'Transaksi gaji tidak ditemukan.',
+            'transaksi_id.exists'   => 'Transaksi gaji tidak valid.',
         ];
     }
 }

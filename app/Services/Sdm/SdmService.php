@@ -102,7 +102,11 @@ class  SdmService{
 
     public function getListDataOrdered(string $orderBy): Collection
     {
-        return Sdm::orderBy($orderBy)->get();
+        return Sdm::query()
+            ->join('person', 'person.id', '=', 'sdm.id_person')
+            ->select('sdm.*', 'person.nama_lengkap')
+            ->orderBy($orderBy)
+            ->get();
     }
 
 }

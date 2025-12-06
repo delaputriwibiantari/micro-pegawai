@@ -39,4 +39,9 @@ final class GajiPeriodeService {
         return $model;
     }
 
+    public function getListDataOrdered(string $orderBy): Collection
+    {
+        return GajiPeriode::orderBy($orderBy)->get();
+    }
+
 }

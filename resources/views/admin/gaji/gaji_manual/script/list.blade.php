@@ -38,7 +38,7 @@
             searchHighlight: true,
 
             ajax: {
-                url: '{{ route('admin.gaji.list') }}',
+                url: '{{ route('admin.gaji.gaji_manual.list') }}',
                 cache: false,
                 error: function(xhr) {
                     console.error("Ajax Error:", xhr.responseText);
@@ -56,7 +56,7 @@
                     searchable: false
                 },
                 {
-                    data: 'nama_pegawai',
+                    data: 'nama_lengkap',
                     name: 'nama_pegawai'
                 },
                 {
@@ -68,7 +68,7 @@
                     name: 'unit_kerja'
                 },
                 {
-                    data: 'take_home_pay',
+                    data: 'total_dibayar',
                     name: 'take_home_pay',
                     render: function(data) {
                         return data ? `Rp ${Number(data).toLocaleString('id-ID')}` : '-';
@@ -78,7 +78,7 @@
                     data: 'status',
                     name: 'status',
                      render: function (data) {
-                        return data === 'DRAFT' ? 'DRAFT' : (data === 'FINAL' ? 'FINAL' :)(data === 'CLOSED' ? 'CLOSED' : data);
+                        return data === 'DRAFT' ? 'DRAFT' : (data === 'FINAL' ? 'FINAL' :data === 'CLOSED' ? 'CLOSED' : data)
                     }
                 },
                 {
