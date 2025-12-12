@@ -15,6 +15,7 @@ final class TarifPotonganService
 
     public function create(array $data) : TarifPotongan
     {
+        $data['potongan_id'] = $this->generateId();
         return TarifPotongan::create($data);
     }
 
@@ -28,10 +29,23 @@ final class TarifPotonganService
         return TarifPotongan::find($id);
     }
 
-    public function update(TarifPotongan $potongan, array $data): TarifPotongan
+    public function update(TarifPotongan $model, array $data): TarifPotongan
     {
-        $potongan->update($data);
+        $model->update($data);
+        return $model;
+    }
 
-        return $potongan;
+    private function generateId(): string
+    {
+        $last = TarifPotongan::orderBy('potongan_id', 'desc')->first();
+
+        if (!$last) {
+            return 'POT-001';
+        }
+        $lastNumber = intval(substr($last->potongan_id, 4));
+
+        $newNumber = $lastNumber + 1;
+
+        return 'POT-' . str_pad($newNumber, 3, '0', STR_PAD_LEFT);
     }
 }

@@ -10,17 +10,7 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="d-flex flex-column mb-2">
-                                <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
-                                    <span>Potongan Id</span>
-                                </label>
-                                <input type="text" id="edit_potongan_id"
-                                       class="form-control form-control-sm fs-sm-8 fs-lg-6"
-                                       required>
-                                <div class="invalid-feedback"></div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
+                            <input type="hidden" id="edit_potongan_id" name="potongan_id">
                             <div class="d-flex flex-column mb-2">
                                 <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
                                     <span>Nama Potongan</span>

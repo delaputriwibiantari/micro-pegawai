@@ -74,7 +74,7 @@ final class TarifPotonganController extends Controller
             $data = $this->tarifpotonganservice->update(
                 $tarifPotongan,
                 $request->only([
-                    'potongan_id',
+                    
                     'nama_potongan',
                     'tarif_per_kejadian',
                     'deskripsi',

@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Models\Gaji;
+namespace App\Models\Absensi;
 
 use App\Traits\SkipsEmptyAudit;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use OwenIt\Auditing\Contracts\Auditable;
 use OwenIt\Auditing\Auditable as AuditableTrait;
 
-final class GajiDetail extends Model implements Auditable
+final class LiburPerusahaan extends Model implements Auditable
 {
     use AuditableTrait;
     use HasFactory;
@@ -16,18 +17,16 @@ final class GajiDetail extends Model implements Auditable
         SkipsEmptyAudit::transformAudit insteadof AuditableTrait;
     }
 
-    protected $connection = 'gaji';
-    protected $table = 'gaji_detail';
-    public $incrementing = true;
-    protected $keyType = 'int';
-    public $timestamps = false;
+    protected $connection = 'att';
+    protected $table = 'libur_perusahaan';
     protected $primaryKey = 'id';
+    public $incrementing = true;
+    public $timestamps = false;
+    protected $dateFormat = 'Y-m-d';
     protected $fillable = [
-        'detail_id',
-        'komponen_id',
-        'nominal',
-        'keterangan',
-        'transaksi_id'
+        'kalPT_id',
+        'tanggal',
+        'keterangan'
     ];
 
     protected $guarded = [
@@ -35,6 +34,11 @@ final class GajiDetail extends Model implements Auditable
     ];
 
     protected $casts = [
-        'id'       => 'integer',
+        'tanggal' => 'date'
     ];
+
+    public function getTanggalAttribute($value): ?string
+    {
+        return $value ? Carbon::parse($value)->format('Y-m-d') : null;
+    }
 }

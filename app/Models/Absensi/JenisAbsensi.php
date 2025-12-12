@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Gaji;
+namespace App\Models\Absensi;
 
 use App\Traits\SkipsEmptyAudit;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use OwenIt\Auditing\Contracts\Auditable;
 use OwenIt\Auditing\Auditable as AuditableTrait;
 
-final class GajiDetail extends Model implements Auditable
+final class JenisAbsensi extends Model implements Auditable
 {
     use AuditableTrait;
     use HasFactory;
@@ -16,18 +16,17 @@ final class GajiDetail extends Model implements Auditable
         SkipsEmptyAudit::transformAudit insteadof AuditableTrait;
     }
 
-    protected $connection = 'gaji';
-    protected $table = 'gaji_detail';
-    public $incrementing = true;
-    protected $keyType = 'int';
-    public $timestamps = false;
+    protected $connection = 'att';
+    protected $increamenting = true;
+    protected $table = 'jenis_absensi';
     protected $primaryKey = 'id';
+    public $timestamps = false;
     protected $fillable = [
-        'detail_id',
-        'komponen_id',
-        'nominal',
-        'keterangan',
-        'transaksi_id'
+        'jenis_absen_id',
+        'nama_absen',
+        'kategori',
+        'potong_gaji',
+        'warna'
     ];
 
     protected $guarded = [
@@ -35,6 +34,8 @@ final class GajiDetail extends Model implements Auditable
     ];
 
     protected $casts = [
-        'id'       => 'integer',
+        'id' => 'integer',
+        'potong_gaji' => 'boolean'
     ];
+
 }

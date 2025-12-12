@@ -1,42 +1,61 @@
-<div class="modal fade" id="form_create" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog"
+<div class="modal fade" id="form_edit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog"
      aria-hidden="true">
     <div class="modal-dialog modal-xl" role="document">
-        <form method="post" id="bt_submit_create">
+        <form method="post" id="bt_submit_edit">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tambah Tarif Potongan</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Komponen Gaji</h5>
                     <a type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></a>
                 </div>
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12">
+                            <input type="hidden" id="edit_jenis_absen_id" name="jenis_absen_id">
                             <div class="d-flex flex-column mb-2">
                                 <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
-                                    <span>Nama Potongan</span>
+                                    <span>Nama Absen</span>
                                 </label>
-                                <input type="text" id="nama_potongan"
+                                <input type="text" id="edit_nama_absen"
                                        class="form-control form-control-sm fs-sm-8 fs-lg-6"
                                        required>
                                 <div class="invalid-feedback"></div>
                             </div>
+
                             <div class="d-flex flex-column mb-2">
                                 <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
-                                    <span>Tarif Per Kejadian</span>
+                                    <span>Kategori</span>
                                 </label>
-                                <input type="text" id="tarif_per_kejadian"
+                                <input type="text" id="edit_kategori"
                                        class="form-control form-control-sm fs-sm-8 fs-lg-6"
                                        required>
                                 <div class="invalid-feedback"></div>
                             </div>
+
+                            <div class="col-md-12">
+                                <div class="d-flex flex-column mb-2">
+                                    <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
+                                        <span>Potong gaji</span>
+                                    </label>
+                                    <div class="form-check form-check-custom form-check-solid">
+                                        <input class="form-check-input" type="checkbox" value="1" id="edit_potong_gaji" name="edit_potong_gaji"/>
+                                        <label class="form-check-label" for="edit_potong_gaji">
+                                            Ya
+                                        </label>
+                                    </div>
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                            </div>
+
                             <div class="d-flex flex-column mb-2">
                                 <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
-                                    <span>Deskripsi</span>
+                                    <span>Warna</span>
                                 </label>
-                                <input type="text" id="deskripsi"
+                                <input type="text" id="edit_warna"
                                        class="form-control form-control-sm fs-sm-8 fs-lg-6"
                                        required>
                                 <div class="invalid-feedback"></div>
                             </div>
+
                         </div>
                     </div>
                 </div>

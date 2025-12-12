@@ -24,7 +24,7 @@ final class TarifPotonganRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'potongan_id' => 'required|string|max:10',
+            'potongan_id' => 'nullable|string|max:10',
             'nama_potongan' => 'required|string|max:100',
             'tarif_per_kejadian' => 'required|decimal:0,2',
             'deskripsi' => 'required|string|max:255'
@@ -55,9 +55,6 @@ final class TarifPotonganRequest extends FormRequest
     public function messages()
     {
         return [
-            'potongan_id.required' => 'Field :attribute wajib diisi.',
-            'potongan_id.string' => 'Field :attribute harus berupa teks.',
-
             'nama_potongan.required' => 'Field :attribute wajib diisi.',
             'nama_potongan.string' => 'Field :attribute harus berupa teks.',
             'nama_potongan.max' => 'Field :attribute maksimal :max.',

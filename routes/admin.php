@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\admin\absensi\JadwalKerjaController;
+use App\Http\Controllers\admin\absensi\JenisAbsensiController;
+use App\Http\Controllers\admin\absensi\LiburNasionalController;
+use App\Http\Controllers\admin\absensi\LiburPerusahaanController;
 use App\Http\Controllers\admin\gaji\GajiJabatanController;
 use App\Http\Controllers\admin\gaji\GajiManualController;
 use App\Http\Controllers\admin\gaji\GajiPeriodeController;
@@ -402,4 +406,60 @@ Route::prefix('gaji')->name('gaji.')->group(function () {
         Route::get('find/by/nik/{id}', [GajiManualController::class, 'find_by_nik'])
             ->name('find_by_nik');
     });
+});
+
+Route::prefix('absensi')->name('absensi.')->group(function () {
+
+    Route::prefix('jenis_absensi')->name('jenis_absensi.')->group(function () {
+        Route::get('/', [JenisAbsensiController::class, 'index'])
+            ->name('index');
+        Route::get('data', [JenisAbsensiController::class, 'list'])
+            ->name('list');
+        Route::get('show/{id}', [JenisAbsensiController::class, 'show'])
+            ->name('show');
+        Route::post('/store', [JenisAbsensiController::class, 'store'])
+            ->name('store');
+        Route::post('update/{id}', [JenisAbsensiController::class, 'update'])
+            ->name('update');
+    });
+
+    Route::prefix('jadwal_kerja')->name('jadwal_kerja.')->group(function () {
+        Route::get('/', [JadwalKerjaController::class, 'index'])
+            ->name('index');
+        Route::get('data', [JadwalKerjaController::class, 'list'])
+            ->name('list');
+        Route::get('show/{id}', [JadwalKerjaController::class, 'show'])
+            ->name('show');
+        Route::post('/store', [JadwalKerjaController::class, 'store'])
+            ->name('store');
+        Route::post('update/{id}', [JadwalKerjaController::class, 'update'])
+            ->name('update');
+    });
+
+    Route::prefix('libur_nasional')->name('libur_nasional.')->group(function () {
+        Route::get('/', [LiburNasionalController::class, 'index'])
+            ->name('index');
+        Route::get('data', [LiburNasionalController::class, 'list'])
+            ->name('list');
+        Route::get('show/{id}', [LiburNasionalController::class, 'show'])
+            ->name('show');
+        Route::post('/store', [LiburNasionalController::class, 'store'])
+            ->name('store');
+        Route::post('update/{id}', [LiburNasionalController::class, 'update'])
+            ->name('update');
+    });
+
+    Route::prefix('libur_perusahaan')->name('libur_perusahaan.')->group(function () {
+        Route::get('/', [LiburPerusahaanController::class, 'index'])
+            ->name('index');
+        Route::get('data', [LiburPerusahaanController::class, 'list'])
+            ->name('list');
+        Route::get('show/{id}', [LiburPerusahaanController::class, 'show'])
+            ->name('show');
+        Route::post('/store', [LiburPerusahaanController::class, 'store'])
+            ->name('store');
+        Route::post('update/{id}', [LiburPerusahaanController::class, 'update'])
+            ->name('update');
+    });
+
 });

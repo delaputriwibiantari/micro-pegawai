@@ -19,26 +19,21 @@ final class GajiTrx extends Model implements Auditable
     protected $connection = 'gaji';
     protected $table = 'gaji_trx';
     public $incrementing = true;
-    protected $keyType = 'string';
     public $timestamps = false;
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'transaksi_id';
     protected $fillable = [
         'id',
         'transaksi_id',
         'periode_id',
-        'total_penghasil',
+        'total_penghasilan',
         'total_potongan',
         'total_dibayar',
-        'id_sdm'
+        'sdm_id'
     ];
 
-    protected $guarded = [
-        'id',
-        'id_sdm'
-    ];
 
     protected $casts = [
         'id' => 'integer',
-        'id_sdm' => 'integer'
+        'sdm_id' => 'integer'
     ];
 }
