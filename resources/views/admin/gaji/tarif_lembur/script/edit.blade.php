@@ -8,7 +8,7 @@
             .then(function (response) {
                 if (response.success) {
                     $('#edit_tarif_id').val(response.data.tarif_id);
-                    $('#edit_jenis_lembur').val(data.jenis_lembur).trigger('change');
+                    $('#edit_jenis_lembur').val(response.data.jenis_lembur).trigger('change');
                     $('#edit_tarif_per_jam').val(response.data.tarif_per_jam);
                     $('#edit_berlaku_mulai').val(response.data.berlaku_mulai);
                 } else {
@@ -36,10 +36,10 @@
                 if (result.value) {
                     DataManager.openLoading();
                     const input = {
-                        tarif_id: $('#tarif_id').val(),
-                        jenis_lembur: $('#jenis_lembur').val(),
-                        tarif_per_jam: $('#tarif_per_jam').val(),
-                        berlaku_mulai: $('#berlaku_mulai').val(),
+                        tarif_id: $('#edit_tarif_id').val(),
+                        jenis_lembur: $('#edit_jenis_lembur').val(),
+                        tarif_per_jam: $('#edit_tarif_per_jam').val(),
+                        berlaku_mulai: $('#edit_berlaku_mulai').val(),
 
                     };
                     const update = '{{ route('admin.gaji.tarif_lembur.update', [':id']) }}';

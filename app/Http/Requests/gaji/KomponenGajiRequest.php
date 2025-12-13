@@ -22,7 +22,7 @@ class KomponenGajiRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'komponen_id' => 'required|string|max:10',
+            'komponen_id' => 'nullable|string|max:10',
             'nama_komponen' => 'required|string|max:100',
             'jenis'         => 'required|in:PENGHASIL,POTONGAN',
             'deskripsi'     => 'nullable|string',
@@ -50,7 +50,6 @@ class KomponenGajiRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'komponen_id.required'   => 'Komponen Id attribute wajib diisi.',
             'nama_komponen.required' => 'Nama Komponen attribute wajib diisi.',
             'nama_komponen.string'   => 'Nama Komponen harus berupa teks.',
             'jenis.required'         => 'Jenis attribute wajib dipilih.',

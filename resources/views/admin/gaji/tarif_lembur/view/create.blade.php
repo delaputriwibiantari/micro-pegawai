@@ -11,15 +11,6 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="d-flex flex-column mb-2">
-                                <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
-                                    <span>Tarif Id</span>
-                                </label>
-                                <input type="text" id="tarif_id"
-                                       class="form-control form-control-sm fs-sm-8 fs-lg-6"
-                                       required>
-                                <div class="invalid-feedback"></div>
-                            </div>
-                            <div class="d-flex flex-column mb-2">
                                 <label class="fs-sm-8 fs-lg-6 fw-bolder mb-1">Jenis Lembur</label>
                                 <select data-control="select2"
                                         class="form-select form-select-sm fs-sm-8 fs-lg-6"

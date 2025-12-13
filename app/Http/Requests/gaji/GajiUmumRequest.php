@@ -16,8 +16,8 @@ class GajiUmumRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'umum_id' => 'required|string|max:10',
-            'nominal' => 'nullable|numeric|min:0',
+            'umum_id' => 'nullable|string|max:10',
+            'nominal' => 'required|numeric|min:0',
         ];
     }
 
@@ -43,9 +43,6 @@ class GajiUmumRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'umum_id.required' => 'Field :attribute wajib diisi.',
-            'umum_id.string' => 'Field :attribute harus berupa teks.',
-
             'nominal.required' => 'Field :attribute wajib diisi.',
             'nominal.numeric' => 'Field :attribute harus berupa angka.',
             'nominal.min' => 'Field :attribute minimal :min.',

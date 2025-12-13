@@ -19,6 +19,7 @@ final class GajiUmumService
 
     public function create(array $data): GajiUmum
     {
+         $data['umum_id'] = $this->generateId();
         return GajiUmum::create($data);
     }
 
@@ -32,10 +33,23 @@ final class GajiUmumService
         return GajiUmum::find($id);
     }
 
-    public function update(GajiUmum $unit, array $data): GajiUmum
+     public function update(GajiUmum $model, array $data): GajiUmum
     {
-        $unit->update($data);
+        $model->update($data);
+        return $model;
+    }
 
-        return $unit;
+    private function generateId(): string
+    {
+        $last = GajiUmum::orderBy('umum_id', 'desc')->first();
+
+        if (!$last) {
+            return 'GMU-001';
+        }
+        $lastNumber = intval(substr($last->umum_id, 4));
+
+        $newNumber = $lastNumber + 1;
+
+        return 'GMU-' . str_pad($newNumber, 3, '0', STR_PAD_LEFT);
     }
 }

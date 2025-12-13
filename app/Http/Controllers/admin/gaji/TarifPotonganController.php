@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin\gaji;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\absensi\JadwalKerjaRequest;
 use App\Http\Requests\gaji\TarifPotonganRequest;
 use App\Models\Gaji\TarifPotongan;
 use App\Services\Gaji\TarifPotonganService;
@@ -68,20 +69,20 @@ final class TarifPotonganController extends Controller
         });
     }
 
-    public function update(TarifPotonganRequest $request, TarifPotongan $tarifPotongan): JsonResponse
+     public function update(TarifPotonganRequest $request, string $id): JsonResponse
     {
-        return $this->transactionService->handleWithTransaction(function () use ($request, $tarifPotongan) {
-            $data = $this->tarifpotonganservice->update(
-                $tarifPotongan,
-                $request->only([
-                    
-                    'nama_potongan',
-                    'tarif_per_kejadian',
-                    'deskripsi',
-                ])
-            );
-
-            return $this->responseService->successResponse('Data berhasil diupdate', $data);
+        $data = $this->tarifpotonganservice->findById($id);
+        if (!$data) {
+            return $this->responseService->errorResponse('Data tidak ditemukan');
+        }
+        return $this->transactionService->handleWithTransaction(function () use ($request, $data) {
+            $updatedData = $this->tarifpotonganservice->update($data, $request->only([
+                'potongan_id',
+                'nama_potongan',
+                'tarif_per_kejadian',
+                'deskripsi',
+            ]));
+            return $this->responseService->successResponse('Data berhasil diperbarui', $updatedData);
         });
     }
 }

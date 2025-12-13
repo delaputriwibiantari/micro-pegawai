@@ -12,15 +12,6 @@
                         <div class="col-md-12">
                             <div class="d-flex flex-column mb-2">
                                 <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
-                                    <span>Periode Id</span>
-                                </label>
-                                <input type="text" id="periode_id"
-                                       class="form-control form-control-sm fs-sm-8 fs-lg-6"
-                                       required>
-                                <div class="invalid-feedback"></div>
-                            </div>
-                            <div class="d-flex flex-column mb-2">
-                                <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
                                     <span>Tahun</span>
                                 </label>
                                 <input type="text" id="tahun"

@@ -14,6 +14,7 @@ final class GajiPeriodeService {
 
     public function create(array $data) : GajiPeriode
     {
+        $data['periode_id'] = $this->generateId();
         return GajiPeriode::create($data);
     }
 
@@ -43,5 +44,22 @@ final class GajiPeriodeService {
     {
         return GajiPeriode::orderBy($orderBy)->get();
     }
+
+    private function generateId(): string
+    {
+        $now = now();
+        $bulanTahun = $now->format('mY'); // 012024
+
+        $id = 'PER-' . $bulanTahun;
+
+        $exists = GajiPeriode::where('periode_id', $id)->exists();
+
+        if ($exists) {
+            throw new \Exception('Periode gaji sudah ada');
+        }
+
+        return $id;
+    }
+
 
 }

@@ -24,9 +24,9 @@ class TarifLemburRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'tarif_id' => 'required|integer|max:10',
+            'tarif_id' => 'nullable|integer|max:10',
             'jenis_lembur' => 'required|in:BIASA,LIBUR',
-            'tarif_per_jam' => 'required|decimal:15,2',
+            'tarif_per_jam' => 'required|decimal:0,2',
             'berlaku_mulai' => 'required|date',
         ];
     }
@@ -55,10 +55,6 @@ class TarifLemburRequest extends FormRequest
     public function messages()
     {
         return [
-            'tarif_id.required' => 'Field :attribute wajib diisi.',
-            'tarif_id.integer' => 'Field :attribute harus berupa angka.',
-            'tarif_id.max' => 'Field :attribute maksimal :max.',
-
             'jenis_lembur.required' => 'Field :attribute wajib diisi.',
             'jenis_lembur.in' => 'Field :attribute harus berupa BIASA, LIBUR.',
 

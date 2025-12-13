@@ -10,20 +10,6 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <!-- Hidden input untuk ID -->
-                            <input type="hidden" id="edit_id" name="id">
-
-                            <div class="d-flex flex-column mb-2">
-                                <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
-                                    <span>Komponen Id</span>
-                                </label>
-                                <input type="text" id="edit_komponen_id"
-                                       class="form-control form-control-sm fs-sm-8 fs-lg-6"
-                                       required>
-                                <div class="invalid-feedback"></div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
                             <div class="d-flex flex-column mb-2">
                                 <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
                                     <span>Nama Komponen</span>

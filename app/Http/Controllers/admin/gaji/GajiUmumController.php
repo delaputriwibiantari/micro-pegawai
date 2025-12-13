@@ -65,7 +65,7 @@ final class GajiUmumController extends Controller
         });
     }
 
-    public function update(GajiUmumRequest $request, string $id): JsonResponse
+   public function update(GajiUmumRequest $request, string $id): JsonResponse
     {
         $data = $this->gajiumumservice->findById($id);
         if (!$data) {

@@ -24,7 +24,7 @@ class GajiPeriodeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'periode_id' => 'required|string|max:10',
+            'periode_id' => 'nullable|string|max:10',
             'tahun' => 'required|numeric|digits:4|min:2000|max:2099',
             'tanggal_mulai' => 'required|date',
             'tanggal_selesai' => 'required|date',
@@ -57,9 +57,6 @@ class GajiPeriodeRequest extends FormRequest
     public function messages()
     {
         return [
-            'periode_id.required' => 'Field :attribute wajib diisi.',
-            'periode_id.string' => 'Field :attribute harus berupa teks.',
-
             'tahun.required' => 'Field :attribute wajib diisi.',
             'tahun.numeric' => 'Field :attribute harus berupa angka.',
             'tahun.digits' => 'Field :attribute harus berupa angka dengan panjang 4.',

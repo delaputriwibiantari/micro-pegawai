@@ -14,6 +14,7 @@ final class TarifLemburService
 
     public function create(array $data) : TarifLembur
     {
+        $data['tarif_id'] = $this->generateId();
         return TarifLembur::create($data);
     }
 
@@ -27,8 +28,23 @@ final class TarifLemburService
         return TarifLembur::find($id);
     }
 
-    public function update(string $id, array $data) : ?TarifLembur
+   public function update(TarifLembur $model, array $data): TarifLembur
     {
-        return TarifLembur::find($id)->update($data);
+        $model->update($data);
+        return $model;
+    }
+
+    private function generateId(): string
+    {
+        $last = TarifLembur::orderBy('tarif_id', 'desc')->first();
+
+        if (!$last) {
+            return 'TLE-001';
+        }
+        $lastNumber = intval(substr($last->tarif_id, 4));
+
+        $newNumber = $lastNumber + 1;
+
+        return 'TLE-' . str_pad($newNumber, 3, '0', STR_PAD_LEFT);
     }
 }

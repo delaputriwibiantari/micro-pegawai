@@ -11,22 +11,11 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="d-flex flex-column mb-2">
-                                <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
-                                    <span>Tarif Id</span>
-                                </label>
-                                <input type="text" id="edit_tarif_id"
-                                       class="form-control form-control-sm fs-sm-8 fs-lg-6"
-                                       required>
-                                <div class="invalid-feedback"></div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="d-flex flex-column mb-2">
                                 <label class="fw-bolder mb-1 required">Jenis Lembur</label>
                                 <select id="edit_jenis_lembur" class="form-select form-select-sm" required>
                                     <option value="">Pilih Jenis Lembur</option>
                                     <option value="BIASA">BIASA</option>
-                                    <option value="LEMBUR">LEMBUR</option>
+                                    <option value="LIBUR">LIBUR</option>
                                 </select>
                             </div>
                         </div>

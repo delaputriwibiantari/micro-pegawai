@@ -25,6 +25,7 @@ final class KomponenGajiService
 
     public function create(array $data): KomponenGaji
     {
+         $data['komponen_id'] = $this->generateId();
         return KomponenGaji::create($data);
     }
 
@@ -72,4 +73,19 @@ final class KomponenGajiService
             })
             ->get();
     }
+
+ private function generateId(): string
+    {
+        $last = KomponenGaji::orderBy('komponen_id', 'desc')->first();
+
+        if (!$last) {
+            return 'GK-001';
+        }
+        $lastNumber = intval(substr($last->komponen_id, 4));
+
+        $newNumber = $lastNumber + 1;
+
+        return 'GK-' . str_pad($newNumber, 3, '0', STR_PAD_LEFT);
+    }
+
 }

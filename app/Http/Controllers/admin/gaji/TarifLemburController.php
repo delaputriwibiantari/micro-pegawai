@@ -70,14 +70,18 @@ final class TarifLemburController extends Controller
 
     public function update(TarifLemburRequest $request, string $id): JsonResponse
     {
-        return $this->transactionService->handleWithTransaction(function () use ($request, $id) {
-            $data = $this->tariflemburservice->update($id, $request->only([
+        $data = $this->tariflemburservice->findById($id);
+        if (!$data) {
+            return $this->responseService->errorResponse('Data tidak ditemukan');
+        }
+        return $this->transactionService->handleWithTransaction(function () use ($request, $data) {
+            $updatedData = $this->tariflemburservice->update($data, $request->only([
                 'tarif_id',
                 'jenis_lembur',
-                'tarif-per_jam',
+                'tarif_per_jam',
                 'berlaku_mulai'
             ]));
-            return $this->responseService->successResponse('Data berhasil diupdate', $data);
+            return $this->responseService->successResponse('Data berhasil diperbarui', $updatedData);
         });
     }
 
