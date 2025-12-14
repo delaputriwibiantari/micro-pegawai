@@ -1,19 +1,37 @@
 <script defer>
     $('#form_edit').on('show.bs.modal', function (e) {
+
+        $('#tanggal_mulai').flatpickr({
+            dateFormat: 'Y-m-d',
+            altFormat: 'd/m/Y',
+            allowInput: false,
+            altInput: true,
+            onChange: hitungTotalHari
+        });
+
+        $('#tanggal_selesai').flatpickr({
+            dateFormat: 'Y-m-d',
+            altFormat: 'd/m/Y',
+            allowInput: false,
+            altInput: true,
+            onChange: hitungTotalHari
+        });
+
         const button = $(e.relatedTarget);
         const id = button.data('id');
-        const detail = '{{ route('admin.absensi.jadwal_kerja.show', [':id']) }}';
+        const detail = '{{ route('admin.absensi.cuti.show', [':id']) }}';
 
         DataManager.fetchData(detail.replace(':id', id))
             .then(function (response) {
                 if (response.success) {
-                    $('#edit_jadwal_id').val(response.data.jadwal_id);
-                    $('#edit_nama_jadwal').val(response.data.nama_jadwal);
-                    $('#edit_jam_masuk').val(response.data.jam_masuk);
-                    $('#edit_jam_pulang').val(response.data.jam_pulang);
-                    $('#edit_jam_batas_masuk').val(response.data.jam_batas_masuk);
-                    $('#edit_jam_batas_pulang').val(response.data.jam_batas_pulang);
-                    $('#edit_toleransi_terlambat').val(response.data.toleransi_terlambat);
+                    $('#edit_cuti_id').val(response.data.cuti_id);
+                    $('#edit_jenis_cuti').val(response.data.jenis_cuti).trigger('change');
+                    $('#edit_sdm_id').val(response.data.sdm_id);
+                    $('#edit_keterangan').val(response.data.keterangan);
+                    $('#edit_tanggal_mulai').val(response.data.tanggal_mulai);
+                    $('#edit_tanggal_selesai').val(response.data.tanggal_selesai);
+                    $('#edit_total_hari').val(response.data.total_hari);
+                    $('#edit_status').val(response.data.status).trigger('change');
                 } else {
                     Swal.fire('Warning', response.message, 'warning');
                 }
@@ -39,16 +57,16 @@
                 if (result.value) {
                     DataManager.openLoading();
                     const input = {
-                        jadwal_id: $('#edit_jadwal_id').val(),
-                        nama_jadwal: $('#edit_nama_jadwal').val(),
-                        jam_masuk: $('#edit_jam_masuk').val(),
-                        jam_pulang: $('#edit_jam_pulang').val(),
-                        jam_batas_masuk: $('#edit_jam_batas_masuk').val(),
-                        jam_batas_pulang: $('#edit_jam_batas_pulang').val(),
-                        toleransi_terlambat: $('#edit_toleransi_terlambat').val(),
+                        cuti_id: $('#edit_cuti_id').val(),
+                        jenis_cuti: $('#edit_jenis_cuti').val(),
+                        keterangan: $('#edit_keterangan').val(),
+                        tanggal_mulai: $('#edit_tanggal_mulai').val(),
+                        tanggal_selesai: $('#edit_tanggal_selesai').val(),
+                        total_hari: $('#edit_total_hari').val(),
+                        status: $('#edit_status').val(),
 
                     };
-                    const update = '{{ route('admin.absensi.jadwal_kerja.update', [':id']) }}';
+                    const update = '{{ route('admin.absensi.cuti.update', [':id']) }}';
                     DataManager.putData(update.replace(':id', id), input).then(response => {
                         if (response.success) {
                             Swal.fire('Success', response.message, 'success');
@@ -77,4 +95,28 @@
         $m.find('.is-invalid, .is-valid').removeClass('is-invalid is-valid');
         $m.find('.invalid-feedback, .valid-feedback, .text-danger').remove();
     });
+
+    function hitungTotalHari() {
+        const mulai = $('#tanggal_mulai').val();
+        const selesai = $('#tanggal_selesai').val();
+
+        if (!mulai || !selesai) {
+            $('#total_hari').val('');
+            return;
+        }
+
+        const start = new Date(mulai);
+        const end = new Date(selesai);
+
+        if (end < start) {
+            $('#total_hari').val('');
+            Swal.fire('Peringatan', 'Tanggal selesai tidak boleh sebelum tanggal mulai', 'warning');
+            return;
+        }
+
+        const diffTime = end.getTime() - start.getTime();
+        const totalHari = Math.floor(diffTime / (1000 * 60 * 60 * 24)) + 1;
+
+        $('#total_hari').val(totalHari);
+    }
 </script>

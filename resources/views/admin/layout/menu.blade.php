@@ -148,7 +148,8 @@
                 $absensiActive = request()->routeIs('admin.absensi.jenis_absensi.*')||
                                 request()->routeIs('admin.absensi.jadwal_kerja.*')||
                                 request()->routeIs('admin.absensi.libur_nasional.*')||
-                                request()->routeIs('admin.absensi.libur_perusahaan.*');
+                                request()->routeIs('admin.absensi.libur_perusahaan.*')||
+                                request()->routeIs('admin.absensi.cuti.*');
 
             @endphp
             <div data-kt-menu-trigger="click"
@@ -175,6 +176,11 @@
                     <a class="menu-link {{ request()->routeIs('admin.absensi.libur_perusahaan.*') ? 'active' : '' }}"
                        href="{{ route('admin.absensi.libur_perusahaan.index') }}">
                         <span class="menu-title px-4">Libur Perusahaan</span>
+                    </a>
+
+                    <a class="menu-link {{ request()->routeIs('admin.absensi.cuti.*') ? 'active' : '' }}"
+                       href="{{ route('admin.absensi.cuti.index') }}">
+                        <span class="menu-title px-4">Pengajuan Cuti</span>
                     </a>
                  </div>
             </div>

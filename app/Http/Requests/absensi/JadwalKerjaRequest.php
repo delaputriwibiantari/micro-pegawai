@@ -29,6 +29,8 @@ class JadwalKerjaRequest extends FormRequest
             'nama_jadwal' => 'required|string|max:50',
             'jam_masuk' => 'required|date_format:H:i',
             'jam_pulang' => 'required|date_format:H:i',
+            'jam_batas_masuk' => 'required|date_format:H:i',
+            'jam_batas_pulang' => 'required|date_format:H:i',
             'toleransi_terlambat' => 'required|integer|min:0|max:32767',
         ];
     }
@@ -40,6 +42,8 @@ class JadwalKerjaRequest extends FormRequest
             'nama_jadwal' => 'Nama Jadwal',
             'jam_masuk' => 'Jam Masuk',
             'jam_pulang' => 'Jam Pulang',
+            'jam_batas_masuk' => 'Jam Batas Masuk',
+            'jam_batas_pulang' => 'Jam Batas Pulang',
             'toleransi_terlambat' => 'Toleransi Terlambat',
         ];
     }
@@ -68,6 +72,12 @@ class JadwalKerjaRequest extends FormRequest
 
             'jam_pulang.required' => 'Field :attribute wajib diisi.',
             'jam_pulang.date_format' => 'Field :attribute harus berupa waktu dengan format HH:MM.',
+
+            'jam_batas_masuk.required' => 'Field :attribute wajib diisi.',
+            'jam_batas_masuk.date_format' => 'Field :attribute harus berupa waktu dengan format HH:MM.',
+
+            'jam_batas_pulang.required' => 'Field :attribute wajib diisi.',
+            'jam_batas_pulang.date_format' => 'Field :attribute harus berupa waktu dengan format HH:MM.',
 
             'toleransi_terlambat.required' => 'Field :attribute wajib diisi.',
             'toleransi_terlambat.integer' => 'Field :attribute harus berupa angka.',

@@ -1,73 +1,74 @@
-<div class="modal fade" id="form_edit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog"
+<div class="modal fade" id="form_create" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog"
      aria-hidden="true">
     <div class="modal-dialog modal-xl" role="document">
-        <form method="post" id="bt_submit_edit">
+        <form method="post" id="bt_submit_create">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit Jadwal Kerja</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah Pengajuan</h5>
                     <a type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></a>
                 </div>
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <input type="hidden" id="edit_jadwal_id" name="jadwal_id">
                             <div class="d-flex flex-column mb-2">
                                 <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
-                                    <span>Nama Jadwal</span>
+                                    <span>Pegawai Aktif</span>
                                 </label>
-                                <input type="text" id="edit_nama_jadwal"
+                                <select data-control="select2" class="form-select form-select-sm fs-sm-8 fs-lg-6"
+                                    name="sdm_id" id="sdm_id" data-allow-clear="true" data-placeholder="Pilih Pegawai"
+                                    >
+                                </select>
+                                <div class="invalid-feedback"></div>
+                            </div>
+                            <div class="d-flex flex-column mb-2">
+                                <label class="fs-sm-8 fs-lg-6 fw-bolder mb-1">Jenis Cuti</label>
+                                <select data-control="select2"
+                                        class="form-select form-select-sm fs-sm-8 fs-lg-6"
+                                        id="jenis_cuti"
+                                        name="jenis_cuti"
+                                         data-allow-clear="true"
+                                        data-placeholder="Pilih Jenis Cuti">
+                                            <option value=""></option>
+                                            <option value="TAHUNAN">TAHUNAN</option>
+                                            <option value="SAKIT">SAKIT</option>
+                                            <option value="MELAHIRKAN">MELAHIRKAN</option>
+                                </select>
+                                <div class="invalid-feedback"></div>
+                            </div>
+                            <div class="d-flex flex-column mb-2">
+                                <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
+                                    <span>Keterangan</span>
+                                </label>
+                                <input type="text" id="keterangan"
                                        class="form-control form-control-sm fs-sm-8 fs-lg-6"
                                        required>
                                 <div class="invalid-feedback"></div>
                             </div>
-
                             <div class="d-flex flex-column mb-2">
                                 <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
-                                    <span>Jam Masuk</span>
+                                    <span>Tanggal Mulai</span>
                                 </label>
-                                <input type="time" id="edit_jam_masuk"
+                                <input type="date" id="tanggal_mulai"
                                        class="form-control form-control-sm fs-sm-8 fs-lg-6"
                                        required>
                                 <div class="invalid-feedback"></div>
                             </div>
-
                             <div class="d-flex flex-column mb-2">
                                 <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
-                                    <span>Jam Batas Masuk</span>
+                                    <span>Tanggal Selesai</span>
                                 </label>
-                                <input type="time" id="edit_jam_batas_masuk"
+                                <input type="date" id="tanggal_selesai"
                                        class="form-control form-control-sm fs-sm-8 fs-lg-6"
                                        required>
                                 <div class="invalid-feedback"></div>
                             </div>
-
                             <div class="d-flex flex-column mb-2">
-                                <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
-                                    <span>Jam Pulang</span>
+                                <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 readonly">
+                                    <span>Total Hari</span>
                                 </label>
-                                <input type="time" id="edit_jam_pulang"
+                                <input type="text" id="total_hari"
                                        class="form-control form-control-sm fs-sm-8 fs-lg-6"
-                                       required>
-                                <div class="invalid-feedback"></div>
-                            </div>
-
-                            <div class="d-flex flex-column mb-2">
-                                <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
-                                    <span>Jam Batas Pulang</span>
-                                </label>
-                                <input type="time" id="edit_jam_batas_pulang"
-                                       class="form-control form-control-sm fs-sm-8 fs-lg-6"
-                                       required>
-                                <div class="invalid-feedback"></div>
-                            </div>
-
-                            <div class="d-flex flex-column mb-2">
-                                <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
-                                    <span>Toleransi Terlambat</span>
-                                </label>
-                                <input type="text" id="edit_toleransi_terlambat"
-                                       class="form-control form-control-sm fs-sm-8 fs-lg-6"
-                                       required>
+                                       readonly>
                                 <div class="invalid-feedback"></div>
                             </div>
 
@@ -84,4 +85,3 @@
         </form>
     </div>
 </div>
-

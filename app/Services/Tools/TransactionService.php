@@ -43,9 +43,9 @@ final class TransactionService
 
     public function actionButton(string $encryptedId, string $type): string
     {
-        $icons = ['detail' => 'bi-file-text', 'edit' => 'bi-pencil', 'delete' => 'bi-trash'];
+        $icons = ['detail' => 'bi-file-text', 'edit' => 'bi-pencil', 'delete' => 'bi-trash', 'approval' => 'bi bi-folder-check'];
 
-        $targets = ['detail' => '#form_detail', 'edit' => '#form_edit'];
+        $targets = ['detail' => '#form_detail', 'edit' => '#form_edit','approval' => '#form_approval'];
 
         $icon = $icons[$type] ?? 'bi-question-circle';
         $target = $targets[$type] ?? '#';

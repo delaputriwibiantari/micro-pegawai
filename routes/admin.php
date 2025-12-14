@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\absensi\CutiController;
 use App\Http\Controllers\admin\absensi\JadwalKerjaController;
 use App\Http\Controllers\admin\absensi\JenisAbsensiController;
 use App\Http\Controllers\admin\absensi\LiburNasionalController;
@@ -460,6 +461,21 @@ Route::prefix('absensi')->name('absensi.')->group(function () {
             ->name('store');
         Route::post('update/{id}', [LiburPerusahaanController::class, 'update'])
             ->name('update');
+    });
+
+    Route::prefix('cuti')->name('cuti.')->group(function () {
+        Route::get('/', [CutiController::class, 'index'])
+            ->name('index');
+        Route::get('data', [CutiController::class, 'list'])
+            ->name('list');
+        Route::get('show/{id}', [CutiController::class, 'show'])
+            ->name('show');
+        Route::post('/store', [CutiController::class, 'store'])
+            ->name('store');
+        Route::post('update/{id}', [CutiController::class, 'update'])
+            ->name('update');
+        Route::post('approval/{id}', [CutiController::class, 'approval'])
+            ->name('approval');
     });
 
 });

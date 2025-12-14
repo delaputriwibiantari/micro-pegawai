@@ -32,7 +32,7 @@
             responsive: true,
             searchHighlight: true,
             ajax: {
-                url: '{{ route('admin.absensi.jadwal_kerja.list') }}',
+                url: '{{ route('admin.absensi.cuti.list') }}',
                 cache: false
             },
             order: [],
@@ -43,24 +43,43 @@
                 orderable: false,
                 searchable: false
             }, {
-                data: 'jadwal_id',
-                name: 'jadwal_id'
+                data: 'cuti_id',
+                name: 'cuti_id'
             },
             {
-                data: 'nama_jadwal',
-                name: 'nama_jadwal'
+                data: 'nama_lengkap',
+                name: 'nama_pegawai'
             },
              {
-                data: 'jam_masuk_range',
-                name: 'jam_masuk_range'
+                data: 'jenis_cuti',
+                name: 'jenis_cuti'
             },
              {
-                data: 'jam_pulang_range',
-                name: 'jam_pulang_range'
+                data: 'tanggal_pelaksanaan',
+                name: 'tanggal_pelaksanaan'
             },
              {
-                data: 'toleransi_terlambat',
-                name: 'toleransi_terlambat',
+                data: 'status',
+                name: 'status',
+                render: function (data, type, row) {
+                    if (!data) return '-';
+
+                    let badgeClass = 'badge bg-secondary';
+
+                    switch (data) {
+                        case 'PENGAJUAN':
+                            badgeClass = 'badge bg-warning text-dark';
+                            break;
+                        case 'DISETUJUI':
+                            badgeClass = 'badge bg-success';
+                            break;
+                        case 'DITOLAK':
+                            badgeClass = 'badge bg-danger';
+                            break;
+                    }
+
+                    return `<span class="${badgeClass}">${data}</span>`;
+                }
             }]
         });
         const performOptimizedSearch = _.debounce(function (query) {

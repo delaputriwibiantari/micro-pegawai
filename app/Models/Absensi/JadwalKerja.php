@@ -29,6 +29,8 @@ final class JadwalKerja extends Model implements Auditable
         'nama_jadwal',
         'jam_masuk',
         'jam_pulang',
+        'jam_batas_masuk',
+        'jam_batas_pulang',
         'toleransi_terlambat'
     ];
 
@@ -46,6 +48,16 @@ final class JadwalKerja extends Model implements Auditable
     }
 
     public function getJamPulangAttribute($value): ?string
+    {
+        return $value ? Carbon::parse($value)->format('H:i') : null;
+    }
+
+    public function getJamBatasMasukAttribute($value): ?string
+    {
+        return $value ? Carbon::parse($value)->format('H:i') : null;
+    }
+
+    public function getJamBatasPulangAttribute($value): ?string
     {
         return $value ? Carbon::parse($value)->format('H:i') : null;
     }
