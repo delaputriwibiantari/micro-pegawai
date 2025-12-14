@@ -16,6 +16,9 @@
                     $('#detail_tanggal_mulai').text(response.data.tanggal_mulai);
                     $('#detail_tanggal_selesai').text(response.data.tanggal_selesai);
                     $('#detail_status').text(response.data.status);
+                    $('#detail_disetujui_oleh').text(response.data.disetujui_oleh);
+                    $('#detail_disetujui_oleh_nama').text(response.data.disetujui_oleh_nama);
+                    $('#detail_disetujui_pada').text(response.data.disetujui_pada);
                     $('#null_data').hide();
                     $('#show_data').show();
                 } else {

@@ -55,6 +55,12 @@
                     </label>
                     <p class="fw-light fs-sm-8 fs-lg-6" id="detail_status"></p>
                 </div>
+                <div class="d-flex flex-column mb-2">
+                    <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
+                        <span>Disetujui Pada</span>
+                    </label>
+                    <p class="fw-light fs-sm-8 fs-lg-6" id="detail_disetujui_pada"></p>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-sm btn-dark fs-sm-8 fs-lg-6" data-bs-dismiss="modal">Tutup
