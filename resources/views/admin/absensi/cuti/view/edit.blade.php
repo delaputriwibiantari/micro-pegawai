@@ -10,11 +10,12 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12">
+                            <input type="hidden" id="edit_sdm_id" name="edit_sdm_id">
                             <div class="d-flex flex-column mb-2">
                                 <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 readonly">
                                     <span>Pegawai Aktif</span>
                                 </label>
-                                <input type="text" id="edit_sdm_id"
+                                <input type="text" id="edit_nama_lengkap"
                                        class="form-control form-control-sm fs-sm-8 fs-lg-6"
                                        readonly>
                                 <div class="invalid-feedback"></div>

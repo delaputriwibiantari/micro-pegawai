@@ -11,6 +11,7 @@
                     $('#detail_jenis_cuti').text(response.data.jenis_cuti);
                     $('#detail_total_hari').text(response.data.total_hari);
                     $('#detail_sdm_id').text(response.data.sdm_id);
+                    $('#detail_nama_lengkap').text(response.data.nama_lengkap);
                     $('#detail_keterangan').text(response.data.keterangan);
                     $('#detail_tanggal_mulai').text(response.data.tanggal_mulai);
                     $('#detail_tanggal_selesai').text(response.data.tanggal_selesai);

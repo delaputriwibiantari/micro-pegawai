@@ -62,7 +62,7 @@ final class CutiRequest extends FormRequest
     {
         return [
 
-            'jenis_cuti.required' => 'field :attribute wajib diisi.',
+            'jenis_cuti.nullable' => 'field :attribute wajib diisi.',
             'jenis_cuti.in' => 'field :attribute tidak valid.',
 
             'keterangan.required' => 'field :attribute wajib diisi.',

@@ -93,7 +93,6 @@ final class CutiController extends Controller
                 'tanggal_mulai',
                 'tanggal_selesai',
                 'total_hari',
-                
             ]));
             return $this->responseService->successResponse('Data berhasil diperbarui', $updatedData);
         });

@@ -1,21 +1,23 @@
 <script defer>
     $('#form_edit').on('show.bs.modal', function (e) {
 
-        $('#tanggal_mulai').flatpickr({
+        $('#edit_tanggal_mulai').flatpickr({
             dateFormat: 'Y-m-d',
             altFormat: 'd/m/Y',
             allowInput: false,
             altInput: true,
-            onChange: hitungTotalHari
+            onChange: hitungTotalHariEdit
         });
 
-        $('#tanggal_selesai').flatpickr({
+        $('#edit_tanggal_selesai').flatpickr({
             dateFormat: 'Y-m-d',
             altFormat: 'd/m/Y',
             allowInput: false,
             altInput: true,
-            onChange: hitungTotalHari
+            onChange: hitungTotalHariEdit
         });
+
+
 
         const button = $(e.relatedTarget);
         const id = button.data('id');
@@ -27,11 +29,19 @@
                     $('#edit_cuti_id').val(response.data.cuti_id);
                     $('#edit_jenis_cuti').val(response.data.jenis_cuti).trigger('change');
                     $('#edit_sdm_id').val(response.data.sdm_id);
-                    $('#edit_keterangan').val(response.data.keterangan);
-                    $('#edit_tanggal_mulai').val(response.data.tanggal_mulai);
-                    $('#edit_tanggal_selesai').val(response.data.tanggal_selesai);
+                    $('#edit_nama_lengkap').val(response.data.nama_lengkap);
+                    $('#edit_keterangan').val(response.data.keterangan);document
+                        .getElementById('edit_tanggal_mulai')
+                        ._flatpickr
+                        .setDate(response.data.tanggal_mulai, true);
+
+                        document
+                        .getElementById('edit_tanggal_selesai')
+                        ._flatpickr
+                        .setDate(response.data.tanggal_selesai, true);
                     $('#edit_total_hari').val(response.data.total_hari);
                     $('#edit_status').val(response.data.status).trigger('change');
+                    
                 } else {
                     Swal.fire('Warning', response.message, 'warning');
                 }
@@ -58,6 +68,7 @@
                     DataManager.openLoading();
                     const input = {
                         cuti_id: $('#edit_cuti_id').val(),
+                        sdm_id: $('#edit_sdm_id').val(),
                         jenis_cuti: $('#edit_jenis_cuti').val(),
                         keterangan: $('#edit_keterangan').val(),
                         tanggal_mulai: $('#edit_tanggal_mulai').val(),
@@ -96,12 +107,12 @@
         $m.find('.invalid-feedback, .valid-feedback, .text-danger').remove();
     });
 
-    function hitungTotalHari() {
-        const mulai = $('#tanggal_mulai').val();
-        const selesai = $('#tanggal_selesai').val();
+    function hitungTotalHariEdit() {
+        const mulai = $('#edit_tanggal_mulai').val();
+        const selesai = $('#edit_tanggal_selesai').val();
 
         if (!mulai || !selesai) {
-            $('#total_hari').val('');
+            $('#edit_total_hari').val('');
             return;
         }
 
@@ -109,7 +120,7 @@
         const end = new Date(selesai);
 
         if (end < start) {
-            $('#total_hari').val('');
+            $('#edit_total_hari').val('');
             Swal.fire('Peringatan', 'Tanggal selesai tidak boleh sebelum tanggal mulai', 'warning');
             return;
         }
@@ -117,6 +128,7 @@
         const diffTime = end.getTime() - start.getTime();
         const totalHari = Math.floor(diffTime / (1000 * 60 * 60 * 24)) + 1;
 
-        $('#total_hari').val(totalHari);
+        $('#edit_total_hari').val(totalHari);
     }
+
 </script>

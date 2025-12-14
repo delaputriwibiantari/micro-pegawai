@@ -60,11 +60,12 @@ final class CutiService
             ->where('sdm.id', $cuti->sdm_id)
             ->first();
 
-        // GANTI isi sdm_id dengan nama_lengkap
-        $cuti->sdm_id = $sdm->nama_lengkap ?? '-';
+        // TAMBAHKAN FIELD BARU
+        $cuti->nama_lengkap = $sdm->nama_lengkap ?? '-';
 
         return $cuti;
     }
+
 
 
     public function findById(string $id): ?Cuti
