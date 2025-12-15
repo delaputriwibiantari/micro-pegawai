@@ -2,19 +2,18 @@
     $('#form_approval').on('show.bs.modal', function (e) {
         const button = $(e.relatedTarget);
         const id = button.data('id');
-        const detail = '{{ route('admin.absensi.cuti.show', [':id']) }}';
+        const detail = '{{ route('admin.absensi.lembur.show', [':id']) }}';
 
         DataManager.fetchData(detail.replace(':id', id))
             .then(function (response) {
                 if (response.success) {
-                    $('#approval_cuti_id').val(response.data.cuti_id);
-                    $('#approval_jenis_cuti').val(response.data.jenis_cuti).trigger('change');
+                    $('#approval_lembur_id').val(response.data.lembur_id);
                     $('#approval_sdm_id').val(response.data.sdm_id);
                     $('#approval_nama_lengkap').val(response.data.nama_lengkap);
-                    $('#approval_keterangan').val(response.data.keterangan);
-                    $('#approval_tanggal_mulai').val(response.data.tanggal_mulai);
-                    $('#approval_tanggal_selesai').val(response.data.tanggal_selesai);
-                    $('#approval_total_hari').val(response.data.total_hari);
+                    $('#approval_tanggal').val(response.data.tanggal);
+                    $('#approval_jam_mulai').val(response.data.jam_mulai);
+                    $('#approval_jam_selesai').val(response.data.jam_selesai);
+                    $('#approval_durasi_jam').val(response.data.durasi_jam);
                     $('#approval_status').val(response.data.status).trigger('change');
                 } else {
                     Swal.fire('Warning', response.message, 'warning');
@@ -44,7 +43,7 @@
                         status: $('#approval_status').val(),
 
                     };
-                    const approval = '{{ route('admin.absensi.cuti.approval', [':id']) }}';
+                    const approval = '{{ route('admin.absensi.lembur.approval', [':id']) }}';
                     DataManager.putData(approval.replace(':id', id), input).then(response => {
                         if (response.success) {
                             Swal.fire('Success', response.message, 'success');

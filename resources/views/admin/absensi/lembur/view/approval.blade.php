@@ -4,7 +4,7 @@
         <form method="post" id="bt_submit_approval">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Approval Cuti</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Approval Lembur</h5>
                     <a type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></a>
                 </div>
                 <div class="modal-body">
@@ -21,44 +21,35 @@
                                 <div class="invalid-feedback"></div>
                             </div>
                             <div class="d-flex flex-column mb-2">
-                                <label class="fs-sm-8 fs-lg-6 fw-bolder mb-1">Jenis Cuti</label>
-                                <input type="text" id="approval_jenis_cuti"
+                                <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
+                                    <span>Tanggal</span>
+                                </label>
+                                <input type="date" id="approval_tanggal"
+                                       class="form-control form-control-sm fs-sm-8 fs-lg-6"
+                                       readonly>
+                                <div class="invalid-feedback"></div>
+                            </div>
+                            <div class="d-flex flex-column mb-2">
+                                <label class="fs-sm-8 fs-lg-6 fw-bolder mb-1">Jam Mulai</label>
+                                <input type="text" id="approval_jam_mulai"
                                        class="form-control form-control-sm fs-sm-8 fs-lg-6"
                                        readonly>
                                 <div class="invalid-feedback"></div>
                             </div>
                             <div class="d-flex flex-column mb-2">
                                 <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
-                                    <span>Keterangan</span>
+                                    <span>Jam Selesai</span>
                                 </label>
-                                <input type="text" id="approval_keterangan"
+                                <input type="text" id="approval_jam_selesai"
                                        class="form-control form-control-sm fs-sm-8 fs-lg-6"
                                        readonly>
                                 <div class="invalid-feedback"></div>
                             </div>
                             <div class="d-flex flex-column mb-2">
                                 <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
-                                    <span>Tanggal Mulai</span>
+                                    <span>Durasi Jam</span>
                                 </label>
-                                <input type="date" id="approval_tanggal_mulai"
-                                       class="form-control form-control-sm fs-sm-8 fs-lg-6"
-                                       readonly>
-                                <div class="invalid-feedback"></div>
-                            </div>
-                            <div class="d-flex flex-column mb-2">
-                                <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
-                                    <span>Tanggal Selesai</span>
-                                </label>
-                                <input type="date" id="approval_tanggal_selesai"
-                                       class="form-control form-control-sm fs-sm-8 fs-lg-6"
-                                       readonly>
-                                <div class="invalid-feedback"></div>
-                            </div>
-                            <div class="d-flex flex-column mb-2">
-                                <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 readonly">
-                                    <span>Total Hari</span>
-                                </label>
-                                <input type="text" id="approval_total_hari"
+                                <input type="text" id="approval_durasi_jam"
                                        class="form-control form-control-sm fs-sm-8 fs-lg-6"
                                        readonly>
                                 <div class="invalid-feedback"></div>

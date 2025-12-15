@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\absensi\CutiController;
 use App\Http\Controllers\admin\absensi\JadwalKerjaController;
 use App\Http\Controllers\admin\absensi\JenisAbsensiController;
+use App\Http\Controllers\admin\absensi\LemburController;
 use App\Http\Controllers\admin\absensi\LiburNasionalController;
 use App\Http\Controllers\admin\absensi\LiburPerusahaanController;
 use App\Http\Controllers\admin\gaji\GajiJabatanController;
@@ -475,6 +476,21 @@ Route::prefix('absensi')->name('absensi.')->group(function () {
         Route::post('update/{id}', [CutiController::class, 'update'])
             ->name('update');
         Route::post('approval/{id}', [CutiController::class, 'approval'])
+            ->name('approval');
+    });
+
+    Route::prefix('lembur')->name('lembur.')->group(function () {
+        Route::get('/', [LemburController::class, 'index'])
+            ->name('index');
+        Route::get('data', [LemburController::class, 'list'])
+            ->name('list');
+        Route::get('show/{id}', [LemburController::class, 'show'])
+            ->name('show');
+        Route::post('/store', [LemburController::class, 'store'])
+            ->name('store');
+        Route::post('update/{id}', [LemburController::class, 'update'])
+            ->name('update');
+        Route::post('approval/{id}', [LemburController::class, 'approval'])
             ->name('approval');
     });
 

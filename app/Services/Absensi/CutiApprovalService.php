@@ -7,24 +7,43 @@ use Illuminate\Support\Arr;
 
 final class CutiApprovalService
 {
-    public function approval(string $cutiId, string $status, array $data) : Cuti
+    // public function approval(string $cutiId, string $status, array $data) : Cuti
+    // {
+
+
+    //     $cuti = Cuti::find($cutiId);
+
+    //     $cuti->update([
+    //         'status'          => $status,
+    //         'disetujui_oleh'  => auth()->guard('admin')->id(),
+    //         'disetujui_pada'  => now(),
+    //     ]);
+
+    //     return $cuti;
+    // }
+
+    public function approval(int $id, string $status): Cuti
     {
-        // $cuti = Cuti::where('cuti_id', $cutiId)
-        // ->where('status', 'PENGAJUAN')
-        // ->firstOrFail();
+        $cuti = Cuti::where('id', $id)
+            ->where('status', 'PENGAJUAN')
+            ->firstOrFail();
 
-        $cuti = Cuti::find($cutiId);
+        $data = [
+            'status' => $status,
+            'disetujui_oleh' => auth()->guard('admin')->id(),
+        ];
 
-        $cuti->update([
-            'status'          => $status,
-            'disetujui_oleh'  => auth()->guard('admin')->id(),
-            'disetujui_pada'  => now(),
-        ]);
+        if ($status === 'DISETUJUI') {
+            $data['disetujui_pada'] = now();
+        }
 
-        return $cuti;
+        if ($status === 'DITOLAK') {
+            $data['disetujui_pada'] = null;
+        }
+
+        $cuti->update($data);
+
+        return $cuti->fresh();
     }
-    public function findById(string $id): ?Cuti
-    {
-        return Cuti::find($id);
-    }
+
 }

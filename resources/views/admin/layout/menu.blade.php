@@ -149,7 +149,8 @@
                                 request()->routeIs('admin.absensi.jadwal_kerja.*')||
                                 request()->routeIs('admin.absensi.libur_nasional.*')||
                                 request()->routeIs('admin.absensi.libur_perusahaan.*')||
-                                request()->routeIs('admin.absensi.cuti.*');
+                                request()->routeIs('admin.absensi.cuti.*')||
+                                request()->routeIs('admin.absensi.lembur.*');
 
             @endphp
             <div data-kt-menu-trigger="click"
@@ -181,6 +182,10 @@
                     <a class="menu-link {{ request()->routeIs('admin.absensi.cuti.*') ? 'active' : '' }}"
                        href="{{ route('admin.absensi.cuti.index') }}">
                         <span class="menu-title px-4">Pengajuan Cuti</span>
+                    </a>
+                    <a class="menu-link {{ request()->routeIs('admin.absensi.lembur.*') ? 'active' : '' }}"
+                       href="{{ route('admin.absensi.lembur.index') }}">
+                        <span class="menu-title px-4">Pengajuan Lembur</span>
                     </a>
                  </div>
             </div>
