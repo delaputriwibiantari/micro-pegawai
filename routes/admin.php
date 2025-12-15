@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\absensi\CutiController;
+use App\Http\Controllers\admin\absensi\IzinController;
 use App\Http\Controllers\admin\absensi\JadwalKerjaController;
 use App\Http\Controllers\admin\absensi\JenisAbsensiController;
 use App\Http\Controllers\admin\absensi\LemburController;
@@ -478,6 +479,22 @@ Route::prefix('absensi')->name('absensi.')->group(function () {
         Route::post('approval/{id}', [CutiController::class, 'approval'])
             ->name('approval');
     });
+
+    Route::prefix('izin')->name('izin.')->group(function () {
+        Route::get('/', [IzinController::class, 'index'])
+            ->name('index');
+        Route::get('data', [IzinController::class, 'list'])
+            ->name('list');
+        Route::get('show/{id}', [IzinController::class, 'show'])
+            ->name('show');
+        Route::post('/store', [IzinController::class, 'store'])
+            ->name('store');
+        Route::post('update/{id}', [IzinController::class, 'update'])
+            ->name('update');
+        Route::post('approval/{id}', [IzinController::class, 'approval'])
+            ->name('approval');
+    });
+
 
     Route::prefix('lembur')->name('lembur.')->group(function () {
         Route::get('/', [LemburController::class, 'index'])

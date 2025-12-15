@@ -150,6 +150,7 @@
                                 request()->routeIs('admin.absensi.libur_nasional.*')||
                                 request()->routeIs('admin.absensi.libur_perusahaan.*')||
                                 request()->routeIs('admin.absensi.cuti.*')||
+                                request()->routeIs('admin.absensi.izin.*')||
                                 request()->routeIs('admin.absensi.lembur.*');
 
             @endphp
@@ -182,6 +183,10 @@
                     <a class="menu-link {{ request()->routeIs('admin.absensi.cuti.*') ? 'active' : '' }}"
                        href="{{ route('admin.absensi.cuti.index') }}">
                         <span class="menu-title px-4">Pengajuan Cuti</span>
+                    </a>
+                    <a class="menu-link {{ request()->routeIs('admin.absensi.izin.*') ? 'active' : '' }}"
+                       href="{{ route('admin.absensi.izin.index') }}">
+                        <span class="menu-title px-4">Pengajuan Izin</span>
                     </a>
                     <a class="menu-link {{ request()->routeIs('admin.absensi.lembur.*') ? 'active' : '' }}"
                        href="{{ route('admin.absensi.lembur.index') }}">
