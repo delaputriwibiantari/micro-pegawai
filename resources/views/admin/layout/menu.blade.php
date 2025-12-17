@@ -151,7 +151,8 @@
                                 request()->routeIs('admin.absensi.libur_perusahaan.*')||
                                 request()->routeIs('admin.absensi.cuti.*')||
                                 request()->routeIs('admin.absensi.izin.*')||
-                                request()->routeIs('admin.absensi.lembur.*');
+                                request()->routeIs('admin.absensi.lembur.*')||
+                                request()->routeIs('admin.absensi.absensi.*');
 
             @endphp
             <div data-kt-menu-trigger="click"
@@ -161,6 +162,10 @@
                     <span class="menu-arrow"></span>
                 </span>
                 <div class="menu-sub menu-sub-accordion menu-active-bg">
+                    <a class="menu-link {{ request()->routeIs('admin.absensi.absensi.*') ? 'active' : '' }}"
+                       href="{{ route('admin.absensi.absensi.index') }}">
+                        <span class="menu-title px-4">Absensi</span>
+                    </a>
                     <a class="menu-link {{ request()->routeIs('admin.absensi.jenis_absensi.*') ? 'active' : '' }}"
                        href="{{ route('admin.absensi.jenis_absensi.index') }}">
                         <span class="menu-title px-4">Jenis Absensi</span>

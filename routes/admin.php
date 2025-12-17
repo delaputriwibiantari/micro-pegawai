@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\absensi\AbsensiController;
 use App\Http\Controllers\admin\absensi\CutiController;
 use App\Http\Controllers\admin\absensi\IzinController;
 use App\Http\Controllers\admin\absensi\JadwalKerjaController;
@@ -495,7 +496,6 @@ Route::prefix('absensi')->name('absensi.')->group(function () {
             ->name('approval');
     });
 
-
     Route::prefix('lembur')->name('lembur.')->group(function () {
         Route::get('/', [LemburController::class, 'index'])
             ->name('index');
@@ -508,6 +508,21 @@ Route::prefix('absensi')->name('absensi.')->group(function () {
         Route::post('update/{id}', [LemburController::class, 'update'])
             ->name('update');
         Route::post('approval/{id}', [LemburController::class, 'approval'])
+            ->name('approval');
+    });
+
+    Route::prefix('absensi')->name('absensi.')->group(function () {
+        Route::get('/', [AbsensiController::class, 'index'])
+            ->name('index');
+        Route::get('data', [AbsensiController::class, 'list'])
+            ->name('list');
+        Route::get('show/{id}', [AbsensiController::class, 'show'])
+            ->name('show');
+        Route::post('/store', [AbsensiController::class, 'store'])
+            ->name('store');
+        Route::post('update/{id}', [AbsensiController::class, 'update'])
+            ->name('update');
+        Route::post('approval/{id}', [AbsensiController::class, 'approval'])
             ->name('approval');
     });
 

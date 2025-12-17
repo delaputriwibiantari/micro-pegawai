@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Services\Absensi\JadwalKerjaService;
 use App\Services\Ref\RefEselonService;
 use App\Services\Ref\RefBankService;
 use App\Services\Ref\RefHubunganKeluargaService;
@@ -25,7 +26,8 @@ final class RefController extends Controller
         private readonly RefEselonService            $refEselonService,
         private readonly RefJenisAsuransiService     $refJenisAsuransiService,
         private readonly RefBankService              $refBankService,
-        private readonly SdmService                  $sdmService
+        private readonly SdmService                  $sdmService,
+        private readonly JadwalKerjaService          $jadwalKerjaService
     ) {}
 
         public function jenjangPendidikan(): JsonResponse
@@ -97,6 +99,20 @@ final class RefController extends Controller
             });
 
         return $this->responseService->successResponse('Data berhasil diambil', $data);
+    }
+
+    public function jadwalkerja(): JsonResponse
+    {
+        return $this->transactionService->handleWithShow(function () {
+            $data = $this->jadwalKerjaService->getListDataOrdered('jadwal_id');
+
+            $data->transform(function ($item) {
+                $item->setAttribute('jadwal_kerja', $item->nama_jadwal . ' (' . $item->jam_masuk. '-' . $item->jam_pulang . ')');
+                return $item;
+            });
+
+            return $this->responseService->successResponse('Data berhasil diambil', $data);
+        });
     }
 
 
