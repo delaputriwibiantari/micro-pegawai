@@ -104,41 +104,55 @@
             .catch((err) => ErrorHandler.handleError(err));
     }
 
-    function validateWaktuAbsensi() {
-        if (!jadwalKerja) return true;
+function validateWaktuAbsensi() {
 
-        const waktuMulai = $('#waktu_mulai').val();
-        const waktuSelesai = $('#waktu_selesai').val();
+    if (!jadwalKerja) return true;
 
-        const mulai = timeToMinutes(waktuMulai);
-        const jamMasuk = timeToMinutes(jadwalKerja.jam_masuk);
-        const batasMasuk = timeToMinutes(jadwalKerja.jam_batas_masuk);
-        const jamPulang = timeToMinutes(jadwalKerja.jam_pulang);
-        const batasPulang = timeToMinutes(jadwalKerja.jam_batas_pulang);
+    const waktuMulai   = $('#waktu_mulai').val();
+    const waktuSelesai = $('#waktu_selesai').val();
 
-        // 1. Belum jam kerja
-        if (mulai < jamMasuk) {
-            Swal.fire('Peringatan', 'Belum memasuki jam kerja', 'warning');
-            return false;
-        }
+    const mulai       = timeToMinutes(waktuMulai);
+    const jamMasuk    = timeToMinutes(jadwalKerja.jam_masuk);
+    const jamPulang   = timeToMinutes(jadwalKerja.jam_pulang);
+    const batasPulang = timeToMinutes(jadwalKerja.jam_batas_pulang);
 
-        // 2. Absensi sudah berakhir
-        if (mulai > batasPulang) {
-            Swal.fire('Peringatan', 'Waktu absensi sudah berakhir', 'warning');
-            return false;
-        }
-
-        // 3. Validasi jam pulang (jika ada)
-        if (waktuSelesai) {
-            const selesai = timeToMinutes(waktuSelesai);
-            if (selesai < jamPulang) {
-                Swal.fire('Peringatan', 'Belum memasuki jam pulang', 'warning');
-                return false;
-            }
-        }
-
-        return true;
+    // 1️⃣ Belum memasuki jam kerja
+    if (mulai < jamMasuk) {
+        Swal.fire({
+            icon: 'warning',
+            title: 'Peringatan',
+            text: 'Belum memasuki jam kerja'
+        });
+        return false;
     }
+
+    // 2️⃣ Waktu absensi sudah berakhir
+    if (mulai > batasPulang) {
+        Swal.fire({
+            icon: 'warning',
+            title: 'Peringatan',
+            text: 'Waktu absensi sudah berakhir'
+        });
+        return false;
+    }
+
+    // 3️⃣ Belum memasuki jam pulang (jika diisi)
+    if (waktuSelesai) {
+        const selesai = timeToMinutes(waktuSelesai);
+
+        if (selesai < jamPulang) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Peringatan',
+                text: 'Belum memasuki jam pulang'
+            });
+            return false;
+        }
+    }
+
+    return true; // ✅ lolos validasi
+}
+
 
 
 </script>

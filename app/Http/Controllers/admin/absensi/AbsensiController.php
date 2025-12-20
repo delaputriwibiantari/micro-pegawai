@@ -45,21 +45,26 @@ final class AbsensiController extends Controller
     }
 
     public function store(AbsensiRequest $request): JsonResponse
-    {
-        return $this->transactionService->handleWithTransaction(function () use ($request) {
-            $data = $this->absensiService->create($request->only([
-                'absensi_id',
-                'tanggal',
-                'jadwal_id',
-                'jenis_absen_id',
-                'total_terlambat',
-                'sdm_id',
-                'waktu_selesai',
-                'waktu_mulai',
-            ]));
-            return $this->responseService->successResponse('Data berhasil dibuat', $data, 201);
-        });
-    }
+{
+    return $this->transactionService->handleWithTransaction(function () use ($request) {
+
+        $result = $this->absensiService->create($request->all());
+
+        if (isset($result['error'])) {
+            return $this->responseService->errorResponse(
+                $result['message'],
+                422
+            );
+        }
+
+        return $this->responseService->successResponse(
+            'Data berhasil dibuat',
+            $result,
+            201
+        );
+    });
+}
+
 
     public function show(string $id): JsonResponse
     {

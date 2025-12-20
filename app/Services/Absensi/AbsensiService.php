@@ -50,33 +50,30 @@ final class AbsensiService
     }
 
 
-    public function create(array $data): Absensi
-    {
-        $jadwal = JadwalKerja::where('id', $data['jadwal_id'])->firstOrFail();
+    public function create(array $data)
+{
+    $jadwal = JadwalKerja::where('id', $data['jadwal_id'])->firstOrFail();
 
-        // Ambil jam dari jadwal kerja
-        $jamMasuk       = Carbon::createFromFormat('H:i', $jadwal->jam_masuk);
-        $batasMasuk     = Carbon::createFromFormat('H:i', $jadwal->jam_batas_masuk);
-        $jamPulang      = Carbon::createFromFormat('H:i', $jadwal->jam_pulang);
-        $batasPulang    = Carbon::createFromFormat('H:i', $jadwal->jam_batas_pulang);
+    $jamMasuk    = Carbon::createFromFormat('H:i', $jadwal->jam_masuk);
+    $batasMasuk  = Carbon::createFromFormat('H:i', $jadwal->jam_batas_masuk);
+    $jamPulang   = Carbon::createFromFormat('H:i', $jadwal->jam_pulang);
+    $batasPulang = Carbon::createFromFormat('H:i', $jadwal->jam_batas_pulang);
 
-        // Input admin
-        $waktuMulai   = Carbon::createFromFormat('H:i', $data['waktu_mulai']);
-        $waktuSelesai = isset($data['waktu_selesai'])
-            ? Carbon::createFromFormat('H:i', $data['waktu_selesai'])
-            : null;
+    $waktuMulai = Carbon::createFromFormat('H:i', $data['waktu_mulai']);
 
-        // 1. Validasi waktu mulai
-        if ($waktuMulai->lt($jamMasuk)) {
-            throw new DomainException('Belum memasuki jam kerja');
-        }
+    if ($waktuMulai->lt($jamMasuk)) {
+        return [
+            'error' => true,
+            'message' => 'Belum memasuki jam kerja'
+        ];
+    }
 
-        if ($waktuMulai->gt($batasPulang)) {
-            throw ValidationException::withMessages([
-                'waktu_mulai' => 'Waktu absensi sudah berakhir'
-            ]);
-        }
-
+    if ($waktuMulai->gt($batasPulang)) {
+        return [
+            'error' => true,
+            'message' => 'Waktu absensi sudah berakhir'
+        ];
+    }
         // 2. Hitung keterlambatan
         $totalTerlambat = 0;
         $jenisNama = 'HADIR';
@@ -88,12 +85,7 @@ final class AbsensiService
 
         $jenisAbsensi = JenisAbsensi::where('nama_absen', $jenisNama)->firstOrFail();
 
-        // 3. Validasi waktu selesai (jika ada)
-        if ($waktuSelesai && $waktuSelesai->lt($jamPulang)) {
-            throw ValidationException::withMessages([
-                'waktu_selesai' => 'Belum memasuki jam pulang'
-            ]);
-        }
+       
 
         // 4. Simpan absensi
         return Absensi::create([
