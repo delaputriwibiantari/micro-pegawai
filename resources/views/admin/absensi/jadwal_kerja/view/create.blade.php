@@ -15,7 +15,7 @@
                                 <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
                                     <span>Nama Jadwal</span>
                                 </label>
-                                <input type="text" id="nama_jadwal"
+                                <input type="text" id="nama"
                                        class="form-control form-control-sm fs-sm-8 fs-lg-6"
                                        required>
                                 <div class="invalid-feedback"></div>
@@ -23,9 +23,9 @@
 
                             <div class="d-flex flex-column mb-2">
                                 <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
-                                    <span>Jam Masuk</span>
+                                    <span>Jam Mulai</span>
                                 </label>
-                                <input type="time" id="jam_masuk"
+                                <input type="time" id="jam_mulai"
                                        class="form-control form-control-sm fs-sm-8 fs-lg-6"
                                        required>
                                 <div class="invalid-feedback"></div>
@@ -33,44 +33,13 @@
 
                             <div class="d-flex flex-column mb-2">
                                 <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
-                                    <span>Jam Batas Masuk</span>
+                                    <span>Jam Selesai</span>
                                 </label>
-                                <input type="time" id="jam_batas_masuk"
+                                <input type="time" id="jam_selesai"
                                        class="form-control form-control-sm fs-sm-8 fs-lg-6"
                                        required>
                                 <div class="invalid-feedback"></div>
                             </div>
-
-                            <div class="d-flex flex-column mb-2">
-                                <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
-                                    <span>Jam Pulang</span>
-                                </label>
-                                <input type="time" id="jam_pulang"
-                                       class="form-control form-control-sm fs-sm-8 fs-lg-6"
-                                       required>
-                                <div class="invalid-feedback"></div>
-                            </div>
-
-                            <div class="d-flex flex-column mb-2">
-                                <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
-                                    <span>Jam Batas Pulang</span>
-                                </label>
-                                <input type="time" id="jam_batas_pulang"
-                                       class="form-control form-control-sm fs-sm-8 fs-lg-6"
-                                       required>
-                                <div class="invalid-feedback"></div>
-                            </div>
-
-                            <div class="d-flex flex-column mb-2">
-                                <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
-                                    <span>Toleransi Terlambat</span>
-                                </label>
-                                <input type="text" id="toleransi_terlambat"
-                                       class="form-control form-control-sm fs-sm-8 fs-lg-6"
-                                       required>
-                                <div class="invalid-feedback"></div>
-                            </div>
-
                         </div>
                     </div>
                 </div>

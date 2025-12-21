@@ -27,11 +27,6 @@
                             </div>
 
                             <div class="mb-2">
-                                <label class="fw-bolder">Hari</label>
-                                <p id="detail_nama_jadwal"></p>
-                            </div>
-
-                            <div class="mb-2">
                                 <label class="fw-bolder">Total Terlambat</label>
                                 <p id="detail_total_terlambat"></p>
                             </div>

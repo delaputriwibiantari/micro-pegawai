@@ -25,7 +25,7 @@ final class AbsensiRequest extends FormRequest
     {
         return [
             'absensi_id' => 'nullable|string|max:10',
-            'jadwal_id' => 'required|exists:att.jadwal_kerja,id',
+            // 'jadwal_id' => 'required|exists:att.jadwal_kerja,id',
             'sdm_id' => 'required|exists:mysql.sdm,id',
             // 'jenis_absen_id' => 'required|exists:jenis_absen,jenis_absen_id',
             'total_terlambat' => 'nullable|decimal:0,2',

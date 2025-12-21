@@ -17,25 +17,19 @@
                     <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
                         <span>Nama Jadwal</span>
                     </label>
-                    <p class="fw-light fs-sm-8 fs-lg-6" id="detail_nama_jadwal"></p>
+                    <p class="fw-light fs-sm-8 fs-lg-6" id="detail_nama"></p>
                 </div>
                 <div class="d-flex flex-column mb-2">
                     <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
-                        <span>Jam Masuk</span>
+                        <span>Jam Mulai</span>
                     </label>
-                    <p class="fw-light fs-sm-8 fs-lg-6" id="detail_jam_masuk"></p>
+                    <p class="fw-light fs-sm-8 fs-lg-6" id="detail_jam_mulai"></p>
                 </div>
                 <div class="d-flex flex-column mb-2">
                     <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
-                        <span>Jam Pulang</span>
+                        <span>Jam Selesai</span>
                     </label>
-                    <p class="fw-light fs-sm-8 fs-lg-6" id="detail_jam_pulang"></p>
-                </div>
-                <div class="d-flex flex-column mb-2">
-                    <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
-                        <span>Toleransi Terlambat</span>
-                    </label>
-                    <p class="fw-light fs-sm-8 fs-lg-6" id="detail_toleransi_terlambat"></p>
+                    <p class="fw-light fs-sm-8 fs-lg-6" id="detail_jam_selesai"></p>
                 </div>
             </div>
             <div class="modal-footer">

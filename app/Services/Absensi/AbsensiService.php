@@ -22,11 +22,9 @@ final class AbsensiService
             ->leftJoin('jenis_absensi', 'absensi.jenis_absen_id', '=', 'jenis_absensi.jenis_absen_id')
             ->select(
                 'absensi.*',
-                'jadwal_kerja.nama_jadwal',
-                'jadwal_kerja.jam_masuk',
-                'jadwal_kerja.jam_batas_masuk',
-                'jadwal_kerja.jam_pulang',
-                'jadwal_kerja.jam_batas_pulang',
+                'jadwal_kerja.nama',
+                'jadwal_kerja.jam_mulai',
+                'jadwal_kerja.jam_selesai',
                 'jenis_absensi.nama_absen',
                 'jenis_absensi.kategori',
                 'jenis_absensi.warna'
@@ -51,58 +49,84 @@ final class AbsensiService
 
 
     public function create(array $data)
-{
-    $jadwal = JadwalKerja::where('id', $data['jadwal_id'])->firstOrFail();
+    {
+        $tanggal = $data['tanggal'] ?? now()->toDateString();
 
-    $jamMasuk    = Carbon::createFromFormat('H:i', $jadwal->jam_masuk);
-    $batasMasuk  = Carbon::createFromFormat('H:i', $jadwal->jam_batas_masuk);
-    $jamPulang   = Carbon::createFromFormat('H:i', $jadwal->jam_pulang);
-    $batasPulang = Carbon::createFromFormat('H:i', $jadwal->jam_batas_pulang);
+        
+        $sudahAbsen = Absensi::where('sdm_id', $data['sdm_id'])
+            ->whereDate('tanggal', $tanggal)
+            ->exists();
 
-    $waktuMulai = Carbon::createFromFormat('H:i', $data['waktu_mulai']);
+        if ($sudahAbsen) {
+            return [
+                'error' => true,
+                'message' => 'Pegawai sudah melakukan absensi hari ini'
+            ];
+        }
+        
+        $jadwalMasuk = JadwalKerja::where('nama', 'Masuk')->firstOrFail();
+        $jadwalKeluar = JadwalKerja::where('nama', 'Keluar')->firstOrFail();
 
-    if ($waktuMulai->lt($jamMasuk)) {
-        return [
-            'error' => true,
-            'message' => 'Belum memasuki jam kerja'
-        ];
-    }
+        $waktuMulai = Carbon::createFromFormat('H:i', $data['waktu_mulai']);
+        $waktuSelesai = Carbon::createFromFormat('H:i', $data['waktu_selesai']);
 
-    if ($waktuMulai->gt($batasPulang)) {
-        return [
-            'error' => true,
-            'message' => 'Waktu absensi sudah berakhir'
-        ];
-    }
+        $jamMasukMulai    = Carbon::createFromFormat('H:i', $jadwalMasuk->jam_mulai);
+        $jamMasukSelesai   = Carbon::createFromFormat('H:i', $jadwalMasuk->jam_selesai);
+
+        $jamKeluarMulai  = Carbon::createFromFormat('H:i', $jadwalKeluar->jam_mulai);
+        $jamKeluarSelesai = Carbon::createFromFormat('H:i', $jadwalKeluar->jam_selesai);
+
+        
+
+        if ($waktuMulai->lt($jamMasukMulai)) {
+            return [
+                'error' => true,
+                'message' => 'Belum memasuki jam kerja'
+            ];
+        }
+
+        if ($waktuSelesai->gt($jamKeluarSelesai)) {
+            return [
+                'error' => true,
+                'message' => 'Waktu absen pulang sudah berakhir'
+            ];
+        }
+
+        if($waktuSelesai < $jamKeluarMulai) {
+            return [
+                'error' => true,
+                'message' => 'Belum Memasuki Jam Pulang'
+            ];
+        }
         // 2. Hitung keterlambatan
         $totalTerlambat = 0;
         $jenisNama = 'HADIR';
 
-        if ($waktuMulai->gt($batasMasuk)) {
-            $totalTerlambat = $batasMasuk->diffInHours($waktuMulai);
+        if ($waktuMulai->gt($jamMasukSelesai)) {
+            $totalTerlambat = $jamMasukSelesai->diffInHours($waktuMulai);
             $jenisNama = 'TERLAMBAT';
         }
 
         $jenisAbsensi = JenisAbsensi::where('nama_absen', $jenisNama)->firstOrFail();
 
-       
+
 
         // 4. Simpan absensi
         return Absensi::create([
             'absensi_id'       => $this->generateId(),
             'sdm_id'           => $data['sdm_id'],
-            'jadwal_id'        => $jadwal->jadwal_id,
-            'nama_jadwal'      => $jadwal->nama_jadwal,
+            // 'jadwal_id'        => $jadwal->jadwal_id,
+            // 'nama_jadwal'      => $jadwal->nama_jadwal,
             'tanggal'          => $data['tanggal'] ?? now()->format('Y-m-d'),
             'waktu_mulai'      => $data['waktu_mulai'],
             'waktu_selesai'    => $data['waktu_selesai'] ?? null,
-            'jam_masuk'        => $jadwal->jam_masuk,
-            'jam_batas_masuk'  => $jadwal->jam_batas_masuk,
-            'jam_pulang'       => $jadwal->jam_pulang,
-            'jam_batas_pulang' => $jadwal->jam_batas_pulang,
+            // 'jam_mulai'        => $jadwal->jam_mulai,
+            // 'jam_selesai'       => $jadwal->jam_selesai,
             'jenis_absen_id'   => $jenisAbsensi->jenis_absen_id,
             'total_terlambat'  => $totalTerlambat,
         ]);
+        
+        
 
         throw new HttpResponseException(
             response()->json([
@@ -128,11 +152,9 @@ final class AbsensiService
             ->leftJoin(DB::connection('mysql')->getDatabaseName() . '.person as person', 'person.id', '=', 'sdm.id_person')
             ->select(
                 'absensi.*',
-                'jadwal_kerja.nama_jadwal',
-                'jadwal_kerja.jam_masuk',
-                'jadwal_kerja.jam_batas_masuk',
-                'jadwal_kerja.jam_pulang',
-                'jadwal_kerja.jam_batas_pulang',
+                'jadwal_kerja.nama',
+                'jadwal_kerja.jam_mulai',
+                'jadwal_kerja.jam_selesai',
                 'jenis_absensi.nama_absen',
                 'jenis_absensi.kategori',
                 'jenis_absensi.warna',

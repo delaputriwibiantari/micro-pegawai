@@ -33,13 +33,7 @@ final class JadwalKerjaController extends Controller
                 return $this->jadwalkerjaservice->getListData($request);
             },
             [
-                'jam_masuk_range' => function ($row) {
-                return $row->jam_masuk . ' - ' . $row->jam_batas_masuk;
-            },
 
-                'jam_pulang_range' => function ($row) {
-                return $row->jam_pulang . ' - ' . $row->jam_batas_pulang;
-            },
                 'action' => function ($row) {
                     $rowId = $row->id;
 
@@ -57,12 +51,9 @@ final class JadwalKerjaController extends Controller
         return $this->transactionService->handleWithTransaction(function () use ($request) {
             $data = $this->jadwalkerjaservice->create($request->only([
                 'jadwal_id',
-                'nama_jadwal',
-                'jam_masuk',
-                'jam_pulang',
-                'jam_batas_masuk',
-                'jam_batas_pulang',
-                'toleransi_terlambat'
+                'nama',
+                'jam_mulai',
+                'jam_selesai',
             ]));
             return $this->responseService->successResponse('Data berhasil dibuat', $data, 201);
         });
@@ -86,12 +77,9 @@ final class JadwalKerjaController extends Controller
         return $this->transactionService->handleWithTransaction(function () use ($request, $data) {
             $updatedData = $this->jadwalkerjaservice->update($data, $request->only([
                 'jadwal_id',
-                'nama_jadwal',
-                'jam_masuk',
-                'jam_pulang',
-                'jam_batas_masuk',
-                'jam_batas_pulang',
-                'toleransi_terlambat'
+                'nama',
+                'jam_mulai',
+                'jam_selesai',
             ]));
             return $this->responseService->successResponse('Data berhasil diperbarui', $updatedData);
         });

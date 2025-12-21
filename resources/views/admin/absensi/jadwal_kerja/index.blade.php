@@ -46,9 +46,8 @@
                                 <th class="min-w-75px ps-5">Aksi</th>
                                 <th class="min-w-150px">Jadwal ID</th>
                                 <th class="min-w-120px">Nama Jadwal</th>
-                                <th class="min-w-120px">Jam Masuk</th>
-                                <th class="min-w-120px">Jam Pulang</th>
-                                <th class="min-w-120px">Toleransi Terlambat</th>
+                                <th class="min-w-120px">Jam Mulai</th>
+                                <th class="min-w-120px">Jam Selesai</th>
                             </tr>
                             </thead>
                             <tbody class="text-gray-800 fw-bolder fs-sm-8 fs-lg-6">

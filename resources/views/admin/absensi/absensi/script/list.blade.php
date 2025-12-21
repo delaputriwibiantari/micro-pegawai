@@ -51,10 +51,6 @@
                 name: 'nama_pegawai'
             },
              {
-                data: 'nama_jadwal',
-                name: 'nama_jadwal'
-            },
-             {
                 data: 'tanggal',
                 name: 'tanggal'
             },

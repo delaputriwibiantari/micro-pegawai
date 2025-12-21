@@ -8,12 +8,9 @@
             .then(function (response) {
                 if (response.success) {
                     $('#edit_jadwal_id').val(response.data.jadwal_id);
-                    $('#edit_nama_jadwal').val(response.data.nama_jadwal);
-                    $('#edit_jam_masuk').val(response.data.jam_masuk);
-                    $('#edit_jam_pulang').val(response.data.jam_pulang);
-                    $('#edit_jam_batas_masuk').val(response.data.jam_batas_masuk);
-                    $('#edit_jam_batas_pulang').val(response.data.jam_batas_pulang);
-                    $('#edit_toleransi_terlambat').val(response.data.toleransi_terlambat);
+                    $('#edit_nama').val(response.data.nama);
+                    $('#edit_jam_mulai').val(response.data.jam_mulai);
+                    $('#edit_jam_selesai').val(response.data.jam_selesai);
                 } else {
                     Swal.fire('Warning', response.message, 'warning');
                 }
@@ -40,12 +37,9 @@
                     DataManager.openLoading();
                     const input = {
                         jadwal_id: $('#edit_jadwal_id').val(),
-                        nama_jadwal: $('#edit_nama_jadwal').val(),
-                        jam_masuk: $('#edit_jam_masuk').val(),
-                        jam_pulang: $('#edit_jam_pulang').val(),
-                        jam_batas_masuk: $('#edit_jam_batas_masuk').val(),
-                        jam_batas_pulang: $('#edit_jam_batas_pulang').val(),
-                        toleransi_terlambat: $('#edit_toleransi_terlambat').val(),
+                        nama: $('#edit_nama').val(),
+                        jam_mulai: $('#edit_jam_mulai').val(),
+                        jam_selesai: $('#edit_jam_selesai').val(),
 
                     };
                     const update = '{{ route('admin.absensi.jadwal_kerja.update', [':id']) }}';

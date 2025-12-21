@@ -21,12 +21,9 @@
 
                     const input = {
                         jadwal_id: $('#jadwal_id').val(),
-                        nama_jadwal: $('#nama_jadwal').val(),
-                        jam_masuk: $('#jam_masuk').val(),
-                        jam_pulang: $('#jam_pulang').val(),
-                        jam_batas_masuk: $('#jam_batas_masuk').val(),
-                        jam_batas_pulang: $('#jam_batas_pulang').val(),
-                        toleransi_terlambat: $('#toleransi_terlambat').val(),
+                        nama: $('#nama').val(),
+                        jam_mulai: $('#jam_mulai').val(),
+                        jam_selesai: $('#jam_selesai').val(),
 
                     };
                     console.log('Data yang akan dikirim:', input);

@@ -4,7 +4,7 @@
 
         loadPegawaiAktif();
 
-        fetchDataDropdown('{{ route('api.ref.jadwalkerja') }}', '#jadwal_id', 'id', 'nama_jadwal');
+        fetchDataDropdown('{{ route('api.ref.jadwalkerja') }}', '#jadwal_id', 'id', 'nama');
         $('#tanggal').flatpickr({
             dateFormat: 'Y-m-d',
             altFormat: 'd/m/Y',

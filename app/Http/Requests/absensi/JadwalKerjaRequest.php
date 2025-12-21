@@ -26,12 +26,9 @@ class JadwalKerjaRequest extends FormRequest
     {
         return [
             'jadwal_id' => 'nullable|string|max:10',
-            'nama_jadwal' => 'required|string|max:50',
-            'jam_masuk' => 'required|date_format:H:i',
-            'jam_pulang' => 'required|date_format:H:i',
-            'jam_batas_masuk' => 'required|date_format:H:i',
-            'jam_batas_pulang' => 'required|date_format:H:i',
-            'toleransi_terlambat' => 'required|integer|min:0|max:32767',
+            'nama' => 'required|string|max:50',
+            'jam_mulai' => 'required|date_format:H:i',
+            'jam_selesai' => 'required|date_format:H:i',
         ];
     }
 
@@ -39,12 +36,9 @@ class JadwalKerjaRequest extends FormRequest
     {
         return [
             'jadwal_id' => 'ID Jadwal',
-            'nama_jadwal' => 'Nama Jadwal',
-            'jam_masuk' => 'Jam Masuk',
-            'jam_pulang' => 'Jam Pulang',
-            'jam_batas_masuk' => 'Jam Batas Masuk',
-            'jam_batas_pulang' => 'Jam Batas Pulang',
-            'toleransi_terlambat' => 'Toleransi Terlambat',
+            'nama' => 'Nama Jadwal',
+            'jam_mulai' => 'Jam Mulai',
+            'jam_selesai' => 'Jam Selesai'
         ];
     }
 
@@ -63,26 +57,16 @@ class JadwalKerjaRequest extends FormRequest
     {
         return [
 
-            'nama_jadwal.required' => 'Field :attribute wajib diisi.',
-            'nama_jadwal.string' => 'Field :attribute harus berupa teks.',
-            'nama_jadwal.max' => 'Field :attribute maksimal :max karakter.',
+            'nama.required' => 'Field :attribute wajib diisi.',
+            'nama.string' => 'Field :attribute harus berupa teks.',
+            'nama.max' => 'Field :attribute maksimal :max karakter.',
 
-            'jam_masuk.required' => 'Field :attribute wajib diisi.',
-            'jam_masuk.date_format' => 'Field :attribute harus berupa waktu dengan format HH:MM.',
+            'jam_mulai.required' => 'Field :attribute wajib diisi.',
+            'jam_mulai.date_format' => 'Field :attribute harus berupa waktu dengan format HH:MM.',
 
-            'jam_pulang.required' => 'Field :attribute wajib diisi.',
-            'jam_pulang.date_format' => 'Field :attribute harus berupa waktu dengan format HH:MM.',
+            'jam_selesai.required' => 'Field :attribute wajib diisi.',
+            'jam_selesai.date_format' => 'Field :attribute harus berupa waktu dengan format HH:MM.',
 
-            'jam_batas_masuk.required' => 'Field :attribute wajib diisi.',
-            'jam_batas_masuk.date_format' => 'Field :attribute harus berupa waktu dengan format HH:MM.',
-
-            'jam_batas_pulang.required' => 'Field :attribute wajib diisi.',
-            'jam_batas_pulang.date_format' => 'Field :attribute harus berupa waktu dengan format HH:MM.',
-
-            'toleransi_terlambat.required' => 'Field :attribute wajib diisi.',
-            'toleransi_terlambat.integer' => 'Field :attribute harus berupa angka.',
-            'toleransi_terlambat.min' => 'Field :attribute minimal :min.',
-            'toleransi_terlambat.max' => 'Field :attribute maksimal :max.',
         ];
     }
 }

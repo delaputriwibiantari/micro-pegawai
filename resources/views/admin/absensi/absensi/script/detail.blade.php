@@ -9,14 +9,12 @@
                 if (response.success) {
                     $('#detail_absensi_id').text(response.data.absensi_id);
                     $('#detail_tanggal').text(response.data.tanggal);
-                    $('#detail_jadwal_id').text(response.data.jadwal_id);
                     $('#detail_sdm_id').text(response.data.sdm_id);
                     $('#detail_nama_lengkap').text(response.data.nama_lengkap);
                     $('#detail_jenis_absen_id').text(response.data.jenis_absen_id);
                     $('#detail_waktu_mulai').text(response.data.waktu_mulai);
                     $('#detail_waktu_selesai').text(response.data.waktu_selesai);
                     $('#detail_total_terlambat').text(response.data.total_terlambat);
-                    $('#detail_nama_jadwal').text(response.data.nama_jadwal);
                     $('#detail_nama_absen').text(response.data.nama_absen);
                     $('#null_data').hide();
                     $('#show_data').show();

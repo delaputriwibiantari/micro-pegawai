@@ -47,20 +47,16 @@
                 name: 'jadwal_id'
             },
             {
-                data: 'nama_jadwal',
-                name: 'nama_jadwal'
+                data: 'nama',
+                name: 'nama'
             },
              {
-                data: 'jam_masuk_range',
-                name: 'jam_masuk_range'
+                data: 'jam_mulai',
+                name: 'jam_mulai'
             },
              {
-                data: 'jam_pulang_range',
-                name: 'jam_pulang_range'
-            },
-             {
-                data: 'toleransi_terlambat',
-                name: 'toleransi_terlambat',
+                data: 'jam_selesai',
+                name: 'jam_selesai'
             }]
         });
         const performOptimizedSearch = _.debounce(function (query) {

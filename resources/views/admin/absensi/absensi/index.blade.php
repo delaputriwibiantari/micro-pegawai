@@ -46,7 +46,6 @@
                                     <th class="min-w-75px ps-5">Aksi</th>
                                     <th class="min-w-150px">Absensi Id</th>
                                     <th class="min-w-150px">Nama Pegawai</th>
-                                    <th class="min-w-60px">Hari</th>
                                     <th class="min-w-120px">Tanggal</th>
                                     <th class="min-w-100px">Status</th>
                                 </tr>
