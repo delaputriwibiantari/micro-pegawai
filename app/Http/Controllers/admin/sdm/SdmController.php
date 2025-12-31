@@ -43,6 +43,10 @@ class SdmController extends Controller
 
     public function list(Request $request): JsonResponse
     {
+                $adminId = auth('admin')->id();
+        if (!$adminId) {
+            return response()->json(['success' => false], 401);
+        }
         // dd($request->all());
         return $this->transactionService->handleWithDataTable(
             function () use ($request) {

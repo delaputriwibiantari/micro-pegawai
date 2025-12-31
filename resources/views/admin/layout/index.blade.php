@@ -28,6 +28,12 @@
 </head>
 
 <body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed aside-enabled aside-fixed">
+    @php
+    use Illuminate\Support\Facades\Auth;
+
+    $admin = Auth::guard('admin')->user();
+    $adminToken = $admin ? encrypt($admin->id) : null;
+@endphp
 <div class="d-flex flex-column flex-root">
     <div class="page d-flex flex-row flex-column-fluid">
         <div id="kt_aside" class="aside aside-dark aside-hoverable"

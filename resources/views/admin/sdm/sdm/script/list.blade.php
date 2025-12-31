@@ -36,6 +36,9 @@
             searchHighlight: true,
             ajax: {
                 url: '{{ route('admin.sdm.sdm.list') }}',
+                data: function (d) {
+                    d.admin = '{{ request()->query('admin') }}';
+                },
                 cache: false,
             },
             order: [],

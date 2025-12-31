@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\CheckAdminFromUrl;
 use App\Http\Middleware\ThreatDetectionMiddleware;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\AuthenticationException;
@@ -27,11 +28,17 @@ return Application::configure(basePath: dirname(__DIR__))
             Route::middleware(['api'])->prefix('api')->group(base_path('routes/api.php'));
         },
     )
-    ->withMiddleware(static function (Middleware $middleware): void {
-        $middleware->trustProxies(at: '*');
-        $middleware->append([
-            ThreatDetectionMiddleware::class,
-        ]);
+   ->withMiddleware(static function (Middleware $middleware): void {
+    $middleware->trustProxies(at: '*');
+
+    $middleware->append([
+        ThreatDetectionMiddleware::class,
+    ]);
+
+    $middleware->alias([
+        'admin.url' => CheckAdminFromUrl::class,
+    ]);
+    
     })
     ->withExceptions(static function (Exceptions $exceptions): void {
         $exceptions->reportable(static function (Throwable $e) {

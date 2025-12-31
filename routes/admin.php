@@ -42,9 +42,11 @@ Route::middleware(['role:admin,developer'])->group(function () {
         ->where(['folder' => '[A-Za-z0-9_\-]+', 'filename' => '[A-Za-z0-9_\-\.]+'])
         ->name('view-file');
 
+
     Route::prefix('admin')->name('admin.')->group(function () {
         Route::prefix('person')->name('person.')->group(function () {
             Route::get('/', [PersonController::class, 'index'])
+                ->middleware('admin.url')
                 ->name('index'); // Menjadi: admin.person.index
             Route::get('data', [PersonController::class, 'list'])
                 ->name('list'); // Menjadi: admin.person.list
@@ -61,6 +63,7 @@ Route::middleware(['role:admin,developer'])->group(function () {
 
     Route::prefix('sdm')->name('sdm.')->group(function () {
         Route::get('/', [SdmController::class, 'index'])
+            ->middleware('admin.url')
             ->name('index');
         Route::get('data', [SdmController::class, 'list'])
             ->name('sdm.list');
@@ -174,6 +177,7 @@ Route::middleware(['role:admin,developer'])->group(function () {
 Route::prefix('ref')->group(function () {
     Route::prefix('jenjang-pendidikan')->group(function () {
         Route::get('/', [RefJenjangPendidikanController::class, 'index'])
+            ->middleware('admin.url')
             ->name('ref.jenjang-pendidikan.index');
         Route::get('data', [RefJenjangPendidikanController::class, 'list'])
             ->name('ref.jenjang-pendidikan.list');
@@ -187,6 +191,7 @@ Route::prefix('ref')->group(function () {
 
     Route::prefix('jenis-dokumen')->group(function () {
         Route::get('/', [RefJenisDokumenController::class, 'index'])
+            ->middleware('admin.url')
             ->name('ref.jenis-dokumen.index');
         Route::get('data', [RefJenisDokumenController::class, 'list'])
             ->name('ref.jenis-dokumen.list');
@@ -200,6 +205,7 @@ Route::prefix('ref')->group(function () {
 
     Route::prefix('hubungan-keluarga')->group(function () {
         Route::get('/', [RefHubunganKeluargaController::class, 'index'])
+            ->middleware('admin.url')
             ->name('ref.hubungan-keluarga.index');
         Route::get('data', [RefHubunganKeluargaController::class, 'list'])
             ->name('ref.hubungan-keluarga.list');
@@ -213,6 +219,7 @@ Route::prefix('ref')->group(function () {
 
     Route::prefix('bank')->group(function () {
         Route::get('/', [RefBankController::class, 'index'])
+            ->middleware('admin.url')
             ->name('ref.bank.index');
         Route::get('data', [RefBankController::class, 'list'])
             ->name('ref.bank.list');
@@ -226,6 +233,7 @@ Route::prefix('ref')->group(function () {
 
     Route::prefix('eselon')->group(function () {
         Route::get('/', [RefEselonController::class, 'index'])
+            ->middleware('admin.url')
             ->name('ref.eselon.index');
         Route::get('data', [RefEselonController::class, 'list'])
             ->name('ref.eselon.list');
@@ -239,6 +247,7 @@ Route::prefix('ref')->group(function () {
 
     Route::prefix('jenis-asuransi')->group(function () {
         Route::get('/', [RefJenisAsuransiController::class, 'index'])
+            ->middleware('admin.url')
             ->name('ref.jenis-asuransi.index');
         Route::get('data', [RefJenisAsuransiController::class, 'list'])
             ->name('ref.jenis-asuransi.list');
@@ -255,6 +264,7 @@ Route::prefix('master')->name('master.')->group(function () {
 
     Route::prefix('periode')->name('periode.')->group(function () {
         Route::get('/', [MasterPeriodeController::class, 'index'])
+            ->middleware('admin.url')
             ->name('index');
         Route::get('data', [MasterPeriodeController::class, 'list'])
             ->name('list');
@@ -268,6 +278,7 @@ Route::prefix('master')->name('master.')->group(function () {
 
     Route::prefix('unit')->name('unit.')->group(function () {
         Route::get('/', [MasterUnitController::class, 'index'])
+            ->middleware('admin.url')
             ->name('index');
         Route::get('data', [MasterUnitController::class, 'list'])
             ->name('list');
@@ -283,6 +294,7 @@ Route::prefix('master')->name('master.')->group(function () {
 
     Route::prefix('jabatan')->name('jabatan.')->group(function () {
         Route::get('/', [MasterJabatanController::class, 'index'])
+            ->middleware('admin.url')
             ->name('index');
         Route::get('data', [MasterJabatanController::class, 'list'])
             ->name('list');
@@ -317,6 +329,7 @@ Route::prefix('gaji')->name('gaji.')->group(function () {
 
     Route::prefix('gaji_umum')->name('gaji_umum.')->group(function () {
         Route::get('/', [GajiUmumController::class, 'index'])
+            ->middleware('admin.url')
             ->name('index');
         Route::get('data', [GajiUmumController::class, 'list'])
             ->name('list');
@@ -330,6 +343,7 @@ Route::prefix('gaji')->name('gaji.')->group(function () {
 
     Route::prefix('komponen_gaji')->name('komponen_gaji.')->group(function () {
         Route::get('/', [KomponenGajiController::class, 'index'])
+            ->middleware('admin.url')
             ->name('index');
         Route::get('data', [KomponenGajiController::class, 'list'])
             ->name('list');
@@ -343,6 +357,7 @@ Route::prefix('gaji')->name('gaji.')->group(function () {
 
     Route::prefix('gaji_periode')->name('gaji_periode.')->group(function () {
         Route::get('/', [GajiPeriodeController::class, 'index'])
+            ->middleware('admin.url')
             ->name('index');
         Route::get('data', [GajiPeriodeController::class, 'list'])
             ->name('list');
@@ -357,6 +372,7 @@ Route::prefix('gaji')->name('gaji.')->group(function () {
 
     Route::prefix('tarif_lembur')->name('tarif_lembur.')->group(function () {
         Route::get('/', [TarifLemburController::class, 'index'])
+            ->middleware('admin.url')
             ->name('index');
         Route::get('data', [TarifLemburController::class, 'list'])
             ->name('list');
@@ -370,6 +386,7 @@ Route::prefix('gaji')->name('gaji.')->group(function () {
 
     Route::prefix('tarif_potongan')->name('tarif_potongan.')->group(function () {
         Route::get('/', [TarifPotonganController::class, 'index'])
+            ->middleware('admin.url')
             ->name('index');
         Route::get('data', [TarifPotonganController::class, 'list'])
             ->name('list');
@@ -383,6 +400,7 @@ Route::prefix('gaji')->name('gaji.')->group(function () {
 
     Route::prefix('gaji_jabatan')->name('gaji_jabatan.')->group(function () {
         Route::get('/', [GajiJabatanController::class, 'index'])
+            ->middleware('admin.url')
             ->name('index');
         Route::get('data', [GajiJabatanController::class, 'list'])
             ->name('list');
@@ -396,6 +414,7 @@ Route::prefix('gaji')->name('gaji.')->group(function () {
 
     Route::prefix('gaji_manual')->name('gaji_manual.')->group(function () {
         Route::get('/', [GajiManualController::class, 'index'])
+            ->middleware('admin.url')
             ->name('index');
         Route::get('data', [GajiManualController::class, 'list'])
             ->name('list');
@@ -416,6 +435,7 @@ Route::prefix('absensi')->name('absensi.')->group(function () {
 
     Route::prefix('jenis_absensi')->name('jenis_absensi.')->group(function () {
         Route::get('/', [JenisAbsensiController::class, 'index'])
+            ->middleware('admin.url')
             ->name('index');
         Route::get('data', [JenisAbsensiController::class, 'list'])
             ->name('list');
@@ -429,6 +449,7 @@ Route::prefix('absensi')->name('absensi.')->group(function () {
 
     Route::prefix('jadwal_kerja')->name('jadwal_kerja.')->group(function () {
         Route::get('/', [JadwalKerjaController::class, 'index'])
+            ->middleware('admin.url')
             ->name('index');
         Route::get('data', [JadwalKerjaController::class, 'list'])
             ->name('list');
@@ -442,6 +463,7 @@ Route::prefix('absensi')->name('absensi.')->group(function () {
 
     Route::prefix('libur_nasional')->name('libur_nasional.')->group(function () {
         Route::get('/', [LiburNasionalController::class, 'index'])
+            ->middleware('admin.url')
             ->name('index');
         Route::get('data', [LiburNasionalController::class, 'list'])
             ->name('list');
@@ -455,6 +477,7 @@ Route::prefix('absensi')->name('absensi.')->group(function () {
 
     Route::prefix('libur_perusahaan')->name('libur_perusahaan.')->group(function () {
         Route::get('/', [LiburPerusahaanController::class, 'index'])
+            ->middleware('admin.url')
             ->name('index');
         Route::get('data', [LiburPerusahaanController::class, 'list'])
             ->name('list');
@@ -468,6 +491,7 @@ Route::prefix('absensi')->name('absensi.')->group(function () {
 
     Route::prefix('cuti')->name('cuti.')->group(function () {
         Route::get('/', [CutiController::class, 'index'])
+            ->middleware('admin.url')
             ->name('index');
         Route::get('data', [CutiController::class, 'list'])
             ->name('list');
@@ -483,6 +507,7 @@ Route::prefix('absensi')->name('absensi.')->group(function () {
 
     Route::prefix('izin')->name('izin.')->group(function () {
         Route::get('/', [IzinController::class, 'index'])
+            ->middleware('admin.url')
             ->name('index');
         Route::get('data', [IzinController::class, 'list'])
             ->name('list');
@@ -498,6 +523,7 @@ Route::prefix('absensi')->name('absensi.')->group(function () {
 
     Route::prefix('lembur')->name('lembur.')->group(function () {
         Route::get('/', [LemburController::class, 'index'])
+            ->middleware('admin.url')
             ->name('index');
         Route::get('data', [LemburController::class, 'list'])
             ->name('list');
@@ -513,6 +539,7 @@ Route::prefix('absensi')->name('absensi.')->group(function () {
 
     Route::prefix('absensi')->name('absensi.')->group(function () {
         Route::get('/', [AbsensiController::class, 'index'])
+            ->middleware('admin.url')
             ->name('index');
         Route::get('data', [AbsensiController::class, 'list'])
             ->name('list');

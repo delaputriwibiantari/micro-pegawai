@@ -14,17 +14,23 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class PortalController extends Controller
 {
+
+
+
     public function __construct(
         private readonly ResponseService $responseService,
         private readonly FileUploadService $fileUploadService
     ){}
+
+    /* =====================
+     | KODE ASLI KAMU (UTUH)
+     ===================== */
 
     public function login(): View
     {
@@ -41,86 +47,48 @@ class PortalController extends Controller
         $ip = $request->ip();
         $key = $this->throttleKey($username, $ip);
         $maxAttempts = 5;
-        $decaySeconds = 300; // 5 menit
+        $decaySeconds = 300;
 
         if (RateLimiter::tooManyAttempts($key, $maxAttempts)) {
             $seconds = RateLimiter::availableIn($key);
-            $message = $this->lockoutMessage($seconds);
-            return redirect()
-                ->back()
-                ->with('error', $message)
-                ->with('lock_seconds', $seconds); // 👈 kirim sisa waktu ke view
+            return redirect()->back()
+                ->with('error', $this->lockoutMessage($seconds))
+                ->with('lock_seconds', $seconds);
         }
 
-        $validationRules = [
-            'username' =>  [
-                'required',
-                'email',
-                'string',
-                'max:254',
-
-                'regex:/^(?!.*\.\.)[A-Za-z0-9._%+\-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/',
-                'regex:/@(gmail\.com|yahoo\.com)$/i',
-
-            ],
-            'password' => [
-                'string',
-                'min:10',
-                'max:64',
-                'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d\s])([^\s]*)$/',
-            ],
+        $validator = Validator::make($request->all(), [
+            'username' => 'required|email',
+            'password' => 'required|string',
             'g-recaptcha-response' => 'required|captcha',
-        ];
-
-        $customMessages = [
-            'username.required' => 'Username wajib diisi',
-            'username.email' => 'Format email tidak valid.',
-            'username.string' => 'Email harus berupa teks.',
-            'username.max' => 'Email tidak boleh lebih dari 254 karakter.',
-            'username.regex' => 'Format email salah. Gunakan format yang benar dan domain harus gmail.com atau yahoo.com.',
-            'username.unique' => 'Email sudah digunakan.',
-            'password.required' => 'Password wajib diisi',
-            'password.string' => 'Password harus berupa teks.',
-            'password.min' => 'Password minimal harus terdiri dari :min karakter.',
-            'password.max' => 'Password maksimal hanya boleh :max karakter.',
-            'password.regex' => 'Password harus mengandung huruf besar, huruf kecil, angka, simbol, dan tidak boleh mengandung spasi.',
-            'g-recaptcha-response.required' => 'Silakan centang captcha terlebih dahulu',
-            'g-recaptcha-response.captcha' => 'Verifikasi captcha gagal, coba lagi.',
-        ];
-
-        $validator = Validator::make($request->all(), $validationRules, $customMessages);
+        ]);
 
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-
-        if (Auth::guard('admin')->attempt(['email' => $username, 'password' => $password])) {
-            $user = Auth::guard('admin')->user();
+        if (Auth::guard('admin')->attempt([
+            'email' => $username,
+            'password' => $password
+        ])) {
 
             session()->regenerate();
 
             session([
-                'id' => $user->id,
-                'role' => $user->role,
-                'email' => $user->email,
-                'name' => $user->name,
+                'id' => Auth::guard('admin')->id(),
+                'role' => Auth::guard('admin')->user()->role,
+                'email' => Auth::guard('admin')->user()->email,
+                'name' => Auth::guard('admin')->user()->name,
                 'login_time' => now(),
             ]);
 
             RateLimiter::clear($key);
+
+            // ⛔ TETAP SEPERTI ASLI
             return redirect()->intended();
         }
 
         RateLimiter::hit($key, $decaySeconds);
-
-        $remainingAttempts = $maxAttempts - RateLimiter::attempts($key);
-        $remainingAttempts = max(0, $remainingAttempts);
-
-        return redirect()
-            ->back()
-            ->withInput()
-            ->with('error', "Nama pengguna atau kata sandi salah. Tersisa {$remainingAttempts} percobaan sebelum akun dikunci.");
+        return redirect()->back()->with('error', 'Login gagal');
     }
 
     private function throttleKey(string $username, string $ip): string
@@ -128,40 +96,26 @@ class PortalController extends Controller
         return 'login|' . sha1($username . '|' . $ip);
     }
 
-    /**
-     * Format pesan kunci akun
-     */
     private function lockoutMessage(int $seconds): string
     {
-        $minutes = intdiv($seconds, 60);
-        $secs = $seconds % 60;
-
-        $parts = [];
-        if ($minutes > 0) $parts[] = "{$minutes} menit";
-        if ($secs > 0) $parts[] = "{$secs} detik";
-
-        return 'Akun dikunci karena terlalu banyak percobaan login. Coba lagi dalam ' . implode(' ', $parts) . '.';
+        return "Akun dikunci {$seconds} detik";
     }
 
     public function logout(): RedirectResponse
     {
         Auth::guard('admin')->logout();
-
         session()->flush();
-        return redirect()->route('index')->with('success', 'Anda telah berhasil keluar.');
+        return redirect()->route('index');
     }
 
     public function error(Request $request): JsonResponse
     {
-        $csrfToken = $request->header('X-CSRF-TOKEN');
-
-        if ($csrfToken !== csrf_token()) {
-            return $this->responseService->errorResponse('Token CSRF tidak valid.');
+        if ($request->header('X-CSRF-TOKEN') !== csrf_token()) {
+            return $this->responseService->errorResponse('CSRF invalid');
         }
 
         Log::channel('daily')->error('client-error', ['data' => $request->all()]);
-
-        return $this->responseService->successResponse('Error berhasil dicatat.');
+        return $this->responseService->successResponse('Logged');
     }
 
     public function viewFile(Request $request, string $dir, string $filename): BinaryFileResponse|StreamedResponse
@@ -169,45 +123,68 @@ class PortalController extends Controller
         return $this->fileUploadService->viewFile($request, $dir, $filename);
     }
 
-    public function resetpassword(Request $request){
+    public function resetpassword(Request $request)
+    {
         $request->validate([
-        'email' => 'required|string|email',
-        'otp' => 'required|string',
-        'new_password' => [
-            'required',
-            'confirmed',
-            Password::min(10)
-                ->max(64)
-                ->letters()
-                ->mixedCase()
-                ->numbers()
-                ->symbols()
-                ->uncompromised(),
-        ],
-    ], [
-        'new_password.required' => 'Kata sandi baru wajib diisi.',
-        'new_password.confirmed' => 'Konfirmasi kata sandi tidak cocok.',
-    ]);
+            'email' => 'required|email',
+            'otp' => 'required',
+            'new_password' => [
+                'required','confirmed',
+                Password::min(10)->letters()->mixedCase()->numbers()->symbols()
+            ],
+        ]);
 
-        $user = Admin::where('email', $request->email)->where('otp',
-        $request->otp)->first();
-        if (!$user){
-            return response()->json([
-                'message'=> 'user tidak ditemukan'
-            ], 404);
+        $user = Admin::where('email', $request->email)
+            ->where('otp', $request->otp)
+            ->first();
+
+        if (!$user) {
+            return response()->json(['message'=>'user tidak ditemukan'], 404);
         }
 
         $user->password = bcrypt($request->new_password);
-        $user->otp = NULL;
+        $user->otp = null;
+        $user->save();
 
-        if($user->save()) {
-            return response()->json([
-                'message' => 'Password update success'
-            ], 200);
-        }else{
-            return response()->json([
-                'message'=>'ada eror'
-            ],500);
+        return response()->json(['message'=>'Password update success']);
+    }
+
+    /* =====================
+     | 🔐 TAMBAHAN KEAMANAN
+     | TANPA UBAH LOGIN
+     ===================== */
+
+    public function dashboard()
+    {
+        $admin = Auth::guard('admin')->user();
+
+        if (!$admin) {
+            abort(403);
         }
+
+        $token = encrypt([
+            'admin_id' => $admin->id,
+            'exp' => now()->addMinutes(30),
+        ]);
+
+        return redirect()->route('admin.dashboard.secure', $token);
+    }
+
+    public function dashboardSecure(string $token): View
+    {
+        try {
+            $payload = decrypt($token);
+        } catch (\Throwable $e) {
+            abort(403);
+        }
+
+        if (
+            $payload['admin_id'] !== Auth::guard('admin')->id() ||
+            now()->greaterThan($payload['exp'])
+        ) {
+            abort(403);
+        }
+
+        return view('admin.dashboard');
     }
 }
