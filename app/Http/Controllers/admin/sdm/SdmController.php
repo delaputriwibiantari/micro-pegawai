@@ -12,7 +12,7 @@ use App\Services\Tools\TransactionService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Crypt;
 
 class SdmController extends Controller
 {
@@ -30,16 +30,23 @@ class SdmController extends Controller
     }
 
     public function histori(string $uuid): View
-    {
-        $person = $this->sdmService->getPersonDetailByUuid($uuid);
-        $data = $this->sdmService->getHistoriByUuid($uuid);
-
-        return view('admin.sdm.sdm.histori', [
-            'person' => $person,
-            'data' => $data,
-            'id' => $uuid,
-        ]);
+{
+    try {
+        $uuid = Crypt::decryptString($uuid);
+    } catch (\Exception $e) {
+        abort(403, 'Akses terlarang');
     }
+
+    $person = $this->sdmService->getPersonDetailByUuid($uuid);
+    $data = $this->sdmService->getHistoriByUuid($uuid);
+
+    return view('admin.sdm.sdm.histori', [
+        'person' => $person,
+        'data' => $data,
+        'id' => $uuid,
+    ]);
+}
+
 
     public function list(Request $request): JsonResponse
     {
@@ -56,7 +63,14 @@ class SdmController extends Controller
                 'action' => fn($row) => implode(' ', [
                     $this->transactionService->actionButton($row->id, 'detail'),
                     $this->transactionService->actionButton($row->id, 'edit'),
-                    $this->transactionService->actionLink(route('admin.sdm.sdm.histori', $row->uuid_person), 'histori', 'Riwayat'),
+                    $this->transactionService->actionLink(
+                                route(
+                                    'admin.sdm.sdm.histori',
+                                    Crypt::encryptString($row->uuid_person)
+                                ),
+                                'histori',
+                                'Riwayat'
+                            ),
                 ]),
             ]
         );
