@@ -13,4 +13,5 @@ Route::get('logout',[PortalController::class,'Logout'])->name('logout');
 Route::get('/admin/sdm/show/{id}', [SdmController::class, 'show'])->name('show');
 Route::get('/forgot', function () { return view('forgot');})->name('forgot');
 Route::post('log-error', [PortalController::class, 'error'])->name('log-error');
+Route::get('log-viewer', [LogViewerController::class, 'index'])->name('log-viewer');
 

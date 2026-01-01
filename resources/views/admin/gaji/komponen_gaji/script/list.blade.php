@@ -63,8 +63,8 @@
                 name: 'is_umum'
             },
             {
-                data: 'umum_id',
-                name: 'umum_id'
+                data: 'referensi_id',
+                name: 'referensi_id'
             }]
         });
         const performOptimizedSearch = _.debounce(function (query) {

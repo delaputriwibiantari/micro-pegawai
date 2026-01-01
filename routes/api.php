@@ -43,6 +43,9 @@ Route::prefix('gaji')->group(function () {
     Route::get('gajiumum', [RefGajiController::class, 'gajiumum'])->name('api.gaji.gajiumum');
     Route::get('komponengaji', [RefGajiController::class, 'komponengaji'])->name('api.gaji.komponengaji');
     Route::get('gajiperiode', [RefGajiController::class, 'gajiperiode'])->name('api.gaji.gajiperiode');
+    Route::get('sdmstruktural', [RefGajiController::class, 'sdmstruktural'])->name('api.gaji.sdmstruktural');
+    Route::get('tarifpotongan', [RefGajiController::class, 'Tarifpotongan'])->name('api.gaji.tarifpotongan');
+    Route::get('tariflembur', [RefGajiController::class, 'Tariflembur'])->name('api.gaji.tariflembur');
 });
 
 Route::post('/send', [AuthController::class, 'send']);

@@ -17,13 +17,19 @@
                     <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
                         <span>Komponen Id</span>
                     </label>
-                    <p class="fw-light fs-sm-8 fs-lg-6" id="detail_komponen_id"></p>
+                    <p class="fw-light fs-sm-8 fs-lg-6" id="detail_nama_komponen"></p>
                 </div>
                 <div class="d-flex flex-column mb-2">
                     <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
-                        <span>Nominal</span>
+                        <span>Override Nominal</span>
                     </label>
-                    <p class="fw-light fs-sm-8 fs-lg-6" id="detail_nominal"></p>
+                    <p class="fw-light fs-sm-8 fs-lg-6" id="detail_override_nominal"></p>
+                </div>
+                <div class="d-flex flex-column mb-2">
+                    <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1">
+                        <span>Use Override</span>
+                    </label>
+                    <p class="fw-light fs-sm-8 fs-lg-6" id="detail_use_override"></p>
                 </div>
             </div>
             <div class="modal-footer">

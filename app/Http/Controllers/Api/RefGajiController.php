@@ -8,7 +8,10 @@ use App\Services\Gaji\GajiJabatanService;
 use App\Services\Gaji\GajiPeriodeService;
 use App\Services\Gaji\GajiUmumService;
 use App\Services\Gaji\KomponenGajiService;
+use App\Services\Gaji\TarifPotonganService;
 use App\Services\Ref\RefJenisDokumenService;
+use App\Services\Gaji\TarifLemburService;
+use App\Services\Sdm\SdmStrukturalService;
 use App\Services\Tools\ResponseService;
 use App\Services\Tools\TransactionService;
 use Illuminate\Http\JsonResponse;
@@ -21,7 +24,10 @@ final class RefGajiController extends Controller
         private readonly TransactionService          $transactionService,
         private readonly ResponseService             $responseService,
         private readonly KomponenGajiService          $komponengajiservice,
-        private readonly GajiPeriodeService          $gajiperiodeservice
+        private readonly GajiPeriodeService          $gajiperiodeservice,
+        private readonly TarifPotonganService          $tarifpotonganservice,
+        private readonly SdmStrukturalService          $Sdmstruktural,
+        private readonly TarifLemburService          $tariflemburservice
 
     ) {}
 
@@ -43,6 +49,27 @@ final class RefGajiController extends Controller
     public function Gajiperiode(): JsonResponse
     {
         $data = $this->gajiperiodeservice->getListDataOrdered('periode_id');
+
+        return $this->responseService->successResponse('Data berhasil diambil', $data);
+    }
+
+    public function Tarifpotongan(): JsonResponse
+    {
+        $data = $this->tarifpotonganservice->getListDataOrdered('potongan_id');
+
+        return $this->responseService->successResponse('Data berhasil diambil', $data);
+    }
+
+    public function Tariflembur(): JsonResponse
+    {
+        $data = $this->tariflemburservice->getListDataOrdered('tarif_id');
+
+        return $this->responseService->successResponse('Data berhasil diambil', $data);
+    }
+
+    public function Sdmstruktural(): JsonResponse
+    {
+        $data = $this->Sdmstruktural->getListDataOrdered('id_struktural');
 
         return $this->responseService->successResponse('Data berhasil diambil', $data);
     }

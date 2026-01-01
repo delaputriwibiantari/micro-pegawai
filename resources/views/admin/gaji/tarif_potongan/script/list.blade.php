@@ -56,6 +56,9 @@
              {
                 data: 'deskripsi',
                 name: 'deskripsi'
+            },{
+                data: 'nama_komponen',
+                name: 'komponen_id'
             }]
         });
         const performOptimizedSearch = _.debounce(function (query) {

@@ -2,6 +2,10 @@
     $('#form_create').on('show.bs.modal', function (e) {
         fetchDataDropdown('{{ route('api.gaji.komponengaji') }}', '#komponen_id', 'komponen_id', 'nama_komponen');
         fetchDataDropdown('{{ route('api.master.jabatan') }}', '#id_jabatan', 'id_jabatan', 'jabatan');
+
+        // TAMBAH: Set default checked untuk checkbox
+        $('#use_override').prop('checked', true);
+
         $('#bt_submit_create').on('submit', function (e) {
             e.preventDefault();
             Swal.fire({
@@ -21,15 +25,22 @@
                     DataManager.openLoading();
                     const rawKomponen = $('#komponen_id').val();
                     const komponen_id = (rawKomponen && rawKomponen !== 'undefined' && rawKomponen !== '') ? rawKomponen : null;
-                    const rawJabatan = $('#id_jabatan').val();
-                    const id_jabatan = (rawJabatan&& rawJabatan!== 'undefined' && rawJabatan!== '') ? rawJabatan: null;
-                    const input = {
-                        gaji_master_id: $('#gaji_master_id').val(),
-                        nominal: $('#nominal').val(),
-                        komponen_id,
-                        id_jabatan
 
+                    const rawJabatan = $('#id_jabatan').val();
+                    const id_jabatan = (rawJabatan && rawJabatan !== 'undefined' && rawJabatan !== '') ? rawJabatan : null;
+
+                    // TAMBAH: Ambil nilai field baru (simple)
+                    const use_override = $('#use_override').is(':checked') ? 1 : 0;
+                    const override_nominal = $('#override_nominal').val() || null;
+
+                    const input = {
+                        komponen_id,
+                        id_jabatan,
+                        // TAMBAH: Field baru (bisa null)
+                        use_override: use_override,
+                        override_nominal: override_nominal
                     };
+
                     console.log('Data yang akan dikirim:', input);
                     const action = '{{ route('admin.gaji.gaji_jabatan.store') }}';
                     DataManager.postData(action, input).then(response => {

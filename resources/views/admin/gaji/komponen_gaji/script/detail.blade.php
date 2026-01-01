@@ -12,7 +12,8 @@
                     $('#detail_jenis').text(response.data.jenis === 'PENGHASIL' ? 'PENGHASIL' : (response.data.jenis === 'POTONGAN' ? 'POTONGAN' : response.data.jenis));
                     $('#detail_deskripsi').text(response.data.deskripsi);
                     $('#detail_is_umum').text(response.data.is_umum);
-                    $('#detail_umum_id').text(response.data.umum_id);
+                    $('#detail_aturan_nominal').text(response.data.aturan_nominal);
+                    $('#detail_referensi_id').text(response.data.referensi_id);
                     $('#null_data').hide();
                     $('#show_data').show();
                 } else {

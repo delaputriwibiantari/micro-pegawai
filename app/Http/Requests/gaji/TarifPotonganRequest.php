@@ -27,7 +27,8 @@ final class TarifPotonganRequest extends FormRequest
             'potongan_id' => 'nullable|string|max:10',
             'nama_potongan' => 'required|string|max:100',
             'tarif_per_kejadian' => 'required|decimal:0,2',
-            'deskripsi' => 'required|string|max:255'
+            'deskripsi' => 'required|string|max:255',
+            'komponen_id' => 'required|exists:gaji.komponen_gaji,komponen_id',
         ];
     }
 
@@ -38,6 +39,7 @@ final class TarifPotonganRequest extends FormRequest
             'nama_potongan' => 'Nama Potongan',
             'tarif_per_kejadian' => 'Tarif Per Kejadian',
             'deskripsi' => 'Deskripsi',
+            'komponen_id' => 'Komponen Id',
         ];
     }
 
@@ -65,6 +67,9 @@ final class TarifPotonganRequest extends FormRequest
             'deskripsi.required' => 'Field :attribute wajib diisi.',
             'deskripsi.string' => 'Field :attribute harus berupa teks.',
             'deskripsi.max' => 'Field :attribute maksimal :max.',
+
+            'komponen_id.required' => 'Field :attribute wajib diisi.',
+            'komponen_id.exists' => 'Field :attribute tidak ditemukan.',
         ];
     }
 }

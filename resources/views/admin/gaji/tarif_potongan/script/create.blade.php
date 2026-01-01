@@ -1,5 +1,6 @@
 <script defer>
     $('#form_create').on('show.bs.modal', function (e) {
+        fetchDataDropdown("{{ route('api.gaji.komponengaji') }}", "#komponen_id", "id", "nama_komponen");
         $('#bt_submit_create').on('submit', function (e) {
             e.preventDefault();
             Swal.fire({
@@ -17,12 +18,16 @@
             }).then((result) => {
                 if (result.value) {
                     DataManager.openLoading();
+                    const komponenValue = $('#komponen_id').val();
+
+                    $('#komponen_id').trigger('change');
+
                     const input = {
                         potongan_id: $('#potongan_id').val(),
                         nama_potongan: $('#nama_potongan').val(),
                         tarif_per_kejadian: $('#tarif_per_kejadian').val(),
                         deskripsi: $('#deskripsi').val(),
-
+                        komponen_id: komponenValue,
                     };
                     const action = '{{ route('admin.gaji.tarif_potongan.store') }}';
                     DataManager.postData(action, input).then(response => {

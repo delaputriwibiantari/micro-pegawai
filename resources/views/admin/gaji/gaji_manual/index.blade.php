@@ -43,7 +43,7 @@
                                    class="table table-sm align-middle table-row-bordered table-row-solid gs-0 gy-2">
                                 <thead>
                                 <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0 fs-sm-8 fs-lg-6">
-                                    <th class="min-w-75px ps-5">Aksi</th>
+                                    <th class="min-w-150px">Aksi</th>
                                     <th class="min-w-150px">Nama Pegawai</th>
                                     <th class="min-w-60px">Jabatan</th>
                                     <th class="min-w-120px">Unit Kerja</th>

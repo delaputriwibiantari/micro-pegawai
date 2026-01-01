@@ -40,7 +40,11 @@ final class LemburController extends Controller
                     return $row->jam_mulai . ' - ' . $row->jam_selesai;
                 },
                 'action' => function ($row) {
-                    $rowId = $row->id;
+                    $rowId = $row->id ?? null;
+
+                    if (!$rowId) {
+                        return '-';
+                    }
 
                     return implode(' ', [
                         $this->transactionService->actionButton($rowId, 'detail'),
@@ -69,8 +73,16 @@ final class LemburController extends Controller
 
     public function show(string $id): JsonResponse
     {
+        if ($id === 'undefined' || empty($id)) {
+            return $this->responseService->errorResponse('ID tidak valid');
+        }
+
         return $this->transactionService->handleWithShow(function () use ($id) {
             $data = $this->lemburservice->getDetailData($id);
+
+            if (!$data) {
+                return $this->responseService->errorResponse('Data tidak ditemukan');
+            }
 
             return $this->responseService->successResponse('Data berhasil diambil', $data);
         });

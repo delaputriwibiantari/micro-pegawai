@@ -74,11 +74,9 @@ final class GajiManualService
     public function getDetailTransaksi(string $trxId): ?GajiTrx
     {
         return GajiTrx::query()
-            ->leftJoin('sdm', 'sdm.id', '=', 'gaji_trx.sdm_id')
             ->leftJoin('gaji_periode', 'gaji_periode.periode_id', '=', 'gaji_trx.periode_id')
             ->select([
                 'gaji_trx.*',
-                'sdm.nama_lengkap',
                 'gaji_periode.tahun',
                 'gaji_periode.tanggal_mulai',
                 'gaji_periode.tanggal_selesai',
@@ -181,7 +179,7 @@ final class GajiManualService
             $trx = GajiTrx::create([
                 'periode_id'        => $data['periode_id'],
                 'sdm_id'            => $data['sdm_id'],
-                'total_penghasilan' => 0,
+                'total_penghasil'   => 0,
                 'total_potongan'    => 0,
                 'total_dibayar'     => 0,
             ]);
@@ -255,27 +253,27 @@ final class GajiManualService
             // ============================
             // 6. HITUNG TOTAL
             // ============================
-            $total_penghasilan = 0;
+            $total_penghasil = 0;
             $total_potongan    = 0;
 
             foreach ($detailList as $d) {
 
                 $komponen = KomponenGaji::find($d['komponen_id']);
 
-                if ($komponen->jenis === 'pendapatan') {
-                    $total_penghasilan += $d['nominal'];
+                if ($komponen->jenis === 'PENGHASIL') {
+                    $total_penghasil += $d['nominal'];
                 } else {
                     $total_potongan += $d['nominal'];
                 }
             }
 
-            $total_dibayar = $total_penghasilan - $total_potongan;
+            $total_dibayar = $total_penghasil - $total_potongan;
 
             // ============================
             // 7. UPDATE TRX HEADER
             // ============================
             $trx->update([
-                'total_penghasilan' => $total_penghasilan,
+                'total_penghasil'   => $total_penghasil,
                 'total_potongan'    => $total_potongan,
                 'total_dibayar'     => $total_dibayar,
             ]);

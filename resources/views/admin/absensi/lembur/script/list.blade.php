@@ -1,4 +1,4 @@
-<script defer>
+<script>
     function load_data() {
         $.fn.dataTable.ext.errMode = 'none';
         const table = $('#example').DataTable({

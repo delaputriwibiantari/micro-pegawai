@@ -7,7 +7,6 @@ use App\Http\Requests\gaji\GajiJabatanRequest;
 use App\Services\Gaji\GajiJabatanService;
 use App\Services\Tools\ResponseService;
 use App\Services\Tools\TransactionService;
-use GuzzleHttp\Promise\Create;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -46,19 +45,23 @@ final class GajiJabatanController extends Controller
         );
     }
 
-    public function store(GajiJabatanRequest $request) : JsonResponse {
-
+    public function store(GajiJabatanRequest $request): JsonResponse
+    {
         return $this->transactionService->handleWithTransaction(function () use ($request) {
-            $data = $this->Gajijabatanservice->create($request->only([
-                'gaji_master_id',
-                'komponen_id',
-                'nominal',
-                'id_jabatan',
-            ]));
-            return $this->responseService->successResponse('Data berhasil dibuat', $data, 201);
-        });
+            $data = $this->Gajijabatanservice->create(
+                $request->only([
+                    'komponen_id',
+                    'id_jabatan',
+                    'use_override',
+                    'override_nominal'
+                ])
+            );
 
+            return $this->responseService
+                ->successResponse('Data berhasil dibuat', $data, 201);
+        });
     }
+
 
     public function show(string $id): JsonResponse
     {
@@ -77,10 +80,10 @@ final class GajiJabatanController extends Controller
         }
         return $this->transactionService->handleWithTransaction(function () use ($request, $data) {
             $updatedData = $this->Gajijabatanservice->update($data, $request->only([
-                'gaji_master_id',
                 'komponen_id',
-                'nominal',
                 'id_jabatan',
+                'use_override',
+                'override_nominal'
             ]));
             return $this->responseService->successResponse('Data berhasil diperbarui', $updatedData);
         });

@@ -25,7 +25,7 @@ class IzinRequest extends FormRequest
     {
         return [
             'izin_id' => 'nullable|string|max:10',
-            'jenis_izin' => 'required|in:SAKIT,PRIBADI,DINAS,LAINNYA',
+            'jenis_izin' => 'required|in:PRIBADI,KELUARGA',
             'keterangan' => 'required|string|max:255',
             'tanggal' => 'required|date',
             'jam_mulai' => 'required|date_format:H:i',

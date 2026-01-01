@@ -56,8 +56,8 @@
             },
 
             {
-                data: 'nominal',
-                name: 'nominal'
+                data: 'override_nominal',
+                name: 'override_nominal'
             }]
         });
         const performOptimizedSearch = _.debounce(function (query) {

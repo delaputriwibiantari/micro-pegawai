@@ -11,10 +11,8 @@ final class LemburService
 
     public function getListData(): Collection
     {
-        // 1. Ambil cuti dari koneksi att
-        $lembur = DB::connection('att')
-            ->table('lembur')
-            ->get();
+        // 1. Ambil data lembur menggunakan Eloquent
+        $lembur = Lembur::all();
 
         // 2. Ambil sdm + person dari mysql
         $sdm = DB::connection('mysql')
@@ -46,7 +44,14 @@ final class LemburService
 
     public function getDetailData(string $id)
     {
-        $lembur = Lembur::findOrFail($id);
+        if ($id === 'undefined' || empty($id)) {
+            return null;
+        }
+
+        $lembur = Lembur::find($id);
+        if (!$lembur) {
+            return null;
+        }
 
         $sdm = DB::connection('mysql')
             ->table('sdm')
@@ -67,6 +72,9 @@ final class LemburService
 
     public function findById(string $id): ?Lembur
     {
+        if ($id === 'undefined' || empty($id)) {
+            return null;
+        }
         return Lembur::find($id);
     }
 

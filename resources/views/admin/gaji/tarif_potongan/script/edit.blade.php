@@ -3,6 +3,7 @@
         const button = $(e.relatedTarget);
         const id = button.data('id');
         const detail = '{{ route('admin.gaji.tarif_potongan.show', [':id']) }}';
+        fetchDataDropdown("{{ route('api.gaji.komponengaji') }}", "#edit_komponen_id", "id", "nama_komponen");
 
         DataManager.fetchData(detail.replace(':id', id))
             .then(function (response) {
@@ -11,6 +12,7 @@
                     $('#edit_nama_potongan').val(response.data.nama_potongan);
                     $('#edit_tarif_per_kejadian').val(response.data.tarif_per_kejadian);
                     $('#edit_deskripsi').val(response.data.deskripsi);
+                    $('#edit_komponen_id').val(response.data.komponen_id).trigger('change');
                 } else {
                     Swal.fire('Warning', response.message, 'warning');
                 }
@@ -35,11 +37,15 @@
             }).then((result) => {
                 if (result.value) {
                     DataManager.openLoading();
+                    const komponenValue = $('#edit_komponen_id').val();
+
+                    $('#edit_komponen_id').trigger('change');
                     const input = {
                         potongan_id: $('#edit_potongan_id').val(),
                         nama_potongan: $('#edit_nama_potongan').val(),
                         tarif_per_kejadian: $('#edit_tarif_per_kejadian').val(),
                         deskripsi: $('#edit_deskripsi').val(),
+                        komponen_id: komponenValue,
 
                     };
                     const update = '{{ route('admin.gaji.tarif_potongan.update', [':id']) }}';

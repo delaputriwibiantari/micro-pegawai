@@ -53,13 +53,35 @@
                                 </div>
                                 <div class="invalid-feedback"></div>
                             </div>
+                            <!-- Aturan Nominal -->
+                            <div class="d-flex flex-column mb-2">
+                                <label class="fs-sm-8 fs-lg-6 fw-bolder mb-1">Aturan Nominal</label>
+                                <select data-control="select2"
+                                        class="form-select form-select-sm fs-sm-8 fs-lg-6"
+                                        id="aturan_nominal"
+                                        name="aturan_nominal"
+                                        data-allow-clear="true"
+                                        data-placeholder="Pilih Aturan Nominal">
+                                    <option value="manual">Manual Input</option>
+                                    <option value="gaji_umum">Gaji Umum</option>
+                                    <option value="tarif_potongan">Tarif Potongan</option>
+                                    <option value="tarif_lembur">Tarif Lembur</option>
+                                </select>
+                                <div class="invalid-feedback"></div>
+                            </div>
+
+                            <!-- Referensi ID -->
                             <div class="d-flex flex-column mb-2">
                                 <label class="d-flex align-items-center fs-sm-8 fs-lg-6 fw-bolder mb-1 required">
-                                    <span>Umum Id</span>
+                                    <span>Referensi ID</span>
                                 </label>
-                                <select data-control="select2" class="form-select form-select-sm fs-sm-8 fs-lg-6"
-                                    name="umum_id" id="umum_id" data-allow-clear="true" data-placeholder="Umum Id"
-                                    >
+                                <select data-control="select2"
+                                        class="form-select form-select-sm fs-sm-8 fs-lg-6"
+                                        name="referensi_id"
+                                        id="referensi_id"
+                                        data-allow-clear="true"
+                                        data-placeholder="Pilih Referensi"
+                                        disabled>
                                 </select>
                                 <div class="invalid-feedback"></div>
                             </div>

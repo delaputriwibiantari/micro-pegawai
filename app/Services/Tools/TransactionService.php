@@ -73,17 +73,21 @@ final class TransactionService
 
     public function actionLink(string $route, string $type, string $title): string
     {
-        $icons = ['histori' => 'bi bi-folder-plus'];
+        $icons = [
+            'histori'     => 'bi-folder-plus',
+            'detail_gaji' => 'bi-cash-stack',
+        ];
 
         $icon = $icons[$type] ?? 'bi-question-circle';
 
         return "
-            <a href='$route'
-            title='$title'
+            <a href='{$route}'
+            title='{$title}'
             class='btn btn-icon btn-bg-light btn-active-text-primary btn-sm me-1'>
-                <span class='bi $icon' aria-hidden='true'></span>
+                <span class='bi {$icon}' aria-hidden='true'></span>
             </a>";
     }
+
 
     public function handleWithShow(callable $callback): JsonResponse
     {

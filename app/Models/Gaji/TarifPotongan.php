@@ -26,7 +26,8 @@ final class TarifPotongan extends Model implements Auditable
         'potongan_id',
         'nama_potongan',
         'tarif_per_kejadian',
-        'deskripsi'
+        'deskripsi',
+        'komponen_id'
     ];
 
     protected $casts = [

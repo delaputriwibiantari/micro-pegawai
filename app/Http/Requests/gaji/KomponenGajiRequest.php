@@ -27,11 +27,8 @@ class KomponenGajiRequest extends FormRequest
             'jenis'         => 'required|in:PENGHASIL,POTONGAN',
             'deskripsi'     => 'nullable|string',
             'is_umum' => 'nullable|boolean',
-            'umum_id' => [
-                'required_if:is_umum,1',
-                'nullable',
-                'exists:gaji.gaji_umum,umum_id',
-            ],
+            'aturan_nominal' => 'nullable|in:manual,gaji_umum,tarif_potongan,tarif_lembur',
+            'referensi_id' => 'nullable|string|max:10'
         ];
     }
 
@@ -43,7 +40,8 @@ class KomponenGajiRequest extends FormRequest
             'jenis'         => 'Jenis Komponen',
             'deskripsi'     => 'Deskripsi',
             'is_umum'       => 'Tipe Umum',
-            'umum_id'       => 'ID Umum',
+            'aturan_nominal' => 'Aturan Nominal',
+            'referensi_id' => 'ID Referensi',
         ];
     }
 
@@ -54,6 +52,8 @@ class KomponenGajiRequest extends FormRequest
             'nama_komponen.string'   => 'Nama Komponen harus berupa teks.',
             'jenis.required'         => 'Jenis attribute wajib dipilih.',
             'jenis.in'               => 'Jenis attribute harus PENGHASIL atau POTONGAN.',
+            'aturan_nominal.in'      => 'Aturan Nominal attribute harus manual, gaji_umum, tarif_potongan, atau tarif_lembur.',
+            'referensi_id.string'    => 'ID Referensi harus berupa teks.',
         ];
     }
 

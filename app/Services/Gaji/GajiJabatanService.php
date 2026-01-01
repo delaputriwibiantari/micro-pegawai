@@ -3,7 +3,6 @@
 namespace App\Services\Gaji;
 
 use App\Models\Gaji\GajiJabatan;
-use App\Models\Gaji\KomponenGaji;
 use Illuminate\Support\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -42,8 +41,15 @@ final class GajiJabatanService
 
     public function create(array $data): GajiJabatan
     {
-        return GajiJabatan::create($data);
+        return GajiJabatan::create([
+            'gaji_master_id'   => $this->generateId(),
+            'komponen_id'      => $data['komponen_id'],
+            'id_jabatan'       => $data['id_jabatan'],
+            'override_nominal' => $data['override_nominal'] ?? null,
+            'use_override'     => $data['use_override'] ?? 0,
+        ]);
     }
+
 
 
     public function getDetailData(string $id): ?GajiJabatan
@@ -76,14 +82,32 @@ final class GajiJabatanService
 
     public function update(GajiJabatan $jabatan, array $data): GajiJabatan
     {
-        $jabatan->update($data);
+        $overrideNominal = $data['override_nominal'] ?? null;
+
+        // Normalisasi dari frontend
+        if ($overrideNominal === '' || $overrideNominal === null) {
+            $overrideNominal = null;
+        } else {
+            $overrideNominal = (float) str_replace(',', '', $overrideNominal);
+        }
+
+        $jabatan->update([
+            'komponen_id'      => $data['komponen_id'],
+            'id_jabatan'       => $data['id_jabatan'],
+            'override_nominal' => $overrideNominal,
+            'use_override'     => $data['use_override'] ?? ($overrideNominal !== null ? 1 : 0),
+        ]);
 
         return $jabatan;
     }
 
+
+
+
+
     public function getApiData(Request $request): Collection
     {
-        return KomponenGaji::query()
+        return GajiJabatan::query()
             ->leftJoin('komponen_gaji', 'gaji_jabatan.komponen_id', '=', 'komponen_gaji.komponen_id')
             ->leftJoin('master_jabatan', 'gaji_jabatan.id_jabatan', '=', 'master_jabatan.id_jabatan')
             ->select([
@@ -97,5 +121,19 @@ final class GajiJabatanService
                  $query->where('gaji_jabatan.id_jabatan', $id_jabatan);
             })
             ->get();
+    }
+
+    private function generateId(): string
+    {
+        $last = GajiJabatan::orderBy('gaji_master_id', 'desc')->first();
+
+        if (!$last) {
+            return 'GMJ-001';
+        }
+        $lastNumber = intval(substr($last->gaji_master_id, 4));
+
+        $newNumber = $lastNumber + 1;
+
+        return 'GMJ-' . str_pad($newNumber, 3, '0', STR_PAD_LEFT);
     }
 }

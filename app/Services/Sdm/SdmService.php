@@ -62,15 +62,25 @@ class  SdmService{
     {
         return Sdm::query()
             ->leftJoin('person', 'person.id', '=', 'sdm.id_person')
+            ->leftJoin('ref_almt_desa', 'person.id_desa', '=', 'ref_almt_desa.id_desa')
+            ->leftJoin('ref_almt_kecamatan', 'ref_almt_desa.id_kecamatan', '=', 'ref_almt_kecamatan.id_kecamatan')
+            ->leftJoin('ref_almt_kabupaten', 'ref_almt_kecamatan.id_kabupaten', '=', 'ref_almt_kabupaten.id_kabupaten')
+            ->leftJoin('ref_almt_provinsi', 'ref_almt_kabupaten.id_provinsi', '=', 'ref_almt_provinsi.id_provinsi')
             ->select([
                 'sdm.*',
                 'person.nama_lengkap',
                 'person.tempat_lahir',
                 'person.nik',
                 'person.kk',
+                'person.npwp',
                 'person.tanggal_lahir',
                 'person.alamat',
                 'person.no_hp',
+                'person.foto',
+                'ref_almt_desa.desa',
+                'ref_almt_kecamatan.kecamatan',
+                'ref_almt_kabupaten.kabupaten',
+                'ref_almt_provinsi.provinsi',
             ])
             ->where('sdm.id', $id)
             ->first();

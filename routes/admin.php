@@ -35,6 +35,7 @@ use App\Http\Controllers\admin\sdm\SdmKeluargaController;
 use App\Http\Controllers\admin\sdm\SdmPendidikanController;
 use App\Http\Controllers\Admin\Sdm\SdmRekeningController;
 use App\Http\Controllers\admin\sdm\SdmStrukturalController;
+use App\Http\Controllers\Gaji\PayrollController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['role:admin,developer'])->group(function () {
@@ -430,6 +431,13 @@ Route::prefix('gaji')->name('gaji.')->group(function () {
             ->name('find_by_nik');
     });
 });
+
+Route::prefix('payroll')->name('payroll.')->group(function () {
+        Route::get('/', [PayrollController::class, 'index'])->name('index');
+        Route::get('create', [PayrollController::class, 'create'])->name('create');
+        Route::post('store', [PayrollController::class, 'store'])->name('store');
+        Route::get('show/{id}', [PayrollController::class, 'show'])->name('show');
+    });
 
 Route::prefix('absensi')->name('absensi.')->group(function () {
 

@@ -47,4 +47,9 @@ final class TarifLemburService
 
         return 'TLE-' . str_pad($newNumber, 3, '0', STR_PAD_LEFT);
     }
+
+    public function getListDataOrdered(string $orderBy): Collection
+    {
+        return TarifLembur::orderBy($orderBy)->get();
+    }
 }

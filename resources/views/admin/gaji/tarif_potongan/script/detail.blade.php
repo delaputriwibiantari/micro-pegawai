@@ -11,6 +11,8 @@
                     $('#detail_nama_potongan').text(response.data.nama_potongan);
                     $('#detail_tarif_per_kejadian').text(response.data.tarif_per_kejadian);
                     $('#detail_deskripsi').text(response.data.deskripsi);
+                    $('#detail_komponen_id').text(response.data.komponen_id);
+                    $('#detail_nama_komponen').text(response.data.nama_komponen);
                     $('#null_data').hide();
                     $('#show_data').show();
                 } else {

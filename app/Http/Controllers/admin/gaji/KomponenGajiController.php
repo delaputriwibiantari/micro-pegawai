@@ -54,7 +54,8 @@ final class KomponenGajiController extends Controller
                 'jenis',
                 'deskripsi',
                 'is_umum',
-                'umum_id',
+                'aturan_nominal', // ← TAMBAH
+                'referensi_id',
             ]));
             return $this->responseService->successResponse('Data berhasil dibuat', $data, 201);
         });
@@ -64,6 +65,10 @@ final class KomponenGajiController extends Controller
     {
         return $this->transactionService->handleWithShow(function () use ($id) {
             $data = $this->Komponengajiservice->getDetailData($id);
+
+            if (!$data) {
+                return $this->responseService->errorResponse('Data tidak ditemukan', 404);
+            }
 
             return $this->responseService->successResponse('Data berhasil diambil', $data);
         });
@@ -82,7 +87,8 @@ final class KomponenGajiController extends Controller
                 'jenis',
                 'deskripsi',
                 'is_umum',
-                'umum_id',
+                'aturan_nominal', // ← TAMBAH
+                'referensi_id',
             ]));
             return $this->responseService->successResponse('Data berhasil diperbarui', $updatedData);
         });

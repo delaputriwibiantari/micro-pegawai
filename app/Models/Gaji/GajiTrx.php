@@ -18,14 +18,15 @@ final class GajiTrx extends Model implements Auditable
 
     protected $connection = 'gaji';
     protected $table = 'gaji_trx';
-    public $incrementing = true;
+    public $incrementing = false;
+    protected $keyType = 'string';
     public $timestamps = false;
     protected $primaryKey = 'transaksi_id';
     protected $fillable = [
         'id',
         'transaksi_id',
         'periode_id',
-        'total_penghasilan',
+        'total_penghasil',
         'total_potongan',
         'total_dibayar',
         'sdm_id'
@@ -36,4 +37,9 @@ final class GajiTrx extends Model implements Auditable
         'id' => 'integer',
         'sdm_id' => 'integer'
     ];
+
+    public function details()
+    {
+        return $this->hasMany(GajiDetail::class, 'transaksi_id', 'transaksi_id');
+    }
 }

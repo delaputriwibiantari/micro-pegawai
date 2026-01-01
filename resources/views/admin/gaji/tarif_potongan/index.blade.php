@@ -48,6 +48,7 @@
                                 <th class="min-w-120px">Nama Potongan</th>
                                 <th class="min-w-120px">Tarif Per Kejadian</th>
                                 <th class="min-w-120px">Deskripsi</th>
+                                <th class="min-w-120px">Nama Komponen</th>
                             </tr>
                             </thead>
                             <tbody class="text-gray-800 fw-bolder fs-sm-8 fs-lg-6">
@@ -77,6 +78,26 @@
     <script src="{{ asset('assets/plugins/datatables/buttons.colVis.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables/print.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables/responsive.bootstrap.min.js') }}"></script>
+    <script>
+        function fetchDataDropdown(url, id, placeholder, name, callback) {
+            DataManager.executeOperations(url, 'admin_' + url, 120).then(response => {
+                $(id).empty().append('<option></option>');
+                if (response.success) {
+                    response.data.forEach(item => {
+                        $(id).append(`<option value="${item['komponen_' + placeholder]}">${item[name]}</option>`);
+                    });
+                    $(id).select2();
+                    if (callback) {
+                        callback();
+                    }
+                } else if (!response.errors) {
+                    Swal.fire('Warning', response.message, 'warning');
+                }
+            }).catch(error => {
+                ErrorHandler.handleError(error);
+            });
+        }
+    </script>
     @include('admin.gaji.tarif_potongan.script.list')
     @include('admin.gaji.tarif_potongan.script.create')
     @include('admin.gaji.tarif_potongan.script.edit')

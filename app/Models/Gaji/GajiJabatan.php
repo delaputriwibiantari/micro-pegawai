@@ -24,18 +24,21 @@ final class GajiJabatan extends Model implements Auditable
     protected $fillable = [
         'gaji_master_id',
         'komponen_id',
-        'nominal',
-        'id_jabatan'
+        'id_jabatan',
+        'override_nominal',
+        'use_override'
     ];
 
-    protected $guarded = [
-        'id'
-    ];
 
     protected $casts = [
         'id'       => 'integer',
         'id_jabatan' => 'integer',
     ];
+
+    public function komponen()
+    {
+        return $this->belongsTo(KomponenGaji::class, 'komponen_id', 'komponen_id');
+    }
 
 
 }

@@ -9,7 +9,9 @@
                 if (response.success) {
                     $('#detail_gaji_master_id').text(response.data.gaji_master_id);
                     $('#detail_komponen_id').text(response.data.komponen_id);
-                    $('#detail_nominal').text(response.data.nominal);
+                    $('#detail_nama_komponen').text(response.data.nama_komponen);
+                    $('#detail_use_override').text(response.data.use_override);
+                    $('#detail_override_nominal').text(response.data.override_nominal);
                     $('#null_data').hide();
                     $('#show_data').show();
                 } else {

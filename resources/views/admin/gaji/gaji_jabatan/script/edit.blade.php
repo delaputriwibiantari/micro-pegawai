@@ -1,60 +1,110 @@
 <script defer>
-    $('#form_edit').on('show.bs.modal', function (e) {
-        const button = $(e.relatedTarget);
-        const id = button.data('id');
-        const detail = '{{ route('admin.gaji.gaji_jabatan.show', [':id']) }}';
+    $('#form_edit')
+        .on('show.bs.modal', function (e) {
+            const button = $(e.relatedTarget);
+            const id = button.data('id');
+            const detail = '{{ route('admin.gaji.gaji_jabatan.show', [':id']) }}';
 
-        $(this).data('id', id);
+            $(this).data('id', id);
 
-        DataManager.fetchData(detail.replace(':id', id))
-            .then(function (response) {
-                if (response.success) {
+            DataManager.fetchData(detail.replace(':id', id))
+                .then(function (response) {
+                    if (!response.success) {
+                        Swal.fire('Warning', response.message, 'warning');
+                        return;
+                    }
+
                     const data = response.data;
 
                     $('#edit_gaji_master_id').val(data.gaji_master_id);
-                    $('#edit_nominal').val(data.nominal);
+                    $('#edit_override_nominal').val(data.override_nominal);
 
-                    fetchDataDropdown('{{ route('api.gaji.komponengaji') }}', '#edit_komponen_id_select', 'id', 'nama_komponen', () => {
-                        if (data.komponen_id) {
-                            $('#edit_komponen_id_select').val(data.komponen_id).trigger('change');
+                    fetchDataDropdown(
+                        '{{ route('api.gaji.komponengaji') }}',
+                        '#edit_komponen_id_select',
+                        'komponen_id',
+                        'nama_komponen',
+                        () => {
+                            $('#edit_komponen_id_select')
+                                .val(data.komponen_id)
+                                .trigger('change');
                         }
-                    });
-                } else {
-                    Swal.fire('Warning', response.message, 'warning');
-                }
-            }).catch(function (error) {
-                ErrorHandler.handleError(error);
-            });
-    }).on('hidden.bs.modal', function () {
-        const $m = $(this);
-        $m.find('form').trigger('reset');
-        $m.find('select, textarea').val('').trigger('change');
-        $m.find('.is-invalid, .is-valid').removeClass('is-invalid is-valid');
-        $m.find('.invalid-feedback, .valid-feedback, .text-danger').remove();
+                    );
 
-        $('#edit_komponen_id_select').val(null).trigger('change');
-        // Hapus data ID
-        $(this).removeData('id');
+                    fetchDataDropdown(
+                        '{{ route('api.master.jabatan') }}',
+                        '#edit_id_jabatan',
+                        'id_jabatan',
+                        'jabatan',
+                        () => {
+                            $('#edit_id_jabatan')
+                                .val(data.id_jabatan)
+                                .trigger('change');
+                        }
+                    );
+
+
+                    // SET CHECKBOX & VISIBILITY
+                    $('#edit_use_override').prop('checked', data.use_override == 1);
+                    if (data.use_override == 1) {
+                        $('#override_nominal_container').show();
+                    } else {
+                        $('#override_nominal_container').hide();
+                        $('#edit_override_nominal').val('');
+                    }
+                })
+                .catch(ErrorHandler.handleError);
+        })
+        .on('hidden.bs.modal', function () {
+            const $m = $(this);
+            $m.find('form').trigger('reset');
+            $m.find('select, textarea').val('').trigger('change');
+            $m.find('.is-invalid, .is-valid').removeClass('is-invalid is-valid');
+            $m.find('.invalid-feedback, .valid-feedback, .text-danger').remove();
+
+            $('#edit_komponen_id_select').val(null).trigger('change');
+            $(this).removeData('id');
+        });
+
+    // TOGGLE OVERRIDE
+    $('#edit_use_override').on('change', function () {
+        if (this.checked) {
+            $('#override_nominal_container').show();
+        } else {
+            $('#override_nominal_container').hide();
+            $('#edit_override_nominal').val('');
+        }
     });
 
+    // SUBMIT EDIT
     $('#bt_submit_edit').on('submit', function (e) {
         e.preventDefault();
 
-        // Ambil ID dari modal
         const id = $('#form_edit').data('id');
         if (!id) {
             Swal.fire('Error', 'Data ID tidak ditemukan', 'error');
             return;
         }
 
-        // Ambil nilai umum_id dari select2
         const rawKomponen = $('#edit_komponen_id_select').val();
-        const komponen_id = (rawKomponen && rawKomponen !== 'undefined' && rawKomponen !== '') ? rawKomponen : null;
+        const komponen_id =
+            rawKomponen && rawKomponen !== 'undefined' && rawKomponen !== ''
+                ? rawKomponen
+                : null;
+
+        const rawJabatan = $('#edit_id_jabatan').val();
+        const id_jabatan =
+            rawJabatan && rawJabatan !== 'undefined' && rawJabatan !== ''
+                ? rawJabatan
+                : null;
 
         const input = {
-            gaji_master_id: $('#edit_gaji_master_id').val(),
-            nominal: $('#edit_nominal').val(),
-            komponen_id: komponen_id
+            komponen_id: komponen_id,
+            id_jabatan: id_jabatan,
+            use_override: $('#edit_use_override').is(':checked') ? 1 : 0,
+            override_nominal: $('#edit_use_override').is(':checked')
+                ? $('#edit_override_nominal').val()
+                : null
         };
 
         console.log('Data yang akan diupdate:', input);
@@ -72,28 +122,33 @@
             cancelButtonText: 'Batal',
             focusCancel: true
         }).then((result) => {
-            if (result.value) {
-                DataManager.openLoading();
-                const update = '{{ route('admin.gaji.gaji_jabatan.update', [':id']) }}';
-                DataManager.putData(update.replace(':id', id), input).then(response => {
+            if (!result.value) return;
+
+            DataManager.openLoading();
+            const update = '{{ route('admin.gaji.gaji_jabatan.update', [':id']) }}';
+
+            DataManager.postData(update.replace(':id', id), input)
+                .then(response => {
                     if (response.success) {
                         Swal.fire('Success', response.message, 'success');
-                        setTimeout(function () {
-                            location.reload();
-                        }, 1000);
+                        setTimeout(() => location.reload(), 1000);
+                        return;
                     }
-                    if (!response.success && response.errors) {
+
+                    if (response.errors) {
                         const validationErrorFilter = new ValidationErrorFilter('edit_');
                         validationErrorFilter.filterValidationErrors(response);
-                        Swal.fire('Peringatan', 'Isian Anda belum lengkap atau tidak valid.', 'warning');
+                        Swal.fire(
+                            'Peringatan',
+                            'Isian Anda belum lengkap atau tidak valid.',
+                            'warning'
+                        );
+                        return;
                     }
-                    if (!response.success && !response.errors) {
-                        Swal.fire('Warning', response.message, 'warning');
-                    }
-                }).catch(error => {
-                    ErrorHandler.handleError(error);
-                });
-            }
+
+                    Swal.fire('Warning', response.message, 'warning');
+                })
+                .catch(ErrorHandler.handleError);
         });
     });
 </script>

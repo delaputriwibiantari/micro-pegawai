@@ -1,4 +1,4 @@
-<script defer>
+<script>
     $('#form_edit').on('show.bs.modal', function (e) {
 
         $('#edit_tanggal').flatpickr({
@@ -27,6 +27,9 @@
 
         const button = $(e.relatedTarget);
         const id = button.data('id');
+        if (!id || id === 'undefined') {
+            return;
+        }
         const detail = '{{ route('admin.absensi.lembur.show', [':id']) }}';
 
         DataManager.fetchData(detail.replace(':id', id))

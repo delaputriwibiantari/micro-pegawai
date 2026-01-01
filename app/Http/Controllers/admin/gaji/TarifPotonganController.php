@@ -56,6 +56,7 @@ final class TarifPotonganController extends Controller
                 'nama_potongan',
                 'tarif_per_kejadian',
                 'deskripsi',
+                'komponen_id',
             ]));
             return $this->responseService->successResponse('Data berhasil dibuat', $data, 201);
         });
@@ -81,6 +82,7 @@ final class TarifPotonganController extends Controller
                 'nama_potongan',
                 'tarif_per_kejadian',
                 'deskripsi',
+                'komponen_id',
             ]));
             return $this->responseService->successResponse('Data berhasil diperbarui', $updatedData);
         });

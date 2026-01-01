@@ -1,4 +1,4 @@
-<script defer>
+<script>
     $('#form_create').on('show.bs.modal', function (e) {
         loadPegawaiAktif();
 
@@ -34,7 +34,8 @@
                     formData.append('jam_mulai', $('#jam_mulai').val());
                     formData.append('jam_selesai', $('#jam_selesai').val());
                     formData.append('durasi_jam', $('#durasi_jam').val());
-                    formData.append('status', $('#status').val());
+                    // formData.append('status', $('#status').val()); // Element does not exist in create view
+
                     hitungTotalJam();
 
                     const action = "{{ route('admin.absensi.lembur.store') }}";
@@ -75,16 +76,19 @@
         DataManager.fetchData("{{ route('api.ref.sdm') }}")
             .then((res) => {
                 let select = $("#sdm_id");
-                select.append(`<option value="">Pilih Pegawai</option>`);
+                select.empty().append(`<option value="">Pilih Pegawai</option>`);
 
-                res.data.forEach((item) => {
-                    select.append(`
-                        <option value="${item.id}">
-                            ${item.nama_lengkap}
-                        </option>
-                    `);
-                });
+                if (res && res.data && Array.isArray(res.data)) {
+                    res.data.forEach((item) => {
+                        select.append(`
+                            <option value="${item.id}">
+                                ${item.nama_lengkap}
+                            </option>
+                        `);
+                    });
+                }
 
+                select.select2();
                 select.trigger("change");
             })
             .catch((err) => ErrorHandler.handleError(err));

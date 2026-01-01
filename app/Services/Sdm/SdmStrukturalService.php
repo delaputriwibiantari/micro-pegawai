@@ -199,4 +199,32 @@ final readonly class SdmStrukturalService
 
         return $this->fileUploadService->updateWithTemplate($file, $oldFileName, 'struktural', $template, $data);
     }
+
+    public function getListDataOrdered(string $orderBy)
+    {
+        $orderable = [
+            'id'           => 'sdm_struktural.id_struktural',
+            'nama_lengkap' => 'person.nama_lengkap',
+            'jabatan'      => 'master_jabatan.jabatan',
+            'unit'         => 'master_unit.unit',
+            'created_at'   => 'sdm_struktural.created_at',
+        ];
+
+        $orderColumn = $orderable[$orderBy] ?? 'sdm_struktural.id_struktural';
+
+        return SdmStruktural::query()
+            ->leftJoin('master_jabatan', 'master_jabatan.id_jabatan', '=', 'sdm_struktural.id_jabatan')
+            ->leftJoin('master_unit', 'master_unit.id_unit', '=', 'sdm_struktural.id_unit')
+            ->leftJoin('sdm', 'sdm.id', '=', 'sdm_struktural.id_sdm')
+            ->leftJoin('person', 'person.id', '=', 'sdm.id_person')
+            ->select(
+                'sdm_struktural.*',
+                'person.nama_lengkap',
+                'master_jabatan.jabatan',
+                'master_unit.unit'
+            )
+            ->orderBy($orderColumn, 'asc') // ✅ aman
+            ->get();
+    }
+
 }

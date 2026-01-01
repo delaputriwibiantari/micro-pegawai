@@ -5,6 +5,7 @@ namespace App\Models\Gaji;
 use App\Traits\SkipsEmptyAudit;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Schema;
 use OwenIt\Auditing\Contracts\Auditable;
 use OwenIt\Auditing\Auditable as AuditableTrait;
 
@@ -27,7 +28,8 @@ final class KomponenGaji extends Model implements Auditable
         'jenis',
         'deskripsi',
         'is_umum',
-        'umum_id',
+        'aturan_nominal',
+        'referensi_id',
     ];
 
     protected $guarded = [
@@ -56,5 +58,37 @@ final class KomponenGaji extends Model implements Auditable
     public function setDeskripsiAttribute($v): void
     {
         $this->attributes['deskripsi'] = $v ? trim(strip_tags($v)) : null;
+    }
+
+    public function getAturanNominalAttribute($value)
+    {
+        if ($value) {
+            return $value;
+        }
+
+        // Fallback ke logika lama
+        return $this->is_umum ? 'gaji_umum' : 'manual';
+    }
+
+    /**
+     * Accessor untuk referensi_id dengan fallback
+     */
+
+
+    /**
+     * Scope untuk filter berdasarkan aturan
+     */
+    public function scopeByAturan($query, $aturan)
+    {
+        // Jika kolom belum ada, gunakan logika is_umum
+        if (!Schema::hasColumn('komponen_gaji', 'aturan_nominal')) {
+            if ($aturan == 'gaji_umum') {
+                return $query->where('is_umum', true);
+            } elseif ($aturan == 'manual') {
+                return $query->where('is_umum', false);
+            }
+        }
+
+        return $query->where('aturan_nominal', $aturan);
     }
 }
