@@ -1,5 +1,6 @@
 @php
     use Carbon\Carbon;
+    use Illuminate\Support\Facades\Crypt;
     $pendapatan = $detail->where('jenis', 'PENGHASIL');
     $potongan = $detail->where('jenis', 'POTONGAN');
 @endphp
@@ -261,7 +262,7 @@
 
                 <!-- Footer Actions -->
                 <div class="d-flex justify-content-end mb-10 pb-5">
-                    <a href="{{ route('admin.gaji.gaji_manual.index') }}" class="btn btn-sm btn-light-primary me-3">
+                    <a href="{{ route('admin.gaji.gaji_manual.index', ['admin' => Crypt::encryptString(auth('admin')->id())]) }}" class="btn btn-sm btn-light-primary me-3">
                         <i class="bi bi-arrow-left me-2"></i> Kembali
                     </a>
                     <button class="btn btn-sm btn-primary" onclick="window.print()">
