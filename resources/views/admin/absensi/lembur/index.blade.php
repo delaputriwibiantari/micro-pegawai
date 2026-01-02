@@ -60,11 +60,11 @@
             </div>
         </div>
     </div>
-
+@include('admin.absensi.lembur.view.edit')
     @include('admin.absensi.lembur.view.create')
     @include('admin.absensi.lembur.view.approval')
     @include('admin.absensi.lembur.view.detail')
-    @include('admin.absensi.lembur.view.edit')
+
 
 @endsection
 

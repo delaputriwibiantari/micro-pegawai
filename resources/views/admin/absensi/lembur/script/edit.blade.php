@@ -43,6 +43,7 @@
                     $('#edit_tanggal').val(response.data.tanggal);
                     $('#edit_nama_lengkap').val(response.data.nama_lengkap);
                     $('#edit_keterangan').val(response.data.keterangan);
+                    $('#edit_tanggal').val(response.data.tanggal);
 
                     fpJamMulai.setDate(response.data.jam_mulai, true);
                     fpJamSelesai.setDate(response.data.jam_selesai, true);
