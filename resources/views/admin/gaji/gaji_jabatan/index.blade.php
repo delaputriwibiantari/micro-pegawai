@@ -20,7 +20,7 @@
             <div class="card mb-xl-8 mb-5 border-2 shadow">
                 <div class="card-header">
                     <h3 class="card-title align-items-start flex-column">
-                        <span class="card-label fw-bolder mb-1">Data Gaji Jabtan</span>
+                        <span class="card-label fw-bolder mb-1">Data Gaji Jabatan</span>
                     </h3>
                     <div class="card-toolbar">
                         <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">

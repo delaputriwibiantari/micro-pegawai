@@ -14,7 +14,9 @@ use App\Services\Tools\ResponseService;
 use App\Services\Tools\TransactionService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 use Illuminate\View\View;
 
 final class GajiManualController extends Controller
@@ -29,22 +31,30 @@ final class GajiManualController extends Controller
 
     public function index(): View
     {
+
         return view('admin.gaji.gaji_manual.index');
     }
 
-    public function list(Request $request): JsonResponse
+   public function list(Request $request): JsonResponse
     {
         return $this->transactionService->handleWithDataTable(
             fn () => $this->gajimanualservice->getListData($request),
             [
-                'action' => fn ($row) =>
-                    implode(' ', [
-                        $this->transactionService->actionButton($row->transaksi_id, 'detail'),
-                        $this->transactionService->actionLink(route('admin.gaji.gaji_manual.detailgaji', $row->transaksi_id), 'detail_gaji', 'Detail Gaji'),
-                    ]),
+                'action' => fn ($row) => implode(' ', [
+
+                    $this->transactionService->actionLink(
+                        route(
+                            'admin.gaji.gaji_manual.detailgaji',
+                            Crypt::encryptString($row->transaksi_id)
+                        ),
+                        'detail_gaji',
+                        'Detail Gaji'
+                    ),
+                ]),
             ]
         );
     }
+
 
     /** ==============================
      *  PROSES PAYROLL
@@ -161,8 +171,17 @@ final class GajiManualController extends Controller
     /** ==============================
      *  HISTORI GAJI SDM
      *  ============================== */
-    public function detailgaji(string $id): View
+public function detailgaji(string $id): View
 {
+    try {
+        // 🔥 kalau BUKAN UUID → berarti encrypted → decrypt
+        if (!Str::isUuid($id)) {
+            $id = Crypt::decryptString($id);
+        }
+    } catch (\Exception $e) {
+        abort(403, 'Akses terlarang');
+    }
+
     $trx = $this->gajimanualservice->getDetailTransaksi($id);
 
     if (!$trx) {
@@ -175,7 +194,6 @@ final class GajiManualController extends Controller
         abort(404, 'SDM tidak ditemukan pada transaksi ini');
     }
 
-    // SDM berada di koneksi mysql
     $sdm = $this->sdmService->getDetailData($trx->sdm_id);
 
     if (!$sdm) {
@@ -189,6 +207,5 @@ final class GajiManualController extends Controller
         'id'     => $id,
     ]);
 }
-
 
 }
